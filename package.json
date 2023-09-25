@@ -1,0 +1,13 @@
+
+  {
+    "name": "geo-stache",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "npm run setup:server",
+      "setup:app": "npm run setup:server && npm run setup:client",
+      "setup:client": "cd geo-stache.client && npm i",
+      "setup:server": "cd geo-stache && npm i",
+      "start": "node geo-stache/index.js"
+    }
+  }
+  
