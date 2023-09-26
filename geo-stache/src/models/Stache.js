@@ -11,7 +11,8 @@ export const StacheSchema = new Schema({
     coverImage: {type: String, required: true },
     tag: {type: String, required: true},
     hint: {type: String, required: true},
-    cord: {type: navigator}
+    // TODO uncomment this when needed
+    // cord: {type: navigator.geolocation.getCurrentPosition}
 
 
 }, {timestamps: true, toJSON:{virtuals: true}})
@@ -26,7 +27,7 @@ StacheSchema.virtual('creator', {
 
 
 // NOTE Will get to this when we need it?
-// StacheSchema.virtual('badeCount', {
+// StacheSchema.virtual('badgeCount', {
 //     localField: '_id',
 //     foreignField: '',
 //     ref: '',
