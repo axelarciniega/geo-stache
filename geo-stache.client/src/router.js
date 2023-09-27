@@ -13,13 +13,25 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About',
+    name: 'About Us',
     component: loadPage('AboutPage')
   },
   {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/stache',
+    name: 'Stache Details',
+    component: loadPage('StacheDetailsPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/stachemap',
+    name: 'Map',
+    component: loadPage('StacheMap'),
     beforeEnter: authGuard
   }
 ]
