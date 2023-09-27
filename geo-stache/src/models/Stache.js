@@ -3,6 +3,7 @@ import { Schema } from "mongoose"
 
 
 export const StacheSchema = new Schema({
+    accountId: {type: Schema.Types.ObjectId, ref: 'Account'},
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -28,14 +29,14 @@ StacheSchema.virtual('creator', {
     ref: 'Account',
     justOne: true
 })
-StacheSchema.virtual('location', {
-    localField: 'locationId',
-    foreignField: '_id',
-    ref: 'Location',
-    justOne: true
-}
 
-)
+// StacheSchema.virtual('location', {
+//     localField: 'locationId',
+//     foreignField: '_id',
+//     ref: 'Location',
+//     justOne: true
+// }
+// )
 
 // NOTE Will get to this when we need it?
 // StacheSchema.virtual('badgeCount', {
