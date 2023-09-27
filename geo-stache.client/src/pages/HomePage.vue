@@ -4,19 +4,43 @@
       <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
         class="rounded-circle">
       <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
+
       </h1>
     </div>
   </div>
 </template>
 
 <script>
+import { stachesService } from '../services/StachesService.js'
+import Pop from '../utils/Pop.js'
+import { onMounted } from "vue";
+
 export default {
   setup() {
+
+    onMounted(() => getStacheById())
+
+    async function getStacheById() {
+      try {
+        await stachesService.getStacheById()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+
+
     return {}
   }
 }
 </script>
+
+
+
+
+
+
+
 
 <style scoped lang="scss">
 .home {

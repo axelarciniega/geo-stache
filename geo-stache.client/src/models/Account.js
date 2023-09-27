@@ -4,6 +4,8 @@ export class Account {
     this.email = data.email
     this.name = data.name
     this.picture = data.picture
-    // TODO add additional properties if needed
+    this.latitude = data.latitude
+    this.longitude = data.longitude
+    this.badgeCount = data.badgeCount
   }
 }

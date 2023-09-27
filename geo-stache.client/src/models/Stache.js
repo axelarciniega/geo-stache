@@ -10,6 +10,6 @@ export class Stache {
         this.hint = data.hint
         this.latitude = data.latitude
         this.longitude = data.longitude
-        this.badCount = data.badCount
+        this.badgeCount = data.badgeCount
     }
 }
