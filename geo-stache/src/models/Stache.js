@@ -3,19 +3,23 @@ import { Schema } from "mongoose"
 
 
 export const StacheSchema = new Schema({
-    creatorId: {type: Schema.Types.ObjectId, ref: 'Account', required: true},
-    name: {type: String, required: true},
-    description: {type: String, required: true},
-    difficulty: {type: String, enum: [1,2,3,4,5]},
-    badgeImage: {type: String, },
-    coverImage: {type: String, required: true },
-    tag: {type: String, required: true},
-    hint: {type: String, required: true},
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    difficulty: { type: String, enum: [1, 2, 3, 4, 5] },
+    badgeImage: { type: String, },
+    coverImage: { type: String, },
+    tag: { type: String, required: true },
+    hint: { type: String, required: true },
+    location: {
+        type: { type: String, enum: ['Point'], required: true, default: "Point" },
+        coordinates: { type: [Number], required: true }
+    }
     // TODO uncomment this when needed
     // cord: {type: navigator.geolocation.getCurrentPosition}
 
 
-}, {timestamps: true, toJSON:{virtuals: true}})
+}, { timestamps: true, toJSON: { virtuals: true } })
 
 
 StacheSchema.virtual('creator', {
@@ -24,7 +28,14 @@ StacheSchema.virtual('creator', {
     ref: 'Account',
     justOne: true
 })
+StacheSchema.virtual('location', {
+    localField: 'locationId',
+    foreignField: '_id',
+    ref: 'Location',
+    justOne: true
+}
 
+)
 
 // NOTE Will get to this when we need it?
 // StacheSchema.virtual('badgeCount', {
