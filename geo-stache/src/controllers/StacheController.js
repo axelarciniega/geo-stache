@@ -1,6 +1,8 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { stachesService } from "../services/StachesServices.js";
+import { commentsService } from "../services/CommentsService.js";
+
 
 
 
@@ -13,6 +15,9 @@ export class StacheController extends BaseController {
             // .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createStache)
             .get('/:stacheId', this.getLocationByStacheId)
+            .get('/:stacheId', this.getStacheById)
+            .get('/:stacheId', this.findCommentsByStacheId)
+
     }
 
 
@@ -53,6 +58,14 @@ export class StacheController extends BaseController {
         }
     }
 
-
+    async findCommentsByStacheId(req, res, next) {
+        try {
+            const stacheId = req.params.stacheId
+            const comments = await commentsService.findCommentsByStacheId(stacheId)
+            return res.send(comments)
+        } catch (error) {
+            next(error)
+        }
+    }
 
 }
