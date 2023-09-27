@@ -3,9 +3,9 @@ import { Schema } from "mongoose"
 
 
 export const StacheSchema = new Schema({
+    creatorId: {type: Schema.Types.ObjectId, ref: 'Account', required: true},
     name: {type: String, required: true},
     description: {type: String, required: true},
-    creatorId: {type: Schema.Types.ObjectId, required: true, ref: 'Account'},
     difficulty: {type: String, enum: [1,2,3,4,5]},
     badgeImage: {type: String, },
     coverImage: {type: String, required: true },

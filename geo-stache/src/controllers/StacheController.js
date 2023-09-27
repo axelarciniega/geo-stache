@@ -17,7 +17,7 @@ export class StacheController extends BaseController{
 
     async createStache(req,res,next){
         try {
-            let stacheBody = req.stacheBody
+            let stacheBody = req.body
             stacheBody.creatorId = req.userInfo.id
             const stache = await stachesService.createStache(stacheBody)
             res.send(stache)
