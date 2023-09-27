@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 
 class StachesService {
-    async async getStacheById(stacheId) {
+    async getStacheById(stacheId) {
         const stache = await dbContext.Staches.findById(stacheId)
         await stache.populate('creator')
         return stache
@@ -13,7 +13,7 @@ class StachesService {
         await stache.populate('creator')
         return stache
     }
-    
+
     async getLocationByStacheId(stacheId) {
         const getLocation = await dbContext.Staches.findById(stacheId)
         if (!getLocation) {
@@ -21,10 +21,10 @@ class StachesService {
         }
         return getLocation
     }
-    
+
     async editStache(updates, stacheId) {
         const originalStache = await dbContext.Staches.findById(stacheId)
-        if(!originalStache){
+        if (!originalStache) {
             throw new BadRequest(`No id at ${stacheId}`)
         }
 
@@ -38,18 +38,18 @@ class StachesService {
         originalStache.location = updates.location || originalStache.location
 
         await originalStache.save()
-        
+
         return originalStache
     }
-    
+
     async deleteStache(stacheId, userId) {
         const stache = await dbContext.Staches.findById(stacheId)
-        if(userId != stache.accountId){
+        if (userId != stache.accountId) {
             throw new Forbidden('Not yours!')
         }
         await stache.remove()
     }
-    
+
 
 
 

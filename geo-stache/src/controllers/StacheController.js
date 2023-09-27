@@ -27,7 +27,7 @@ export class StacheController extends BaseController {
         }
     }
 
-    getStacheById(req, res, next) {
+    async getStacheById(req, res, next) {
         try {
             const stacheId = await stachesService.getStacheById(req.params.stacheId)
             res.send(stacheId)
@@ -46,7 +46,7 @@ export class StacheController extends BaseController {
     }
     async logStache(req, res, next) {
         try {
-            const stache = await stachesService.logStache.(req.params.stacheId, req.userInfo.id)
+            const stache = await stachesService.logStache(req.params.stacheId)
             res.send(stache)
         } catch (error) {
             next(error)
