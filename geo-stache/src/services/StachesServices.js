@@ -3,6 +3,11 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 
 class StachesService {
+    async async getStacheById(stacheId) {
+        const stache = await dbContext.Staches.findById(stacheId)
+        await stache.populate('creator')
+        return stache
+    }
     async createStache(stacheBody) {
         const stache = await dbContext.Staches.create(stacheBody)
         await stache.populate('creator')
@@ -48,6 +53,17 @@ class StachesService {
 
 
 
+
+
+    async logStache(stacheId) {
+        const stache = await this.getStacheById(stacheId)
+        // if(stache.location != userId) throw new Forbidden("That's not your purse I don't know you!")
+
+
+        stache.found = !stache.found
+        await stache.save()
+        return stache
+    }
 
 }
 

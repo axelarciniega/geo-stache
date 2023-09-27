@@ -29,6 +29,15 @@ export class StacheController extends BaseController {
         }
     }
 
+    getStacheById(req, res, next) {
+        try {
+            const stacheId = await stachesService.getStacheById(req.params.stacheId)
+            res.send(stacheId)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async getLocationByStacheId(req, res, next) {
         try {
             const stacheLocation = await stachesService.getLocationByStacheId(req.params.stacheId)
@@ -37,6 +46,15 @@ export class StacheController extends BaseController {
             next(error)
         }
     }
+    async logStache(req, res, next) {
+        try {
+            const stache = await stachesService.logStache.(req.params.stacheId, req.userInfo.id)
+            res.send(stache)
+        } catch (error) {
+            next(error)
+        }
+    }
+
 
     async editStache(req, res, next){
         try {

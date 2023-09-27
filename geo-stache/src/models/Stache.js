@@ -12,6 +12,7 @@ export const StacheSchema = new Schema({
     coverImage: { type: String, },
     tag: { type: String, required: true },
     hint: { type: String, required: true },
+    found: { type: Boolean, required: true, default: false },
     location: {
         type: { type: String, enum: ['Point'], required: true, default: "Point" },
         coordinates: { type: [Number], required: true }
