@@ -5,7 +5,7 @@
             <!-- Stache Name Input -->
             <div class=" form-group">
                 <label for="stacheName">Stache Name:</label>
-                <input type="text" id="stacheName" v-model="stacheData.stacheName" minlength="3" maxlength="50" required
+                <input type="text" id="stacheName" v-model="stacheData.stacheName" minlength="2" maxlength="50" required
                     class="form-control" />
                 <!-- <small class="text-muted">Minimum length: 3, Maximum length: 50 characters</small> -->
             </div>
