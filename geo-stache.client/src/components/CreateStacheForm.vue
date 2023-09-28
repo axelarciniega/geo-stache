@@ -101,7 +101,7 @@ export default {
                     let newEvent = await stachesService.createStache(eventData.value)
                     Pop.toast('Stache Created', 'success')
                     resetForm()
-                    Modal.getOrCreateInstance('#create-stache').hide()
+                    Modal.getOrCreateInstance('#id').hide()
                     // router.push({ name: 'Stache Details', params: { stachId: newStache.id } })
                     // FIXME enter correct params
                 } catch (error) {
