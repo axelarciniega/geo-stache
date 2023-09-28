@@ -16,7 +16,7 @@
       </section>
 <!-- photo and stache chart with links to popular staches -->
 <div class="row justify-content-center">
-  <button class="btn create my-3 col-8 col-md-4 fs-3">
+  <button  class="btn create my-3 col-8 col-md-4 fs-3">
     Post a Stache
   </button>
 </div>
