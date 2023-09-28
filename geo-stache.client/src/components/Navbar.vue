@@ -22,6 +22,11 @@
           </router-link>
         </li>
         <li>
+          <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
+            StacheDetailsPage
+          </router-link>
+        </li>
+        <li>
           <!-- <router-link :to="{ name: 'Location' }" class="btn text-success lighten-30 selectable text-uppercase">
             Location
           </router-link> -->
