@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About Us',
+    name: 'About',
     component: loadPage('AboutPage')
   },
   {
