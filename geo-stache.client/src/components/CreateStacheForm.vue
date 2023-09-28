@@ -79,7 +79,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
-import { eventsService } from '../services/EventsService.js';
+import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
 export default {
@@ -97,12 +97,12 @@ export default {
             async createStache() {
                 try {
 
-                    let newEvent = await eventsService.createEvent(eventData.value)
+                    let newEvent = await stachesService.createStache(eventData.value)
                     Pop.toast('Stache Created', 'success')
                     resetForm()
-                    Modal.getOrCreateInstance('#create-event').hide()
+                    Modal.getOrCreateInstance('#create-stache').hide()
+                    // router.push({ name: 'Stache Details', params: { stachId: newStache.id } })
                     // FIXME enter correct params
-                    router.push({ name: 'Stache Details', params: { stachId: newEvent.id } })
                 } catch (error) {
                     Pop.error(error)
                 }
