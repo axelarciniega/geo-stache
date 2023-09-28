@@ -27,24 +27,24 @@
           </router-link> -->
         </li>
       </ul>
-        <!-- MODAL WRAPPER -->
-        <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
-          <ul class="navbar-nav me-auto">
-            <ModalWrapper id="id">
-              <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
-              <template #button>
-                <i class="mdi mdi-plus-box"></i> Create Stache
-              </template>
+      <!-- MODAL WRAPPER -->
+      <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
+        <ul class="navbar-nav me-auto">
+          <ModalWrapper id="id">
+            <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
+            <template #button>
+              <i class="mdi mdi-plus-box"></i> Create Stache
+            </template>
 
-              <template #body>
-                <CreateStacheForm />
-              </template>
-            </ModalWrapper>
-          </ul>
+            <template #body>
+              <CreateStacheForm />
+            </template>
+          </ModalWrapper>
+        </ul>
 
-        </div>
-        <!-- LOGIN COMPONENT HERE -->
-        <Login />
+      </div>
+      <!-- LOGIN COMPONENT HERE -->
+      <Login />
     </div>
   </nav>
 </template>

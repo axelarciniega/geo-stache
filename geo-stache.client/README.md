@@ -1,3 +1,53 @@
+# Geo-Stache
+
+Geo-Stache, the new open-source geocaching companion.
+
+We created Geo-Stache to improve accessibility and increase participation in geocaching, an activity we all enjoy.
+
+Our Goals:
+-Establish the geocaching activity to be accessible to everyone, regardless of their financial situation or experience level.
+-Open Source: Geo-Stache is open source, which means it is community-driven.
+-Gamified and Communal: We've gamified the geocaching experience, making it more fun and social. Connect with fellow cachers, share your adventures, and discover new places.
+
+
+
+
+
+## Table of contents
+
+- Requirements
+- Recommended modules
+- Installation
+- Configuration
+- Troubleshooting
+- FAQ
+- Maintainers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 CodeWorks Vue Starter
 =====================
 This template is designed to help get students started building vue applications
