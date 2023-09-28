@@ -3,12 +3,12 @@ import { Schema } from "mongoose";
 
 
 export const CommentSchema = new Schema({
-    creatorId: {type: Schema.Types.ObjectId, ref: 'Account', required: true},
-    stacheId: {type: Schema.Types.ObjectId, required: true, ref: 'stache' },
-    body: {type: String, required: true},
-    isAttending: {type: Boolean, required: true, default: false},
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
+    stacheId: { type: Schema.Types.ObjectId, required: true, ref: 'stache' },
+    body: { type: String, required: true },
 
-}, {timestamps: true, toJSON: {virtuals: true}})
+
+}, { timestamps: true, toJSON: { virtuals: true } })
 
 
 CommentSchema.virtual('creator', {

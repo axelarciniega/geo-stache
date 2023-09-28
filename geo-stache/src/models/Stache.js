@@ -3,6 +3,7 @@ import { Schema } from "mongoose"
 
 
 export const StacheSchema = new Schema({
+    accountId: {type: Schema.Types.ObjectId, ref: 'Account'},
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -11,6 +12,7 @@ export const StacheSchema = new Schema({
     coverImage: { type: String, },
     tag: { type: String, required: true },
     hint: { type: String, required: true },
+    found: { type: Boolean, required: true, default: false },
     location: {
         type: { type: String, enum: ['Point'], required: true, default: "Point" },
         coordinates: { type: [Number], required: true }
@@ -28,14 +30,14 @@ StacheSchema.virtual('creator', {
     ref: 'Account',
     justOne: true
 })
-StacheSchema.virtual('location', {
-    localField: 'locationId',
-    foreignField: '_id',
-    ref: 'Location',
-    justOne: true
-}
 
-)
+// StacheSchema.virtual('location', {
+//     localField: 'locationId',
+//     foreignField: '_id',
+//     ref: 'Location',
+//     justOne: true
+// }
+// )
 
 // NOTE Will get to this when we need it?
 // StacheSchema.virtual('badgeCount', {
