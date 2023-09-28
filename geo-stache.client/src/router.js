@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/map',
-    name: 'Map',
+    name: 'Nav Map',
     component: loadPage('MapPage')
   },
   {
@@ -33,12 +33,6 @@ const routes = [
     component: loadPage('StacheDetailsPage'),
     beforeEnter: authGuard
   },
-  {
-    path: '/stachemap',
-    name: 'Map',
-    component: loadPage('StacheMap'),
-    beforeEnter: authGuard
-  }
 ]
 
 export const router = createRouter({

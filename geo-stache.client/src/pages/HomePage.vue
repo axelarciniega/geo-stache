@@ -8,13 +8,18 @@
       </div>
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
         <!-- Map/link to map page -->
-        <img class="map-pic"
-          src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-          alt="">
-        <div class="frosted-card">
-          <h1 class="ps-2 position-relative">Start searching</h1>
-        </div>
+
+        <router-link :to="{ name: 'Nav Map' }">
+          <img class="map-pic"
+            src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="">
+          <div class="frosted-card">
+            <h1 class="ps-2 position-relative text-black">Start searching</h1>
+          </div>
+        </router-link>
       </div>
+
+
     </section>
     <!-- photo and stache chart with links to popular staches -->
     <div class="row justify-content-center">
