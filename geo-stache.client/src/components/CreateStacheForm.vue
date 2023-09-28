@@ -32,7 +32,7 @@
 
             <!-- Badge Image Input -->
             <div class="form-group">
-                <label for="coverImg">Cover Image:</label>
+                <label for="coverImg">Badge Image:</label>
                 <input type="text" id="coverImg" v-model="coverImg" minlength="5" :maxlength="255" required />
                 <small class="text-muted">Minimum length: 5, Maximum length: 255 characters</small>
             </div>
@@ -71,6 +71,7 @@
                 <textarea id="hint" v-model="hint" minlength="10" maxlength="500" required></textarea>
                 <small class="text-muted">Minimum length: 10, Maximum length: 500 characters</small>
             </div>
+            <button>submit</button>
         </form>
     </div>
 </template>

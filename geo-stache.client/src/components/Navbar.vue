@@ -26,11 +26,11 @@
             Location
           </router-link> -->
         </li>
-
+      </ul>
         <!-- MODAL WRAPPER -->
         <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
           <ul class="navbar-nav me-auto">
-            <ModalWrapper id="create-album">
+            <ModalWrapper id="id">
               <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
               <template #button>
                 <i class="mdi mdi-plus-box"></i> Create Stache
@@ -55,8 +55,7 @@ import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import Login from './Login.vue';
 import ModalWrapper from './ModalWrapper.vue';
-import CreateStacheForm from './CreateStacheForm.vue.js';
-// import CreateStacheForm from './CreateStacheForm.vue.js';
+import CreateStacheForm from './CreateStacheForm.vue';
 
 
 

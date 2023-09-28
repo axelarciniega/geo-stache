@@ -5,5 +5,9 @@ class StachesService {
 
 
     }
+
+    async createStache(){
+        console.log('creating stache')
+    }
 }
 export const stachesService = new StachesService()

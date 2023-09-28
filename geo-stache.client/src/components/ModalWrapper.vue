@@ -5,11 +5,11 @@
         </div>
     </transition>
     <!-- Modal trigger button -->
-    <!-- <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card btn-lg" data-bs-toggle="modal" :data-bs-target="`#${id}`">
+    <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card btn-lg" data-bs-toggle="modal" :data-bs-target="`#${id}`">
     <slot name="button">
     open {{ id }} modal
    </slot>
-</button> -->
+</button>
 
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
