@@ -3,14 +3,15 @@ import { Schema } from "mongoose"
 
 
 export const StacheSchema = new Schema({
-    accountId: {type: Schema.Types.ObjectId, ref: 'Account'},
+    accountId: { type: Schema.Types.ObjectId, ref: 'Account' },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     difficulty: { type: String, enum: [1, 2, 3, 4, 5] },
     badgeImage: { type: String, },
     coverImage: { type: String, },
-    tag: { type: String, required: true },
+    // Team decided tags will be feature rich stage
+    // tag: { type: String, required: true },
     hint: { type: String, required: true },
     found: { type: Boolean, required: true, default: false },
     location: {
