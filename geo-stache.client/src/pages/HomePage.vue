@@ -33,6 +33,7 @@
           src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg"
           alt="">
       </div>
+      <!-- This will be a Stache Card router -->
       <div class="col-md-5 col-12 glass-card my-md-0 my-2">
         <table class="row">
           <tr class="col-8">
