@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark background-nav px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <img class="logo" src="../assets/img/GeoStache.png" alt="">
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -22,9 +22,9 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Location' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'Location' }" class="btn text-success lighten-30 selectable text-uppercase">
             Location
-          </router-link>
+          </router-link> -->
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -44,6 +44,17 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  height: 70px;
+  width: 70px;
+  filter: drop-shadow (0 0 0.75rem crimson);
+  filter: drop-shadow(3px 8px 7px #292828);
+}
+
+.background-nav {
+  background: linear-gradient(45deg, #41644A, #7da386);
+}
+
 a:hover {
   text-decoration: none;
 }
