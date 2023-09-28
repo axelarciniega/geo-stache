@@ -33,7 +33,6 @@ class StachesService {
         originalStache.difficulty = updates.difficulty || originalStache.difficulty
         originalStache.badgeImage = updates.badgeImage || originalStache.badgeImage
         originalStache.coverImage = updates.coverImage || originalStache.coverImage
-        originalStache.tag = updates.tag || originalStache.tag
         originalStache.hint = updates.hint || originalStache.hint
         originalStache.location = updates.location || originalStache.location
 
@@ -60,7 +59,6 @@ class StachesService {
         // if(stache.location != userId) throw new Forbidden("That's not your purse I don't know you!")
 
 
-        stache.found = !stache.found
         await stache.save()
         return stache
     }
