@@ -14,6 +14,7 @@
           </div>
         </div>
       </section>
+
 <!-- photo and stache chart with links to popular staches -->
 <div class="row justify-content-center">
   <button  class="btn create my-3 col-8 col-md-4 fs-3">
@@ -27,9 +28,9 @@
         <div class="col-md-5 col-12 glass-card my-md-0 my-2">
           <table class="row">
   <tr class="col-8">
-    <th class="col-2 px-1">Company</th>
-    <th class="col-7 px-1">Contact</th>
-    <th class="col-3 px-1">Country</th>
+    <th class="col-2 px-1">Stache Name</th>
+    <th class="col-7 px-1">Creator Name</th>
+    <th class="col-3 px-1">Area</th>
   </tr>
   <tr>
     <td class="col-2 px-1">Alfreds Futterkiste</td>
@@ -47,9 +48,31 @@
   </section>
 </template>
 <script>
+import { computed, onMounted } from 'vue'
+import Pop from '../utils/Pop'
+import { stachesService } from '../services/StachesService'
+import { AppState } from '../AppState'
+
+
+
+
 export default {
   setup() {
-    return {}
+    onMounted(()=> {
+      getStaches()
+    })
+
+    async function getStaches(){
+      try {
+        await stachesService.getStaches()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+    return {
+      staches: computed(() => AppState.staches)
+    }
   }
 }
 </script>

@@ -14,9 +14,10 @@ export class StacheController extends BaseController {
         this.router
 
             .get('/:stacheId', this.getStacheById)
+            .get('', this.getStaches)
+            .get('/:stacheId', this.getLocationByStacheId)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createStache)
-            .get('/:stacheId', this.getLocationByStacheId)
             .put('/:stacheId', this.editStache)
             .delete('/:stacheId', this.deleteStache)
     }
@@ -28,6 +29,15 @@ export class StacheController extends BaseController {
             stacheBody.creatorId = req.userInfo.id
             const stache = await stachesService.createStache(stacheBody)
             res.send(stache)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getStaches(req, res, next){
+        try {
+            const staches = await stachesService.getStaches(req.query)
+            res.send(staches)
         } catch (error) {
             next(error)
         }
