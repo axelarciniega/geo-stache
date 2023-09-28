@@ -16,6 +16,16 @@
             About
           </router-link>
         </li>
+        <li>
+          <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Map
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Location' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Location
+          </router-link>
+        </li>
       </ul>
       <ul class="navbar-nav me-auto">
         <ModalWrapper id="create-event" v-if="user.isAuthenticated">
