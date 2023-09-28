@@ -177,21 +177,21 @@ export default {
   background-color: rgba(245, 245, 245, 0.432);
 }
 
-.container,
-.container-fluid {
-  outline: 2px double blue;
-  outline-offset: -2px;
-}
+// .container,
+// .container-fluid {
+//   outline: 2px double blue;
+//   outline-offset: -2px;
+// }
 
-.row {
-  outline: 2px dashed red;
-  outline-offset: -2px;
-}
+// .row {
+//   outline: 2px dashed red;
+//   outline-offset: -2px;
+// }
 
-[class*="col-"] {
-  outline: 2px dotted forestgreen;
-  outline-offset: -3px;
-}
+// [class*="col-"] {
+//   outline: 2px dotted forestgreen;
+//   outline-offset: -3px;
+// }
 
 button.create {
   background-color: #FE9030;
@@ -208,4 +208,5 @@ button.create:hover {
 //   object-fit: contain;
 //   object-position: center;
 //   max-height: 800px;
-// }</style>
+// }
+</style>
