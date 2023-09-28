@@ -13,7 +13,8 @@ export const StacheSchema = new Schema({
     // Team decided tags will be feature rich stage
     // tag: { type: String, required: true },
     hint: { type: String, required: true },
-    found: { type: Boolean, required: true, default: false },
+    //found goes on the badge schema
+    // found: { type: Boolean, required: true, default: false },
     location: {
         type: { type: String, enum: ['Point'], required: true, default: "Point" },
         coordinates: { type: [Number], required: true }
