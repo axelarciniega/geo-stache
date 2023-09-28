@@ -85,8 +85,10 @@ export default {
   place-content: center;
   text-align: center;
   user-select: none;
+
   .home-card {
     width: 50vw;
+
     >img {
       height: 200px;
       max-width: 200px;
@@ -96,67 +98,77 @@ export default {
     }
   }
 }
+
 // show up on this size and smaller
 @media screen and (max-width: 768px) {
-.logo{
-  margin-top: 1em;
-  margin-bottom: 1em;
+  .logo {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .map-link {
+    img {
+      width: 100%;
+      height: 30vh !important;
+      border-radius: 10px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0px !important;
+    }
+
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
+  }
+
+  .map-link:hover {
+    transform: scale(1) !important;
+    transition: ease .35s;
+    filter: brightness(1.2);
+  }
 }
-.map-link{
-  img{
-  width: 100%;
-  height: 70vh !important;
-  border-radius: 10px;
-  object-fit: cover;
-object-position: center;
-border-radius: 0px !important;
-}
-box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
-  0 5px 6px 0 rgba(43, 43, 43, 0.79),
-  0 1px 8px 0 rgba(43, 43, 43, 0.79);
-}
-.map-link:hover{
-transform: scale(1) !important;
-transition: ease .35s;
-filter: brightness(1.2);
-}
-}
-.logo{
+
+.logo {
   max-width: 100%;
   // filter:drop-shadow (0 0 0.75rem crimson)
   filter: drop-shadow(3px 8px 7px #292828);
 }
-.map-link{
-  img{
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-object-position: center;
-border-radius: 10px;
-}
-box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+
+.map-link {
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
   0 5px 6px 0 rgba(43, 43, 43, 0.79),
   0 1px 8px 0 rgba(43, 43, 43, 0.79);
 }
-.map-link:hover{
+
+.map-link:hover {
   border-radius: 10px;
-transform: scale(1.03);
-transition: ease .35s;
-box-shadow: 0 0 10px 3px rgba(205, 205, 205, 0.85),
-inset 0 0 5px 5px rgba(205, 205, 205, 1);
+  transform: scale(1.03);
+  transition: ease .35s;
+  box-shadow: 0 0 10px 3px rgba(205, 205, 205, 0.85),
+    inset 0 0 5px 5px rgba(205, 205, 205, 1);
   // 0 5px 6px 0 rgba(205, 205, 205, 0.79)
   overflow-x: clip;
 }
-.frosted-card{
+
+.frosted-card {
   backdrop-filter: blur(5px);
-    background-color: rgba(219, 220, 221, 0.592);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    top: 0;
-    position: absolute;
-    width: 100%;
+  background-color: rgba(219, 220, 221, 0.592);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  top: 0;
+  position: absolute;
+  width: 100%;
 }
+
 // .frosted-card:hover{
 //   backdrop-filter: blur(5px);
 //     background-color: rgba(219, 220, 221, 0.592);
@@ -168,38 +180,47 @@ inset 0 0 5px 5px rgba(205, 205, 205, 1);
 //     transform: scale(1.03);
 // transition: ease .35s;
 // }
-.homepage-pic{
+.homepage-pic {
   border-radius: 10px;
   width: 100%;
   object-fit: cover;
-object-position: center;
-box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
-  0 5px 6px 0 rgba(43, 43, 43, 0.79),
-  0 1px 8px 0 rgba(43, 43, 43, 0.79);
+  object-position: center;
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
 }
-.glass-card{
+
+.glass-card {
   border-radius: 10px;
   backdrop-filter: blur(3px);
   background-color: rgba(245, 245, 245, 0.432);
 }
-.container,.container-fluid {
-      outline: 2px double blue;
-      outline-offset: -2px;
-    }
-   .row {
-      outline: 2px dashed red;
-      outline-offset: -2px;
-    }
-    [class*="col-"] {
-      outline: 2px dotted forestgreen;
-      outline-offset: -3px;}
-  button.create{
-    background-color: #FE9030;
-  }
-  button.create:hover{
-    background-color: rgb(254, 144, 48);
-    box-shadow: 0 0 10px 2px rgb(254, 144, 48);
-  }
+
+// .container,
+// .container-fluid {
+//   outline: 2px double blue;
+//   outline-offset: -2px;
+// }
+
+// .row {
+//   outline: 2px dashed red;
+//   outline-offset: -2px;
+// }
+
+// [class*="col-"] {
+//   outline: 2px dotted forestgreen;
+//   outline-offset: -3px;
+// }
+
+button.create {
+  background-color: #FE9030;
+}
+
+button.create:hover {
+  background-color: rgb(254, 144, 48);
+  box-shadow: 0 0 10px 2px rgb(254, 144, 48);
+}
+
 //       img {
 //   // Uncomment after change text color
 //   background-image: url(/assets/img/Geo-Stache-logo.png);
