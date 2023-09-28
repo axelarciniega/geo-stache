@@ -27,6 +27,20 @@
           </router-link> -->
         </li>
       </ul>
+      <!-- MODAL WRAPPER -->
+      <ul class="navbar-nav me-auto">
+        <ModalWrapper id="create-event" v-if="user.isAuthenticated">
+          <template #button>
+            <i class="mdi mdi-plus-box"></i> Create Stache
+          </template>
+
+          <template #body>
+            <EventForm />
+          </template>
+        </ModalWrapper>
+      </ul>
+
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -34,12 +48,20 @@
 </template>
 
 <script>
+
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
 import Login from './Login.vue';
+import ModalWrapper from './ModalWrapper.vue';
+
+
 export default {
   setup() {
-    return {}
+    return {
+      user: computed(() => AppState.user)
+    }
   },
-  components: { Login }
+  components: { Login, ModalWrapper }
 }
 </script>
 

@@ -77,12 +77,45 @@
 
 
 <script>
+import { ref, onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
+import { stachesService } from '../services/StachesService.js';
+import { Modal } from 'bootstrap';
+import { useRouter } from 'vue-router';
 export default {
     setup() {
-        return {};
-    },
+        const eventData = ref({})
+        const router = useRouter()
+        function resetForm() {
+            eventData.value = { type: '' }
+        }
+        onMounted(() => {
+            resetForm()
+        })
+        return {
+            eventData,
+            async createStache() {
+                try {
+
+                    let newEvent = await stachesService.createStache(eventData.value)
+                    Pop.toast('Stache Created', 'success')
+                    resetForm()
+                    Modal.getOrCreateInstance('#create-stache').hide()
+                    // router.push({ name: 'Stache Details', params: { stachId: newStache.id } })
+                    // FIXME enter correct params
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
+        }
+    }
 };
 </script>
 
 
-<style></style>
+<style lang="scss" scoped>
+.preview-image {
+    max-height: 15vh;
+    object-fit: contain;
+}
+</style>
