@@ -17,6 +17,17 @@
           </router-link>
         </li>
       </ul>
+      <ul class="navbar-nav me-auto">
+        <ModalWrapper id="create-event" v-if="user.isAuthenticated">
+          <template #button>
+            <i class="mdi mdi-plus-box"></i> Create Event
+          </template>
+
+          <template #body>
+            <EventForm />
+          </template>
+        </ModalWrapper>
+      </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
