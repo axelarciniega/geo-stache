@@ -34,8 +34,9 @@
 </template>
 
 <script>
+
 export default {
-    // props: {"modalActive"},
+    props: { id: { type: String, required: true }, showButton: { type: Boolean, default: true }, btnColor: { type: String, default: 'primary' } },
     setup() {
         return {}
     }
