@@ -4,8 +4,10 @@ export class Account {
     this.email = data.email
     this.name = data.name
     this.picture = data.picture
-    this.latitude = data.latitude
-    this.longitude = data.longitude
     this.badgeCount = data.badgeCount
+
+    this.location = data.location
+    this.lat = data.location.coordinates[0]
+    this.lng = data.location.coordinates[1]
   }
 }
