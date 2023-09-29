@@ -1,7 +1,7 @@
 <template>
     <transition name="modal-animation">
-        <!-- FIXME modalActive is a bool from the old project we copied from, shoule change or remove. -->
-        <div v-show="modalActive" class="modal">
+        <!-- ✅ DONE: modalActive is a bool from the old project we copied from, shoule change or remove.v-show="modalActive" -->
+        <div class="modal">
 
         </div>
     </transition>

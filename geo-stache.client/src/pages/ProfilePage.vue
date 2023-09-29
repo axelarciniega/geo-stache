@@ -1,6 +1,11 @@
 <!-- FIXME Put button on Account Page to Link to Profile page. -->
 <template>
-    <div></div>
+    <div class="container">
+        <section class="row">
+            PROFILE INFO HERE
+
+        </section>
+    </div>
 </template>
 
 <script>
