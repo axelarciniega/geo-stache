@@ -1,9 +1,5 @@
 <template>
-  <div class="about">
-    <h1></h1>
-  </div>
-
-  <section class="container">
+  <section class="container-fluid">
     <section>
       <div class="row table-card align-items-center text-dark">
         <!-- This will be filled proper later -->
