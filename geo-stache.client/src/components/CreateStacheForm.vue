@@ -28,7 +28,7 @@
             <!-- Cover Image Input -->
             <div class="form-group">
                 <label for="coverImg">Cover Image:</label>
-                <input type="text" id="coverImg" v-model="stacheData.coverImg" minlength="5" :maxlength="255" required
+                <input type="text" id="coverImg" v-model="stacheData.coverImage" minlength="5" :maxlength="255" required
                     class="form-control" />
             </div>
             <!-- Badge Image Input -->

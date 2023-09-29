@@ -72,7 +72,7 @@ export default {
 
 <style>
 .stacheImage{
-width: 30vw;
+width: 100%;
     object-fit: cover;
     object-position: center;
 }
