@@ -134,8 +134,8 @@
             <p class="text-md-start text-center fw-bold m-md-0">Sam</p>
             Is there a stache? Is it a stache? Only the voice behind the Stachergeist truly knows. Presenter of the unique
             the-world-is-a-stage production, <span><i>Phantom of the Face</i></span>, Sam specializes in story-based
-            staches. <span><i>The Scarlet Straight Razor</i></span>, <span><i>Phantom of the FaceLegend of
-                Stacha</i></span>, and <span><i>After the Shave</i></span> are among her award winning hunts!
+            staches. <span><i>The Scarlet Straight Razor</i></span>, <span><i>Legend of
+                Stacha</i></span>, and <span><i>Aftershave</i></span> are among her award winning hunts!
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
@@ -191,4 +191,5 @@ export default {
   box-shadow: 0 1px 1px -1px rgba(133, 133, 133, 0.85),
     0 1px 8px 0 rgba(133, 133, 133, 0.79),
     0 1px 10px 0 rgba(133, 133, 133, 0.79);
-}</style>
+}
+</style>
