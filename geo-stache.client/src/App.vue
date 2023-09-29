@@ -7,12 +7,21 @@
     <main>
       <router-view />
     </main>
+<<<<<<< HEAD
     <!-- NOTE FOOTER -->
+=======
+<<<<<<< HEAD
+    <footer class="bg-dark text-light">
+      <!-- Made with 🥸 by Geo-Stache -->
+      <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
+=======
+>>>>>>> 00811adc015d62c3f6b89e1ba8f4e01236587f9f
     <footer class="text-light"><span>
 
         <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
       </span>
+>>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b
     </footer>
 
   </body>
@@ -62,5 +71,10 @@ footer {
   place-content: center;
   height: 32px;
   background-color: #41644A;
+}
+
+.footer-bg {
+  max-height: 5vh;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255));
 }
 </style>

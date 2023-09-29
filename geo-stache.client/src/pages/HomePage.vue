@@ -2,47 +2,52 @@
   <section class="container">
     <!-- <img src="../assets/img/Geo-Stache-logo.png" style="height: 800px;" alt=""> -->
     <!-- logo and map that routes to map page -->
-      <section class="row justify-md-content-around justify-content-center my-1">
-        <div class="col-md-5 col-4 order-md-0 order-1">
-          <img class="logo" src="../assets/img/GeoStache.png" alt="">
-        </div>
-        <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
-          <!-- Map/link to map page -->
-          <img class="map-pic" src="https://c1.wallpaperflare.com/preview/97/283/810/boise-idaho-overhead-view-public-domain.jpg" alt="">
+    <section class="row justify-md-content-around justify-content-center my-1">
+      <div class="col-md-5 col-4 order-md-0 order-1">
+        <img class="logo" src="../assets/img/GeoStache.png" alt="">
+      </div>
+      <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
+        <!-- Map/link to map page -->
+        <router-link :to="{ name: 'Nav Map' }">
+          <img class="map-pic"
+            src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="">
           <div class="frosted-card">
             <h1 class="ps-2 position-relative">Start searching</h1>
           </div>
-        </div>
-      </section>
-
-<!-- photo and stache chart with links to popular staches -->
-<div class="row justify-content-center">
-  <button  class="btn create my-3 col-8 col-md-4 fs-3">
-    Post a Stache
-  </button>
-</div>
+        </router-link>
+      </div>
 
 
-      <section class="row justify-content-around my-2">
-        <div class="col-md-6 col-12 p-0">
-          <img class="homepage-pic px-0" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg" alt="">
-        </div>
-        
-       
-        <!-- STUB Stache Template -->
-        <div class="col-md-5 col-12 glass-card my-md-0 my-2">
-          <table class="row">
-  <tr class="col-8">
-    <th class="col-2 px-1">Stache Name</th>
-    <th class="col-7 px-1">Creator Name</th>
-    <th class="col-3 px-1">difficulty</th>
-  </tr>
-   <div v-for="s in staches" :key="s.id">
-          <StacheCard :stache="s"/>
-        </div>
-</table>
-        </div>
-      </section>
+    </section>
+    <!-- photo and stache chart with links to popular staches -->
+    <div class="row justify-content-center">
+      <button class="btn create my-3 col-8 col-md-4 fs-3">
+        Post a Stache
+      </button>
+    </div>
+    <section class="row justify-content-around my-2">
+      <div class="col-md-6 col-12 p-0">
+        <img class="homepage-pic px-0"
+          src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg"
+          alt="">
+      </div>
+      <!-- This will be a Stache Card router -->
+
+      <!-- STUB Stache Template -->
+      <div class="col-md-5 col-12 glass-card my-md-0 my-2">
+        <table class="row">
+          <tr class="col-8">
+            <th class="col-2 px-1">Stache Name</th>
+            <th class="col-7 px-1">Creator Name</th>
+            <th class="col-3 px-1">difficulty</th>
+          </tr>
+          <div v-for="s in staches" :key="s.id">
+            <StacheCard :stache="s" />
+          </div>
+        </table>
+      </div>
+    </section>
   </section>
 </template>
 <script>
@@ -56,11 +61,11 @@ import { AppState } from '../AppState'
 
 export default {
   setup() {
-    onMounted(()=> {
+    onMounted(() => {
       getStaches()
     })
 
-    async function getStaches(){
+    async function getStaches() {
       try {
         await stachesService.getStaches()
       } catch (error) {
