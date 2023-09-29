@@ -7,7 +7,8 @@
     <main>
       <router-view />
     </main>
-    <footer>
+    <footer class="bg-dark text-light">
+      <!-- Made with 🥸 by Geo-Stache -->
       <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
     </footer>
 

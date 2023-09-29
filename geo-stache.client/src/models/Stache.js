@@ -9,11 +9,9 @@ export class Stache {
         this.badgeImage = data.badgeImage || this.coverImg
         this.hint = data.hint
         this.badgeCount = data.badgeCount
-
-
-        // NOTE not sure at this point what we need for location
-        this.location = data.location
         this.lat = data.location.coordinates[0]
         this.lng = data.location.coordinates[1]
+        // NOTE this is used by (browser Navigator and is the intersection of the lat and lng. Location is a keyword, do not use by itself as a name.)
+        this.stacheLocation= data.location
     }
 }
