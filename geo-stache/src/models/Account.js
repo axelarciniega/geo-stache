@@ -7,11 +7,13 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
+    bio: { type: String, required: true },
+    badgeCount: [{ type: String, unique: true }],
     location: {
       type: { type: String, enum: ['Point'], required: true, default: "Point" },
       coordinates: { type: [Number], required: true }
-    }
-    // NOTE If you wish to add additional properties do so here
+    },
+
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

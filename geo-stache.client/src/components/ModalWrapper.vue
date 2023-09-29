@@ -1,5 +1,6 @@
 <template>
     <transition name="modal-animation">
+        <!-- FIXME modalActive is a bool from the old project we copied from, shoule change or remove. -->
         <div v-show="modalActive" class="modal">
 
         </div>
