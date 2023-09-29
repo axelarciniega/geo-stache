@@ -13,12 +13,12 @@
           @click="searchLocation">Search</button>
       </div>
     </div>
-    <div class="border border-5  rounded m-2 border-black m-2 elevation-5" id="map" style="width: 75%; height: 250px;">
+    <div class="border border-5  rounded m-2 border-black m-2 elevation-5" id="map" style="width: 100%; height: 250px;">
     </div>
     <!-- List of added markers with clickable links and distance -->
     <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
       <h3>Added Markers:</h3>
-      {{ stache }}
+      {{ stache.lng }}
       <ul>
         <li v-for="(marker, index) in sortedMarkers" :key="index">
           <!--MAKE A COMPONET HERE FOR THE MARKERS-->
