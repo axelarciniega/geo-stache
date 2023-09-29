@@ -32,15 +32,12 @@ import Login from './Login.vue';
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import ModalWrapper from './ModalWrapper.vue';
-// <<<<<<< HEAD
+
 import { Stache } from '../models/Stache.js';
 export default {
+  // props go above setup
   props: { stache: { type: Stache || Object, required: true } },
-  // =======
-  // import { Stache } from '../models/Stache';
-  // export default {
-  //     props: {stache: {type: Stache || Object, required: true}},
-  // // >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b
+
   setup() {
     return {
       user: computed(() => AppState.user)
