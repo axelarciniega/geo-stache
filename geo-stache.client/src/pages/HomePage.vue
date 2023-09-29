@@ -1,10 +1,9 @@
 <template>
   <section class="container">
-    <!-- <img src="../assets/img/Geo-Stache-logo.png" style="height: 800px;" alt=""> -->
-    <!-- logo and map that routes to map page -->
+
     <section class="row justify-md-content-around justify-content-center my-3">
       <div class="col-md-5 col-4 order-md-0 order-1">
-        <img class="logo" src="../assets/img/GeoStache.png" alt="">
+        <img class="logo" src="../assets/img/Geo-Stache-logo.png" alt="">
       </div>
       <!-- {{ staches }} -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
