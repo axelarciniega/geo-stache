@@ -8,11 +8,11 @@
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <p class="text-center">Hint: {{ stache.hint }}</p>
-                    <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p>
+                    <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                 </div>
-                    <div class="col-12 col-md-5 p-0 m-0"><img class="img-fluid " :src="stache.coverImage" alt="">
+                    <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
                 <button @click="deleteStache" class="bg-danger border border-1 border-black">
                     delete <i class="mdi mdi-icon"></i>
@@ -70,4 +70,10 @@ export default {
 </script>
 
 
-<style></style>
+<style>
+.stacheImage{
+width: 30vw;
+    object-fit: cover;
+    object-position: center;
+}
+</style>
