@@ -24,8 +24,9 @@ export const StacheSchema = new Schema({
 
 
 }, { timestamps: true, toJSON: { virtuals: true } }
-),
-    StacheSchema.index({ location: '2dsphere' });
+);
+
+StacheSchema.index({ location: '2dsphere' });
 
 
 StacheSchema.virtual('creator', {
