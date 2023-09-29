@@ -41,7 +41,7 @@
     <!-- </div> -->
     <!-- </div> -->
 
-    <!-- >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b -->
+
 
     <div v-else class="component my-2">
       <div class="event-cancelled position-relative">
