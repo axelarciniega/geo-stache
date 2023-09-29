@@ -7,9 +7,10 @@
     <main>
       <router-view />
     </main>
+    <!-- NOTE FOOTER -->
     <footer class="text-light"><span>
 
-        <img :src="orangeStacheImage" alt="Geo-Stache Logo" class="stache text-center">
+        <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
       </span>
     </footer>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import orangeStacheImage from './assets/img/orange-stache.png'
+import blackStacheImage from './assets/img/STACHE.png'
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
@@ -27,7 +28,7 @@ export default {
   setup() {
     return {
       appState: computed(() => AppState),
-      orangeStacheImage,
+      blackStacheImage,
     }
   },
   components: { Navbar }
@@ -53,7 +54,7 @@ export default {
 }
 
 .stache {
-  max-height: 27px !important;
+  max-height: 29px !important;
 }
 
 footer {
