@@ -14,7 +14,7 @@
                 </div>
                     <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
-                <button @click="deleteStache" class="bg-danger border border-1 border-black">
+                <button v-show="account.id == stache.creatorId" @click="deleteStache" class="bg-danger border border-1 border-black">
                     delete <i class="mdi mdi-icon"></i>
                 </button>
             </div>
@@ -51,6 +51,7 @@ export default {
 
         return {
             stache: computed(()=> AppState.activeStache),
+            account: computed(() => AppState.account),
             
             async deleteStache(){
                 try {
