@@ -8,7 +8,8 @@
       <div class="dropdown my-2 my-lg-0">
         <div type="button" class="no-Pointer border-0 " data-bs-toggle="dropdown" aria-expanded="false">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded selectable" />
+            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded selectable pe-1" />
+            {{ account.name }}
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
