@@ -6,9 +6,9 @@
     </button>
     <div v-else>
       <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
+        <div type="button" class="no-Pointer border-0 " data-bs-toggle="dropdown" aria-expanded="false">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
+            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded selectable" />
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
@@ -49,4 +49,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// NOTE custom class to ensure that cursor only points on user image and not entire row that the button appears in. Also removed 'selectable' and 'no-select' classes from the image button div (line 9), added selecable to the image class directly, and added our no-Pointer class as well.
+.no-Pointer {
+  cursor: default !important;
+}
+</style>
