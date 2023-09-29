@@ -28,7 +28,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/stache',
+    path: '/staches/:stacheId',
     name: 'Stache Details',
     component: loadPage('StacheDetailsPage'),
     beforeEnter: authGuard
