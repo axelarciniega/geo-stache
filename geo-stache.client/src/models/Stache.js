@@ -6,7 +6,7 @@ export class Stache {
         this.stacheName = data.stacheName
         this.difficulty = data.difficulty
         this.description = data.description
-        this.coverImg = data.coverImg
+        this.coverImage = data.coverImage
         this.badgeImage = data.badgeImage || this.coverImg
         this.hint = data.hint
         this.badgeCount = data.badgeCount
