@@ -115,10 +115,9 @@ export default {
     img {
       width: 100%;
       height: 30vh !important;
-      border-radius: 10px;
       object-fit: cover;
       object-position: center;
-      border-radius: 0px !important;
+      border-radius: 10px !important;
     }
 
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
@@ -131,6 +130,10 @@ export default {
     transition: ease .35s;
     filter: brightness(1.2);
   }
+}
+
+div.map-link {
+  border-radius: 10px;
 }
 
 .logo {
@@ -167,8 +170,8 @@ export default {
 .frosted-card {
   backdrop-filter: blur(5px);
   background-color: rgba(219, 220, 221, 0.592);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   top: 0;
   position: absolute;
   width: 100%;
