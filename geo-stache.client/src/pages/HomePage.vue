@@ -13,18 +13,18 @@
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt="">
           <div class="frosted-card">
-            <h1 class="ps-2 position-relative text-black">Start searching</h1>
+            <h1 class="ps-2 position-relative text-black text-center">Open Map</h1>
           </div>
         </router-link>
       </div>
     </section>
 
     <!-- photo and stache chart with links to popular staches -->
-    <div class="row justify-content-center">
+    <!-- <div class="row justify-content-center">
       <button class="btn create my-3 col-8 col-md-4 fs-3">
         Post a Stache
       </button>
-    </div>
+    </div> -->
 
 
     <section class="row justify-content-between my-2">
