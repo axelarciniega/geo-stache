@@ -43,6 +43,7 @@
             <th class="col-4 text-center px-1">Creator Name</th>
             <th class="col-4 text-center px-1">difficulty</th>
           </tr>
+
           <div v-for="s in staches" :key="s.id">
             <StacheCard :stache="s" />
           </div>
