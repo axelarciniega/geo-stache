@@ -163,8 +163,11 @@ div.map-link {
   border-radius: 10px;
   transform: scale(1.03);
   transition: ease .35s;
-  box-shadow: 0 0 10px 3px rgba(205, 205, 205, 0.85),
-    inset 0 0 5px 5px rgba(205, 205, 205, 1);
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
+  // box-shadow: 0 0 10px 3px rgba(205, 205, 205, 0.85),
+  //   inset 0 0 5px 5px rgba(205, 205, 205, 1);
   // 0 5px 6px 0 rgba(205, 205, 205, 0.79)
   overflow-x: clip;
 }
