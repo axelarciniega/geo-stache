@@ -4,13 +4,14 @@
             <div class="row">
                 <div class="col-7">{{ stache.stacheName }}</div>
                 <div class="col-5"></div>
+                hello
             </div>
         </section>
     </div>
 </template>
 
 <script>
-import { computed, watchEffect } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
 import {useRoute} from 'vue-router';
@@ -22,7 +23,7 @@ export default {
 
     setup() {
         const route = useRoute();
-        watchEffect(()=> {
+        onMounted(()=> {
             getStacheById()
         })
         async function getStacheById(){

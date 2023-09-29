@@ -23,9 +23,9 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
             StacheDetailsPage
-          </router-link>
+          </router-link> -->
         </li>
 
       </ul>
