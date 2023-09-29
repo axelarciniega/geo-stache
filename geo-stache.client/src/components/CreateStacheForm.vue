@@ -109,7 +109,7 @@ export default {
         }
 
         // Reset the form and fetch coordinates on component mount
-        onMounted(async () => {
+        onMounted(async() => {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
@@ -118,11 +118,14 @@ export default {
             stacheData,
             async createStache() {
                 try {
-                    await stachesService.createStache(stacheData.value);
+                    // debugger
+                    let newStache = await stachesService.createStache(stacheData.value);
                     Pop.toast('Stache Created', 'success');
                     resetForm();
                     Modal.getOrCreateInstance('#id').hide();
-                    // router.push({ name: 'Stache Details', params: { stachId: newStache.id } })
+                    router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
+                    // router.push({path: `staches/${newStache.id}`})
+                    
                     // FIXME enter correct params
                 } catch (error) {
                     Pop.error(error);

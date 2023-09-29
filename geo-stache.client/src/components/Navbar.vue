@@ -30,20 +30,22 @@
 
       </ul>
       <!-- MODAL WRAPPER -->
-      <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
+      <div v-if="user.isAuthenticated" class="collapse navbar-collapse p-2 rounded " id="navbarText">
         <ul class="navbar-nav me-auto">
           <ModalWrapper id="id">
             <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
-            <template #button>
+            <template #button >
               <i class="mdi mdi-plus-box"></i> Create Stache
             </template>
-
             <template #body>
               <CreateStacheForm />
             </template>
           </ModalWrapper>
         </ul>
 
+      </div>
+      <div class="collapse navbar-collapse p-2 rounded " id="navbarText" v-else>
+<button disabled class="btn">login to create stache</button>
       </div>
       <!-- LOGIN COMPONENT HERE -->
       <Login />

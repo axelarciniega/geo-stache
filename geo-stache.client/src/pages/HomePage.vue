@@ -14,18 +14,18 @@
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt="">
           <div class="frosted-card">
-            <h1 class="ps-2 position-relative text-black">Start searching</h1>
+            <h1 class="ps-2 position-relative text-black text-center">Open Map</h1>
           </div>
         </router-link>
       </div>
     </section>
 
     <!-- photo and stache chart with links to popular staches -->
-    <div class="row justify-content-center">
+    <!-- <div class="row justify-content-center">
       <button class="btn create my-3 col-8 col-md-4 fs-3">
         Post a Stache
       </button>
-    </div>
+    </div> -->
 
 
     <section class="row justify-content-between my-2">
@@ -116,10 +116,9 @@ export default {
     img {
       width: 100%;
       height: 30vh !important;
-      border-radius: 10px;
       object-fit: cover;
       object-position: center;
-      border-radius: 0px !important;
+      border-radius: 10px !important;
     }
 
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
@@ -132,6 +131,10 @@ export default {
     transition: ease .35s;
     filter: brightness(1.2);
   }
+}
+
+div.map-link {
+  border-radius: 10px;
 }
 
 .logo {
@@ -168,8 +171,8 @@ export default {
 .frosted-card {
   backdrop-filter: blur(5px);
   background-color: rgba(219, 220, 221, 0.592);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   top: 0;
   position: absolute;
   width: 100%;

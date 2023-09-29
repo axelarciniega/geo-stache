@@ -36,6 +36,7 @@ class StachesService {
             logger.log(res.data);
             const newStache = new Stache(res.data);
             AppState.staches.unshift(newStache);
+            return newStache
         } catch (error) {
             logger.error(error);
         }

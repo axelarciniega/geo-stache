@@ -9,6 +9,20 @@ export class AccountController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .get('/:accountId', this.getUserLocation)
+      .put('/:accountId', this.updateAccount)
+  }
+
+  // NOTE ⬇️ edit account / profile logic
+  // NOTE pass entire req.userInfo here
+  async updateAccount(request, response, next) {
+    try {
+      const updates = request.userInfo
+      const accountId = request.params.accountId// or is it userInfo? or Id?
+      const updatedAccount = await accountService.updateAccount(accountId, updates)
+      response.send(updatedAccount)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getUserAccount(req, res, next) {
@@ -29,14 +43,14 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-  async editAccount(req, res, next) {
-    try {
-      const updates = request.body
-      const editAccount = await accountService.editAccount(req.updates)
+  // async editAccount(req, res, next) {
+  //   try {
+  //     const updates = request.body
+  //     const editAccount = await accountService.editAccount(req.updates)
 
-      res.send(editAccount)
-    } catch (error) {
-      next(error)
-    }
-  }
+  //     res.send(editAccount)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }
