@@ -23,7 +23,9 @@ export const StacheSchema = new Schema({
     // cord: {type: navigator.geolocation.getCurrentPosition}
 
 
-}, { timestamps: true, toJSON: { virtuals: true } })
+}, { timestamps: true, toJSON: { virtuals: true } }
+),
+    StacheSchema.index({ location: '2dsphere' });
 
 
 StacheSchema.virtual('creator', {
@@ -32,6 +34,7 @@ StacheSchema.virtual('creator', {
     ref: 'Account',
     justOne: true
 })
+
 
 // StacheSchema.virtual('location', {
 //     localField: 'locationId',
