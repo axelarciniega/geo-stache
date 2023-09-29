@@ -1,8 +1,15 @@
 <template>
+<<<<<<< HEAD
   <nav class="navbar navbar-expand-lg navbar-dark background-nav px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img class="logo" src="../assets/img/GeoStache.png" alt="">
+=======
+  <nav class="navbar navbar-expand-lg navbar-dark bg-Green px-3">
+    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+      <div class="d-flex flex-column align-items-center">
+        <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="45" />
+>>>>>>> 4602bb3a23f66ef5d5e7ac6af8ee8b0e463fa03b
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -17,8 +24,13 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Nav Map' }" class="btn text-success lighten-30 selectable text-uppercase">
             Map
+          </router-link> -->
+        </li>
+        <li>
+          <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
+            StacheDetailsPage
           </router-link>
         </li>
         <li>
@@ -28,19 +40,21 @@
         </li>
       </ul>
       <!-- MODAL WRAPPER -->
-      <ul class="navbar-nav me-auto">
-        <ModalWrapper id="create-event" v-if="user.isAuthenticated">
-          <template #button>
-            <i class="mdi mdi-plus-box"></i> Create Stache
-          </template>
+      <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
+        <ul class="navbar-nav me-auto">
+          <ModalWrapper id="id">
+            <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
+            <template #button>
+              <i class="mdi mdi-plus-box"></i> Create Stache
+            </template>
 
-          <template #body>
-            <EventForm />
-          </template>
-        </ModalWrapper>
-      </ul>
+            <template #body>
+              <CreateStacheForm />
+            </template>
+          </ModalWrapper>
+        </ul>
 
-
+      </div>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -53,6 +67,8 @@ import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import Login from './Login.vue';
 import ModalWrapper from './ModalWrapper.vue';
+import CreateStacheForm from './CreateStacheForm.vue';
+
 
 
 export default {
@@ -61,7 +77,7 @@ export default {
       user: computed(() => AppState.user)
     }
   },
-  components: { Login, ModalWrapper }
+  components: { Login, ModalWrapper, CreateStacheForm }
 }
 </script>
 

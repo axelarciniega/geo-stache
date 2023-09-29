@@ -8,7 +8,7 @@ export class LocationController extends BaseController {
     constructor() {
         super('api/location')
         this.router
-            // .use(Auth0Provider.getAuthorizedUserInfo)
+            // FIXME .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createLocation)
             .get('', this.getLocation)
             .get('/:locationId', this.getLocationById)

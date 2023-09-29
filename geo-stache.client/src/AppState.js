@@ -12,7 +12,21 @@ export const AppState = reactive({
   /**@type {Stache} */
   activeStache: [],
 
+  /**@type {Ticket[]} */
+  myBadges: [],
 
+
+  /**@type {Ticket[]} */
+  activeStacheBadgess: [],
+
+  /**@type {Comment[]} */
+  comments: [],
+
+  /**@type {Comment} */
+  activeComment: null,
+
+  /**type @type {Comment[]} */
+  activeStacheComments: [],
 
 
 
