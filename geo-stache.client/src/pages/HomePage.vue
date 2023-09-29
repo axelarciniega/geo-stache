@@ -27,30 +27,26 @@
         Post a Stache
       </button>
     </div>
-    <section class="row justify-content-around my-2">
+    <section class="row justify-content-around mt-2">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
-          src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg"
+          src="https://images.unsplash.com/photo-1536607961765-592e80bcc19e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt="">
       </div>
-      <!-- This will be a Stache Card router -->
       <div class="col-md-5 col-12 glass-card my-md-0 my-2">
         <table class="row">
           <tr class="col-8">
-            <th class="col-2 px-1">Company</th>
-            <th class="col-7 px-1">Contact</th>
-            <th class="col-3 px-1">Country</th>
+            <th class="col-3 px-1">Name</th>
+            <th class="col-8 px-1">Hint</th>
+            <th class="col-1 px-1">Difficulty</th>
           </tr>
           <tr>
-            <td class="col-2 px-1">Alfreds Futterkiste</td>
-            <td class="col-7 px-1">Maria Anders</td>
-            <td class="col-3 px-1">Germany</td>
+            <!-- This will be a Stache Card router -->
+            <td class="col-3 px-1">Alfreds Futterkiste</td>
+            <td class="col-8 px-1">Maria Anders</td>
+            <td class="col-1 px-1">Germany</td>
           </tr>
-          <tr>
-            <td class="col-2 px-1">Centro comercial Moctezuma</td>
-            <td class="col-7 px-1">Francisco Chang</td>
-            <td class="col-3 px-1">Mexico</td>
-          </tr>
+
         </table>
       </div>
     </section>

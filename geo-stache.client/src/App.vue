@@ -7,8 +7,8 @@
     <main>
       <router-view />
     </main>
-    <footer class="bg-dark text-light">
-      <!-- Made with 💖 by CodeWorks -->
+    <footer>
+      <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
     </footer>
 
   </body>
@@ -52,5 +52,10 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+.footer-bg {
+  max-height: 5vh;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255));
 }
 </style>
