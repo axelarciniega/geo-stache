@@ -1,19 +1,21 @@
 <template>
   <section class="container-fluid">
     <section>
-      <div class="row table-card align-items-center text-dark">
+      <div class="table-card align-items-center text-dark">
         <!-- This will be filled proper later -->
-        <div class="col-2 p-1"><img class="profile-pic"
+        <div class="col-2 p-1">
+          <p class="text-center fw-bold m-0">Tyler</p>
+          <img class="profile-pic"
             src="https://images.unsplash.com/photo-1547809397-e2c7eea071fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
             alt="">
-          <p class="text-center fw-bold m-0">Tyler</p>
+
         </div>
-        <div class="col-10 px-1">Beard wax? Nah, it's MOUSTACHE wax!
+        <span class="col-9 px-1">Beard wax? Nah, it's MOUSTACHE wax!
           <div class="text-end">
             <i class="mdi mdi-github fs-1"></i>
             <i class="mdi mdi-linkedin fs-1"></i>
           </div>
-        </div>
+        </span>
         <!-- <td class="col-1 px-1">Germany</td> -->
       </div>
 
