@@ -5,9 +5,15 @@ import { api } from "./AxiosService"
 
 class StachesService {
     // NOTE ⬇️this is the Active Stache renderd on the StacheDetailsPage
-    async getStacheById() {
+    // async getStacheById() {
 
 
+    // }
+
+    async getStaches(){
+        const res = await api.get('api/staches')
+        logger.log(res.data)
+        AppState.staches = res.data.map(s => new Stache(s))
     }
 
     async createStache(stacheData){

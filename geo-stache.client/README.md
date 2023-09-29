@@ -16,12 +16,13 @@ Our Goals:
 ## Table of contents
 
 - Requirements
-- Recommended modules
+    -
+- Recommended modules <!-- optional -->
 - Installation
 - Configuration
-- Troubleshooting
-- FAQ
-- Maintainers
+- Troubleshooting <!-- optional -->
+- FAQ <!-- optional -->
+- Maintainers <!-- optional -->
 
 
 

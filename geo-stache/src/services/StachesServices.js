@@ -3,6 +3,10 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 
 class StachesService {
+    async getStaches(query) {
+        const staches = await dbContext.Staches.find(query).sort('-createdAt').populate('creator')
+        return staches
+    }
     async getStacheById(stacheId) {
         const stache = await dbContext.Staches.findById(stacheId)
         await stache.populate('creator')
@@ -28,7 +32,7 @@ class StachesService {
             throw new BadRequest(`No id at ${stacheId}`)
         }
 
-        originalStache.name = updates.name || originalStache.name
+        originalStache.stacheName = updates.stacheName || originalStache.stacheName
         originalStache.description = updates.description || originalStache.description
         originalStache.difficulty = updates.difficulty || originalStache.difficulty
         originalStache.badgeImage = updates.badgeImage || originalStache.badgeImage
