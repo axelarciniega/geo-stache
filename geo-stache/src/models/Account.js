@@ -14,8 +14,8 @@ export const AccountSchema = new Schema(
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }
-),
+);
 
-  AccountSchema.index({ location: '2dsphere' });
+AccountSchema.index({ location: '2dsphere' });
 
 
