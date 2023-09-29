@@ -1,5 +1,5 @@
 <template>
-  <body class="bg-img">
+  <body class="bg-img fnt-Cabin">
 
     <header>
       <Navbar />
@@ -7,14 +7,18 @@
     <main>
       <router-view />
     </main>
-    <footer class="bg-dark text-light">
-      <!-- Made with 🥸 by Geo-Stache -->
+    <footer class="text-light"><span>
+
+        <img :src="orangeStacheImage" alt="Geo-Stache Logo" class="stache text-center">
+
+      </span>
     </footer>
 
   </body>
 </template>
 
 <script>
+import orangeStacheImage from './assets/img/orange-stache.png'
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
@@ -22,7 +26,8 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      orangeStacheImage,
     }
   },
   components: { Navbar }
@@ -47,10 +52,14 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+.stache {
+  max-height: 27px;
+}
 
 footer {
   display: grid;
   place-content: center;
   height: 32px;
+  background-color: #41644A;
 }
 </style>

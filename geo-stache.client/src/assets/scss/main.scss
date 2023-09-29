@@ -4,7 +4,64 @@
 @import "./_utilities.scss";
 @import "./loaders.scss";
 
-body{
+
+// GEO-STACH CUSTOM AND UTIL CLASSES
+:root {
+  --Sand: #F2E3DB;
+  --Green: #41644A;
+  --DrkGreen: #263A29;
+  --Orange: #E86A33;
+}
+
+/* Background color classes */
+.bg-Sand {
+  background-color: var(--Sand);
+}
+
+.bg-Green {
+  background-color: var(--Green);
+}
+
+.bg-DrkGreen {
+  background-color: var(--DrkGreen);
+}
+
+.bg-Orange {
+  background-color: var(--Orange);
+}
+
+/* Text color classes */
+.txt-Sand {
+  color: var(--Sand);
+}
+
+.txt-Green {
+  color: var(--Green);
+}
+
+.txt-DrkGreen {
+  color: var(--DrkGreen);
+}
+
+.txt-Orange {
+  color: var(--Orange);
+}
+
+/* Font type classes */
+.fnt-Cabin {
+  font-family: 'Cabin', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+body {
   overscroll-behavior: none;
 }
 
@@ -30,6 +87,7 @@ select {
     &:valid {
       border: 1px solid $success;
     }
+
     &:invalid {
       border: 1px solid $danger;
     }
