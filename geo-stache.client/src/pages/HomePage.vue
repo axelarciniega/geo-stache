@@ -15,37 +15,40 @@
           <div class="frosted-card">
             <h1 class="ps-2 position-relative text-black">Start searching</h1>
           </div>
-        </div>
-      </section>
+        </router-link>
+      </div>
+    </section>
 
-<!-- photo and stache chart with links to popular staches -->
-<div class="row justify-content-center">
-  <button  class="btn create my-3 col-8 col-md-4 fs-3">
-    Post a Stache
-  </button>
-</div>
+    <!-- photo and stache chart with links to popular staches -->
+    <div class="row justify-content-center">
+      <button class="btn create my-3 col-8 col-md-4 fs-3">
+        Post a Stache
+      </button>
+    </div>
 
 
-      <section class="row justify-content-between my-2">
-        <div class="col-md-6 col-12 p-0">
-          <img class="homepage-pic px-0" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg" alt="">
-        </div>
-        
-       
-        <!-- STUB Stache Template -->
-        <div class="col-md-5 col-12 glass-card my-md-0 my-2">
-          <table class="row">
-  <tr class="col-12 justify-content-between d-flex">
-    <th class="col-4 text-center px-1">Stache Name</th>
-    <th class="col-4 text-center px-1">Creator Name</th>
-    <th class="col-4 text-center px-1">difficulty</th>
-  </tr>
-   <div v-for="s in staches" :key="s.id">
-          <StacheCard :stache="s"/>
-        </div>
-</table>
-        </div>
-      </section>
+    <section class="row justify-content-between my-2">
+      <div class="col-md-6 col-12 p-0">
+        <img class="homepage-pic px-0"
+          src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg"
+          alt="">
+      </div>
+
+
+      <!-- STUB Stache Template -->
+      <div class="col-md-5 col-12 glass-card my-md-0 my-2">
+        <table class="row">
+          <tr class="col-12 justify-content-between d-flex">
+            <th class="col-4 text-center px-1">Stache Name</th>
+            <th class="col-4 text-center px-1">Creator Name</th>
+            <th class="col-4 text-center px-1">difficulty</th>
+          </tr>
+          <div v-for="s in staches" :key="s.id">
+            <StacheCard :stache="s" />
+          </div>
+        </table>
+      </div>
+    </section>
   </section>
 </template>
 <script>

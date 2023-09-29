@@ -18,7 +18,7 @@
     <footer class="text-light"><span>
         <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
 
-            <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
+        <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
       </span>
       <!-- >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b -->
