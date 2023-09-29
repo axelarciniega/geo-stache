@@ -1,8 +1,13 @@
 <template>
   <section class="container">
+
+    <section class="row">
+      <h1 class="text-center my-3 mb-4">About the Team</h1>
+    </section>
+
     <section class="row">
 
-      <div class="col-12 table-card align-items-center text-dark">
+      <div class="col-12 table-card align-items-center text-dark my-2">
         <div class="row align-items-center">
           <div class="col-2 p-4">
             <img class="profile-pic"
@@ -18,14 +23,14 @@
 
           </div>
           <div class="col-1">
-            <i class="mdi mdi-github fs-1"></i>
-            <i class="mdi mdi-linkedin fs-1"></i>
+            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/TylerHigby"></a>
+            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/tyler-higby-102956145"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark">
+      <div class="col-12 table-card align-items-center text-dark my-2">
         <div class="row align-items-center">
           <div class="col-2 p-4">
             <img class="profile-pic"
@@ -35,19 +40,20 @@
           </div>
           <div class="col-9 px-1">
             <p class="text-start fw-bold m-0">Axel</p>
-            You can't handle these handlebars! King of speedstaching, Axel is a renown stacheier and stachier supplier.
-            Featured in Stachunds of the West, Axel has insights to provide to both novice and expert Stachers, alike.
+            You can't handle these handlebars! King of speedstaching, Axel is a renown stacheier and stachier supplier
+            routinely topping the charts in city stache racing.
+            Featured in Stachunds of the West, Axel has valuable insights for both novice and expert Stachers, alike.
 
           </div>
           <div class="col-1">
             <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/axelarciniega"></a>
-            <i class="mdi mdi-linkedin fs-1"></i>
+            <a class="mdi mdi-linkedin fs-1" href="www.linkedin.com/in/axel-arciniega-a8800828b"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark">
+      <div class="col-12 table-card align-items-center text-dark my-2">
         <div class="row align-items-center">
           <div class="col-2 p-4">
             <img class="profile-pic"
@@ -63,14 +69,14 @@
 
           </div>
           <div class="col-1">
-            <i class="mdi mdi-github fs-1"></i>
-            <i class="mdi mdi-linkedin fs-1"></i>
+            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/bluebear2015"></a>
+            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark">
+      <div class="col-12 table-card align-items-center text-dark my-2">
         <div class="row align-items-center">
           <div class="col-2 p-4">
             <img class="profile-pic"
@@ -86,14 +92,14 @@
 
           </div>
           <div class="col-1">
-            <i class="mdi mdi-github fs-1"></i>
-            <i class="mdi mdi-linkedin fs-1"></i>
+            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/YouFoundTiffany"></a>
+            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark">
+      <div class="col-12 table-card align-items-center text-dark my-2 mb-3">
         <div class="row align-items-center">
           <div class="col-2 p-4">
             <img class="profile-pic"
@@ -109,8 +115,8 @@
 
           </div>
           <div class="col-1">
-            <i class="mdi mdi-github fs-1"></i>
-            <i class="mdi mdi-linkedin fs-1"></i>
+            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/CamilleIvins"></a>
+            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 
@@ -149,17 +155,17 @@ export default {
   object-fit: cover;
   object-position: center;
   // elevation-2 settings
-  box-shadow: 0 3px 3px -1px rgba(205, 205, 205, 0.2),
-    0 5px 6px 0 rgba(205, 205, 205, 0.14),
-    0 1px 8px 0 rgba(205, 205, 205, 0.12);
+
 }
 
 .table-card {
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px);
   // background-color: #e3d4bf;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
 
   width: 100%;
+  box-shadow: 0 1px 1px -1px rgba(133, 133, 133, 0.85),
+    0 1px 8px 0 rgba(133, 133, 133, 0.79),
+    0 1px 10px 0 rgba(133, 133, 133, 0.79);
 }
 </style>
