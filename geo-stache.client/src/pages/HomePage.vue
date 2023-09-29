@@ -2,16 +2,17 @@
   <section class="container">
     <!-- <img src="../assets/img/Geo-Stache-logo.png" style="height: 800px;" alt=""> -->
     <!-- logo and map that routes to map page -->
-    <section class="row justify-md-content-around justify-content-center my-1">
+    <section class="row justify-md-content-around justify-content-center my-3">
       <div class="col-md-5 col-4 order-md-0 order-1">
         <img class="logo" src="../assets/img/GeoStache.png" alt="">
       </div>
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
         <!-- Map/link to map page -->
         <router-link :to="{ name: 'Nav Map' }">
-          <img class="map-pic"
+          <!-- <img class="map-pic"
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="">
+            alt=""> -->
+          <MapCard class="map-pic" />
           <div class="frosted-card">
             <h1 class="ps-2 position-relative text-black text-center">Open Map</h1>
           </div>
@@ -27,7 +28,7 @@
     </div> -->
 
 
-    <section class="row justify-content-between my-2">
+    <section class="row justify-content-between my-3">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
           src="https://images.unsplash.com/photo-1536607961765-592e80bcc19e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
