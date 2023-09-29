@@ -9,14 +9,14 @@
     </main>
 
     <!-- NOTE FOOTER -->
-    =======
+
     <!-- <<<<<<< HEAD -->
     <!-- <footer class="bg-dark text-light"> -->
     <!-- Made with 🥸 by Geo-Stache -->
     <!-- ======= -->
 
     <footer class="text-light"><span>
-        <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
+        <!-- <img class="footer-bg" src="./assets/img/TheStache.png" alt=""> -->
 
         <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
@@ -53,7 +53,8 @@ export default {
   // background-image: url("./assets/img/bg-map-75.png");
   // background-image: url("./assets/img/bg-map-60.png");
   // background-image: url("./assets/img/bg-map-50.png");
-  background-image: url("./assets/img/bg-map-40.png");
+  // background-image: url("./assets/img/bg-map-40.png");
+  background-image: url("./assets/img/bg-map-30.png");
   object-position: right;
   object-fit: cover;
   background-attachment: fixed;
@@ -66,7 +67,9 @@ export default {
 }
 
 .stache {
-  max-height: 29px !important;
+  // max-height: 32px !important;
+  max-height: 5vh;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255));
 }
 
 footer {
