@@ -14,9 +14,14 @@
                 </div>
                     <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
-                <button v-show="account.id == stache.creatorId" @click="deleteStache" class="bg-danger border border-1 border-black">
+                <div class="justify-content-around d-flex">
+                <button v-show="account.id == stache.creatorId" @click="editStache" class=" btn bg-success border border-1 border-black col-2">
+                    edit <i class="mdi mdi-icon"></i>
+                </button>
+                <button v-show="account.id == stache.creatorId" @click="deleteStache" class=" btn bg-danger border border-1 border-black col-2 text-black">
                     delete <i class="mdi mdi-icon"></i>
                 </button>
+                </div>
             </div>
         </section>
     </div>
