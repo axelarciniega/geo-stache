@@ -4,6 +4,7 @@
             <div class="row">
                 <div class="col-7">{{ stache.stacheName }}</div>
                 <div class="col-5"></div>
+                hello
             </div>
         </section>
     </div>
@@ -11,8 +12,8 @@
 
 <script>
 import { computed, watchEffect } from 'vue';
-import Pop from '../utils/Pop';
-import { stachesService } from '../services/StachesService';
+import Pop from '../utils/Pop.js';
+import { stachesService } from '../services/StachesService.js';
 import {useRoute} from 'vue-router';
 import { AppState } from '../AppState';
 
