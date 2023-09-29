@@ -3,9 +3,9 @@
   <div class="container">
     <section class="row mt-2">
       <div class="col-4 rounded elevation-2 p-2">
-        <!-- <h3>Welcome {{ account.name }}</h3> -->
+        <h3>Welcome {{ account.name }}</h3>
         <img class="rounded" :src="account.picture" alt="" />
-        <!-- <p>{{ account.email }}</p> -->
+        <p>{{ account.email }}</p>
       </div>
       <div class="col-8">
         <h3>Account Details</h3>

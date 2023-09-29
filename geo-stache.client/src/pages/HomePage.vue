@@ -1,7 +1,7 @@
 <template>
-  <section class="container">
+  <section class="container txt-DrkGreen">
 
-    <section class="row justify-md-content-around justify-content-center my-3">
+    <section class="txt-DrkGreen row justify-md-content-around justify-content-center my-3">
       <div class="col-md-5 col-4 order-md-0 order-1">
         <img class="logo" src="../assets/img/Geo-Stache-logo.png" alt="">
       </div>
@@ -13,8 +13,8 @@
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt=""> -->
           <MapCard class="map-pic text-dark" />
-          <div class="frosted-card">
-            <h1 class="ps-2 position-relative text-black text-center">Open Map</h1>
+          <div class="frosted-card txt-DrkGreen">
+            <h1 class="ps-2 position-relative txt-DrkGreen text-center">Open Map</h1>
           </div>
         </router-link>
       </div>
