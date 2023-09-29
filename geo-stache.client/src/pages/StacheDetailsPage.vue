@@ -10,9 +10,13 @@
                     <p class="text-center">Hint: {{ stache.hint }}</p>
                     <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p>
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
-                    <p class="text-center">Creator: {{ stache.creator.name }}</p>
+                    <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                 </div>
-                <div class="col-12 col-md-5 p-0 m-0"><img class="img-fluid " :src="stache.coverImage" alt=""></div>
+                    <div class="col-12 col-md-5 p-0 m-0"><img class="img-fluid " :src="stache.coverImage" alt="">
+                </div>
+                <button @click="deleteStache" class="bg-danger border border-1 border-black">
+                    delete <i class="mdi mdi-icon"></i>
+                </button>
             </div>
         </section>
     </div>
@@ -43,7 +47,19 @@ export default {
         }
 
         return {
-            stache: computed(()=> AppState.activeStache)
+            stache: computed(()=> AppState.activeStache),
+            
+            async deleteStache(){
+                try {
+                    if(await Pop.confirm()){
+                        await stachesService.deleteStache(route.params.stacheId)
+                        Pop.success('Successfully deleted stache')
+                    }
+
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
         };
     },
 };

@@ -1,17 +1,30 @@
-export class Account {
+// ✅ DONE: Update the Account Model in the server as needed
+// ✅ DONE: create TODO Model for stache list? Like the Tickets Model
+// Look at Network using Inheritance for a Profile in the front-end
+// NOTE USER LOGGED IN, PROFILE IS EVERYONE ELSE. KEEP LOCATION PRIVATE.
+// NOTE ENSURE YOU HAVE BOTH ACCOUNT PAGE AND PROFILE PAGE. KEEP THEM ENCAPSULATED AND SEPARATE. WILL NEED ABILITY TO EDIT BOTH.
+// NOTE Inheritance/Polymorphism: The model is is started in the Profile and the Account extends it. Account inherits from the Profile.
 
-  // Update the Account Model in the server
-  // Look at Network using Inheritance for a Profile in the front-end
-
+export class Profile{
   constructor(data) {
     this.id = data.id
-    this.email = data.email
     this.name = data.name
     this.picture = data.picture
-    // this.badgeCount = data.badgeCount
-    // this.stacheToDo = data.stacheToDo
-    this.location = data.location
-    // this.lat = data.location.coordinates[0]
-    // this.lng = data.location.coordinates[1]
+    // ✅ DONE: create profile model and move over added properties.
+    this.badgeCount = data.badgeCount ? data.badgeCount: null
+    this.stacheToDo = data.stacheToDo ? data.stacheToDo: null
   }
 }
+
+
+export class Account extends Profile {
+  constructor(data) {
+    super(data)
+    this.email = data.email
+    this.location = data.location
+    // NOTE keep null check. reference stache schema
+    this.lat = data.location.coordinates ? data.location.coordinates[0] : null
+    this.lng = data.location.coordinates ? data.location.coordinates[1] : null
+  }
+}
+

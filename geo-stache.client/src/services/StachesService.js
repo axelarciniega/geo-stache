@@ -40,6 +40,13 @@ class StachesService {
             logger.error(error);
         }
     }
+
+async deleteStache(stacheId){
+    // logger.log('deleting')
+const res = await api.delete(`api/staches/${stacheId}`)
+logger.log('deleting', res.data)
+}
+
 }
 
 export const stachesService = new StachesService();
