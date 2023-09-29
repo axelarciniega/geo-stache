@@ -7,17 +7,17 @@
     <main>
       <router-view />
     </main>
-<<<<<<< HEAD
-    <footer class="bg-dark text-light">
-      <!-- Made with 🥸 by Geo-Stache -->
-      <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
-=======
+    <!-- <<<<<<< HEAD -->
+    <!-- <footer class="bg-dark text-light"> -->
+    <!-- Made with 🥸 by Geo-Stache -->
+    <!-- ======= -->
     <footer class="text-light"><span>
+        <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
 
         <img :src="orangeStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
       </span>
->>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b
+      <!-- >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b -->
     </footer>
 
   </body>

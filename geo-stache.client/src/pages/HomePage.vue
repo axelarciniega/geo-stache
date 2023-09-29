@@ -13,7 +13,7 @@
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt="">
           <div class="frosted-card">
-            <h1 class="ps-2 position-relative">Start searching</h1>
+            <h1 class="ps-2 position-relative text-black">Start searching</h1>
           </div>
         </router-link>
       </div>
@@ -29,7 +29,7 @@
     <section class="row justify-content-around my-2">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
-          src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg"
+          src="https://images.unsplash.com/photo-1536607961765-592e80bcc19e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt="">
       </div>
       <!-- This will be a Stache Card router -->
@@ -37,7 +37,7 @@
       <!-- STUB Stache Template -->
       <div class="col-md-5 col-12 glass-card my-md-0 my-2">
         <table class="row">
-          <tr class="col-8">
+          <tr class="col-12">
             <th class="col-2 px-1">Stache Name</th>
             <th class="col-7 px-1">Creator Name</th>
             <th class="col-3 px-1">difficulty</th>
