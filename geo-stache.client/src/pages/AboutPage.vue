@@ -101,7 +101,7 @@ export default {
 
 <style lang="scss" scoped>
 .profile-pic {
-  border-radius: 50%;
+  border-radius: 15px;
   width: 100%;
   object-fit: cover;
   object-position: center;
