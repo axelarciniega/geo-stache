@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import { computed, watchEffect } from 'vue';
-import Pop from '../utils/Pop.js';
-import { stachesService } from '../services/StachesService.js';
+import { computed, onMounted, watchEffect } from 'vue';
+import Pop from '../utils/Pop';
+import { stachesService } from '../services/StachesService';
 import {useRoute} from 'vue-router';
 import { AppState } from '../AppState';
 
@@ -23,7 +23,7 @@ export default {
 
     setup() {
         const route = useRoute();
-        watchEffect(()=> {
+        onMounted(()=> {
             getStacheById()
         })
         async function getStacheById(){
