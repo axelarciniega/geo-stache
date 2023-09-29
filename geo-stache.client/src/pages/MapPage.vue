@@ -18,6 +18,7 @@
     <!-- List of added markers with clickable links and distance -->
     <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
       <h3>Added Markers:</h3>
+      {{ stache }}
       <ul>
         <li v-for="(marker, index) in sortedMarkers" :key="index">
           <!--MAKE A COMPONET HERE FOR THE MARKERS-->
@@ -75,7 +76,10 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import { logger } from '../utils/Logger.js';
+import { AppState } from '../AppState.js';
+
 
 export default {
   data() {
@@ -89,12 +93,14 @@ export default {
       pendingMarkerLocation: null, //NOTE Location selected for pending marker
       userLocationMarker: null, //NOTE Marker for the user's location
       infoWindows: [], //NOTE Store InfoWindow instances
+      stache: computed(() => AppState.staches),
 
     };
   },
   //NOTE this is the equation for calculating the distance from each marker in our mock markers array and
   //NOTE calculates the distance from the user marker location to the stache location.
   //NOTE and then sorts the distance from the user.
+
   computed: {
     sortedMarkers() {
       if (this.userLocationMarker) {
