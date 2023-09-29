@@ -18,7 +18,7 @@
     <!-- List of added markers with clickable links and distance -->
     <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
       <h3>Added Markers:</h3>
-      {{ stache.lng }}
+
       <ul>
         <li v-for="(marker, index) in sortedMarkers" :key="index">
           <!--MAKE A COMPONET HERE FOR THE MARKERS-->
@@ -33,32 +33,32 @@
               (user)
             </span>
           </span> -->
-          <span :style="{ color: isWithin3Miles(marker) ? 'green' : 'black' }">
+          <span :style="{ color: isWithin3Miles(marker) ? 'lawnGreen' : 'black' }">
             <span v-if="isWithin3Miles(marker)">
               (Within 3 miles)
             </span>
           </span>
-          <span :style="{ color: isWithin6Miles(marker) ? 'blue' : 'black' }">
+          <span :style="{ color: isWithin6Miles(marker) ? 'darkGreen' : 'black' }">
             <span v-if="isWithin6Miles(marker)">
               (within 6 miles)
             </span>
           </span>
-          <span :style="{ color: isWithin10Miles(marker) ? 'purple' : 'black' }">
+          <span :style="{ color: isWithin10Miles(marker) ? 'teal' : 'black' }">
             <span v-if="isWithin10Miles(marker)">
               (within 10 miles)
             </span>
           </span>
-          <span :style="{ color: isWithin20Miles(marker) ? 'yellow' : 'black' }">
+          <span :style="{ color: isWithin20Miles(marker) ? 'blue' : 'black' }">
             <span v-if="isWithin20Miles(marker)">
               (within 20 miles)
             </span>
           </span>
-          <span :style="{ color: isWithin50Miles(marker) ? 'orange' : 'black' }">
+          <span :style="{ color: isWithin50Miles(marker) ? 'purple' : 'black' }">
             <span v-if="isWithin50Miles(marker)">
               (within 50 miles)
             </span>
           </span>
-          <span :style="{ color: isWithin100Miles(marker) ? 'red' : 'black' }">
+          <span :style="{ color: isWithin100Miles(marker) ? 'orange' : 'black' }">
             <span v-if="isWithin100Miles(marker)">
               (within 100 miles)
             </span>
@@ -72,6 +72,11 @@
         </li>
       </ul>
     </div>
+  </div>
+  <div v-for="stache in staches" :key="stache.id">
+
+    {{ stache.lat }}
+    {{ stache.lng }}
   </div>
 </template>
 
@@ -93,7 +98,7 @@ export default {
       pendingMarkerLocation: null, //NOTE Location selected for pending marker
       userLocationMarker: null, //NOTE Marker for the user's location
       infoWindows: [], //NOTE Store InfoWindow instances
-      stache: computed(() => AppState.staches),
+      staches: computed(() => AppState.staches),
 
     };
   },
