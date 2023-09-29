@@ -17,7 +17,7 @@
           </router-link>
         </li>
         <li>
-          <!-- <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Nav Map' }" class="btn text-success lighten-30 selectable text-uppercase">
             Map
           </router-link> -->
         </li>
