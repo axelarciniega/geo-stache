@@ -28,6 +28,8 @@ import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
 import {useRoute} from 'vue-router';
 import { AppState } from '../AppState';
+import { routerKey } from "vue-router";
+import { useRouter } from "vue-router";
 
 
 export default {
@@ -35,6 +37,7 @@ export default {
 
     setup() {
         const route = useRoute();
+        const router = useRouter();
         onMounted(()=> {
             getStacheById()
         })
@@ -54,6 +57,7 @@ export default {
                     if(await Pop.confirm()){
                         await stachesService.deleteStache(route.params.stacheId)
                         Pop.success('Successfully deleted stache')
+                        router.push({name: "Home"})
                     }
 
                 } catch (error) {
