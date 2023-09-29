@@ -9,7 +9,7 @@ export const AppState = reactive({
   /**@type {Stache []} */
   staches: [],
 
-  /**@type {Stache} */
+  /**@type {Stache[]} */
   activeStache: [],
 
   /**@type {Stache[]} */

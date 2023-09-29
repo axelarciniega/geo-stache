@@ -48,10 +48,14 @@ export default {
 
         return {
             stache: computed(()=> AppState.activeStache),
+            
             async deleteStache(){
                 try {
-                    let stache = AppState.activeStache.find(stache => stache.accountId == AppState.account.id)
-                    await stachesService.deleteStache(stache.id)
+                    if(await Pop.confirm()){
+                        await stachesService.deleteStache(route.params.stacheId)
+                        Pop.success('Successfully deleted stache')
+                    }
+
                 } catch (error) {
                     Pop.error(error)
                 }

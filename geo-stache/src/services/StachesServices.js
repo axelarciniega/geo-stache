@@ -47,7 +47,7 @@ class StachesService {
 
     async deleteStache(stacheId, userId) {
         const stache = await dbContext.Staches.findById(stacheId)
-        if (userId != stache.accountId) {
+        if (userId != stache.creatorId) {
             throw new Forbidden('Not yours!')
         }
         await stache.remove()
