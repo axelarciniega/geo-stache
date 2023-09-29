@@ -6,7 +6,7 @@
       <div class="col-md-5 col-4 order-md-0 order-1">
         <img class="logo" src="../assets/img/GeoStache.png" alt="">
       </div>
-      {{ staches }}
+      <!-- {{ staches }} -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
         <!-- Map/link to map page -->
         <router-link :to="{ name: 'Nav Map' }">
