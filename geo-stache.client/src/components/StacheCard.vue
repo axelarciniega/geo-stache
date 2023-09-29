@@ -2,26 +2,25 @@
     <router-link :to="{name: 'Stache Details', params: {stacheId: stache.id}}">
     <!-- <router-link :to="{path: `events/${event.id}`}"> -->
 <!-- code did not like this ⬆️ -->
-<!-- <div class="row glass-card my-md-0 my-2"> -->
+
    
       
   
     
   
   <!-- <div class="component my-2"> -->
-    <div class="event-cancelled position-relative">
+    <div class=" position-relative">
       <table class="row">
-  <tr>
-    <td class="col-2 px-1">{{ stache.stacheName }}</td>
-    <td class="col-7 px-1">{{ stache.creator.name }}</td>
-    <td class="col-3 px-1">{{ stache.difficulty }}</td>
+  <tr class=" elevation-1 justify-content-between d-flex">
+    <td class=" col-4 text-center px-1">{{ stache.stacheName }}</td>
+    <td class="col-4 text-center px-1">{{ stache.creator.name }}</td>
+    <td class="col-4 text-center px-1">{{ stache.difficulty }}</td>
   </tr>
 </table>
 </div>
 
 
-        <!-- </div> -->
-    <!-- </div> -->
+   
     
 
 </router-link>

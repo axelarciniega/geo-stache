@@ -23,7 +23,7 @@
 </div>
 
 
-      <section class="row justify-content-around my-2">
+      <section class="row justify-content-between my-2">
         <div class="col-md-6 col-12 p-0">
           <img class="homepage-pic px-0" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/topeka/Geocache_Lego_guy_ab282473-4f3c-43cf-ad96-5b676481fb3c.jpg" alt="">
         </div>
@@ -32,10 +32,10 @@
         <!-- STUB Stache Template -->
         <div class="col-md-5 col-12 glass-card my-md-0 my-2">
           <table class="row">
-  <tr class="col-8">
-    <th class="col-2 px-1">Stache Name</th>
-    <th class="col-7 px-1">Creator Name</th>
-    <th class="col-3 px-1">difficulty</th>
+  <tr class="col-12 justify-content-between d-flex">
+    <th class="col-4 text-center px-1">Stache Name</th>
+    <th class="col-4 text-center px-1">Creator Name</th>
+    <th class="col-4 text-center px-1">difficulty</th>
   </tr>
    <div v-for="s in staches" :key="s.id">
           <StacheCard :stache="s"/>
