@@ -3,6 +3,7 @@
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="45" />
+
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -19,18 +20,14 @@
         <li>
           <router-link :to="{ name: 'Nav Map' }" class="btn text-success lighten-30 selectable text-uppercase">
             Map
-          </router-link> -->
+          </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
             StacheDetailsPage
           </router-link>
         </li>
-        <li>
-          <!-- <router-link :to="{ name: 'Location' }" class="btn text-success lighten-30 selectable text-uppercase">
-            Location
-          </router-link> -->
-        </li>
+
       </ul>
       <!-- MODAL WRAPPER -->
       <div class="collapse navbar-collapse p-2 rounded " id="navbarText">
@@ -75,6 +72,17 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  height: 70px;
+  width: 70px;
+  filter: drop-shadow (0 0 0.75rem crimson);
+  filter: drop-shadow(3px 8px 7px #292828);
+}
+
+.background-nav {
+  background: linear-gradient(45deg, #41644A, #7da386);
+}
+
 a:hover {
   text-decoration: none;
 }

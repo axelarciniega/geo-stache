@@ -5,10 +5,12 @@ import { api } from "./AxiosService"
 
 class StachesService {
     // NOTE ⬇️this is the Active Stache renderd on the StacheDetailsPage
-    // async getStacheById() {
+    async getStacheById(stacheId) {
+        const res= await api.get(`api/staches/${stacheId}`)
+        logger.log(res.data)
+        AppState.activeStache = new Stache(res.data)
 
-
-    // }
+    }
 
     async getStaches(){
         const res = await api.get('api/staches')

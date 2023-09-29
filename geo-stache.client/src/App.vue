@@ -7,6 +7,7 @@
     <main>
       <router-view />
     </main>
+<<<<<<< HEAD
     <<<<<<< HEAD <!-- NOTE FOOTER -->
       =======
       <<<<<<< HEAD <footer class="bg-dark text-light">
@@ -15,12 +16,30 @@
         =======
         >>>>>>> 00811adc015d62c3f6b89e1ba8f4e01236587f9f
         <footer class="text-light"><span>
+=======
+
+    <!-- NOTE FOOTER -->
+    =======
+    <!-- <<<<<<< HEAD -->
+    <!-- <footer class="bg-dark text-light"> -->
+    <!-- Made with 🥸 by Geo-Stache -->
+    <!-- ======= -->
+
+    <footer class="text-light"><span>
+        <img class="footer-bg" src="./assets/img/TheStache.png" alt="">
+>>>>>>> f7d7a1730164ce09925eef3142a0c62fb8aa5968
 
             <img :src="blackStacheImage" alt="Geo-Stache Logo" class="stache text-center">
 
+<<<<<<< HEAD
           </span>
           >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b
         </footer>
+=======
+      </span>
+      <!-- >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b -->
+    </footer>
+>>>>>>> f7d7a1730164ce09925eef3142a0c62fb8aa5968
 
   </body>
 </template>

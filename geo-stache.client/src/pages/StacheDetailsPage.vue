@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="stache">
         <section class="container">
             <div class="row">
-                <div class="col-7"></div>
+                <div class="col-7">{{ stache.stacheName }}</div>
                 <div class="col-5"></div>
             </div>
         </section>
@@ -10,9 +10,32 @@
 </template>
 
 <script>
+import { computed, watchEffect } from 'vue';
+import Pop from '../utils/Pop';
+import { stachesService } from '../services/StachesService';
+import {useRoute} from 'vue-router';
+import { AppState } from '../AppState';
+
+
 export default {
+
+
     setup() {
-        return {};
+        const route = useRoute();
+        watchEffect(()=> {
+            getStacheById()
+        })
+        async function getStacheById(){
+            try {
+                await stachesService.getStacheById(route.params.stacheId)
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+
+        return {
+            stache: computed(()=> AppState.activeStache)
+        };
     },
 };
 </script>
