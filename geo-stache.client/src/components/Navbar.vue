@@ -1,15 +1,8 @@
 <template>
-<<<<<<< HEAD
-  <nav class="navbar navbar-expand-lg navbar-dark background-nav px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img class="logo" src="../assets/img/GeoStache.png" alt="">
-=======
   <nav class="navbar navbar-expand-lg navbar-dark bg-Green px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="45" />
->>>>>>> 4602bb3a23f66ef5d5e7ac6af8ee8b0e463fa03b
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
