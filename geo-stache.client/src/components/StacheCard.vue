@@ -11,10 +11,10 @@
   <!-- <div class="component my-2"> -->
     <div class=" position-relative">
       <table class="row">
-  <tr>
-    <td class="col-2 px-1">{{ stache.stacheName }}</td>
-    <td class="col-7 px-1">{{ stache.creator.name }}</td>
-    <td class="col-3 px-1">{{ stache.difficulty }}</td>
+  <tr class="justify-content-between d-flex elevation-1">
+    <td class="col-4 text-center px-1">{{ stache.stacheName }}</td>
+    <td class="col-4 text-center px-1">{{ stache.creator.name }}</td>
+    <td class="col-4 text-center px-1">{{ stache.difficulty }}</td>
   </tr>
 </table>
 </div>
