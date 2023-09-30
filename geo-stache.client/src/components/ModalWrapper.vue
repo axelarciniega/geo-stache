@@ -6,7 +6,7 @@
         </div>
     </transition>
     <!-- Modal trigger button -->
-    <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card btn-lg" data-bs-toggle="modal"
+    <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card" data-bs-toggle="modal"
         :data-bs-target="`#${id}`">
         <slot name="button">
             open {{ id }} modal
@@ -46,3 +46,22 @@ export default {
 }
 
 </script>
+<style>
+.icon {
+    background: url('your-image-url.jpg')src="./assets/img/Stache.png";
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
+.sub-btn {
+    background-color: var(--DrkGreen);
+    color: var(--Sand);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-btn:hover {
+    background-color: var(--Green);
+    color: var(--Sand);
+}
+</style>

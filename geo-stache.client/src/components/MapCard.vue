@@ -29,11 +29,13 @@ export default {
                 navigator.geolocation.getCurrentPosition((position) => {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
+                    // FIXME Cannot have google undefined as it will cause errors.
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
                     });
                     // Create a marker at the user's location
+                    // FIXME Cannot have google undefined as it will cause errors.
                     const userMarker = new google.maps.Marker({
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
