@@ -2,11 +2,11 @@
     <div>
         <!-- FIXME The buttons are hidden behind the map somehow. -->
         <!-- FIXME Maybe add container to the div above and use padding to ensure the buttons show. -->
-        <button @click="getUserLocationAndDisplayMap">Show Map</button>
-        <button @click="addMarker">Add Marker</button>
-        <div id="map" style="width: 100%; height: 400px;"></div>
+        <button class="txt-DrkGreen fnt-Cabin" @click="getUserLocationAndDisplayMap">Show Map</button>
+        <button class="txt-DrkGreen fnt-Cabin" @click="addMarker">Add Marker</button>
+        <div class="txt-DrkGreen fnt-Cabin" id="map" style="width: 100%; height: 400px;"></div>
         <!-- List of added markers (optional) -->
-        <div>
+        <div class="txt-DrkGreen fnt-Cabin">
             <h3>Added Markers:</h3>
             <ul>
                 <li v-for="(marker, index) in markers" :key="index">{{ marker.title }}</li>

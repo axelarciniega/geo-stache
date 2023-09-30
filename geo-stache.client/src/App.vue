@@ -1,5 +1,5 @@
 <template>
-  <body class="bg-img fnt-Cabin">
+  <body class="bg-img fnt-Cabin txt-DrkGreen">
 
     <header>
       <Navbar />
