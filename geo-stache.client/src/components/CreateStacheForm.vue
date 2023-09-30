@@ -75,6 +75,7 @@ import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
 
+
 export default {
     setup() {
         const stacheData = ref({});
@@ -101,6 +102,7 @@ export default {
                     stacheData.value.lng = position.coords.longitude;
                 } catch (error) {
                     // FIXME console log?
+                    // NOTE we could try to just use loggers, or compute console below
                     console.error('Error getting geolocation:', error);
                     Pop.error('Error getting geolocation. Please try again.');
                 }
@@ -110,7 +112,7 @@ export default {
             }
         }
         // Reset the form and fetch coordinates on component mount
-        // FIXME correct syntax error
+
         onMounted(async () => {
             resetForm();
             await getCoordinatesFromGeolocation();
@@ -129,6 +131,7 @@ export default {
                     // router.push({path: `staches/${newStache.id}`})
 
                     // FIXME enter correct params
+                    // NOTE Tyler, Axel, did Sam (instructor) clear this up? something about "return" in the service BUT is it client or server?
                 } catch (error) {
                     Pop.error(error);
                 }

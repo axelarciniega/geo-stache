@@ -30,6 +30,7 @@ export default {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     // FIXME Cannot have google undefined as it will cause errors.
+                    // NOTE - hasn't this been working?
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
