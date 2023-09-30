@@ -1,24 +1,24 @@
 <template>
   <nav class="txt-Sand navbar navbar-expand-lg navbar-dark bg-Green px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+    <router-link class="navbar-brand d-flex txt-Sand" :to="{ name: 'Home' }">
+      <div class="d-flex flex-column align-items-center txt-Sand">
         <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="55" />
 
       </div>
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <button class="navbar-toggler txt-Sand" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon txt-Sand"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse txt-Sand" id="navbarText">
+      <ul class="navbar-nav me-auto txt-Sand">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
             About
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Nav Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Nav Map' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
             Map
           </router-link>
         </li>
@@ -30,8 +30,8 @@
 
       </ul>
       <!-- MODAL WRAPPER -->
-      <div v-if="user.isAuthenticated" class="collapse navbar-collapse p-2 rounded " id="navbarText">
-        <ul class="navbar-nav me-auto">
+      <div v-if="user.isAuthenticated" class="collapse navbar-collapse p-2 rounded txt-Sand" id="navbarText">
+        <ul class="navbar-nav me-auto txt-Sand">
           <ModalWrapper id="id">
             <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
             <template #button>
@@ -44,8 +44,8 @@
         </ul>
 
       </div>
-      <div class="collapse navbar-collapse p-2 rounded " id="navbarText" v-else>
-        <button disabled class="btn">login to create stache</button>
+      <div class="collapse navbar-collapse p-2 rounded txt-Sand" id="navbarText" v-else>
+        <button disabled class="btn txt-Sand">login to create stache</button>
       </div>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
@@ -81,9 +81,9 @@ export default {
   filter: drop-shadow(3px 8px 7px #292828);
 }
 
-.background-nav {
+/* .background-nav {
   background: linear-gradient(45deg, #41644A, #7da386);
-}
+} */
 
 a:hover {
   text-decoration: none;
@@ -94,7 +94,7 @@ a:hover {
 }
 
 .navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
+  border-bottom: 2px solid var(--Sand);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }

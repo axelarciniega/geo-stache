@@ -1,25 +1,28 @@
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+    <button class="btn selectable txt-Sand lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
     <div v-else>
       <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="no-Pointer border-0 " data-bs-toggle="dropdown" aria-expanded="false">
+        <div type="button" class="no-Pointer border-0 fnt-Cabin txt-Sand" data-bs-toggle="dropdown" aria-expanded="false">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded selectable mx-1" />
+            <img :src="account.picture || user.picture" alt="account photo" height="40"
+              class="rounded selectable m-1 txt-Sand ftn-Cabin" />
             {{ account.name }}
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
-          <div class="list-group">
+        <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0 fnt-Cabin txt-Sand"
+          aria-labelledby="authDropdown">
+          <div class="list-group ftn-Cabin txt-Sand">
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
+              <div class="list-group-item dropdown-item list-group-item-action bg-Sand fnt-Cabin txt-DrkGreen">
                 Manage Account
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+            <div class="list-group-item dropdown-item list-group-item-action bg-Sand ftn-Cabin txt-DrkGreen selectable"
+              @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
             </div>
