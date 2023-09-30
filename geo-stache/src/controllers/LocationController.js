@@ -6,9 +6,9 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 
 export class LocationController extends BaseController {
     constructor() {
-        super('api/location')
+        super('api/locations')
         this.router
-            // FIXME .use(Auth0Provider.getAuthorizedUserInfo)
+            .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createLocation)
             .get('', this.getLocation)
             .get('/:locationId', this.getLocationById)
@@ -39,7 +39,7 @@ export class LocationController extends BaseController {
 
     async getLocationById(req, res, next) {
         try {
-            const location = await locationService.getLocationById(req.params.locationId)
+            const location = await locationService.getLocationByStacheId(req.params.locationId)
             res.send(location)
         } catch (error) {
             next(error)

@@ -7,11 +7,13 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
-    bio: { type: String, required: true },
+    // do NOT make required
+    bio: { type: String },
     badgeCount: [{ type: String, unique: true }],
+    // do NOT make required
     location: {
-      type: { type: String, enum: ['Point'], required: true, default: "Point" },
-      coordinates: { type: [Number], required: true }
+      type: { type: String, enum: ['Point'], default: "Point" },
+      coordinates: { type: [Number] }
     },
 
   },
