@@ -1,20 +1,20 @@
-<template>
+<template class="rounded">
   <!-- Welcome -->
-  <div v-if="user.isAuthenticated" class="container p-2 g-4">
+  <div class="container p-2 g-4 my-3">
+    <!-- v-if="user.isAuthenticated" -->
     <section class="row mt-2 justify-content-around">
-      <div class="col-3 rounded elevation-3 p-2">
+      <div class="col-3 rounded elevation-1 p-2">
         <h3 class="">Hello Adventurer!</h3>
         <h3 class="">{{ account.name }}</h3>
-        <img class="rounded" :src="account.picture" alt="" />
+        <img class="profile-pic" :src="account.picture" alt="" />
         <p>{{ account.email }}</p>
       </div>
-      <div class="col-7 elevation-3 p-2">
+      <div class="col-7 rounded elevation-1 p-2">
         <MapCard />
       </div>
-      <span>Hover over me!</span>
-      <div>I will show on hover</div>
-      <div class="elevation-3 p-2">
-        <div>I will show on hover</div>
+
+      <div class="elevation-1 rounded p-2">
+
         <h3>Account Details</h3>
         <form @submit.prevent="editProfile" class="row">
 
@@ -67,11 +67,11 @@
       </div>
     </section>
   </div>
-  <div v-else>
-    <!-- add stache as an icon -->
-    <h3 class="">Hello Adventurer!</h3>
-    <h3 class="">Log in to see your Account Details</h3>
-  </div>
+  <!-- <div v-else> -->
+  <!-- add stache as an icon -->
+  <!-- <h3 class="">Hello Adventurer!</h3> -->
+  <!-- <h3 class="">Log in to see your Account Details</h3> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -95,8 +95,9 @@ export default {
     });
     return {
       editable,
-      user: computed(() => AppState.user),
+      // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+
       async editProfile() {
         try {
           logger.log('edited info', editable.value);
@@ -115,6 +116,14 @@ export default {
 </script>
 
 <style scoped>
+.profile-pic {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50em;
+}
+
 .acc-dets {
   background-color: yellow;
   padding: 20px;
