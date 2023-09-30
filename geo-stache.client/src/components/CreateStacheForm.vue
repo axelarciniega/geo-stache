@@ -100,15 +100,17 @@ export default {
                     stacheData.value.lat = position.coords.latitude;
                     stacheData.value.lng = position.coords.longitude;
                 } catch (error) {
+                    // FIXME console log?
                     console.error('Error getting geolocation:', error);
                     Pop.error('Error getting geolocation. Please try again.');
                 }
             } else {
+                // FIXME console log?
                 console.error('Geolocation is not available in your browser');
             }
         }
-
         // Reset the form and fetch coordinates on component mount
+        // FIXME correct syntax error
         onMounted(async () => {
             resetForm();
             await getCoordinatesFromGeolocation();

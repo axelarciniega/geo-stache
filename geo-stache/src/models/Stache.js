@@ -19,7 +19,7 @@ export const StacheSchema = new Schema({
         type: { type: String, enum: ['Point'], required: true, default: "Point" },
         coordinates: { type: [Number], required: true }
     }
-    // TODO uncomment this when needed
+    // NOTE uncomment this when needed
     // cord: {type: navigator.geolocation.getCurrentPosition}
 
 
