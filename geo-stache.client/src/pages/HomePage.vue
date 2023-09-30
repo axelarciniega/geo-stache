@@ -7,6 +7,7 @@
       </div>
       <!-- {{ staches }} -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
+        <!-- FIXME ADD frosted-card to div class above and put the h1 Open map direclty below. -->
         <!-- Map/link to map page -->
         <router-link :to="{ name: 'Nav Map' }">
           <!-- <img class="map-pic"

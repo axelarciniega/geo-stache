@@ -1,6 +1,6 @@
 <template>
   <!-- Welcome -->
-  <div class="container p-2 g-4">
+  <div v-if="user.isAuthenticated" class="container p-2 g-4">
     <section class="row mt-2 justify-content-around">
       <div class="col-3 rounded elevation-3 p-2">
         <h3 class="">Hello Adventurer!</h3>
@@ -67,6 +67,11 @@
       </div>
     </section>
   </div>
+  <div v-else>
+    <!-- add stache as an icon -->
+    <h3 class="">Hello Adventurer!</h3>
+    <h3 class="">Log in to see your Account Details</h3>
+  </div>
 </template>
 
 <script>
@@ -90,6 +95,7 @@ export default {
     });
     return {
       editable,
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       async editProfile() {
         try {
