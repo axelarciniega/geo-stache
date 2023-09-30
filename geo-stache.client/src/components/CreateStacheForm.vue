@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="txt-DrkGreen ftn-Cabin">
         <form @submit.prevent="createStache">
             <h1 class="text-center">Stache Create Form</h1>
             <!-- Stache Name Input -->
@@ -63,11 +63,11 @@
                     class="form-control"></textarea>
             </div>
 
-            <button class="btn btn-primary mt-3">Submit</button>
+            <button class="btn mt-3 sub-btn">Submit</button>
         </form>
     </div>
 </template>
-  
+
 <script>
 import { ref, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
@@ -109,7 +109,7 @@ export default {
         }
 
         // Reset the form and fetch coordinates on component mount
-        onMounted(async() => {
+        onMounted(async () => {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
@@ -125,7 +125,7 @@ export default {
                     Modal.getOrCreateInstance('#id').hide();
                     router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
                     // router.push({path: `staches/${newStache.id}`})
-                    
+
                     // FIXME enter correct params
                 } catch (error) {
                     Pop.error(error);
@@ -135,11 +135,22 @@ export default {
     },
 };
 </script>
-  
+
 <style lang="scss" scoped>
+.sub-btn {
+    background-color: var(--DrkGreen);
+    color: var(--Sand);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-btn:hover {
+    background-color: var(--Green);
+    color: var(--Sand);
+}
+
+
 .preview-image {
     max-height: 15vh;
     object-fit: contain;
 }
 </style>
-  

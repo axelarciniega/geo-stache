@@ -1,5 +1,5 @@
 <template>
-  <nav class="txt-Sand navbar navbar-expand-lg navbar-dark bg-Green px-3">
+  <nav class="txt-Sand navbar navbar-expand-lg bg-Green px-3">
     <router-link class="navbar-brand d-flex txt-Sand" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center txt-Sand">
         <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="55" />
