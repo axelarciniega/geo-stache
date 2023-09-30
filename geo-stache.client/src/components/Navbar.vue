@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-Green px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="45" />
+      <div class="d-flex flex-column align-items-center m-0">
+        <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="65" />
 
       </div>
     </router-link>
@@ -34,7 +34,7 @@
         <ul class="navbar-nav me-auto">
           <ModalWrapper id="id">
             <!--FIXME add back in when ready -  v-if="user.isAuthenticated" -->
-            <template #button >
+            <template #button>
               <i class="mdi mdi-plus-box"></i> Create Stache
             </template>
             <template #body>
@@ -45,7 +45,7 @@
 
       </div>
       <div class="collapse navbar-collapse p-2 rounded " id="navbarText" v-else>
-<button disabled class="btn">login to create stache</button>
+        <button disabled class="btn">login to create stache</button>
       </div>
       <!-- LOGIN COMPONENT HERE -->
       <Login />

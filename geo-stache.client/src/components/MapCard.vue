@@ -1,5 +1,7 @@
 <template>
     <div>
+        <!-- FIXME The buttons are hidden behind the map somehow. -->
+        <!-- FIXME Maybe add container to the div above and use padding to ensure the buttons show. -->
         <button @click="getUserLocationAndDisplayMap">Show Map</button>
         <button @click="addMarker">Add Marker</button>
         <div id="map" style="width: 100%; height: 400px;"></div>
@@ -79,13 +81,12 @@ export default {
 <style scoped lang="scss">
 /* Your scoped CSS styles here */
 </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
