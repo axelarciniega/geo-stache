@@ -45,6 +45,9 @@
 
       </div>
       <div class="collapse navbar-collapse p-2 rounded txt-Sand" id="navbarText" v-else>
+        <!-- <button data-balloon-length="medium" aria-label="Join us in and start your Stache Adventures!"
+          data-balloon-pos="up">Join us in and start your Stache Adventures!"</button> -->
+
         <button disabled class="btn txt-Sand">login to create stache</button>
       </div>
       <!-- LOGIN COMPONENT HERE -->
