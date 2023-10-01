@@ -9,7 +9,7 @@
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
         <!-- FIXME ADD frosted-card to div class above and put the h1 Open map direclty below. -->
         <!-- Map/link to map page -->
-        <router-link :to="{ name: 'Nav Map' }">
+        <router-link :to="{ name: 'Map' }">
           <!-- <img class="map-pic"
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt=""> -->
