@@ -1,9 +1,11 @@
 <template class="rounded">
   <!-- Welcome -->
-  <div class="container p-2 g-4 my-3">
+  <div class="container my-5">
+    <!-- FIXME when below is commented in it causes page to not load data. -->
     <!-- v-if="user.isAuthenticated" -->
-    <section class="row mt-2 justify-content-around">
-      <div class="col-3 rounded elevation-1 p-2 geo-shadow">
+    <section class="row justify-content-around gap-5">
+      <div
+        class="col-md-4 col-12 rounded elevation-1 p-2 geo-shadow d-flex flex-column align-items-center justify-content-around">
         <h3 class="">Hello Adventurer!</h3>
         <h3 class="">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
@@ -12,16 +14,22 @@
         <div class="btn">
           <button>Profile</button>
         </div>
-        <!-- </router-link> -->
       </div>
-      <div class="col-7 rounded elevation-1 p-2 geo-shadow">
+      <!-- </router-link> -->
+      <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
-      <div class="divider"></div>
-      <!-- Bottom Section Edit Account -->
-      <div class="elevation-1 rounded p-2 geo-shadow">
 
-        <h3>Account Details</h3>
+
+      <!-- TOP / BOTTOM DIVIDER DIV -->
+      <!-- <div class="divider"></div> -->
+
+
+      <!-- Bottom Section Edit Account -->
+      <div class="col-12 elevation-1 rounded p-2 geo-shadow">
+
+        <h3 class="fw-bold">Edit Your Account & Profile Details</h3>
+        <h6 class="fw-bold">All but your email is editable. Your location and email area always remain private. </h6>
         <form @submit.prevent="editProfile" class="row">
 
           <!-- Name -->
@@ -58,14 +66,14 @@
           </div>
 
           <!-- Lat -->
-          <div class="mb-4 col-12">
+          <div class="col-12">
             <label for="bio">
               Bio
             </label>
             <textarea v-model="editable.bio" rows="10" class="form-control h-100"></textarea>
           </div>
           <!-- Save Button -->
-          <div class="m-2 col-md-3 col-12">
+          <div class="m-2 col-md-3 col-12 m-0 pt-5">
             <button class="btn btn-success">save changes <i class="mdi mdi-check"></i></button>
           </div>
 
@@ -127,14 +135,15 @@ export default {
 }
 
 .profile-pic {
-  height: 30px;
-  width: 30px;
+  height: 70px;
+  width: 70px;
   object-fit: cover;
   object-position: center;
-  border-radius: 50em;
+  // border-radius: 50em;
 }
 
 .geo-shadow {
+  backdrop-filter: blur(20px);
   border-radius: 10px;
   /* width: 100%; */
   /* object-fit: cover;
