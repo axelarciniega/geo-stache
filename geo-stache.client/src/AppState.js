@@ -9,6 +9,9 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Profile} */
   profile: {},
 
+  /**@type {Profile[]} */
+  activeProfile: [],
+
   /**@type {Stache []} */
   staches: [],
 

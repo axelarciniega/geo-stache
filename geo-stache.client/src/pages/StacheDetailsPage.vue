@@ -2,7 +2,7 @@
     <div v-if="stache">
         <section class="container">
             <div class="row border border-black border-3">
-                
+
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
                     <p class="text-center">Description: {{ stache.description }}</p>
@@ -12,15 +12,17 @@
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                 </div>
-                    <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
+                <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
                 <div class="justify-content-around d-flex">
-                <button v-show="account.id == stache.creatorId" @click="editStache" class=" btn bg-success border border-1 border-black col-2">
-                    edit <i class="mdi mdi-icon"></i>
-                </button>
-                <button v-show="account.id == stache.creatorId" @click="deleteStache" class=" btn bg-danger border border-1 border-black col-2 text-black">
-                    delete <i class="mdi mdi-icon"></i>
-                </button>
+                    <button v-show="account.id == stache.creatorId" @click="editStache"
+                        class=" btn bg-success border border-1 border-black col-2">
+                        edit <i class="mdi mdi-icon"></i>
+                    </button>
+                    <button v-show="account.id == stache.creatorId" @click="deleteStache"
+                        class=" btn bg-danger border border-1 border-black col-2 text-black">
+                        delete <i class="mdi mdi-icon"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -31,7 +33,7 @@
 import { computed, onMounted, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
-import {useRoute} from 'vue-router';
+import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
@@ -43,10 +45,10 @@ export default {
     setup() {
         const route = useRoute();
         const router = useRouter();
-        onMounted(()=> {
+        onMounted(() => {
             getStacheById()
         })
-        async function getStacheById(){
+        async function getStacheById() {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
             } catch (error) {
@@ -55,15 +57,15 @@ export default {
         }
 
         return {
-            stache: computed(()=> AppState.activeStache),
+            stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
-            
-            async deleteStache(){
+
+            async deleteStache() {
                 try {
-                    if(await Pop.confirm()){
+                    if (await Pop.confirm()) {
                         await stachesService.deleteStache(route.params.stacheId)
                         Pop.success('Successfully deleted stache')
-                        router.push({name: "Home"})
+                        router.push({ name: "Home" })
                     }
 
                 } catch (error) {
@@ -77,8 +79,8 @@ export default {
 
 
 <style>
-.stacheImage{
-width: 100%;
+.stacheImage {
+    width: 100%;
     object-fit: cover;
     object-position: center;
 }

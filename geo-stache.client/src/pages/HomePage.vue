@@ -20,6 +20,7 @@
         </router-link>
       </div>
     </section>
+    <!-- <div class="divider"></div> -->
 
     <!-- photo and stache chart with links to popular staches -->
     <!-- <div class="row justify-content-center">

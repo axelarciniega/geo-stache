@@ -22,6 +22,12 @@
             Map
           </router-link>
         </li>
+
+        <li>
+          <router-link :to="{ name: 'FAQ' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+            Map
+          </router-link>
+        </li>
         <li>
           <!-- <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
             StacheDetailsPage
@@ -77,12 +83,12 @@ export default {
 </script>
 
 <style scoped>
-.logo {
+/* .logo {
   height: 70px;
   width: 70px;
   filter: drop-shadow (0 0 0.75rem crimson);
   filter: drop-shadow(3px 8px 7px #292828);
-}
+} */
 
 /* .background-nav {
   background: linear-gradient(45deg, #41644A, #7da386);

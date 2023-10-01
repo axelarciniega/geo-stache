@@ -3,17 +3,23 @@
   <div class="container p-2 g-4 my-3">
     <!-- v-if="user.isAuthenticated" -->
     <section class="row mt-2 justify-content-around">
-      <div class="col-3 rounded elevation-1 p-2">
+      <div class="col-3 rounded elevation-1 p-2 geo-shadow">
         <h3 class="">Hello Adventurer!</h3>
         <h3 class="">{{ account.name }}</h3>
-        <img class="profile-pic" :src="account.picture" alt="" />
+        <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
         <p>{{ account.email }}</p>
+        <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }">
+          <div class="btn">
+            <button>Profile</button>
+          </div>
+        </router-link>
       </div>
-      <div class="col-7 rounded elevation-1 p-2">
+      <div class="col-7 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
-
-      <div class="elevation-1 rounded p-2">
+      <div class="divider"></div>
+      <!-- Bottom Section Edit Account -->
+      <div class="elevation-1 rounded p-2 geo-shadow">
 
         <h3>Account Details</h3>
         <form @submit.prevent="editProfile" class="row">
@@ -116,12 +122,26 @@ export default {
 </script>
 
 <style scoped>
+.divider {
+  height: 3em;
+}
+
 .profile-pic {
   height: 30px;
   width: 30px;
   object-fit: cover;
   object-position: center;
   border-radius: 50em;
+}
+
+.geo-shadow {
+  border-radius: 10px;
+  /* width: 100%; */
+  /* object-fit: cover;
+  object-position: center; */
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
 }
 
 .acc-dets {
