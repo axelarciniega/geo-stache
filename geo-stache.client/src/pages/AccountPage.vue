@@ -4,11 +4,11 @@
 
     <section class="row justify-content-around gap-5">
       <div
-        class="col-md-4 col-12 rounded elevation-1 p-2 geo-shadow d-flex flex-column align-items-center justify-content-around">
-        <h3 class="">Hello Adventurer!</h3>
-        <h3 class="">{{ account.name }}</h3>
+        class="col-md-4 col-12 rounded elevation-1 py-3 geo-shadow d-flex flex-column align-items-center justify-content-around">
+        <h3 class="py-1">Hello Adventurer!</h3>
+        <h3 class="py-1">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
-        <p>{{ account.email }}</p>
+        <p class="py-3">{{ account.email }}</p>
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
         <div class="btn">
