@@ -1,8 +1,7 @@
 <template class="rounded">
   <!-- Welcome -->
   <div class="container my-5">
-    <!-- FIXME when below is commented in it causes page to not load data. -->
-    <!-- v-if="user.isAuthenticated" -->
+
     <section class="row justify-content-around gap-5">
       <div
         class="col-md-4 col-12 rounded elevation-1 p-2 geo-shadow d-flex flex-column align-items-center justify-content-around">
@@ -10,6 +9,7 @@
         <h3 class="">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
         <p>{{ account.email }}</p>
+        <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
         <div class="btn">
           <button>Profile</button>
@@ -19,11 +19,6 @@
       <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
-
-
-      <!-- TOP / BOTTOM DIVIDER DIV -->
-      <!-- <div class="divider"></div> -->
-
 
       <!-- Bottom Section Edit Account -->
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
@@ -81,11 +76,6 @@
       </div>
     </section>
   </div>
-  <!-- <div v-else> -->
-  <!-- add stache as an icon -->
-  <!-- <h3 class="">Hello Adventurer!</h3> -->
-  <!-- <h3 class="">Log in to see your Account Details</h3> -->
-  <!-- </div> -->
 </template>
 
 <script>
