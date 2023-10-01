@@ -39,7 +39,7 @@
       <!-- MODAL WRAPPER -->
       <div v-if="user.isAuthenticated" class=" p-2 rounded txt-Sand" id="navbarText">
         <ul class="navbar-nav me-auto txt-Sand">
-          <ModalWrapper class="txt-Sand" id="id">
+          <ModalWrapper id="id">
             <!-- ✅DONE add back in when ready -  v-if="user.isAuthenticated" -->
             <template #button>
               <i class="mdi mdi-plus-box"></i> Create Stache
