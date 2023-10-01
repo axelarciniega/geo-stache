@@ -8,11 +8,11 @@
         <h3 class="">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
         <p>{{ account.email }}</p>
-        <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }">
-          <div class="btn">
-            <button>Profile</button>
-          </div>
-        </router-link>
+        <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
+        <div class="btn">
+          <button>Profile</button>
+        </div>
+        <!-- </router-link> -->
       </div>
       <div class="col-7 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
