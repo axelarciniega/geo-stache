@@ -2,34 +2,69 @@
     <div v-if="stache">
         <section class="container">
             <div class="row border border-black border-3">
-                
+
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <p class="text-center">Hint: {{ stache.hint }}</p>
-                    <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p>
+                    <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                 </div>
-                    <div class="col-12 col-md-5 p-0 m-0"><img class="img-fluid " :src="stache.coverImage" alt="">
+                <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
-                <button @click="deleteStache" class="bg-danger border border-1 border-black">
-                    delete <i class="mdi mdi-icon"></i>
-                </button>
+                <div class="justify-content-around d-flex">
+                    <button v-show="account.id == stache.creatorId" @click="editStache"
+                        class=" btn bg-success border border-1 border-black col-2">
+                        edit <i class="mdi mdi-icon"></i>
+                    </button>
+                    <button v-show="account.id == stache.creatorId" @click="deleteStache"
+                        class=" btn bg-danger border border-1 border-black col-2 text-black">
+                        delete <i class="mdi mdi-icon"></i>
+                    </button>
+                </div>
             </div>
         </section>
+
+
+        <!-- STUB Comment section -->
+        <section class="row">
+            <CommentForm/>
+
+            <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
+                <!-- STUB Comment Card -->
+                <!-- <CommentCard :stacheComment="comment"/> -->
+                <div class="container">
+                    <section class="row">
+                        <div class="col-12 col-md-1">
+                            <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        </div>
+                        <div class="card elevation-5 col-12 col-md-6 my-2">
+                            <b>{{ comment.creator.name }}</b>
+                            <p>{{ comment.body }}</p>
+                            <div class="text-end" v-if="account.id == comment.creatorId" >
+                                <button @click="removeComment">delete</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+
     </div>
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from 'vue';
+import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
-import {useRoute} from 'vue-router';
+import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
-import { routerKey } from "vue-router";
+// import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
+import { commentsService } from '../services/CommentsService';
 
 
 export default {
@@ -38,10 +73,20 @@ export default {
     setup() {
         const route = useRoute();
         const router = useRouter();
-        onMounted(()=> {
-            getStacheById()
+        onMounted(() => {
+            getStacheById();
+            getCommentsByStache()
         })
-        async function getStacheById(){
+
+        async function getCommentsByStache(){
+            try {
+                await commentsService.getCommentsByStache(route.params.stacheId)
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+
+        async function getStacheById() {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
             } catch (error) {
@@ -50,14 +95,28 @@ export default {
         }
 
         return {
-            stache: computed(()=> AppState.activeStache),
-            
-            async deleteStache(){
+            stache: computed(() => AppState.activeStache),
+            account: computed(() => AppState.account),
+            stacheComments: computed(() => AppState.stacheComments),
+
+            async removeComment(){
                 try {
                     if(await Pop.confirm()){
+                        let comment = AppState.stacheComments.find(c => c.accountId == AppState.stacheComments.accountId)
+                        await commentsService.removeComment(comment.id)
+                        Pop.success('removed comment')
+                    }
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
+
+            async deleteStache() {
+                try {
+                    if (await Pop.confirm()) {
                         await stachesService.deleteStache(route.params.stacheId)
                         Pop.success('Successfully deleted stache')
-                        router.push({name: "Home"})
+                        router.push({ name: "Home" })
                     }
 
                 } catch (error) {
@@ -70,4 +129,16 @@ export default {
 </script>
 
 
-<style></style>
+<style scoped lang="scss">
+
+.profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.stacheImage {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+</style>

@@ -45,6 +45,7 @@ class StachesService {
         return originalStache
     }
 
+    // TODO could we add an archived logic to this and add a boolean to our Schema?
     async deleteStache(stacheId, userId) {
         const stache = await dbContext.Staches.findById(stacheId)
         if (userId != stache.creatorId) {
@@ -59,11 +60,9 @@ class StachesService {
 
 
     async logStache(stacheId) {
-        const stache = await this.getStacheById(stacheId)
-        // if(stache.location != userId) throw new Forbidden("That's not your purse I don't know you!")
+        const stache = await dbContext.Comments.find({ stacheId }).populate('creator stache')
 
 
-        await stache.save()
         return stache
     }
 

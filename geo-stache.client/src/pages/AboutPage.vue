@@ -7,7 +7,7 @@
 
     <section class="row">
 
-      <div class="col-12 table-card align-items-center text-dark my-2">
+      <div class="col-12 table-card align-items-center my-2">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -15,7 +15,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Tyler</p>
             Beard wax? Nah, it's MOUSTACHE wax! Stachecraft veteran seeking to bring the adventure of the stache to the
             masses, Tyler excels in drawing out the true outdoorsmen to the world of staching. Rain or shine, Expect to
@@ -23,14 +23,14 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/TylerHigby"></a>
-            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/tyler-higby-102956145"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/TylerHigby"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/tyler-higby-102956145"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark my-2">
+      <div class="col-12 table-card align-items-center my-2">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -38,7 +38,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Axel</p>
             You can't handle these handlebars! King of speedstaching, Axel is a renown stacheier and stachier supplier
             routinely topping the charts in city stache racing.
@@ -46,14 +46,14 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/axelarciniega"></a>
-            <a class="mdi mdi-linkedin fs-1" href="www.linkedin.com/in/axel-arciniega-a8800828b"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/axelarciniega"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="www.linkedin.com/in/axel-arciniega-a8800828b"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark my-2">
+      <div class="col-12 table-card align-items-center my-2">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -61,7 +61,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Sam</p>
             I promise this is a bubble pipe. Codestache pilot extraordinaire, Sam leverages both geologic and geopoetry to
             cracking the most quixotic of hints. Elite Stachers are welcome to challenge Sam to a Stache-off, but be
@@ -69,14 +69,14 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/bluebear2015"></a>
-            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/bluebear2015"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark my-2">
+      <div class="col-12 table-card align-items-center my-2">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -84,7 +84,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Tiffany</p>
             Art of the 'stache is the pinnacle of class. Queen Stache Tiffany has broadened the horizons of stache
             culture. Responsible for bringing stachey back, Tiffany works tirelessly to make staching an activity
@@ -92,14 +92,14 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/YouFoundTiffany"></a>
-            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/tifftastic/"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/YouFoundTiffany"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/tifftastic/"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark my-2 mb-3">
+      <div class="col-12 table-card align-items-center my-2 mb-3">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -107,7 +107,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Camille</p>
             It's all in the twirl. Stealthstacher VII, Camille has attainded the highest rank within the Stachers of
             Subtility. Committed to maintaining pervasive wonder in the ordinary, Camille's stachepertise is focused on
@@ -115,14 +115,14 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/CamilleIvins"></a>
-            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/CamilleIvins"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 
       </div>
 
-      <div class="col-12 table-card align-items-center text-dark my-2 mb-3">
+      <div class="col-12 table-card align-items-center my-2 mb-3">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -130,7 +130,7 @@
               alt="">
 
           </div>
-          <div class="col-md-9 col-12 px-1">
+          <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Sam</p>
             Is there a stache? Is it a stache? Only the voice behind the Stachergeist truly knows. Presenter of the unique
             the-world-is-a-stage production, <span><i>Phantom of the Face</i></span>, Sam specializes in story-based
@@ -139,8 +139,8 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 text-dark" href="https://github.com/CamilleIvins"></a>
-            <a class="mdi mdi-linkedin fs-1" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/CamilleIvins"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
           </div>
         </div>
 

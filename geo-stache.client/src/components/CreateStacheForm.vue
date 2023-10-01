@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="txt-DrkGreen ftn-Cabin">
         <form @submit.prevent="createStache">
             <h1 class="text-center">Stache Create Form</h1>
             <!-- Stache Name Input -->
@@ -28,7 +28,7 @@
             <!-- Cover Image Input -->
             <div class="form-group">
                 <label for="coverImg">Cover Image:</label>
-                <input type="text" id="coverImg" v-model="stacheData.coverImg" minlength="5" :maxlength="255" required
+                <input type="text" id="coverImg" v-model="stacheData.coverImage" minlength="5" :maxlength="255" required
                     class="form-control" />
             </div>
             <!-- Badge Image Input -->
@@ -63,17 +63,18 @@
                     class="form-control"></textarea>
             </div>
 
-            <button class="btn btn-primary mt-3">Submit</button>
+            <button class="btn mt-3 sub-btn">Submit</button>
         </form>
     </div>
 </template>
-  
+
 <script>
 import { ref, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
+
 
 export default {
     setup() {
@@ -100,16 +101,19 @@ export default {
                     stacheData.value.lat = position.coords.latitude;
                     stacheData.value.lng = position.coords.longitude;
                 } catch (error) {
+                    // FIXME console log?
+                    // NOTE we could try to just use loggers, or compute console below
                     console.error('Error getting geolocation:', error);
                     Pop.error('Error getting geolocation. Please try again.');
                 }
             } else {
+                // FIXME console log?
                 console.error('Geolocation is not available in your browser');
             }
         }
-
         // Reset the form and fetch coordinates on component mount
-        onMounted(async() => {
+
+        onMounted(async () => {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
@@ -125,8 +129,9 @@ export default {
                     Modal.getOrCreateInstance('#id').hide();
                     router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
                     // router.push({path: `staches/${newStache.id}`})
-                    
+
                     // FIXME enter correct params
+                    // NOTE Tyler, Axel, did Sam (instructor) clear this up? something about "return" in the service BUT is it client or server?
                 } catch (error) {
                     Pop.error(error);
                 }
@@ -135,11 +140,22 @@ export default {
     },
 };
 </script>
-  
+
 <style lang="scss" scoped>
+.sub-btn {
+    background-color: var(--DrkGreen);
+    color: var(--Sand);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sub-btn:hover {
+    background-color: var(--Green);
+    color: var(--Sand);
+}
+
+
 .preview-image {
     max-height: 15vh;
     object-fit: contain;
 }
 </style>
-  

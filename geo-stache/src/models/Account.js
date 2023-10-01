@@ -7,11 +7,13 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
-    bio: { type: String, required: true },
-    badgeCount: [{ type: String, unique: true }],
+    // do NOT make required
+    bio: { type: String },
+    badgeCount: { type: Number, default: 0 },
+    // do NOT make required
     location: {
-      type: { type: String, enum: ['Point'], required: true, default: "Point" },
-      coordinates: { type: [Number], required: true }
+      type: { type: String, enum: ['Point'], default: "Point" },
+      coordinates: { type: [Number] }
     },
 
   },
@@ -19,5 +21,13 @@ export const AccountSchema = new Schema(
 );
 
 AccountSchema.index({ location: '2dsphere' });
+
+AccountSchema.virtual('earnedBadges', {
+  ref: 'Adventure',
+  localField: '_id',
+  foreignField: 'accountId',
+  justOne: false,
+  match: { status: 'completed' }, // Only fetch completed adventures
+});
 
 

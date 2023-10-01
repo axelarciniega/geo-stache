@@ -1,10 +1,10 @@
 <template>
     <div>
-        <button @click="getUserLocationAndDisplayMap">Show Map</button>
-        <button @click="addMarker">Add Marker</button>
-        <div id="map" style="width: 100%; height: 400px;"></div>
+        <button class="txt-DrkGreen fnt-Cabin" @click="getUserLocationAndDisplayMap">Show Map</button>
+        <button class="txt-DrkGreen fnt-Cabin" @click="addMarker">Add Marker</button>
+        <div class="txt-DrkGreen fnt-Cabin" id="map" style="width: 100%; height: 400px;"></div>
         <!-- List of added markers (optional) -->
-        <div>
+        <div class="txt-DrkGreen fnt-Cabin">
             <h3>Added Markers:</h3>
             <ul>
                 <li v-for="(marker, index) in markers" :key="index">{{ marker.title }}</li>
@@ -27,11 +27,14 @@ export default {
                 navigator.geolocation.getCurrentPosition((position) => {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
+                    // FIXME Cannot have google undefined as it will cause errors.
+                    // NOTE - hasn't this been working?
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
                     });
                     // Create a marker at the user's location
+                    // FIXME Cannot have google undefined as it will cause errors.
                     const userMarker = new google.maps.Marker({
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
@@ -79,13 +82,12 @@ export default {
 <style scoped lang="scss">
 /* Your scoped CSS styles here */
 </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+

@@ -1,13 +1,13 @@
 <template>
-  <section class="container">
-    <!-- <img src="../assets/img/Geo-Stache-logo.png" style="height: 800px;" alt=""> -->
-    <!-- logo and map that routes to map page -->
-    <section class="row justify-md-content-around justify-content-center my-3">
+  <section class="container txt-DrkGreen">
+
+    <section class="txt-DrkGreen row justify-md-content-around justify-content-center my-3">
       <div class="col-md-5 col-4 order-md-0 order-1">
-        <img class="logo" src="../assets/img/GeoStache.png" alt="">
+        <img class="logo" src="../assets/img/Geo-Stache-logo.png" alt="">
       </div>
       <!-- {{ staches }} -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
+        <!-- FIXME ADD frosted-card to div class above and put the h1 Open map direclty below. -->
         <!-- Map/link to map page -->
         <router-link :to="{ name: 'Map' }">
           <!-- <img class="map-pic"
@@ -15,11 +15,12 @@
             alt=""> -->
           <MapCard class="map-pic text-dark" />
           <div class="frosted-card">
-            <h1 class="ps-2 position-relative text-black text-center">Open Map</h1>
+            <h1 class="ps-2 position-relative txt-DrkGreen text-center">Open Map</h1>
           </div>
         </router-link>
       </div>
     </section>
+    <!-- <div class="divider"></div> -->
 
     <!-- photo and stache chart with links to popular staches -->
     <!-- <div class="row justify-content-center">

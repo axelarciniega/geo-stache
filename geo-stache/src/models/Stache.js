@@ -18,10 +18,13 @@ export const StacheSchema = new Schema({
     location: {
         type: { type: String, enum: ['Point'], required: true, default: "Point" },
         coordinates: { type: [Number], required: true }
-    }
-    // TODO uncomment this when needed
-    // cord: {type: navigator.geolocation.getCurrentPosition}
+    },
 
+    foundCount: { type: Number, required: true },
+    todoCount: { type: Number, required: true }
+
+    // NOTE uncomment this when needed
+    // cord: {type: navigator.geolocation.getCurrentPosition}
 
 }, { timestamps: true, toJSON: { virtuals: true } }
 );
@@ -36,6 +39,21 @@ StacheSchema.virtual('creator', {
     justOne: true
 })
 
+StacheSchema.virtual('foundCount', {
+    localField: '_id',
+    foreignField: 'found',
+    ref: 'Adventure',
+    count: true
+})
+StacheSchema.virtual('todoCount', {
+    localField: '_id',
+    foreignField: 'found',
+    ref: 'Adventure',
+    count: true
+})
+
+
+
 
 // StacheSchema.virtual('location', {
 //     localField: 'locationId',
@@ -44,11 +62,3 @@ StacheSchema.virtual('creator', {
 //     justOne: true
 // }
 // )
-
-// NOTE Will get to this when we need it?
-// StacheSchema.virtual('badgeCount', {
-//     localField: '_id',
-//     foreignField: '',
-//     ref: '',
-//     count: true
-// })
