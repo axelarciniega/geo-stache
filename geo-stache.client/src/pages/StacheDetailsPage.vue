@@ -78,7 +78,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped lang="scss">
 .stacheImage {
     width: 100%;
     object-fit: cover;

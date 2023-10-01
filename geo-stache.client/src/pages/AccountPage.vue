@@ -121,7 +121,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .divider {
   height: 3em;
 }

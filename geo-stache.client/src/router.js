@@ -36,8 +36,15 @@ const routes = [
     path: '/FAQ',
     name: 'FAQ',
     component: loadPage('FAQPage'),
-    beforeEnter: authGuard
+
   },
+  {
+    path: '/WhyGeoStache',
+    name: 'Why',
+    component: loadPage('WhyGeoStachePage'),
+
+  },
+
   {
     path: '/staches/:stacheId',
     name: 'Stache Details',

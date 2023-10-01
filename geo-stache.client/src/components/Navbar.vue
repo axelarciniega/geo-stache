@@ -13,12 +13,7 @@
     <div class="collapse navbar-collapse txt-Sand
     " id="navbarText">
       <ul class="navbar-nav me-auto txt-Sand">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-        <li>
+        <li title="Click here to search for Staches on the Map">
           <router-link :to="{ name: 'Nav Map' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
             Map
           </router-link>
@@ -29,12 +24,17 @@
             FAQ
           </router-link>
         </li>
-        <li>
-          <!-- <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
-            StacheDetailsPage
-          </router-link> -->
-        </li>
 
+        <li>
+          <router-link :to="{ name: 'About' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+            About Us
+          </router-link>
+        </li>
+        <!-- <li>
+          <router-link :to="{ name: 'Stache Details' }" class="btn text-success lighten-30 selectable text-uppercase">
+            StacheDetailsPage
+          </router-link>
+        </li> -->
       </ul>
       <!-- MODAL WRAPPER -->
       <div v-if="user.isAuthenticated" class=" p-2 rounded txt-Sand" id="navbarText">
