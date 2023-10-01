@@ -1,4 +1,4 @@
-export class Badge {
+export class Adventure {
     constructor(data) {
         this.id = data.id
         this.stacheId = data.stacheId
