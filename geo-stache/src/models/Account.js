@@ -27,7 +27,7 @@ AccountSchema.virtual('earnedBadges', {
   localField: '_id',
   foreignField: 'accountId',
   justOne: false,
-  match: { status: 'completed' }, // Only fetch completed adventures
+  match: { status: 'completed' },
 });
 
 
