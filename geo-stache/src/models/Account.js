@@ -9,7 +9,7 @@ export const AccountSchema = new Schema(
     picture: { type: String },
     // do NOT make required
     bio: { type: String },
-    badgeCount: [{ type: String, unique: true }],
+    badgeCount: { type: Number, default: 0 },
     // do NOT make required
     location: {
       type: { type: String, enum: ['Point'], default: "Point" },
@@ -21,5 +21,13 @@ export const AccountSchema = new Schema(
 );
 
 AccountSchema.index({ location: '2dsphere' });
+
+AccountSchema.virtual('earnedBadges', {
+  ref: 'Adventure',
+  localField: '_id',
+  foreignField: 'accountId',
+  justOne: false,
+  match: { status: 'completed' }, // Only fetch completed adventures
+});
 
 

@@ -1,5 +1,6 @@
 // ✅ DONE: Update the Account Model in the server as needed
 // ✅ DONE: create TODO Model for stache list? Like the Tickets Model
+// ✅ DONE: create profile model and move over added properties.
 // Look at Network using Inheritance for a Profile in the front-end
 // NOTE USER LOGGED IN, PROFILE IS EVERYONE ELSE. KEEP LOCATION PRIVATE.
 // NOTE ENSURE YOU HAVE BOTH ACCOUNT PAGE AND PROFILE PAGE. KEEP THEM ENCAPSULATED AND SEPARATE. WILL NEED ABILITY TO EDIT BOTH.
@@ -10,9 +11,8 @@ export class Profile{
     this.id = data.id
     this.name = data.name
     this.picture = data.picture
-    // ✅ DONE: create profile model and move over added properties.
     this.badgeCount = data.badgeCount ? data.badgeCount: null
-    this.stacheToDo = data.stacheToDo ? data.stacheToDo: null
+    this.todoCount = data.todoCount ? data.todoCount : null
   }
 }
 
