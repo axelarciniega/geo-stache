@@ -1,6 +1,6 @@
 <template>
-    <div v-if="stacheComment">
-        hi😭
+    <div >
+        hello
     </div>
 </template>
 

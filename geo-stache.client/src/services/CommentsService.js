@@ -13,7 +13,7 @@ class CommentsService{
         const res = await api.post('api/comments', commentData)
         logger.log(res.data)
         let newComment = new StacheComment(res.data)
-        AppState.stacheComments.push(newComment)
+        AppState.stacheComments.unshift(newComment)
 
     }
 
@@ -22,6 +22,13 @@ class CommentsService{
         logger.log('getting comments', res.data)
         AppState.stacheComments = res.data
 
+    }
+
+    async removeComment(id){
+        const res = await api.delete(`api/comments/${id}`)
+        logger.log(res.data, 'deleting')
+        let indexRemove = AppState.stacheComments.findIndex(c => c.id == id)
+        AppState.stacheComments.splice(indexRemove, 1)
     }
 
 }

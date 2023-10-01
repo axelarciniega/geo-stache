@@ -32,9 +32,23 @@
         <section class="row">
             <CommentForm/>
 
-            <div v-for="comment in stacheComments" :key="comment.id">
-                <CommentCard :stacheComment="comment" />
-                {{ comment.body }}
+            <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
+                <!-- STUB Comment Card -->
+                <!-- <CommentCard :stacheComment="comment"/> -->
+                <div class="container">
+                    <section class="row">
+                        <div class="col-12 col-md-1">
+                            <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        </div>
+                        <div class="card elevation-5 col-12 col-md-6 my-2">
+                            <b>{{ comment.creator.name }}</b>
+                            <p>{{ comment.body }}</p>
+                            <div class="text-end" v-if="account.id == comment.creatorId" >
+                                <button @click="removeComment">delete</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
         </section>
 
@@ -85,6 +99,18 @@ export default {
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
 
+            async removeComment(){
+                try {
+                    if(await Pop.confirm()){
+                        let comment = AppState.stacheComments.find(c => c.accountId == AppState.stacheComments.accountId)
+                        await commentsService.removeComment(comment.id)
+                        Pop.success('removed comment')
+                    }
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
+
             async deleteStache() {
                 try {
                     if (await Pop.confirm()) {
@@ -104,6 +130,12 @@ export default {
 
 
 <style scoped lang="scss">
+
+.profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 .stacheImage {
     width: 100%;
     object-fit: cover;
