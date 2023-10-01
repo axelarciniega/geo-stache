@@ -10,7 +10,8 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon txt-Sand"></span>
     </button>
-    <div class="collapse navbar-collapse txt-Sand" id="navbarText">
+    <div class="collapse navbar-collapse txt-Sand
+    " id="navbarText">
       <ul class="navbar-nav me-auto txt-Sand">
         <li>
           <router-link :to="{ name: 'About' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
@@ -36,7 +37,7 @@
 
       </ul>
       <!-- MODAL WRAPPER -->
-      <div v-if="user.isAuthenticated" class="collapse navbar-collapse p-2 rounded txt-Sand" id="navbarText">
+      <div v-if="user.isAuthenticated" class=" p-2 rounded txt-Sand" id="navbarText">
         <ul class="navbar-nav me-auto txt-Sand">
           <ModalWrapper class="txt-Sand" id="id">
             <!-- ✅DONE add back in when ready -  v-if="user.isAuthenticated" -->
@@ -50,11 +51,11 @@
         </ul>
 
       </div>
-      <div class="collapse navbar-collapse p-2 rounded txt-Sand" id="navbarText" v-else>
+      <div class="collapse navbar-collapse p-2 rounded txt-Sand text-end" id="navbarText" v-else>
         <!-- <button data-balloon-length="medium" aria-label="Join us in and start your Stache Adventures!"
           data-balloon-pos="up">Join us in and start your Stache Adventures!"</button> -->
 
-        <button disabled class="btn txt-Sand">login to create stache</button>
+        <button disabled class="btn txt-Sand text-end">login to create stache</button>
       </div>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
