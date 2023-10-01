@@ -25,7 +25,7 @@
 
         <li>
           <router-link :to="{ name: 'FAQ' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
-            Map
+            FAQ
           </router-link>
         </li>
         <li>
