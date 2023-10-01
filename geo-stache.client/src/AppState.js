@@ -24,6 +24,9 @@ export const AppState = reactive({
 
 
   // ADVENTURES / aka Badges
+  /**@type {Adventure []} */
+  adventures: [],
+
   /**@type {Adventure[]} */
   myAdventures: [],
 

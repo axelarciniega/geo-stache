@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { stachesService } from "../services/StachesServices.js";
 import { commentsService } from "../services/CommentsService.js";
+import { adventuresService } from "../services/AdventuresService.js";
 
 
 
@@ -17,6 +18,7 @@ export class StacheController extends BaseController {
             .get('', this.getStaches)
             .get('/:stacheId', this.getLocationByStacheId)
             .get('/:stacheId/comments', this.logStache)
+            .get('/:stacheId/adventures', this.getAdventuresByStacheId)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createStache)
             .put('/:stacheId', this.editStache)
@@ -35,7 +37,7 @@ export class StacheController extends BaseController {
         }
     }
 
-    async getStaches(req, res, next){
+    async getStaches(req, res, next) {
         try {
             const staches = await stachesService.getStaches(req.query)
             res.send(staches)
@@ -90,6 +92,16 @@ export class StacheController extends BaseController {
         }
     }
 
+    async getAdventuresByStacheId(request, response, next) {
+        try {
+            const stacheId = request.params.stacheId
+            const adventures = await adventuresService.getAdventuresByStacheId(stacheId)
+            return response.send(adventures)
+        } catch (error) {
+            next(error)
+        }
+
+    }
 
 
 }
