@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from 'vue';
+import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
-import { routerKey } from "vue-router";
+// import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
 
 

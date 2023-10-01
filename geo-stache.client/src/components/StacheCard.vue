@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import Login from './Login.vue';
+// import Login from './Login.vue';
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
-import ModalWrapper from './ModalWrapper.vue';
+// import ModalWrapper from './ModalWrapper.vue';
 import { Stache } from '../models/Stache';
 export default {
   props: { stache: { type: Stache || Object, required: true } },
