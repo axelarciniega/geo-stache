@@ -26,6 +26,19 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- STUB Comment section -->
+        <section class="row">
+            <CommentForm/>
+
+            <div v-for="comment in stacheComments" :key="comment.id">
+                <CommentCard :stacheComment="comment" />
+                {{ comment.body }}
+            </div>
+        </section>
+
+
     </div>
 </template>
 
@@ -37,6 +50,7 @@ import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 // import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
+import { commentsService } from '../services/CommentsService';
 
 
 export default {
@@ -46,8 +60,18 @@ export default {
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
-            getStacheById()
+            getStacheById();
+            getCommentsByStache()
         })
+
+        async function getCommentsByStache(){
+            try {
+                await commentsService.getCommentsByStache(route.params.stacheId)
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+
         async function getStacheById() {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
@@ -59,6 +83,7 @@ export default {
         return {
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
+            stacheComments: computed(() => AppState.stacheComments),
 
             async deleteStache() {
                 try {

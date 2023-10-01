@@ -59,11 +59,9 @@ class StachesService {
 
 
     async logStache(stacheId) {
-        const stache = await this.getStacheById(stacheId)
-        // if(stache.location != userId) throw new Forbidden("That's not your purse I don't know you!")
+        const stache = await dbContext.Comments.find({stacheId}).populate('creator stache')
 
 
-        await stache.save()
         return stache
     }
 

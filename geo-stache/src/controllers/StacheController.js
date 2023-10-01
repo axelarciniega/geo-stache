@@ -16,6 +16,7 @@ export class StacheController extends BaseController {
             .get('/:stacheId', this.getStacheById)
             .get('', this.getStaches)
             .get('/:stacheId', this.getLocationByStacheId)
+            .get('/:stacheId/comments', this.logStache)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createStache)
             .put('/:stacheId', this.editStache)

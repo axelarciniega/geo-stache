@@ -25,14 +25,13 @@ export const AppState = reactive({
   /**@type {Stache[]} */
   activeStacheBadgess: [],
 
-  /**@type {Comment[]} */
-  comments: [],
+  // NOTE uncomment if needed
+  // /**@type {Comment[]} */
+  // comments: [],
 
-  /**@type {Comment} */
-  activeComment: null,
 
   /**type @type {Comment[]} */
-  activeStacheComments: [],
+  stacheComments: [],
 
 
 
