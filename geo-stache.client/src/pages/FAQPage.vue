@@ -3,7 +3,7 @@
         <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <h2>Frequently Asked Questions (FAQ)</h2>
             <ul>
-                <li>
+                <li class="card bg-Sand">
                     <strong>What is Geo-Stache?</strong>
                     <p>
                         Geo-Stache is an innovative geo-staching experience that combines technology, open-source
