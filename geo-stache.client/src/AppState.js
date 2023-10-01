@@ -5,12 +5,14 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
-// TODO verify w Sam for accuracy.
+  // TODO verify w Sam for accuracy.
   /** @type {import('./models/Account.js').Profile} */
   profile: {},
 
   /**@type {Stache []} */
   staches: [],
+
+  map: null,
 
   /**@type {Stache[]} */
   activeStache: [],

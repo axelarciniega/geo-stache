@@ -38,6 +38,11 @@ const routes = [
     component: loadPage('StacheDetailsPage'),
     beforeEnter: authGuard
   },
+  {
+    path: '/mapping',
+    name: 'Map',
+    component: loadPage('MappingPage')
+  }
 ]
 
 export const router = createRouter({

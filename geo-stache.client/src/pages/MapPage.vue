@@ -1,11 +1,6 @@
 <template>
-  <div class=" container-fluid">
+  <div class="container-fluid">
     <div class="d-flex justify-content-center">
-      <div>
-        <!-- <button class="btn btn-warning border border-3 border-dark m-1 elevation-5"
-          @click="getUserLocationAndDisplayMap">Show
-          Map</button> -->
-      </div>
       <div>
         <input class="border border-3 border-dark m-1 elevation-5" type="text" v-model="searchQuery"
           placeholder="Search for a location" />
@@ -13,70 +8,23 @@
           @click="searchLocation">Search</button>
       </div>
     </div>
-    <div class="border border-5  rounded m-2 border-black m-2 elevation-5" id="map" style="width: 100%; height: 250px;">
+    <div class="border border-5 rounded m-2 border-black m-2 elevation-5" id="map" style="width: 100%; height: 250px;">
     </div>
-    <!-- List of added markers with clickable links and distance -->
-    <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
-      <h3>Added Markers:</h3>
 
+    <!-- List of added staches (markers) with clickable links and distance -->
+    <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
+      <h3>Added Staches:</h3>
       <ul>
-        <li v-for="(marker, index) in sortedMarkers" :key="index">
-          <!--MAKE A COMPONET HERE FOR THE MARKERS-->
-          <a href="#" @click="centerMapOnMarker(marker)">
-            {{ marker.title }}
+        <li v-for="(stache, index) in sortedStaches" :key="index">
+          <a href="#" @click="centerMapOnStache(stache)">
+            {{ stache.lat }} {{ stache.lng }}
           </a>
           <span v-if="userLocationMarker">
-            Distance: {{ calculateDistance(userLocationMarker, marker).toFixed(2) }} miles
+            Distance: {{ calculateDistance(userLocationMarker, stache).toFixed(2) }} miles
           </span>
-          <!-- <span :style="{ color: isUser(marker) ? 'black' : 'black' }">
-            <span v-if="isUser(marker)">
-              (user)
-            </span>
-          </span> -->
-          <span :style="{ color: isWithin3Miles(marker) ? 'lawnGreen' : 'black' }">
-            <span v-if="isWithin3Miles(marker)">
-              (Within 3 miles)
-            </span>
-          </span>
-          <span :style="{ color: isWithin6Miles(marker) ? 'darkGreen' : 'black' }">
-            <span v-if="isWithin6Miles(marker)">
-              (within 6 miles)
-            </span>
-          </span>
-          <span :style="{ color: isWithin10Miles(marker) ? 'teal' : 'black' }">
-            <span v-if="isWithin10Miles(marker)">
-              (within 10 miles)
-            </span>
-          </span>
-          <span :style="{ color: isWithin20Miles(marker) ? 'blue' : 'black' }">
-            <span v-if="isWithin20Miles(marker)">
-              (within 20 miles)
-            </span>
-          </span>
-          <span :style="{ color: isWithin50Miles(marker) ? 'purple' : 'black' }">
-            <span v-if="isWithin50Miles(marker)">
-              (within 50 miles)
-            </span>
-          </span>
-          <span :style="{ color: isWithin100Miles(marker) ? 'orange' : 'black' }">
-            <span v-if="isWithin100Miles(marker)">
-              (within 100 miles)
-            </span>
-          </span>
-          <span :style="{ color: fartherThan100Miles(marker) ? 'red' : 'red' }">
-            <span v-if="fartherThan100Miles(marker)">
-              (more than 100 miles)
-            </span>
-          </span>
-          <!--MAKE COMPONET MARKER HERE-->
         </li>
       </ul>
     </div>
-  </div>
-  <div v-for="stache in staches" :key="stache.id">
-
-    {{ stache.lat }}
-    {{ stache.lng }}
   </div>
 </template>
 
@@ -84,49 +32,55 @@
 import { computed } from 'vue';
 import { logger } from '../utils/Logger.js';
 import { AppState } from '../AppState.js';
-
-
+import { stachesService } from '../services/StachesService.js';
+import Pop from '../utils/Pop.js';
+Pop
 export default {
   data() {
-    //NOTE these are all of our mock arrays for testing.
     return {
+      stache: computed(() => AppState.staches),
       map: null,
-      markers: [], //NOTE To store markers added to the map
-      searchQuery: '', //NOTE User's search query
-      searchService: null, //NOTE Google Places Autocomplete service
-      isSettingMarker: false, //NOTE Flag to indicate if setting a marker is active
-      pendingMarkerLocation: null, //NOTE Location selected for pending marker
-      userLocationMarker: null, //NOTE Marker for the user's location
-      infoWindows: [], //NOTE Store InfoWindow instances
-      staches: computed(() => AppState.staches),
-
+      searchQuery: '', // User's search query
+      searchService: null, // Google Places Autocomplete service
+      isSettingStache: false, // Flag to indicate if setting a stache (marker) is active
+      userLocationMarker: null, // Marker for the user's location
+      infoWindows: [], // Store InfoWindow instances
     };
   },
-  //NOTE this is the equation for calculating the distance from each marker in our mock markers array and
-  //NOTE calculates the distance from the user marker location to the stache location.
-  //NOTE and then sorts the distance from the user.
-
   computed: {
-    sortedMarkers() {
+    sortedStaches() {
       if (this.userLocationMarker) {
-        // Sort markers by distance from user
-        return [...this.markers].sort((a, b) => {
+        // Sort staches (markers) by distance from user
+        return [...AppState.staches].sort((a, b) => {
           const distanceA = this.calculateDistance(this.userLocationMarker, a);
           const distanceB = this.calculateDistance(this.userLocationMarker, b);
           return distanceA - distanceB;
         });
       } else {
-        // If user location is not available, return markers as is
-        return this.markers;
+        // If user location is not available, return staches (markers) as is
+        return AppState.staches;
       }
     },
+
+    userLocationInfo() {
+      if (this.userLocationMarker) {
+        return {
+          lat: this.userLocationMarker.getPosition().lat(),
+          lng: this.userLocationMarker.getPosition().lng(),
+        };
+      }
+      return { lat: 0, lng: 0 }; // Default values if user location marker is not available.
+    },
   },
+
+
+
   methods: {
-    calculateDistance(marker1, marker2) {
-      const lat1 = marker1.getPosition().lat();
-      const lng1 = marker1.getPosition().lng();
-      const lat2 = marker2.getPosition().lat();
-      const lng2 = marker2.getPosition().lng();
+    calculateDistance(stache1, stache2) {
+      const lat1 = stache1.getPosition().lat();
+      const lng1 = stache1.getPosition().lng();
+      const lat2 = stache2.getPosition().lat();
+      const lng2 = stache2.getPosition().lng();
 
       const radlat1 = (Math.PI * lat1) / 180;
       const radlat2 = (Math.PI * lat2) / 180;
@@ -140,11 +94,17 @@ export default {
       dist = Math.acos(dist);
       dist = (dist * 180) / Math.PI;
       dist = dist * 60 * 1.1515;
-      // logger.log("this is the calculated distance", dist)
       return dist;
     },
-    //NOTE in this functin we are createing a marker for the user as soon as 
-    //NOTE the page is mounted and then adds them to our mock marker array
+    async getStaches() {
+      try {
+        await stachesService.getStaches()
+      } catch (error) {
+        Pop.error(error)
+      }
+
+    },
+
     getUserLocationAndDisplayMap() {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -155,19 +115,24 @@ export default {
             center: { lat: latitude, lng: longitude },
             zoom: 12,
           });
-          logger.log('this is the mapping function', this.map)
 
           this.userLocationMarker = new google.maps.Marker({
             position: { lat: latitude, lng: longitude },
             map: this.map,
             title: 'User',
+          });
+
+          AppState.staches.forEach(stache => {
+            logger.log(this.map)
+            new google.maps.Marker({
+              position: { lat: stache.lat, lng: stache.lng },
+              map: this.map,
+              title: `${stache.stacheName}`,
+
+            })
 
           });
 
-
-          this.markers.push(this.userLocationMarker);
-          logger.log("sending the location", this.userLocationMarker)
-          logger.log("the long, and latt", longitude, latitude)
         });
       } else {
         alert('Geolocation is not available in your browser');
@@ -176,12 +141,10 @@ export default {
 
     searchLocation() {
       if (this.searchQuery && this.map) {
-        //NOTE this is a check befor we Create a Places Autocomplete service
         if (!this.searchService) {
           this.searchService = new google.maps.places.AutocompleteService();
         }
 
-        //NOTE  this is to Perform the autocomplete search, we could even restrict it to be more loccaly scoped.
         this.searchService.getPlacePredictions(
           {
             input: this.searchQuery,
@@ -190,14 +153,11 @@ export default {
           (predictions) => {
             if (predictions && predictions.length > 0) {
               const place = predictions[0];
-
-              // Get detailed information about the selected place
               const placeService = new google.maps.places.PlacesService(this.map);
               placeService.getDetails(
                 { placeId: place.place_id },
                 (result, status) => {
                   if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    // Center the map on the selected place
                     this.map.setCenter(result.geometry.location);
                   }
                 }
@@ -210,125 +170,60 @@ export default {
       }
     },
 
-    centerMapOnMarker(marker) {
-      // NOTE this centers the user on the clicked part of the map.
-      this.map.setCenter(marker.getPosition());
+
+    centerMapOnStache(stache) {
+      this.map.setCenter(stache.getPosition());
     },
 
+    createInfoWindow(stache) {
+      const marker = new google.maps.Marker({
+        position: stache.getPosition(), // Use the stache's position
+        map: this.map,
+        title: stache.title,
+      })
 
-    isWithin3Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance <= 3 && distance > 0.000005;
-      }
-      return false;
-    },
-    isWithin6Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance >= 3 && distance <= 6;
-      }
-      return false;
-    },
-    isWithin10Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance >= 6 && distance <= 10;
-      }
-      return false;
-    },
-    isWithin20Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance >= 10 && distance <= 20;
-      }
-      return false;
-    },
-    isWithin50Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance >= 20 && distance <= 50;
-      }
-      return false;
-    },
-    isWithin100Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance >= 50 && distance <= 100;
-      }
-      return false;
-    },
-    fartherThan100Miles(marker) {
-      if (this.userLocationMarker) {
-        const distance = this.calculateDistance(this.userLocationMarker, marker);
-        //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
-        return distance > 100;
-      }
-      return false;
-    },
-
-    createInfoWindow(marker) {
       const infowindow = new google.maps.InfoWindow({
-        content: marker.title,
-      });
+        content: stache.title,
+      })
 
       this.infoWindows.push(infowindow);
 
       google.maps.event.addListener(marker, 'click', () => {
         this.openInfoWindow(marker, infowindow);
-      });
+      })
 
-      return infowindow;
+      return { marker, infowindow };
     },
 
-    openInfoWindow(marker, infowindow) {
+
+    openInfoWindow(stache, infowindow) {
       this.infoWindows.forEach((iw) => iw.close());
-      infowindow.open(this.map, marker);
+      infowindow.open(this.map, stache);
     },
   },
-
-
-  //NOTE - this is creating a new marker at the clisked location, it also is promting the user to confirm that they want to set a marker
-  //NOTE - we added an event listener to the map for setting markers, so when a marker is set it is disabled until the 
-  //NOTE - clicks and confirms to set another marker, it then pushes the marker the out fake array we have set up
-  //NOTE - and then creates an info window on the map
 
 
   watch: {
     map(newValue) {
       if (newValue) {
-
         google.maps.event.addListener(newValue, 'click', (event) => {
-          if (!this.isSettingMarker) {
-
-            if (confirm('Do you want to set new Geo-Stache marker?')) {
-
-              const marker = new google.maps.Marker({
+          if (!this.isSettingStache) {
+            if (confirm('Do you want to set a new stache (marker)?')) {
+              const stache = new google.maps.Marker({
                 position: event.latLng,
                 map: this.map,
-                title: 'Geo-Stache',
+                title: 'New Stache',
               });
-              logger.log("newMaker Coordinates", marker.position)
-              this.createInfoWindow(marker);
 
-              this.markers.push(marker);
-              logger.log(marker);
-
-              this.isSettingMarker = false;
+              this.createInfoWindow(stache);
+              AppState.staches.push(stache);
+              this.isSettingStache = false;
             }
           }
         });
       }
     },
   },
-  //NOTE - this should make sure we are getting a response from the api
-
   mounted() {
     if (typeof google !== 'undefined') {
       this.getUserLocationAndDisplayMap();
@@ -338,7 +233,30 @@ export default {
       script.onload = this.getUserLocationAndDisplayMap;
       document.head.appendChild(script);
     }
+
+    this.getStaches().then(() => {
+      // Iterate through the staches and create markers for each
+      AppState.staches.forEach((stache) => {
+        const marker = new google.maps.Marker({
+          position: {
+            lat: stache.lng, // Use lat property from stacheLocation
+            lng: stache.lat, // Use lng property from stacheLocation
+          },
+          map: this.map,
+          title: stache.stacheName, // Use stacheName property as the marker's title
+        });
+        return marker
+
+        // You can add more customization or event listeners to the marker if needed
+
+        // Store the marker reference if you want to access it later
+        // For example, you can push them into an array.
+        // this.markers.push(marker);
+      })
+    })
   },
+
+
 };
 </script>
 
