@@ -8,7 +8,7 @@ export class AccountController extends BaseController {
     super('account')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/staches', this.getMyStaches)
+      // .get('/staches', this.getMyStaches)
       .get('', this.getUserAccount)
       .get('/:accountId', this.getUserLocation)
       .put('/:accountId', this.updateAccount)
