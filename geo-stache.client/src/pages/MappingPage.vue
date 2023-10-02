@@ -8,7 +8,7 @@
     </div>
     <div class="offset-1">
 
-        <div class="map_card" id="map" style="width: 90%; height: 350px;"></div>
+        <div class="map_card" id="map" style="width: 90%; height: 70vh;"></div>
     </div>
     <div class="glassCard  col-12 col-md-8 my-1">
         <div class="m-1 border border-3 border-dark rounded bg-warning">

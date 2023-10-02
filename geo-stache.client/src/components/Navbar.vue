@@ -14,7 +14,7 @@
     " id="navbarText">
       <ul class="navbar-nav me-auto txt-Sand">
         <li title="Click here to search for Staches on the Map">
-          <router-link :to="{ name: 'Nav Map' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Map' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
             Map
           </router-link>
         </li>

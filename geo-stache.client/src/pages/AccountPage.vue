@@ -11,16 +11,19 @@
         <p class="py-3">{{ account.email }}</p>
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
+          <router-link :to="{ path: `accounts/${account.id}`}">
+
         <div class="btn">
-          <button>Profile</button>
+          <button class="button-class">Profile</button>
         </div>
+        </router-link>
       </div>
-      <!-- </router-link> -->
       <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
-
+        Adventures list, aka badges
+        {{ myAdventures }}
       </div>
       <!-- Bottom Section Edit Account -->
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
@@ -71,7 +74,7 @@
           </div>
           <!-- Save Button -->
           <div class="m-2 col-md-3 col-12 m-0 pt-5">
-            <button class="btn btn-success">save changes <i class="mdi mdi-check"></i></button>
+            <button class="delete-button">save changes <i class="mdi mdi-check"></i></button>
           </div>
 
         </form>
@@ -81,7 +84,7 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
@@ -99,10 +102,27 @@ export default {
       AppState.account;
       editable.value = AppState.account;
     });
+
+
+    // NOTE put the await in the Auth0 Service
+    // async function getMyAdventuredStaches() {
+    //   try {
+
+    //   } catch (error) {
+    //     a
+    //   }
+
+    // }
+
+
+
+
     return {
       editable,
+      profile: computed(() => AppState.profile),
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+      // adventures: computed(() = ApState.adventures),
 
       async editProfile() {
         try {
@@ -115,6 +135,9 @@ export default {
           Pop.error(error);
         }
       }
+
+
+
     };
   },
   components: { MapCard }
@@ -122,6 +145,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.delete-button {
+  background: linear-gradient(25deg, #E86A33, #e68b64);
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.delete-button:hover {
+  background: linear-gradient(25deg, #e68b64, #E86A33);
+  transform: translateY(-5px);
+}
+
+
+.button-class {
+  background: linear-gradient(25deg, #41644A, #adc7b3);
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.2s
+}
+
+.button-class:hover {
+  background: linear-gradient(25deg, #adc7b3, #41644A);
+  transform: translateY(-5px);
+}
+
 .divider {
   height: 3em;
 }
