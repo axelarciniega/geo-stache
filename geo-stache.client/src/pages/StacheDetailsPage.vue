@@ -35,9 +35,9 @@
                 <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex">
+                <div class="justify-content-around d-flex my-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
-                        class=" button-class border border-1 border-black col-2">
+                        class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
@@ -228,21 +228,28 @@ export default {
 
                     });
 
-                    AppState.staches.forEach((stache) => {
-                        const distance = this.calculateDistance(
-                            latitude,
-                            longitude,
-                            stache.lat,
-                            stache.lng
-                        );
-                        stache.distance = distance; // Store the distance in the stache object
-                        logger.log(this.map);
-                        new google.maps.Marker({
-                            position: { lat: stache.lat, lng: stache.lng },
-                            map: this.map,
-                            title: `${stache.stacheName}`,
-                        });
-                    });
+                    new google.maps.Marker({
+
+                        position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
+                        map: this.map,
+                        title: `$(stache.stacheName)`
+                    })
+
+                    // AppState.activeStache.find((stache) => {
+                    //     const distance = this.calculateDistance(
+                    //         latitude,
+                    //         longitude,
+                    //         stache.lat,
+                    //         stache.lng
+                    //     );
+                    //     stache.distance = distance; // Store the distance in the stache object
+                    //     logger.log(this.map);
+                    //     new google.maps.Marker({
+                    //         position: { lat: stache.lat, lng: stache.lng },
+                    //         map: this.map,
+                    //         title: `${stache.stacheName}`,
+                    //     });
+                    // });
                 });
             } else {
                 alert('Geolocation is not available in your browser');
