@@ -7,6 +7,10 @@ export class ProfilesController extends BaseController {
     this.router
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
+    // TODO add routes for getting data created by other users
+    // .get('/:profileId/staches')
+    // .get('/:profileId/adventures')
+
   }
 
   async getProfiles(req, res, next) {
