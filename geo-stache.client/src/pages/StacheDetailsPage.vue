@@ -5,6 +5,11 @@
 
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
+                    <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
+                        <h3 class="text-end"> {{ stache.creator.name }} <img class="profile-pic"
+                                :src="stache.creator.picture">
+                        </h3>
+                    </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <p class="text-center">Hint: {{ stache.hint }}</p>

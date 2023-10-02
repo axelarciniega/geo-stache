@@ -109,7 +109,7 @@
           </div>
           <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Camille</p>
-            It's all in the twirl. Stealthstacher VII, Camille has attainded the highest rank within the Stachers of
+            It's all in the twirl. Stealthstacher VII, Camille has attained the highest rank within the Stachers of
             Subtility. Committed to maintaining pervasive wonder in the ordinary, Camille's stachepertise is focused on
             elevating the game for the most dedicated of stachers.
 
@@ -132,10 +132,11 @@
           </div>
           <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Sam</p>
-            Is there a stache? Is it a stache? Only the voice behind the Stachergeist truly knows. Presenter of the unique
-            the-world-is-a-stage production, <span><i>Phantom of the Face</i></span>, Sam specializes in story-based
-            staches. <span><i>The Scarlet Straight Razor</i></span>, <span><i>Legend of
-                Stacha</i></span>, and <span><i>Aftershave</i></span> are among her award winning hunts!
+            Is there a stache? Is it a stache? Only Stachergeist Sam, the voice behind the Stachequerade mask, truly
+            knows. Presenter of the
+            unique the-world-is-a-stage production, <span><i>Phantom of the Face</i></span>, Sam specializes in
+            story-based staches. <span><i>The Scarlet Straight Razor</i></span>, <span><i>Legend of Stacha</i></span>, and
+            <span><i>Aftershave</i></span> are among her award winning hunts!
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
