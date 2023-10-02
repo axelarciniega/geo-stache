@@ -15,7 +15,7 @@
     <!-- Made with 🥸 by Geo-Stache -->
     <!-- ======= -->
 
-    <footer class="text-light"><span>
+    <footer class="text-light sticky-bottom"><span>
         <!-- <img class="footer-bg" src="./assets/img/TheStache.png" alt=""> -->
 
         <img :src="DrkGreenStacheImage" alt="Geo-Stache Logo" class="stache text-center">

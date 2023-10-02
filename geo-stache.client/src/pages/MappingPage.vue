@@ -2,10 +2,11 @@
     <div class="d-flex justify-content-center">
         <div>
             <input class="fw-bold map_card" type="text" v-model="searchQuery" placeholder="Search for a location" />
-            <button class="btn bg-warning border border-3 border-dark m-1 fw-bold" @click="searchLocation">Search</button>
+            <button class="map_card bg-warning m-1 fw-bold" @click="searchLocation">Search</button>
         </div>
     </div>
     <div class="offset-1">
+
         <div class="map_card" id="map" style="width: 90%; height: 300px;"></div>
     </div>
     <div class="glassCard  col-12 col-md-6 my-1">
@@ -55,6 +56,8 @@ export default {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
 
+
+
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
@@ -64,6 +67,7 @@ export default {
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
                         title: 'Your Location',
+
                     });
 
                     AppState.staches.forEach((stache) => {
@@ -135,10 +139,10 @@ export default {
 
     mounted() {
         if (typeof google !== 'undefined') {
-            // Google Maps API is already loaded, call the function
+
             this.getUserLocationAndDisplayMap();
         } else {
-            // Wait for the Google Maps API to be loaded
+
             const script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
             script.onload = this.getUserLocationAndDisplayMap;
@@ -150,7 +154,7 @@ export default {
   
 <style scoped lang="scss">
 .glassCard {
-    /* From https://css.glass */
+
     background: #41644ace;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -164,7 +168,5 @@ export default {
     box-shadow: 0 10px 30px #41644ace;
     border-radius: 25px
 }
-
-/* Your scoped CSS styles here */
 </style>
   
