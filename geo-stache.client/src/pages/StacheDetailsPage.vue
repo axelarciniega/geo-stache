@@ -30,7 +30,7 @@
 
         <!-- STUB Comment section -->
         <section class="row">
-            <CommentForm/>
+            <CommentForm />
 
             <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
                 <!-- STUB Comment Card -->
@@ -43,7 +43,7 @@
                         <div class="card elevation-5 col-12 col-md-6 my-2">
                             <b>{{ comment.creator.name }}</b>
                             <p>{{ comment.body }}</p>
-                            <div class="text-end" v-if="account.id == comment.creatorId" >
+                            <div class="text-end" v-if="account.id == comment.creatorId">
                                 <button class="delete-button" @click="removeComment">delete</button>
                             </div>
                         </div>
@@ -77,8 +77,8 @@ export default {
             getStacheById();
             getCommentsByStache()
         })
-
-        async function getCommentsByStache(){
+        // Camille starting function to get creator ID
+        async function getCommentsByStache() {
             try {
                 await commentsService.getCommentsByStache(route.params.stacheId)
             } catch (error) {
@@ -99,9 +99,9 @@ export default {
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
 
-            async removeComment(){
+            async removeComment() {
                 try {
-                    if(await Pop.confirm()){
+                    if (await Pop.confirm()) {
                         let comment = AppState.stacheComments.find(c => c.accountId == AppState.stacheComments.accountId)
                         await commentsService.removeComment(comment.id)
                         Pop.success('removed comment')
@@ -130,34 +130,34 @@ export default {
 
 
 <style scoped lang="scss">
-
-.button-class{
+.button-class {
     background: linear-gradient(25deg, #41644A, #adc7b3);
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s
 }
 
-.button-class:hover{
-    background: linear-gradient(25deg, #adc7b3, #41644A );
+.button-class:hover {
+    background: linear-gradient(25deg, #adc7b3, #41644A);
     transform: translateY(-5px);
 }
 
-.delete-button{
+.delete-button {
     background: linear-gradient(25deg, #E86A33, #e68b64);
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
 }
 
-.delete-button:hover{
-    background: linear-gradient(25deg, #e68b64, #E86A33 );
+.delete-button:hover {
+    background: linear-gradient(25deg, #e68b64, #E86A33);
     transform: translateY(-5px);
 }
 
-.profile-pic{
+.profile-pic {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
+
 .stacheImage {
     width: 100%;
     object-fit: cover;
