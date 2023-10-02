@@ -20,7 +20,8 @@
         <MapCard />
       </div>
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
-
+        Adventures list, aka badges
+        {{ myAdventures }}
       </div>
       <!-- Bottom Section Edit Account -->
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
@@ -81,7 +82,7 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
@@ -99,10 +100,26 @@ export default {
       AppState.account;
       editable.value = AppState.account;
     });
+
+
+    // NOTE put the await in the Auth0 Service
+    async function getMyAdventuredStaches() {
+      try {
+
+      } catch (error) {
+        a
+      }
+
+    }
+
+
+
+
     return {
       editable,
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+      adventures: computed(() = ApState.adventures),
 
       async editProfile() {
         try {
@@ -115,6 +132,9 @@ export default {
           Pop.error(error);
         }
       }
+
+
+
     };
   },
   components: { MapCard }

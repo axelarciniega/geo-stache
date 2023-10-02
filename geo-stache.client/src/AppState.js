@@ -7,8 +7,12 @@ export const AppState = reactive({
   account: {},
 
 
+
+  // using the more specific annotation can help catch type - related errors and provide better code documentation.
+
   // PROFILES
-  /** @type {import('./models/Account.js').Profile} */
+  // NOTE due to the inheritance in the Profile/Account model are using .Account in this JSDoc annotation because there may be an instance when we want to be able to access to the Account level, and not just the properties defined on the Profile.
+  /** @type {import('./models/Account.js').Account} */
   profile: {},
 
   /**@type {Profile[]} */
@@ -26,7 +30,7 @@ export const AppState = reactive({
 
 
   // ADVENTURES / aka Badges
-  /**@type {Adventure []} */
+  /**@type {import('./models/Adventure.js').Adventure[]} */
   adventures: [],
 
   /**@type {Adventure[]} */

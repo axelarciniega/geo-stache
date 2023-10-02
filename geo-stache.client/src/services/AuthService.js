@@ -6,6 +6,8 @@ import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
 import { stachesService } from "./StachesService.js"
+import { adventuresService } from './AdventuresService'
+
 
 export const AuthService = initialize({
   domain,
@@ -27,8 +29,10 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   AppState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
-  await stachesService.getStaches()
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  await stachesService.getStaches()
+  await adventuresService.getMyAdventuredStaches()
+
 })
 
 async function refreshAuthToken(config) {
