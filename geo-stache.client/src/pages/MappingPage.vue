@@ -20,47 +20,47 @@
         <ul class="list-group">
             <li class="list-group-items" v-for="(stache, index) in stache" :key="index">
                 <router-link :to="{ path: `staches/${stache.id}` }">
-                    <span v-if="stache.distance <= 3 > 0.00005"
+                    <div v-if="stache.distance <= 3 > 0.00005"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName
                         }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
-                    </span>
+                    </div>
 
-                    <span v-if="stache.distance >= 3.1 && stache.distance <= 6"
+                    <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName }} - <span class="text-primary"> {{
         stache.distance }} miles</span>
-                    </span>
-                    <span v-if="stache.distance >= 6.1 && stache.distance <= 10"
+                    </div>
+                    <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName }} - <span class="text-info"> {{
         stache.distance }} miles</span>
-                    </span>
-                    <span v-if="stache.distance >= 10.1 && stache.distance <= 20"
+                    </div>
+                    <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName }} - <span class="text-secondary"> {{
         stache.distance }} miles</span>
-                    </span>
-                    <span v-if="stache.distance >= 20.1 && stache.distance <= 40"
+                    </div>
+                    <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName }} - <span class="text-danger"> {{
         stache.distance }} miles</span>
-                    </span>
+                    </div>
 
-                    <span v-if="stache.distance > 40.1"
+                    <div v-if="stache.distance > 40.1"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName
                         }} -
                         <span class="text-danger"> {{
                             stache.distance }} miles</span>
-                    </span>
+                    </div>
                 </router-link>
             </li>
         </ul>
@@ -201,6 +201,8 @@ export default {
         if (typeof google !== 'undefined') {
 
             this.getUserLocationAndDisplayMap();
+
+
         } else {
 
             const script = document.createElement('script');

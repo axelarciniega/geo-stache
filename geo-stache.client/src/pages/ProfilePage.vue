@@ -24,8 +24,8 @@
         <section class="row justify-content-around">
             <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow">
                 <h4 class="text-center mt-2">Created staches</h4>
-                <div v-for="s in myStaches" :key="s.id">
-                    <StacheCard :stache="s.stache" />
+                <div v-for="s in activeProfileStaches" :key="s.id">
+                    <ActiveProfileStacheCard :stache="s" />
                 </div>
             </div>
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0">

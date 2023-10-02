@@ -11,23 +11,36 @@
 
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
-                        <h3 class="text-end"> {{ stache.creator.name }} <img class="profile-pic"
+                        <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img class="profile-pic"
                                 :src="stache.creator.picture">
                         </h3>
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
-                    <p class="text-center">Hint: {{ stache.hint }}</p>
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
-
-                    <button v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Addventures
+                    <div class="text-center">
+                    <p>
+                        <button class="revealButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            Reveal Hint
+                        </button>
+                    </p>
+                </div>
+                    <div class="justify-content-center d-flex" style="min-height: 120px;">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body" style="width: 300px;">
+                                
+                                <p class="text-center">Hint: {{ stache.hint }}</p>
+                    </div>
+  </div>
+</div>
+                    <button class="adventureButton" v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Adventures
                     </button>
-
-                    <button v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
+                    
+                    <button class="adventureButton" v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventures</i>
                     </button>
-
+                    
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
@@ -59,7 +72,7 @@
 
 
         <!-- STUB Comment section -->
-        <section class="row">
+        <section class="row container-fluid">
             <CommentForm />
 
             <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
@@ -353,4 +366,30 @@ export default {
     object-fit: cover;
     object-position: center;
 }
+
+.revealButton{
+    background: linear-gradient(25deg, #0e421a, #5dde39);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.revealButton:hover{
+    background: linear-gradient(#5dde39,#0e421a);
+    transform: scale(1.1);
+}
+
+.adventureButton{
+    background: linear-gradient( #f6c4aa, #E86A33);
+    border-radius: 20px;
+}
+
+.nameLink:hover{
+transform: scale(1.1);
+
+}
+.nameLink{
+    color:#E86A33; 
+}
+
+
 </style>
