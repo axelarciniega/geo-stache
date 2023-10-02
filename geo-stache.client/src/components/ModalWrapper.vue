@@ -17,7 +17,7 @@
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
     <!-- re-bind (":") the ID, was throwing erros in testing, so took out -->
     <!-- id should be bound :id="?" -->
-    <div class="modal " id="id" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+    <div class="modal " :id="id" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-body text-dark">
                     <slot name="body">
-                        AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg
+
                     </slot>
                 </div>
             </div>
