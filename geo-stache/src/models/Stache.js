@@ -40,14 +40,22 @@ StacheSchema.virtual('creator', {
 
 StacheSchema.virtual('foundCount', {
     localField: '_id',
-    foreignField: 'found',
+    foreignField: 'stacheId',
     ref: 'Adventure',
+    options: {
+        match: { status: 'completed' }
+    },
     count: true
 })
+
+
 StacheSchema.virtual('todoCount', {
     localField: '_id',
-    foreignField: 'found',
+    foreignField: 'stacheId',
     ref: 'Adventure',
+    options: {
+        match: { status: 'todo' }
+    },
     count: true
 })
 

@@ -11,46 +11,61 @@
         <div class="map_card" id="map" style="width: 90%; height: 70vh;"></div>
     </div>
     <div class="glassCard  col-12 col-md-8 my-1">
-        <div class="m-1 border border-3 border-dark rounded bg-warning">
+        <div class="m-3 ">
             <h1 class=" fw-bold text-black text-center text-decoration-underline">
-                STACHES
+                <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
             </h1>
         </div>
-        <li v-for="(stache, index) in stache" :key="index">
-            <router-link :to="{ path: `staches/${stache.id}` }">
-                <span v-if="stache.distance <= 3 > 0.00005" class=" fw-bold fs-3 text-black text-center"> {{
-                    stache.stacheName
-                }} - <span class="text-warning"> {{
+        <ul class="list-group">
+            <li class="list-group-items" v-for="(stache, index) in stache" :key="index">
+                <router-link :to="{ path: `staches/${stache.id}` }">
+                    <div v-if="stache.distance <= 3 > 0.00005"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName
+                        }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
-                </span>
+                    </div>
 
-                <span v-if="stache.distance >= 3.1 && stache.distance <= 6" class=" fw-bold fs-3 text-black text-center"> {{
-                    stache.stacheName }} - <span class="text-primary"> {{
+                    <span v-if="stache.distance >= 3.1 && stache.distance <= 6"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName }} - <span class="text-primary"> {{
         stache.distance }} miles</span>
-                </span>
-                <span v-if="stache.distance >= 6.1 && stache.distance <= 10" class=" fw-bold fs-3 text-black text-center">
-                    {{
-                        stache.stacheName }} - <span class="text-info"> {{
+                    </span>
+                    <span v-if="stache.distance >= 6.1 && stache.distance <= 10"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName }} - <span class="text-info"> {{
         stache.distance }} miles</span>
-                </span>
-                <span v-if="stache.distance >= 10.1 && stache.distance <= 20" class=" fw-bold fs-3 text-black text-center">
-                    {{
-                        stache.stacheName }} - <span class="text-secondary"> {{
+                    </span>
+                    <span v-if="stache.distance >= 10.1 && stache.distance <= 20"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName }} - <span class="text-secondary"> {{
         stache.distance }} miles</span>
-                </span>
-                <span v-if="stache.distance >= 20.1 && stache.distance <= 40" class=" fw-bold fs-3 text-black text-center">
-                    {{
-                        stache.stacheName }} - <span class="text-danger"> {{
+                    </span>
+                    <span v-if="stache.distance >= 20.1 && stache.distance <= 40"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName }} - <span class="text-danger"> {{
         stache.distance }} miles</span>
-                </span>
+                    </span>
 
-                <span v-if="stache.distance > 40.1" class=" fw-bold fs-3 text-black text-center"> {{ stache.stacheName }} -
-                    <span class="text-danger"> {{
-                        stache.distance }} miles</span>
-                </span>
-            </router-link>
-        </li>
+                    <span v-if="stache.distance > 40.1"
+                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                        {{
+                            stache.stacheName
+                        }} -
+                        <span class="text-danger"> {{
+                            stache.distance }} miles</span>
+                    </span>
+                </router-link>
+            </li>
+        </ul>
+
+
     </div>
 </template>
   
@@ -126,6 +141,16 @@ export default {
             }
         },
 
+        isWithin3Miles(stache) {
+            if (this.userLocationMarker) {
+                const distance = this.calculateDistance(this.userLocationMarker, stache);
+                //NOTE - this is the distence threshold that sets up 3-mile parameter from the set user location.
+                return distance <= 3 && distance > 0.000005;
+            }
+            return false;
+        },
+
+
         searchLocation() {
             if (this.searchQuery && this.map) {
                 if (!this.searchService) {
@@ -191,7 +216,7 @@ export default {
 <style scoped lang="scss">
 .glassCard {
 
-    background: #41644ace;
+    background: #41644a9d;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -207,6 +232,10 @@ export default {
 
 .bg-stacheGreen {
     background: #41644ace;
+}
+
+.bg-stacheName {
+    background: #ef9b0aa2;
 }
 </style>
   
