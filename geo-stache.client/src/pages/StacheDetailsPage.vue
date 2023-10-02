@@ -25,8 +25,12 @@
                         "></i>
                     </button>Add this Stache to your Adventure List!
                 </div>
-                <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
-                </div>
+                <!-- Camille testing things here -->
+                <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
+                </div> -->
+                <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
+
+
                 <div class="justify-content-around d-flex">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-2">
@@ -116,6 +120,7 @@ export default {
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
+            map: null,
 
             async removeComment() {
                 try {
@@ -155,6 +160,123 @@ export default {
             //     }
             // }
         };
+    },
+
+    methods: {
+        calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 3958.8; // Radius of the Earth in miles
+            const dLat = (lat2 - lat1) * (Math.PI / 180);
+            const dLon = (lon2 - lon1) * (Math.PI / 180);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * (Math.PI / 180)) *
+                Math.cos(lat2 * (Math.PI / 180)) *
+                Math.sin(dLon / 2) *
+                Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c;
+            return distance.toFixed(2); // Round to 2 decimal places
+        },
+
+        getUserLocationAndDisplayMap() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+
+
+                    this.map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: latitude, lng: longitude },
+                        zoom: 15,
+                    });
+
+                    new google.maps.Marker({
+                        position: { lat: latitude, lng: longitude },
+                        map: this.map,
+                        title: 'Your Location',
+
+                    });
+
+                    AppState.staches.forEach((stache) => {
+                        const distance = this.calculateDistance(
+                            latitude,
+                            longitude,
+                            stache.lat,
+                            stache.lng
+                        );
+                        stache.distance = distance; // Store the distance in the stache object
+                        logger.log(this.map);
+                        new google.maps.Marker({
+                            position: { lat: stache.lat, lng: stache.lng },
+                            map: this.map,
+                            title: `${stache.stacheName}`,
+                        });
+                    });
+                });
+            } else {
+                alert('Geolocation is not available in your browser');
+            }
+        },
+
+        searchLocation() {
+            if (this.searchQuery && this.map) {
+                if (!this.searchService) {
+                    this.searchService = new google.maps.places.AutocompleteService();
+                }
+
+                this.searchService.getPlacePredictions(
+                    {
+                        input: this.searchQuery,
+                        componentRestrictions: { country: 'US' },
+                    },
+                    (predictions) => {
+                        if (predictions && predictions.length > 0) {
+                            const place = predictions[0];
+                            const placeService = new google.maps.places.PlacesService(this.map);
+                            placeService.getDetails(
+                                { placeId: place.place_id },
+                                (result, status) => {
+                                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                        this.map.setCenter(result.geometry.location);
+                                    }
+                                }
+                            );
+                        }
+                    }
+                );
+            } else {
+                alert('Map not initialized or search query is empty.');
+            }
+        },
+
+        selectLocation(result) {
+            // Center the map on the selected location
+            const placeService = new google.maps.places.PlacesService(this.map);
+            placeService.getDetails({ placeId: result.place_id }, (place) => {
+                if (place && place.geometry && place.geometry.location) {
+                    const location = place.geometry.location;
+                    this.map.setCenter(location);
+                    this.map.setZoom(20); // Adjust the zoom level as needed
+                }
+            });
+            this.searchResults = []; // Clear search results after selecting a location
+        },
+    },
+
+
+    mounted() {
+        if (typeof google !== 'undefined') {
+
+            this.getUserLocationAndDisplayMap();
+        } else {
+
+            const script = document.createElement('script');
+            //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+            script.onload = this.getUserLocationAndDisplayMap;
+            document.head.appendChild(script);
+        }
     },
 };
 </script>

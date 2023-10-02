@@ -5,7 +5,7 @@
       <Navbar />
     </header>
     <main>
-      <router-view />
+      <router-view style="height: 100%; min-height: 100vh;" />
     </main>
 
     <!-- NOTE FOOTER -->
@@ -15,7 +15,7 @@
     <!-- Made with 🥸 by Geo-Stache -->
     <!-- ======= -->
 
-    <footer class="text-light sticky-bottom"><span>
+    <footer class="text-light sticky-footer"><span>
         <!-- <img class="footer-bg" src="./assets/img/TheStache.png" alt=""> -->
 
         <img :src="DrkGreenStacheImage" alt="Geo-Stache Logo" class="stache text-center">
