@@ -29,14 +29,14 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Profile details</h4>
-                <img :src="profile.picture" alt="">
-                <h3 class="text-center my-2">{{ profile.name }}</h3>
-                {{ profile.bio }}
-                {{ profile.email }}
+                <h4 class="text-center">Found staches</h4>
             </div>
             <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Found staches</h4>
+                <h4 class="text-center">Profile details</h4>
+                {{ profile.name }}
+                <img :src="profile.picture" alt="">
+                {{ profile.bio }}
+                {{ profile.email }}
             </div>
         </section>
         <section class="pt-5 row justify-content-around pb-5">
@@ -73,7 +73,7 @@ export default {
             getStachesByProfileId()
         })
 
-        async function getProfileById() {
+        async function getProfileById(){
             try {
                 await accountService.getProfileById(route.params.profileId)
             } catch (error) {
@@ -101,15 +101,4 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-.geo-shadow {
-    backdrop-filter: blur(20px);
-    border-radius: 10px;
-    /* width: 100%; */
-    /* object-fit: cover;
-  object-position: center; */
-    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
-        0 5px 6px 0 rgba(43, 43, 43, 0.79),
-        0 1px 8px 0 rgba(43, 43, 43, 0.79);
-}
-</style>
+<style></style>
