@@ -11,11 +11,13 @@
         <p class="py-3">{{ account.email }}</p>
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
+          <router-link :to="{ path: `accounts/${account.id}`}">
+
         <div class="btn">
           <button class="button-class">Profile</button>
         </div>
+        </router-link>
       </div>
-      <!-- </router-link> -->
       <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
@@ -117,6 +119,7 @@ export default {
 
     return {
       editable,
+      profile: computed(() => AppState.profile),
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       // adventures: computed(() = ApState.adventures),

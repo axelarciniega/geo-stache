@@ -1,7 +1,7 @@
 <!-- FIXME Put button on Account Page to Link to Profile page. -->
 <template>
-    <div class="container p-2 g-4 my-3">
-        <!-- v-if="user.isAuthenticated" -->
+    <!-- <div class="container p-2 g-4 my-3">
+        v-if="user.isAuthenticated"
         <section class="row mt-2 justify-content-around">
             <div class="col-3 rounded elevation-1 p-2 geo-shadow">
                 <h3 class="">Hello Adventurer!</h3>
@@ -13,11 +13,12 @@
                 <MapCard />
             </div>
             <div class="divider"></div>
-            <!-- Bottom Section Edit Account -->
+            Bottom Section Edit Account
             <div class="elevation-1 rounded p-2 geo-shadow">
             </div>
         </section>
-    </div>
+    </div> -->
+    hello
 </template>
 
 <script>
