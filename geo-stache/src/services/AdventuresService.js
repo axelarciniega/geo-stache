@@ -65,6 +65,12 @@ class AdventuresService {
         return originalAdventure
     }
 
+    async getAdventures() {
+        const adventures = await dbContext.Adventures.find()
+            .populate('creator', 'stache')
+        return adventures
+    }
+
 }
 
 export const adventuresService = new AdventuresService()
