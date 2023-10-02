@@ -22,28 +22,28 @@
     <section class="container">
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around">
-            <div class="col-12 col-md-3 card order-md-0 order-1">
-                <h4 class="text-center">Created staches</h4>
+            <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow">
+                <h4 class="text-center mt-2">Created staches</h4>
                 <div v-for="s in myStaches" :key="s.id">
                     <StacheCard :stache="s.stache" />
                 </div>
             </div>
-            <div class="col-12 col-md-3 card order-md-1 order-0">
+            <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0">
                 <h4 class="text-center mt-2">Profile details</h4>
                 <img :src="profile.picture" alt="">
                 {{ profile.bio }}
-                {{ profile.email }}
+                <p class="mb-2">{{ profile.email }}</p>
             </div>
-            <div class="col-12 col-md-3 card order-2">
-                <h4 class="text-center">Found staches</h4>
+            <div class="col-12 col-md-3 geo-shadow order-2 my-md-4">
+                <h4 class="text-center mt-2">Found staches</h4>
             </div>
         </section>
         <section class="pt-5 row justify-content-around pb-5">
-            <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Todos</h4>
+            <div class="col-12 col-md-3 geo-shadow">
+                <h4 class="text-center mt-2">Todos</h4>
             </div>
-            <div class="col-12 col-md-6 card">
-                <h4 class="text-center">Badges</h4>
+            <div class="col-12 col-md-6 geo-shadow">
+                <h4 class="text-center mt-2">Badges</h4>
             </div>
         </section>
         <!-- {{ profile.badgeCount }} -->
@@ -101,4 +101,16 @@ export default {
 </script>
 
 
+<style lang="scss" scoped>
+.geo-shadow {
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    /* width: 100%; */
+    /* object-fit: cover;
+  object-position: center; */
+    box-shadow: 0 3px 3px -1px rgba(133, 133, 133, 0.85),
+        0 5px 6px 0 rgba(133, 133, 133, 0.79),
+        0 1px 8px 0 rgba(133, 133, 133, 0.79);
+}
+</style>
 <style></style>
