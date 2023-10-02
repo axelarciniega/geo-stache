@@ -74,6 +74,8 @@ import Pop from '../utils/Pop.js';
 import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
+import { logger } from '../utils/Logger';
+
 
 
 export default {
@@ -101,19 +103,20 @@ export default {
                     stacheData.value.lat = position.coords.latitude;
                     stacheData.value.lng = position.coords.longitude;
                 } catch (error) {
-                    // FIXME console log?
-                    // NOTE we could try to just use loggers, or compute console below
-                    console.error('Error getting geolocation:', error);
+
+                    logger.error('Error getting geolocation:', error);
                     Pop.error('Error getting geolocation. Please try again.');
                 }
             } else {
-                // FIXME console log?
-                console.error('Geolocation is not available in your browser');
+
+                logger.error('Geolocation is not available in your browser');
             }
         }
-        // Reset the form and fetch coordinates on component mount
 
-        onMounted(async() => {
+
+
+        // eslint-disable-next-line space-before-function-paren
+        onMounted(async () => {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
@@ -122,16 +125,11 @@ export default {
             stacheData,
             async createStache() {
                 try {
-                    // debugger
                     let newStache = await stachesService.createStache(stacheData.value);
                     Pop.toast('Stache Created', 'success');
                     resetForm();
                     Modal.getOrCreateInstance('#id').hide();
-
-                    router.push({path: `staches/${newStache.id}`})
-
-                    // FIXME enter correct params
-                    // NOTE Tyler, Axel, did Sam (instructor) clear this up? something about "return" in the service BUT is it client or server?
+                    router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
                 } catch (error) {
                     Pop.error(error);
                 }

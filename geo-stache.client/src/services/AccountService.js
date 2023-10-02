@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
+import Pop from "../utils/Pop.js"
 import { api } from './AxiosService'
 
 class AccountService {
@@ -19,6 +20,16 @@ class AccountService {
     // logger.log('account service editing profile data')
     // let updateAccount = new Account(response.data)
     // AppState.account = updateAccount
+}
+
+async getMyStaches(){
+  try {
+    const res = await api.get('account/staches')
+    logger.log(res.data)
+    AppState.myStaches = res.data
+  } catch (error) {
+    Pop.error(error)
+  }
 }
 
 }
