@@ -1,6 +1,6 @@
 <template>
     <section>
-        <router-link :to="{path: `staches/${stache.id}`}">
+        <router-link :to="{name: 'Stache Details', params: {stacheId: stache.id}}">
             {{ stache.stacheName }}
         </router-link>
     </section>
