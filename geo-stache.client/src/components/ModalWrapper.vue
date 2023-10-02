@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-body text-dark">
                     <slot name="body">
-                        AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg
+
                     </slot>
                 </div>
             </div>
