@@ -5,7 +5,7 @@ import { Schema } from "mongoose"
 export const AdventureSchema = new Schema({
     stacheId: { type: Schema.Types.ObjectId, required: true, ref: 'Stache' },
     accountId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-    foundDate: { type: Date, required: true },
+    foundDate: { type: Date },
     todoDate: { type: Date, required: true, default: Date.now() },
     status: { type: String, enum: ['todo', 'completed'], required: true, default: 'todo' },
     rating: { type: String, enum: [1, 2, 3, 4, 5] },

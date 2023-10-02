@@ -4,7 +4,7 @@
 
     <section class="row justify-content-around gap-5">
       <div
-        class="col-md-4 col-12 rounded elevation-1 py-3 geo-shadow d-flex flex-column align-items-center justify-content-around">
+        class="col-md-4 col-11 rounded elevation-1 py-3 geo-shadow d-flex flex-column align-items-center justify-content-around">
         <h3 class="py-1">Hello Adventurer!</h3>
         <h3 class="py-1">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
@@ -18,12 +18,12 @@
           </div>
         </router-link>
       </div>
-      <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
+      <div class="col-md-7 col-11 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
 
       <!-- Bottom Section Edit Account -->
-      <div class="col-12 elevation-1 rounded p-2 geo-shadow">
+      <div class="col-11 elevation-1 rounded p-2 geo-shadow">
 
         <h3 class="fw-bold">Edit Your Account & Profile Details</h3>
         <h6 class="fw-bold">All but your email is editable. Your location and email area always remain private. </h6>
@@ -63,14 +63,14 @@
           </div>
 
           <!-- Lat -->
-          <div class="col-12">
+          <div class="col-11">
             <label for="bio">
               Bio
             </label>
             <textarea v-model="editable.bio" rows="10" class="form-control h-100"></textarea>
           </div>
           <!-- Save Button -->
-          <div class="m-2 col-md-3 col-12 m-0 pt-5">
+          <div class="m-2 col-md-3 col-11 m-0 pt-5">
             <button class="delete-button">save changes <i class="mdi mdi-check"></i></button>
           </div>
 

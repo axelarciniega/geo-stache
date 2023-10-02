@@ -2,6 +2,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { stachesService } from "../services/StachesServices.js"
+import { adventuresService } from '../services/AdventuresService.js'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -9,9 +10,19 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       // .get('/staches', this.getMyStaches)
+      .get('/adventures', this.getMyAdventures)
       .get('', this.getUserAccount)
       .get('/:accountId', this.getUserLocation)
       .put('/:accountId', this.updateAccount)
+  }
+  async getMyAdventures(req, res, next) {
+    try {
+      const accountId = req.userInfo.id
+      const adventures = await adventuresService.getAdventuresByUserId(accountId)
+      res.send(adventures)
+    } catch (error) {
+      next(error)
+    }
   }
 
   // NOTE ⬇️ edit account / profile logic

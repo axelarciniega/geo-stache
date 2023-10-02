@@ -21,9 +21,13 @@
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
-                    <button @click="addToDo()"><i class="mdi mdi-plus
-                        "></i>
-                    </button>Add this Stache to your Adventure List!
+
+                    <button v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Addventures
+                    </button>
+
+                    <button v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
+                    </button>
+
                 </div>
                 <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
@@ -43,6 +47,11 @@
                 </div>
             </div>
         </section>
+
+
+        <div v-if="stacheAdventures.length > 0" class="bg-danger">
+            {{ stacheAdventures }}
+        </div>
 
 
         <!-- STUB Comment section -->
@@ -74,7 +83,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
 import { useRoute } from 'vue-router';
@@ -83,18 +92,22 @@ import { AppState } from '../AppState';
 import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
+import { adventuresService } from '../services/AdventuresService';
 
 
 export default {
 
 
     setup() {
+        const isToDo = ref(false);
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
             getStacheById();
             getCommentsByStache()
         })
+
+        // TODO get adventures for this stache
 
         async function getCommentsByStache() {
             try {
@@ -113,9 +126,23 @@ export default {
         }
 
         return {
+            // isToDo,
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
+            stacheAdventures: computed(() => AppState.activeStacheAdventures),
+            myAdventures: computed(() => AppState.myAdventures),
+            isMyAdventure: computed(() => {
+                let isFound = true
+                for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+                    for (let j = 0; j <= AppState.myAdventures.length; j++) {
+                        if (i == j) {
+                            isFound = false
+                        }
+                    }
+                }
+                return isFound
+            }),
 
             async removeComment() {
                 try {
@@ -144,16 +171,19 @@ export default {
 
             // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
             // NOTE Do we want the user to be able to remove once the Stache is already found?
-            // async addStacheToTODOList() {
-            //     try {
-            //         logger.log('clicked add TODO!')
-            //         inProgress.value = true
-            //         let
-            //     } catch (error) {
-            //         logger.error(error)
-            //         Pop.toast()
-            //     }
-            // }
+            // like Mick's from PostIt, flips a bool and not what we want.
+            async addAdventure() {
+                try {
+                    let adventureData = { stacheId: route.params.stacheId }
+                    await adventuresService.addAdventure(adventureData)
+
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            },
+
+
         };
     },
 };

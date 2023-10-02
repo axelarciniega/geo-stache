@@ -7,12 +7,22 @@ export class AdventuresController extends BaseController {
     constructor() {
         super('api/adventures')
         this.router
+            .get('', this.getAdventures)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createAdventure)
             .delete('/:adventureId', this.deleteAdventureById)
             .put('/:adventureId', this.editAdventure)
 
 
+    }
+
+    async getAdventures(request, response, next) {
+        try {
+            const adventures = await adventuresService.getAdventures()
+            return response.send(adventures)
+        } catch (error) {
+
+        }
     }
     async editAdventure(request, response, next) {
         try {
