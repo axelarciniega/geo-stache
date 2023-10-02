@@ -93,8 +93,8 @@ export default {
             user: computed(() => AppState.user),
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
-            staches: computed(() => AppState.staches)
-
+            // staches: computed(() => AppState.staches),
+            activeProfileStaches: computed (()=> AppState.activeProfileStaches)
         };
     },
 };
