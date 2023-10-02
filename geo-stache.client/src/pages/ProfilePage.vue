@@ -71,6 +71,9 @@ async function getMyStaches(){
         Pop.error(error)
     }
 }
+
+
+
         return {
             myStaches: computed(()=> AppState.myStaches),
             profiles: computed(() => AppState.staches),
