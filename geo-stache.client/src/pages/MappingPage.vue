@@ -7,7 +7,7 @@
     </div>
     <div class="offset-1">
 
-        <div class="map_card" id="map" style="width: 90%; height: 300px;"></div>
+        <div class="map_card" id="map" style="width: 90%; height: 70vh;"></div>
     </div>
     <div class="glassCard  col-12 col-md-6 my-1">
         <h1 class="m-1 border border-3 border-dark rounded bg-warning fw-bold text-black text-center">STACHES</h1>
