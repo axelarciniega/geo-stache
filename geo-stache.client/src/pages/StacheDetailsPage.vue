@@ -5,7 +5,12 @@
 
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
-                    <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
+
+                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
+                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
+
+                    <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
+
                         <h3 class="text-end"> {{ stache.creator.name }} <img class="profile-pic"
                                 :src="stache.creator.picture">
                         </h3>
