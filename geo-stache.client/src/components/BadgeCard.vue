@@ -1,9 +1,9 @@
 <template>
     <div class="badge">
-        <div class="medal">
+        <!-- <div class="medal">
             <img class="badge-image" :src="badgeImage" alt="Badge" />
         </div>
-        <div class="badge-name">{{ stacheName }}</div>
+        <div class="badge-name">{{ stacheName }}</div> -->
     </div>
 </template>
 
