@@ -83,7 +83,7 @@ export default {
 
         async function getStachesByProfileId() {
             try {
-                await profilesService.getStacheByProfileId(route.params.profileId)
+                await profilesService.getStachesByProfileId(route.params.profileId)
             } catch (error) {
                 Pop.error(error)
             }
