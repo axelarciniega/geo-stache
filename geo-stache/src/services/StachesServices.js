@@ -3,6 +3,7 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 
 class StachesService {
+   
     async getStaches(query) {
         const staches = await dbContext.Staches.find(query).sort('-createdAt').populate('creator')
         return staches
@@ -11,6 +12,11 @@ class StachesService {
         const stache = await dbContext.Staches.findById(stacheId)
         await stache.populate('creator')
         return stache
+    }
+
+     async getStachesByProfileId(profileId) {
+      const staches = await dbContext.Staches.find({creatorId : profileId})
+      return staches
     }
     async createStache(stacheBody) {
         const stache = await dbContext.Staches.create(stacheBody)
