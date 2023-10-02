@@ -1,4 +1,5 @@
 import { profileService } from '../services/ProfileService.js'
+import { stachesService } from '../services/StachesServices.js'
 import BaseController from '../utils/BaseController'
 
 export class ProfilesController extends BaseController {
@@ -8,7 +9,7 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
     // TODO add routes for getting data created by other users
-    // .get('/:profileId/staches')
+    .get('/:profileId/staches')
     // .get('/:profileId/adventures')
 
   }
@@ -26,6 +27,15 @@ export class ProfilesController extends BaseController {
     try {
       const profile = await profileService.getProfileById(req.params.id)
       res.send(profile)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getStachesByProfileId(req,res,next){
+    try {
+    const staches = await stachesService.getStachesByProfileId(req.params.profileId)
+      res.send(staches)
     } catch (error) {
       next(error)
     }
