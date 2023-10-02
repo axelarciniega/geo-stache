@@ -32,6 +32,16 @@ async getMyStaches(){
   }
 }
 
+async getProfileById(profileId){
+try {
+  const res = await api.get(`api/profiles/${profileId}`)
+  logger.log(res.data)
+  AppState.profile = res.data
+} catch (error) {
+  Pop.error(error)
+}
+}
+
 }
 
 export const accountService = new AccountService()
