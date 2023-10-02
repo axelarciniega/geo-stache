@@ -119,7 +119,7 @@ export default {
 
     return {
       editable,
-      // profile: computed(() => AppState.profile),
+      profile: computed(() => AppState.profile),
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       // adventures: computed(() = ApState.adventures),
