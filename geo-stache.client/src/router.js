@@ -21,8 +21,9 @@ const routes = [
     name: 'About',
     component: loadPage('AboutPage')
   },
+  // NOTE this is vue router..changed to profileId from accountId
   {
-    path: '/accounts/:accountId',
+    path: '/profiles/:profileId',
     name: 'Profile',
     component: loadPage('ProfilePage')
   },
