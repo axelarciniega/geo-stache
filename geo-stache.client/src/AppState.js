@@ -41,6 +41,8 @@ export const AppState = reactive({
   /**@type {Adventure[]} */
   activeStacheAdventures: [],
 
+  activeProfileStaches: [],
+
   /**@type {Adventure[]} */
   activeProfileAdventures: [],
 

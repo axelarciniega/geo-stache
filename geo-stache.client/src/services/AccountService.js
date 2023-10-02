@@ -22,15 +22,7 @@ class AccountService {
     // AppState.account = updateAccount
 }
 
-async getMyStaches(){
-  try {
-    const res = await api.get('account/staches')
-    logger.log(res.data)
-    AppState.myStaches = res.data
-  } catch (error) {
-    Pop.error(error)
-  }
-}
+
 
 async getProfileById(profileId){
 try {

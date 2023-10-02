@@ -59,6 +59,8 @@ import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
 import { watchEffect, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { profilesService } from "../services/ProfilesService.js";
+
 
 
 export default {
@@ -68,7 +70,7 @@ export default {
         const route = useRoute()
         onMounted(() => {
             getProfileById()
-            getMyStaches()
+            getStachesByProfileId()
         })
 
         async function getProfileById(){
@@ -79,9 +81,9 @@ export default {
             }
         }
 
-        async function getMyStaches() {
+        async function getStachesByProfileId() {
             try {
-                await accountService.getMyStaches()
+                await profilesService.getStacheByProfileId(route.params.profileId)
             } catch (error) {
                 Pop.error(error)
             }
