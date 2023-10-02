@@ -1,4 +1,5 @@
 import { AppState } from "../AppState"
+import { Adventure } from "../models/Adventure"
 import { Stache } from "../models/Stache"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -22,7 +23,13 @@ async getStachesByProfileId(profileId){
   } catch (error) {
     Pop.error(error)
   }
-}
+  }
+
+  async getAdventuresByProfileId(profileId) {
+    const res = await api.get(`api/profiles/${profileId}/adventures`)
+    logger.log(res.data, '[GETTING PROFILE ADVENTURES]')
+    AppState.activeProfileAdventures = res.data.map(d=>new Adventure(d))
+  }
 
 }
 

@@ -5,10 +5,13 @@ import { api } from "./AxiosService.js"
 
 class AdventuresService {
 
-    async createStacheTodo(adventureData) {
+    async addAdventure(adventureData) {
         const response = await api.post('api/adventures', adventureData)
         logger.log('new adventure!', response.data)
+const newAdventure = new Adventure(response.data)
 
+        AppState.myAdventures.push(newAdventure)
+        AppState.activeStacheAdventures.push(newAdventure)
     }
 
 // completeAdventure(adventureId){

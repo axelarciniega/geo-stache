@@ -1,3 +1,4 @@
+import { adventuresService } from '../services/AdventuresService.js'
 import { profileService } from '../services/ProfileService.js'
 import { stachesService } from '../services/StachesServices.js'
 import BaseController from '../utils/BaseController'
@@ -8,9 +9,9 @@ export class ProfilesController extends BaseController {
     this.router
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
-    // TODO add routes for getting data created by other users
-    .get('/:profileId/staches')
-    // .get('/:profileId/adventures')
+      // TODO add routes for getting data created by other users
+      .get('/:profileId/staches', this.getStachesByProfileId)
+      .get('/:profileId/adventures', this.getAdventuresByProfileId)
 
   }
 
@@ -32,10 +33,19 @@ export class ProfilesController extends BaseController {
     }
   }
 
-  async getStachesByProfileId(req,res,next){
+  async getStachesByProfileId(req, res, next) {
     try {
-    const staches = await stachesService.getStachesByProfileId(req.params.profileId)
+      const staches = await stachesService.getStachesByProfileId(req.params.profileId)
       res.send(staches)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getAdventuresByProfileId(req, res, next) {
+    try {
+      const adventures = await adventuresService.getAdventuresByUserId(req.params.profileId)
+      res.send(adventures)
     } catch (error) {
       next(error)
     }

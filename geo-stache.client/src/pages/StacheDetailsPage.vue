@@ -21,9 +21,13 @@
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
-                    <button @click="createStacheTodo()" :disabled="isToDo"><i class="mdi mdi-plus
-                        "></i>
-                    </button>Add this Stache to your Adventure List!
+
+                    <button v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Addventures
+                    </button>
+
+                    <button v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
+                    </button>
+
                 </div>
                 <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
@@ -43,6 +47,11 @@
                 </div>
             </div>
         </section>
+
+
+        <div v-if="stacheAdventures.length > 0" class="bg-danger">
+            {{ stacheAdventures }}
+        </div>
 
 
         <!-- STUB Comment section -->
@@ -98,6 +107,8 @@ export default {
             getCommentsByStache()
         })
 
+        // TODO get adventures for this stache
+
         async function getCommentsByStache() {
             try {
                 await commentsService.getCommentsByStache(route.params.stacheId)
@@ -115,10 +126,23 @@ export default {
         }
 
         return {
-            isToDo,
+            // isToDo,
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
+            stacheAdventures: computed(() => AppState.activeStacheAdventures),
+            myAdventures: computed(() => AppState.myAdventures),
+            isMyAdventure: computed(() => {
+                let isFound = true
+                for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+                    for (let j = 0; j <= AppState.myAdventures.length; j++) {
+                        if (i == j) {
+                            isFound = false
+                        }
+                    }
+                }
+                return isFound
+            }),
 
             async removeComment() {
                 try {
@@ -148,19 +172,16 @@ export default {
             // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
             // NOTE Do we want the user to be able to remove once the Stache is already found?
             // like Mick's from PostIt, flips a bool and not what we want.
-            // async createStacheTodo() {
-            //     try {
-            //         logger.log('clicked add TODO!')
-            //         // ToDo value is false
-            //         isToDo.value = false
-            //         let adventureData = { stacheId: route.params.stacheId }
-            //         await adventuresService.createStacheTodo(adventureData)
-            //         isToDo.value = true
-            //     } catch (error) {
-            //         logger.error(error)
-            //         Pop.error(error)
-            //     }
-            // },
+            async addAdventure() {
+                try {
+                    let adventureData = { stacheId: route.params.stacheId }
+                    await adventuresService.addAdventure(adventureData)
+
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            },
 
 
         };

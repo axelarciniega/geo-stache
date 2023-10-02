@@ -1,5 +1,6 @@
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
+import { Adventure } from '../models/Adventure'
 import { logger } from '../utils/Logger'
 import Pop from "../utils/Pop.js"
 import { api } from './AxiosService'
@@ -23,7 +24,11 @@ class AccountService {
 }
 
 
-
+  async getMyAdventures() {
+    const res = await api.get('account/adventures')
+    logger.log(res.data, '[GET MY ADVENTURES]')
+    AppState.myAdventures =   res.data.map(d=>new Adventure(d))
+}
 async getProfileById(profileId){
 try {
   const res = await api.get(`api/profiles/${profileId}`)

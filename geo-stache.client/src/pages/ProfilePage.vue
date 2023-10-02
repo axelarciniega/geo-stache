@@ -70,9 +70,10 @@ export default {
         onMounted(() => {
             getProfileById()
             getStachesByProfileId()
+            // TODO get adventures by profile id...this is already written in profile service
         })
 
-        async function getProfileById(){
+        async function getProfileById() {
             try {
                 await accountService.getProfileById(route.params.profileId)
             } catch (error) {
@@ -93,7 +94,7 @@ export default {
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
             // staches: computed(() => AppState.staches),
-            activeProfileStaches: computed (()=> AppState.activeProfileStaches)
+            activeProfileStaches: computed(() => AppState.activeProfileStaches)
         };
     },
 };
