@@ -12,7 +12,7 @@
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
         <div class="btn">
-          <button>Profile</button>
+          <button class="button-class" >Profile</button>
         </div>
       </div>
       <!-- </router-link> -->
@@ -71,7 +71,7 @@
           </div>
           <!-- Save Button -->
           <div class="m-2 col-md-3 col-12 m-0 pt-5">
-            <button class="btn btn-success">save changes <i class="mdi mdi-check"></i></button>
+            <button class="delete-button">save changes <i class="mdi mdi-check"></i></button>
           </div>
 
         </form>
@@ -122,6 +122,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.delete-button{
+    background: linear-gradient(25deg, #E86A33, #e68b64);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.delete-button:hover{
+    background: linear-gradient(25deg, #e68b64, #E86A33 );
+    transform: translateY(-5px);
+}
+
+
+.button-class{
+    background: linear-gradient(25deg, #41644A, #adc7b3);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s
+}
+
+.button-class:hover{
+    background: linear-gradient(25deg, #adc7b3, #41644A );
+    transform: translateY(-5px);
+}
+
 .divider {
   height: 3em;
 }
