@@ -15,16 +15,12 @@ class AdventuresService {
 
         const newAdventure = await dbContext.Adventures.create(adventureData)
         await newAdventure.populate('profile', 'name status')
+        return newAdventure
     }
 
     // NOTE This gets all the Staches that the current profile has marked as either ToDo or Found.
-    async getMyAdventuredStaches(accountId) {
-        const stacheAdventures = await dbContext.Adventures.find({ accountId }).populate({
-            path: 'adventure',
-            populate: {
-                path: 'creator foundCount todoCount'
-            }
-        })
+    async getAdventuresByUserId(userId) {
+        const stacheAdventures = await dbContext.Adventures.find({ accountId: userId }).populate('stache profile')
         return stacheAdventures
     }
 
@@ -63,6 +59,12 @@ class AdventuresService {
 
         await originalAdventure.save()
         return originalAdventure
+    }
+
+    async getAdventures() {
+        const adventures = await dbContext.Adventures.find()
+            .populate('creator', 'stache')
+        return adventures
     }
 
 }

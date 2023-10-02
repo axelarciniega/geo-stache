@@ -7,6 +7,7 @@ import { api } from './AxiosService'
 import { socketService } from './SocketService'
 import { stachesService } from "./StachesService.js"
 import { adventuresService } from './AdventuresService'
+import { profilesService } from './ProfilesService'
 
 
 export const AuthService = initialize({
@@ -32,7 +33,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   // NOTE if there is something you want to do once the user is authenticated, place that here
   await stachesService.getStaches()
   // TODO finish this method
-  // await adventuresService.getMyAdventuredStaches()
+  await accountService.getMyAdventures()
+  // await profilesService.getAdventuresByProfileId(AppState.account.id)
 
 })
 

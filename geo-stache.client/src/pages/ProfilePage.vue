@@ -31,7 +31,6 @@
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0">
                 <h4 class="text-center mt-2">Profile details</h4>
                 <img :src="profile.picture" alt="">
-                <h3 class="text-center my-2">{{ profile.name }}</h3>
                 {{ profile.bio }}
                 <p class="mb-2">{{ profile.email }}</p>
             </div>
@@ -71,6 +70,7 @@ export default {
         onMounted(() => {
             getProfileById()
             getStachesByProfileId()
+            // TODO get adventures by profile id...this is already written in profile service
         })
 
         async function getProfileById() {
@@ -93,8 +93,8 @@ export default {
             user: computed(() => AppState.user),
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
-            staches: computed(() => AppState.staches)
-
+            // staches: computed(() => AppState.staches),
+            activeProfileStaches: computed(() => AppState.activeProfileStaches)
         };
     },
 };
@@ -113,3 +113,4 @@ export default {
         0 1px 8px 0 rgba(133, 133, 133, 0.79);
 }
 </style>
+<style></style>
