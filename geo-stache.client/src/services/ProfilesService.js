@@ -18,8 +18,8 @@ class ProfilesService{
 async getStachesByProfileId(profileId){
   try {
     const res = await api.get(`api/profiles/${profileId}/staches`)
-    logger.log(res.data)
-    AppState.activeProfileStaches = res.data.map(stache => new Stache(stache))
+    logger.log(res.data, 'trying to get staches by id')
+    AppState.activeProfileStaches = res.data
   } catch (error) {
     Pop.error(error)
   }
