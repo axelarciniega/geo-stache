@@ -28,6 +28,8 @@ export const AppState = reactive({
   /**@type {Stache[]} */
   activeStache: [],
 
+    /**@type {Stache[]} */
+  myStaches: [],
 
   // ADVENTURES / aka Badges
   /**@type {import('./models/Adventure.js').Adventure[]} */
