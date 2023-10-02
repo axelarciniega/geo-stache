@@ -18,8 +18,9 @@
             </div>
         </section>
     </div> -->
+    <!-- STUB -->
     <section class="container">
-        <h1 class="text-center">{{ account.name }}'s profile page</h1>
+        <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around">
             <div class="col-12 col-md-3 card">
                 <h4 class="text-center">Created staches</h4>
@@ -32,10 +33,10 @@
             </div>
             <div class="col-12 col-md-3 card">
                 <h4 class="text-center">Profile details</h4>
-                {{ account.name }}
-                <img :src="account.picture" alt="">
-                {{ account.bio }}
-                {{ account.email }}
+                {{ profile.name }}
+                <img :src="profile.picture" alt="">
+                {{ profile.bio }}
+                {{ profile.email }}
             </div>
         </section>
         <section class="pt-5 row justify-content-around pb-5">
@@ -46,8 +47,8 @@
                 <h4 class="text-center">Badges</h4>
             </div>
         </section>
-        <!-- {{ account.badgeCount }} -->
-        <!-- {{ account.todoCount }} -->
+        <!-- {{ profile.badgeCount }} -->
+        <!-- {{ profile.todoCount }} -->
     </section>
 </template>
 
@@ -57,15 +58,27 @@ import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
 import { watchEffect, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
 
 export default {
     setup() {
         // TODO onMounted get Profile by the profileId in route params
 
-        // const route = useRoute()
+        const route = useRoute()
         onMounted(() => {
+            getProfileById()
             getMyStaches()
         })
+
+        async function getProfileById(){
+            try {
+                await accountService.getProfileById(route.params.profileId)
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+
         async function getMyStaches() {
             try {
                 await accountService.getMyStaches()
@@ -74,7 +87,7 @@ export default {
             }
         }
         return {
-            profiles: computed(() => AppState.staches),
+            profile: computed(() => AppState.profile),
             user: computed(() => AppState.user),
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),

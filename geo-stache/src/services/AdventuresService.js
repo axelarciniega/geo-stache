@@ -53,6 +53,18 @@ class AdventuresService {
 
     }
 
+    // FIXME check with Sam on this to verify it is good.
+    // NOTE allows us to update from todo to found and user can complete their adventure!
+    async editAdventure(adventureId, updates) {
+        const originalAdventure = await dbContext.Adventures.findById(adventureId)
+        if (!originalAdventure) throw new Error(`No Adventure at that Id${adventureId}`)
+
+        originalAdventure.status = updates.status || originalAdventure.status
+
+        await originalAdventure.save()
+        return originalAdventure
+    }
+
 }
 
 export const adventuresService = new AdventuresService()

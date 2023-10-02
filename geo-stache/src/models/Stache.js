@@ -20,6 +20,8 @@ export const StacheSchema = new Schema({
         coordinates: { type: [Number], required: true }
     },
 
+
+
     // NOTE uncomment this when needed
     // cord: {type: navigator.geolocation.getCurrentPosition}
 

@@ -10,7 +10,20 @@ export class AdventuresController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createAdventure)
             .delete('/:adventureId', this.deleteAdventureById)
-        // TODO add put request
+            .put('/:adventureId', this.editAdventure)
+
+
+    }
+    async editAdventure(request, response, next) {
+        try {
+            const updates = request.body
+            const adventureId = request.params.adventureId
+            // @ts-ignore
+            const editAdventure = await adventuresService.editAdventure(adventureId, updates)
+            response.send(this.editAdventure)
+        } catch (error) {
+            next(error)
+        }
 
 
     }
