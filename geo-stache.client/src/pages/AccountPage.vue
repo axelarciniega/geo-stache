@@ -12,7 +12,7 @@
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
         <div class="btn">
-          <button class="button-class" >Profile</button>
+          <button class="button-class">Profile</button>
         </div>
       </div>
       <!-- </router-link> -->
@@ -103,14 +103,14 @@ export default {
 
 
     // NOTE put the await in the Auth0 Service
-    async function getMyAdventuredStaches() {
-      try {
+    // async function getMyAdventuredStaches() {
+    //   try {
 
-      } catch (error) {
-        a
-      }
+    //   } catch (error) {
+    //     a
+    //   }
 
-    }
+    // }
 
 
 
@@ -119,7 +119,7 @@ export default {
       editable,
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      adventures: computed(() = ApState.adventures),
+      // adventures: computed(() = ApState.adventures),
 
       async editProfile() {
         try {
@@ -142,28 +142,27 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-.delete-button{
-    background: linear-gradient(25deg, #E86A33, #e68b64);
-    border-radius: 20px;
-    transition: background 0.3s, transform 0.2s;
+.delete-button {
+  background: linear-gradient(25deg, #E86A33, #e68b64);
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.2s;
 }
 
-.delete-button:hover{
-    background: linear-gradient(25deg, #e68b64, #E86A33 );
-    transform: translateY(-5px);
+.delete-button:hover {
+  background: linear-gradient(25deg, #e68b64, #E86A33);
+  transform: translateY(-5px);
 }
 
 
-.button-class{
-    background: linear-gradient(25deg, #41644A, #adc7b3);
-    border-radius: 20px;
-    transition: background 0.3s, transform 0.2s
+.button-class {
+  background: linear-gradient(25deg, #41644A, #adc7b3);
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.2s
 }
 
-.button-class:hover{
-    background: linear-gradient(25deg, #adc7b3, #41644A );
-    transform: translateY(-5px);
+.button-class:hover {
+  background: linear-gradient(25deg, #adc7b3, #41644A);
+  transform: translateY(-5px);
 }
 
 .divider {
