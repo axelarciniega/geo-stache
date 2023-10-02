@@ -11,11 +11,11 @@
         <p class="py-3">{{ account.email }}</p>
         <!-- FIXME router link to profile page, need a get profile gy ID -->
         <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
-          <router-link :to="{ path: `accounts/${account.id}`}">
+        <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
 
-        <div class="btn">
-          <button class="button-class">Profile</button>
-        </div>
+          <div class="btn">
+            <button class="button-class">Profile</button>
+          </div>
         </router-link>
       </div>
       <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
@@ -30,7 +30,7 @@
 
         <h3 class="fw-bold">Edit Your Account & Profile Details</h3>
         <h6 class="fw-bold">All but your email is editable. Your location and email area always remain private. </h6>
-        <form @submit.prevent="editProfile" class="row">
+        <form @submit.prevent="editAccount" class="row">
 
           <!-- Name -->
           <div class="mb-2 col-6">
@@ -119,15 +119,15 @@ export default {
 
     return {
       editable,
-      profile: computed(() => AppState.profile),
+      // profile: computed(() => AppState.profile),
       // user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       // adventures: computed(() = ApState.adventures),
 
-      async editProfile() {
+      async editAccount() {
         try {
           logger.log('edited info', editable.value);
-          await accountService.editProfile(editable.value);
+          await accountService.editAccount(editable.value);
           Pop.success('Profile updated!');
           router.push({ name: 'Account', params: { profileId: AppState.account.id } });
         }
