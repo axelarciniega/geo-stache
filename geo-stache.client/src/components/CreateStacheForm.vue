@@ -113,7 +113,7 @@ export default {
         }
         // Reset the form and fetch coordinates on component mount
 
-        onMounted(async () => {
+        onMounted(async() => {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
@@ -127,8 +127,8 @@ export default {
                     Pop.toast('Stache Created', 'success');
                     resetForm();
                     Modal.getOrCreateInstance('#id').hide();
-                    router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
-                    // router.push({path: `staches/${newStache.id}`})
+
+                    router.push({path: `staches/${newStache.id}`})
 
                     // FIXME enter correct params
                     // NOTE Tyler, Axel, did Sam (instructor) clear this up? something about "return" in the service BUT is it client or server?

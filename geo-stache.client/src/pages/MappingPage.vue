@@ -158,7 +158,7 @@ export default {
                 if (place && place.geometry && place.geometry.location) {
                     const location = place.geometry.location;
                     this.map.setCenter(location);
-                    this.map.setZoom(15); // Adjust the zoom level as needed
+                    this.map.setZoom(20); // Adjust the zoom level as needed
                 }
             });
             this.searchResults = []; // Clear search results after selecting a location
@@ -173,6 +173,7 @@ export default {
         } else {
 
             const script = document.createElement('script');
+            //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
             script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
             script.onload = this.getUserLocationAndDisplayMap;
             document.head.appendChild(script);
