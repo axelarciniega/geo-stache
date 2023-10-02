@@ -1,11 +1,14 @@
 import { dbContext } from "../db/DbContext.js"
-import { Forbidden } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { stachesService } from "./StachesServices.js"
 
 
 class AdventuresService {
+
+    // NOTE Add Stache to our To Do List!
     async createAdventure(adventureData) {
         const stache = await stachesService.getStacheById(adventureData.stacheId)
+        // FIXME add in logic for archived/deleted if we set that on the stache schema
         // if (!stacheId == stache.id) {
         //     throw new Forbidden(`${stache.stacheName} has been deleted by its creator`)
         // }
@@ -14,7 +17,40 @@ class AdventuresService {
         await newAdventure.populate('profile', 'name status')
     }
 
+    // NOTE Allows us to retrieve all the adventures in either status by a User/Profile ID to display on thier page.
+    async getMyAdventuresStaches(accountId) {
+        const stacheAdventures = await dbContext.Adventures.find({ accountId }).populate({
+            path: 'adventure',
+            populate: {
+                path: 'creator foundCount todoCount'
+            }
+        })
+        return stacheAdventures
+    }
 
+    // NOTE Allows us to remove an adventure, this is on the User's Profile page, or maybe even the Stache Details Page. They must be the creator of the Adventure.
+    async deleteAdventureById(adventureId, userId) {
+        const adventureToBeRemoved = await dbContext.Adventures.findById(adventureId)
+
+        if (!adventureToBeRemoved) {
+            throw new BadRequest(`The Adventure with id ${adventureId} does not exist.`)
+        }
+        if (adventureToBeRemoved.accountId != userId) {
+            throw new Forbidden(`You cannot remove and Adventure you didn't create.`)
+        }
+        await adventureToBeRemoved.remove()
+        return adventureToBeRemoved
+
+    }
+
+    // NOTE allows us to view all adventures(users) of both status(todo and found) on a Stache Details Page
+    // NOTE see this logic started on the Stache's Controller
+
+    async getAdventuresByStacheId(stacheId) {
+        const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile', 'name status')
+        return adventures
+
+    }
 
 }
 

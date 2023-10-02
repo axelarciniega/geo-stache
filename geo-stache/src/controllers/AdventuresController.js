@@ -7,10 +7,9 @@ export class AdventuresController extends BaseController {
     constructor() {
         super('api/adventures')
         this.router
-        // .get('/adventureId', this.getAdventureByStacheId)
-        // .use(Auth0Provider.getAuthorizedUserInfo)
-        // .post('', this.postNewAdventure)
-        // .delete('/:adventureId', this.deleteAdventureByAdventureId)
+            .use(Auth0Provider.getAuthorizedUserInfo)
+            .post('', this.createAdventure)
+            .delete('/:adventureId', this.deleteAdventureById)
 
 
     }
@@ -28,5 +27,15 @@ export class AdventuresController extends BaseController {
 
     }
 
+    async deleteAdventureById(request, response, next) {
+        try {
+            const adventureId = request.params.adventureId
+            const userId = request.userInfo.id
+            const adventure = await adventuresService.deleteAdventureById(adventureId, userId)
+            return response.send(adventure)
+        } catch (error) {
+            next(error)
+        }
+    }
 
 }

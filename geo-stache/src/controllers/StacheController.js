@@ -92,6 +92,7 @@ export class StacheController extends BaseController {
         }
     }
 
+    // NOTE see this logic continued on the Adventures Service
     async getAdventuresByStacheId(request, response, next) {
         try {
             const stacheId = request.params.stacheId
