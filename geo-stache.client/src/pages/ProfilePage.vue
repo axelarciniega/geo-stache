@@ -22,20 +22,20 @@
     <section class="container">
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around">
-            <div class="col-12 col-md-3 card">
+            <div class="col-12 col-md-3 card order-md-0 order-1">
                 <h4 class="text-center">Created staches</h4>
                 <div v-for="s in myStaches" :key="s.id">
                     <StacheCard :stache="s.stache" />
                 </div>
             </div>
-            <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Profile details</h4>
+            <div class="col-12 col-md-3 card order-md-1 order-0">
+                <h4 class="text-center mt-2">Profile details</h4>
                 <img :src="profile.picture" alt="">
                 <h3 class="text-center my-2">{{ profile.name }}</h3>
                 {{ profile.bio }}
                 {{ profile.email }}
             </div>
-            <div class="col-12 col-md-3 card">
+            <div class="col-12 col-md-3 card order-2">
                 <h4 class="text-center">Found staches</h4>
             </div>
         </section>
