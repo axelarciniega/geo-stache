@@ -18,32 +18,38 @@
             </h1>
         </div>
         <li v-for="(stache, index) in stache" :key="index">
-            <span v-if="stache.distance <= 3 > 0.00005" class=" fw-bold fs-3 text-black text-center"> {{ stache.stacheName
-            }} - <span class="text-warning"> {{
+            <router-link :to="{ path: `staches/${stache.id}` }">
+                <span v-if="stache.distance <= 3 > 0.00005" class=" fw-bold fs-3 text-black text-center"> {{
+                    stache.stacheName
+                }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
-            </span>
+                </span>
 
-            <span v-if="stache.distance >= 3.1 && stache.distance <= 6" class=" fw-bold fs-3 text-black text-center"> {{
-                stache.stacheName }} - <span class="text-primary"> {{
+                <span v-if="stache.distance >= 3.1 && stache.distance <= 6" class=" fw-bold fs-3 text-black text-center"> {{
+                    stache.stacheName }} - <span class="text-primary"> {{
         stache.distance }} miles</span>
-            </span>
-            <span v-if="stache.distance >= 6.1 && stache.distance <= 10" class=" fw-bold fs-3 text-black text-center"> {{
-                stache.stacheName }} - <span class="text-info"> {{
+                </span>
+                <span v-if="stache.distance >= 6.1 && stache.distance <= 10" class=" fw-bold fs-3 text-black text-center">
+                    {{
+                        stache.stacheName }} - <span class="text-info"> {{
         stache.distance }} miles</span>
-            </span>
-            <span v-if="stache.distance >= 10.1 && stache.distance <= 20" class=" fw-bold fs-3 text-black text-center"> {{
-                stache.stacheName }} - <span class="text-secondary"> {{
+                </span>
+                <span v-if="stache.distance >= 10.1 && stache.distance <= 20" class=" fw-bold fs-3 text-black text-center">
+                    {{
+                        stache.stacheName }} - <span class="text-secondary"> {{
         stache.distance }} miles</span>
-            </span>
-            <span v-if="stache.distance >= 20.1 && stache.distance <= 40" class=" fw-bold fs-3 text-black text-center"> {{
-                stache.stacheName }} - <span class="text-danger"> {{
+                </span>
+                <span v-if="stache.distance >= 20.1 && stache.distance <= 40" class=" fw-bold fs-3 text-black text-center">
+                    {{
+                        stache.stacheName }} - <span class="text-danger"> {{
         stache.distance }} miles</span>
-            </span>
+                </span>
 
-            <span v-if="stache.distance > 40.1" class=" fw-bold fs-3 text-black text-center"> {{ stache.stacheName }} -
-                <span class="text-danger"> {{
-                    stache.distance }} miles</span>
-            </span>
+                <span v-if="stache.distance > 40.1" class=" fw-bold fs-3 text-black text-center"> {{ stache.stacheName }} -
+                    <span class="text-danger"> {{
+                        stache.distance }} miles</span>
+                </span>
+            </router-link>
         </li>
     </div>
 </template>
