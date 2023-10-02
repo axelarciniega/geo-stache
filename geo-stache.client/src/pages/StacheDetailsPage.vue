@@ -76,8 +76,7 @@
             <CommentForm />
 
             <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
-                <!-- STUB Comment Card -->
-                <!-- <CommentCard :stacheComment="comment"/> -->
+
                 <div class="container">
                     <section class="row">
                         <div class="col-12 col-md-1">
