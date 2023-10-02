@@ -21,10 +21,7 @@
       <div class="col-md-7 col-12 rounded elevation-1 p-2 geo-shadow">
         <MapCard />
       </div>
-      <div class="col-12 elevation-1 rounded p-2 geo-shadow">
-        Adventures list, aka badges
-        {{ myAdventures }}
-      </div>
+
       <!-- Bottom Section Edit Account -->
       <div class="col-12 elevation-1 rounded p-2 geo-shadow">
 
