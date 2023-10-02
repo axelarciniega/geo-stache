@@ -16,6 +16,9 @@
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
+                    <button @click="addToDo()"><i class="mdi mdi-plus
+                        "></i>
+                    </button>Add this Stache to your Adventure List!
                 </div>
                 <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div>
@@ -70,6 +73,7 @@ import { AppState } from '../AppState';
 // import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
+import { logger } from '../utils/Logger';
 
 
 export default {
@@ -82,7 +86,7 @@ export default {
             getStacheById();
             getCommentsByStache()
         })
-        // Camille starting function to get creator ID
+
         async function getCommentsByStache() {
             try {
                 await commentsService.getCommentsByStache(route.params.stacheId)
@@ -127,7 +131,20 @@ export default {
                 } catch (error) {
                     Pop.error(error)
                 }
-            }
+            },
+
+            // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
+            // NOTE Do we want the user to be able to remove once the Stache is already found?
+            // async addStacheToTODOList() {
+            //     try {
+            //         logger.log('clicked add TODO!')
+            //         inProgress.value = true
+            //         let
+            //     } catch (error) {
+            //         logger.error(error)
+            //         Pop.toast()
+            //     }
+            // }
         };
     },
 };

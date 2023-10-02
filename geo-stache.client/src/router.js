@@ -22,7 +22,7 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
-    path: '/profile/:profileId',
+    path: '/accounts/:accountId',
     name: 'Profile',
     component: loadPage('ProfilePage')
   },
