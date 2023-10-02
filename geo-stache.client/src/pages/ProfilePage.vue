@@ -18,34 +18,34 @@
             </div>
         </section>
     </div> -->
-
-<h1 class="text-center">{{ account.name }}'s profile page</h1>\
-<section class="row justify-content-around">
-    <div class="col-12 col-md-3 card">
-        <h4 class="text-center">Todos</h4>
-    </div>
-    <div class="col-12 col-md-3 card">
-        <h4 class="text-center">Found staches</h4>
-    </div>
-    <div class="col-12 col-md-3 card">
-        <h4 class="text-center">Profile details</h4>
-        {{ account.name }}
-        <img :src="account.picture" alt="">
-        {{ account.bio }}
-        {{ account.email }}
-    </div>
-</section>
-<section class="pt-5 row justify-content-around pb-5">
-    <div class="col-12 col-md-3 card">
-        <h4 class="text-center">Created staches</h4>
-    </div>
-    <div class="col-12 col-md-6 card">
-        <h4 class="text-center">Badges</h4>
-    </div>
-</section>
-<!-- {{ account.badgeCount }} -->
-<!-- {{ account.todoCount }} -->
-
+    <section class="container">
+        <h1 class="text-center">{{ account.name }}'s profile page</h1>
+        <section class="row justify-content-around">
+            <div class="col-12 col-md-3 card">
+                <h4 class="text-center">Todos</h4>
+            </div>
+            <div class="col-12 col-md-3 card">
+                <h4 class="text-center">Found staches</h4>
+            </div>
+            <div class="col-12 col-md-3 card">
+                <h4 class="text-center">Profile details</h4>
+                {{ account.name }}
+                <img :src="account.picture" alt="">
+                {{ account.bio }}
+                {{ account.email }}
+            </div>
+        </section>
+        <section class="pt-5 row justify-content-around pb-5">
+            <div class="col-12 col-md-3 card">
+                <h4 class="text-center">Created staches</h4>
+            </div>
+            <div class="col-12 col-md-6 card">
+                <h4 class="text-center">Badges</h4>
+            </div>
+        </section>
+        <!-- {{ account.badgeCount }} -->
+        <!-- {{ account.todoCount }} -->
+    </section>
 </template>
 
 <script>
@@ -55,13 +55,17 @@ import { AppState } from '../AppState.js';
 
 export default {
     setup() {
+        // TODO onMounted get Profile by the profileId in route params
+
         // const route = useRoute()
 
         return {
+            // FIXME change this naming convention
             profiles: computed(() => AppState.staches),
             user: computed(() => AppState.user),
-            account: computed(() => AppState.account),
-            staches: computed(()=> AppState.staches)
+            // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
+            // account: computed(() => AppState.account),
+            staches: computed(() => AppState.staches)
 
         };
     },

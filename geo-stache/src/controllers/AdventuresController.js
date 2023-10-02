@@ -10,6 +10,7 @@ export class AdventuresController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createAdventure)
             .delete('/:adventureId', this.deleteAdventureById)
+        // TODO add put request
 
 
     }
