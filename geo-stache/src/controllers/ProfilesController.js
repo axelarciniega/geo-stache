@@ -9,7 +9,7 @@ export class ProfilesController extends BaseController {
       .get('', this.getProfiles)
       .get('/:id', this.getProfile)
     // TODO add routes for getting data created by other users
-    .get('/:profileId/staches')
+    .get('/:profileId/staches', this.getStachesByProfileId)
     // .get('/:profileId/adventures')
 
   }

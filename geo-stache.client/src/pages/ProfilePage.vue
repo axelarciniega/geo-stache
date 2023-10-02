@@ -24,7 +24,7 @@
         <section class="row justify-content-around">
             <div class="col-12 col-md-3 card order-md-0 order-1">
                 <h4 class="text-center">Created staches</h4>
-                <div v-for="s in myStaches" :key="s.id">
+                <div v-for="s in activeProfileStaches" :key="s.id">
                     <StacheCard :stache="s.stache" />
                 </div>
             </div>
@@ -67,7 +67,7 @@ export default {
         // TODO onMounted get Profile by the profileId in route params
 
         const route = useRoute()
-        onMounted(() => {
+        watchEffect(() => {
             getProfileById()
             getStachesByProfileId()
         })
