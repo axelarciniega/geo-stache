@@ -16,11 +16,11 @@
                 </div>
                 <div class="justify-content-around d-flex">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
-                        class=" btn bg-success border border-1 border-black col-2">
+                        class=" button-class border border-1 border-black col-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
-                        class=" btn bg-danger border border-1 border-black col-2 text-black">
+                        class=" delete-button border border-1 border-black col-2 text-black">
                         delete <i class="mdi mdi-icon"></i>
                     </button>
                 </div>
@@ -44,7 +44,7 @@
                             <b>{{ comment.creator.name }}</b>
                             <p>{{ comment.body }}</p>
                             <div class="text-end" v-if="account.id == comment.creatorId" >
-                                <button @click="removeComment">delete</button>
+                                <button class="delete-button" @click="removeComment">delete</button>
                             </div>
                         </div>
                     </section>
@@ -130,6 +130,28 @@ export default {
 
 
 <style scoped lang="scss">
+
+.button-class{
+    background: linear-gradient(25deg, #41644A, #adc7b3);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s
+}
+
+.button-class:hover{
+    background: linear-gradient(25deg, #adc7b3, #41644A );
+    transform: translateY(-5px);
+}
+
+.delete-button{
+    background: linear-gradient(25deg, #E86A33, #e68b64);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.delete-button:hover{
+    background: linear-gradient(25deg, #e68b64, #E86A33 );
+    transform: translateY(-5px);
+}
 
 .profile-pic{
     width: 50px;

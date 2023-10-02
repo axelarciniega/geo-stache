@@ -10,7 +10,7 @@
                     <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" cols="50" rows="5"></textarea>
                 </div>
                 <div class="col-12">
-                    <button class="button-post">Post</button>
+                    <button class="button-class">Post</button>
                 </div>
             </form>
 
@@ -65,4 +65,16 @@ setup() {
 
 
 <style>
+
+.button-class{
+    background: linear-gradient(25deg, #41644A, #adc7b3);
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s
+}
+
+.button-class:hover{
+    background: linear-gradient(25deg, #adc7b3, #41644A );
+    transform: translateY(-5px);
+}
+
 </style>
