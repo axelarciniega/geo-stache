@@ -55,7 +55,10 @@ class StachesService {
     }
 
 
-
+    async getMyStaches(userId) {
+        const myStaches = await dbContext.Staches.find({ accountId: userId }).populate('creator')
+        return myStaches
+    }
 
 
 

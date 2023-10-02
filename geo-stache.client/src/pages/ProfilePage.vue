@@ -22,7 +22,10 @@
         <h1 class="text-center">{{ account.name }}'s profile page</h1>
         <section class="row justify-content-around">
             <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Todos</h4>
+                <h4 class="text-center">Created staches</h4>
+                <div v-for="s in myStaches" :key="s.id">
+                    <StacheCard :stache="s.stache" />
+                </div>
             </div>
             <div class="col-12 col-md-3 card">
                 <h4 class="text-center">Found staches</h4>
@@ -37,7 +40,7 @@
         </section>
         <section class="pt-5 row justify-content-around pb-5">
             <div class="col-12 col-md-3 card">
-                <h4 class="text-center">Created staches</h4>
+                <h4 class="text-center">Todos</h4>
             </div>
             <div class="col-12 col-md-6 card">
                 <h4 class="text-center">Badges</h4>
@@ -51,16 +54,26 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState.js';
-
+import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
+import { watchEffect, onMounted } from 'vue';
 
 export default {
     setup() {
         // TODO onMounted get Profile by the profileId in route params
 
         // const route = useRoute()
-
+        onMounted(() => {
+            getMyStaches()
+        })
+        async function getMyStaches() {
+            try {
+                await accountService.getMyStaches()
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
         return {
-            // FIXME change this naming convention
             profiles: computed(() => AppState.staches),
             user: computed(() => AppState.user),
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
