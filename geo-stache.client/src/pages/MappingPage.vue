@@ -20,13 +20,13 @@
         <ul class="list-group">
             <li class="list-group-items" v-for="(stache, index) in stache" :key="index">
                 <router-link :to="{ path: `staches/${stache.id}` }">
-                    <div v-if="stache.distance <= 3 > 0.00005"
+                    <span v-if="stache.distance <= 3 > 0.00005"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
                         {{
                             stache.stacheName
                         }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
-                    </div>
+                    </span>
 
                     <span v-if="stache.distance >= 3.1 && stache.distance <= 6"
                         class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
