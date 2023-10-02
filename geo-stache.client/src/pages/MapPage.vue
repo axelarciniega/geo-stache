@@ -8,7 +8,7 @@
           @click="searchLocation">Search</button>
       </div>
     </div>
-    <div class="border border-5 rounded m-2 border-black m-2 elevation-5" id="map" style="width: 100%; height: 250px;">
+    <div class="border border-5 rounded m-2 border-black m-2 elevation-5" id="map" style="width: 100%; height: 70vh;">
     </div>
 
     <!-- List of added staches (markers) with clickable links and distance -->
