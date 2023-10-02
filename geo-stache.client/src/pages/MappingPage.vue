@@ -2,15 +2,21 @@
     <div class="d-flex justify-content-center">
         <div>
             <input class="fw-bold map_card" type="text" v-model="searchQuery" placeholder="Search for a location" />
-            <button class="map_card bg-warning m-1 fw-bold" @click="searchLocation">Search</button>
+            <button class="map_card bg-stacheGreen text-warning m-1 fw-bold" @click="searchLocation"> <span> <img
+                        src="../assets/img/favicon-32x32.png" alt=""> </span> </button>
         </div>
     </div>
     <div class="offset-1">
 
-        <div class="map_card" id="map" style="width: 90%; height: 300px;"></div>
+        <div class="map_card" id="map" style="width: 90%; height: 350px;"></div>
     </div>
-    <div class="glassCard  col-12 col-md-6 my-1">
-        <h1 class="m-1 border border-3 border-dark rounded bg-warning fw-bold text-black text-center">STACHES</h1>
+    <div class="glassCard  col-12 col-md-8 my-1">
+        <div class="m-1 border border-3 border-dark rounded bg-warning">
+            <h1 class=" fw-bold text-black text-center text-decoration-underline">
+                STACHES
+
+            </h1>
+        </div>
         <li v-for="(stache, index) in stache" :key="index">
             <span class=" fw-bold fs-3 text-black text-center"> {{ stache.stacheName }} - <span class="text-info"> {{
                 stache.distance }} miles</span>
@@ -167,6 +173,10 @@ export default {
     border: 3px solid #29412fce;
     box-shadow: 0 10px 30px #41644ace;
     border-radius: 25px
+}
+
+.bg-stacheGreen {
+    background: #41644ace;
 }
 </style>
   
