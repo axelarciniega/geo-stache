@@ -11,8 +11,8 @@
 
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
-                        <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img class="profile-pic"
-                                :src="stache.creator.picture">
+                        <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
+                                class="profile-pic" :src="stache.creator.picture">
                         </h3>
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
@@ -21,26 +21,30 @@
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
-                    <p>
-                        <button class="revealButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                            Reveal Hint
-                        </button>
-                    </p>
-                </div>
+                        <p>
+                            <button class="revealButton text-light" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                aria-controls="collapseWidthExample">
+                                Reveal Hint
+                            </button>
+                        </p>
+                    </div>
                     <div class="justify-content-center d-flex" style="min-height: 120px;">
                         <div class="collapse collapse-horizontal" id="collapseWidthExample">
                             <div class="card card-body" style="width: 300px;">
-                                
+
                                 <p class="text-center">Hint: {{ stache.hint }}</p>
+                            </div>
+                        </div>
                     </div>
-  </div>
-</div>
-                    <button class="adventureButton" v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Adventures
+                    <button class="adventureButton" v-if="isMyAdventure" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to your Adventures
                     </button>
-                    
-                    <button class="adventureButton" v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventures</i>
+
+                    <button class="adventureButton" v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from
+                            your Adventures</i>
                     </button>
-                    
+
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
@@ -48,9 +52,9 @@
                 <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex">
+                <div class="justify-content-around d-flex my-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
-                        class=" button-class border border-1 border-black col-2">
+                        class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
@@ -240,21 +244,28 @@ export default {
 
                     });
 
-                    AppState.staches.forEach((stache) => {
-                        const distance = this.calculateDistance(
-                            latitude,
-                            longitude,
-                            stache.lat,
-                            stache.lng
-                        );
-                        stache.distance = distance; // Store the distance in the stache object
-                        logger.log(this.map);
-                        new google.maps.Marker({
-                            position: { lat: stache.lat, lng: stache.lng },
-                            map: this.map,
-                            title: `${stache.stacheName}`,
-                        });
-                    });
+                    new google.maps.Marker({
+
+                        position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
+                        map: this.map,
+                        title: `$(stache.stacheName)`
+                    })
+
+                    // AppState.activeStache.find((stache) => {
+                    //     const distance = this.calculateDistance(
+                    //         latitude,
+                    //         longitude,
+                    //         stache.lat,
+                    //         stache.lng
+                    //     );
+                    //     stache.distance = distance; // Store the distance in the stache object
+                    //     logger.log(this.map);
+                    //     new google.maps.Marker({
+                    //         position: { lat: stache.lat, lng: stache.lng },
+                    //         map: this.map,
+                    //         title: `${stache.stacheName}`,
+                    //     });
+                    // });
                 });
             } else {
                 alert('Geolocation is not available in your browser');
@@ -359,29 +370,27 @@ export default {
     object-position: center;
 }
 
-.revealButton{
+.revealButton {
     background: linear-gradient(25deg, #0e421a, #5dde39);
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
 }
 
-.revealButton:hover{
-    background: linear-gradient(#5dde39,#0e421a);
+.revealButton:hover {
+    background: linear-gradient(#5dde39, #0e421a);
     transform: scale(1.1);
 }
 
-.adventureButton{
-    background: linear-gradient( #f6c4aa, #E86A33);
+.adventureButton {
+    background: linear-gradient(#f6c4aa, #E86A33);
     border-radius: 20px;
 }
 
-.nameLink:hover{
-transform: scale(1.1);
+.nameLink:hover {
+    transform: scale(1.1);
 
 }
-.nameLink{
-    color:#E86A33; 
-}
 
-
-</style>
+.nameLink {
+    color: #E86A33;
+}</style>
