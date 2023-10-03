@@ -227,11 +227,11 @@ export default {
 
         } else {
             //NOTE what is going on with my callbacks??
-            const script = document.createElement('script');
-            //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
-            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
-            script.onload = this.getUserLocationAndDisplayMap;
-            document.head.appendChild(script);
+            // const script = document.createElement('script');
+            // //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
+            // script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+            // script.onload = this.getUserLocationAndDisplayMap;
+            // document.head.appendChild(script);
         }
     },
 };
