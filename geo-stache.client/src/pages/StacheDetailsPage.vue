@@ -2,14 +2,12 @@
     <div v-if="stache">
         <button @click="setupMap">Test Me</button>
         <section class="container">
-            <div class="row border border-black border-3">
+            <div class="m-1 row glassCard2 p-2 justify-content-between">
 
-                <div class="col-12 col-md-7">
+                <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
-                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
-                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
-
+                    <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
@@ -23,7 +21,7 @@
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
-                            <button class="revealButton text-light" type="button" data-bs-toggle="collapse"
+                            <button class="revealButton" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseWidthExample" aria-expanded="false"
                                 aria-controls="collapseWidthExample">
                                 Reveal Hint
@@ -39,8 +37,9 @@
                         </div>
                     </div>
 
-                    <button v-if="!isMyAdventure" class="adventureButton" @click="addAdventure()"><i
-                            class="mdi mdi-plus"></i>Add to your
+                    <button v-if="!thisStacheAdventure" class="adventureButton" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to
+                        your
                         Adventures
                     </button>
 
@@ -52,10 +51,10 @@
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div> -->
-                <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
+                <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex bg-grey p-3">
+                <div class="justify-content-around d-flex background-color p-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -65,7 +64,7 @@
                         delete <i class="mdi mdi-icon"></i>
                     </button>
                     <router-link :to="{ name: 'Map' }">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to maps
+                        <div class="map-button elevation-5">back to maps
                         </div>
                     </router-link>
                 </div>
@@ -102,7 +101,7 @@
                         <div class="col-12 col-md-1">
                             <img class="profile-pic" :src="comment.creator.picture" alt="">
                         </div>
-                        <div class="card elevation-5 col-12 col-md-6 my-2">
+                        <div class="card elevation-5 col-12 col-md-6 my-2 body-color">
                             <b>{{ comment.creator.name }}</b>
                             <p>{{ comment.body }}</p>
                             <div class="text-end" v-if="account.id == comment.creatorId">
@@ -224,7 +223,6 @@ export default {
         }
 
 
-        // TODO get adventures for this stache
 
         async function getCommentsByStache() {
             try {
@@ -243,20 +241,20 @@ export default {
             }
         }
 
-        const isMyAdventure = computed(() => {
-            let isFound = true
-            for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-                for (let j = 0; j <= AppState.myAdventures.length; j++) {
-                    if (i == j) {
-                        isFound = false
-                    }
-                }
-            }
-            return isFound
-        });
+        // const isMyAdventure = computed(() => {
+        //     let isFound = true
+        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+        //             if (i == j) {
+        //                 isFound = false
+        //             }
+        //         }
+        //     }
+        //     return isFound
+        // });
 
         return {
-            isMyAdventure,
+            // isMyAdventure,
             stache,
             setupMap,
             map,
@@ -264,6 +262,9 @@ export default {
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
+            thisStacheAdventure: computed(() => {
+                return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+            }),
 
 
             async removeComment() {
@@ -296,7 +297,7 @@ export default {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
                     await adventuresService.addAdventure(adventureData)
-
+                    Pop.success('Adventure has been added to your list!')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
@@ -389,6 +390,20 @@ export default {
 
 
 <style scoped lang="scss">
+.map-button {
+    background: linear-gradient(45deg, #ffc900, #f4f4f4);
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 2px;
+    color: black;
+    transform: background 0.3s, transform 0.2s;
+}
+
+.map-button:hover {
+    background: linear-gradient(45deg, #f4f4f4, #ffc900);
+    transform: scale(1.1);
+}
+
 .button-class {
     background: linear-gradient(25deg, #41644A, #adc7b3);
     border-radius: 20px;
@@ -423,14 +438,30 @@ export default {
     object-position: center;
 }
 
+.map_card {
+    border: 3px solid #29412fce;
+    box-shadow: 0 10px 30px #41644ace;
+    border-radius: 25px
+}
+
+.glassCard2 {
+    /* From https://css.glass */
+    background: rgba(139, 141, 104, 0.857);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 4px solid rgba(47, 28, 2, 0.345);
+}
+
 .revealButton {
-    background: linear-gradient(25deg, #0e421a, #5dde39);
+    background: linear-gradient(25deg, #166729, #5dde39);
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
 }
 
 .revealButton:hover {
-    background: linear-gradient(#5dde39, #0e421a);
+    background: linear-gradient(25deg, #5dde39, #0e421a);
     transform: scale(1.1);
 }
 
@@ -444,7 +475,26 @@ export default {
 
 }
 
+.glassCard {
+
+    background: #41644a9d;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid rgba(241, 233, 0, 0.673);
+}
+
 .nameLink {
     color: #E86A33;
+}
+
+.background-color {
+    background-color: #41644a71;
+    backdrop-filter: blur(5px);
+}
+
+.body-color {
+    background: linear-gradient(25deg, #41644A, #ebd512);
 }
 </style>
