@@ -10,60 +10,80 @@
 
         <div class="map_card" id="map" style="width: 90%; height: 70vh;"></div>
     </div>
-    <div class="glassCard  col-12 col-md-8 my-1">
+    <div class="glassCard  col-12 col-md-5 my-1 offset-3">
         <div class="m-3 ">
             <h1 class=" fw-bold text-black text-center text-decoration-underline">
                 <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
             </h1>
         </div>
-        <ul class="list-group">
-            <li class="list-group-items" v-for="(stache, index) in stache" :key="index">
-                <router-link :to="{ path: `staches/${stache.id}` }">
-                    <div v-if="stache.distance <= 3 > 0.00005"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+
+        <div v-for="(stache, index) in stache" :key="index">
+            <router-link :to="{ path: `staches/${stache.id}` }">
+                <div v-if="stache.distance <= 3 > 0.00005"
+                    class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
+                    <img src="../assets/img/favicon-32x32.png" alt="">
+                    <div>
                         {{
                             stache.stacheName
                         }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
                     </div>
+                </div>
 
-                    <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
-                        {{
-                            stache.stacheName }} - <span class="text-primary"> {{
-        stache.distance }} miles</span>
+                <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
+                    class="glassCard2 d-flex justify-content-between m-2 fw-bold fs-3 text-black text-center">
+                    <img src="../assets/img/favicon-32x32.png" alt="">
+                    <span class="">{{ stache.difficulty }}</span>
+                    <div>
+
+                        {{ stache.stacheName }} -
+                        <span class="text-primary"> {{
+                            stache.distance }} miles</span>
                     </div>
-                    <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                </div>
+                <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
+                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                    <img src="../assets/img/favicon-32x32.png" alt="">
+                    <div>
                         {{
                             stache.stacheName }} - <span class="text-info"> {{
         stache.distance }} miles</span>
                     </div>
-                    <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                </div>
+                <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
+                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                    <img src="../assets/img/favicon-32x32.png" alt="">
+                    <div>
                         {{
                             stache.stacheName }} - <span class="text-secondary"> {{
         stache.distance }} miles</span>
                     </div>
-                    <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                </div>
+                <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
+                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                    <img src="../assets/img/favicon-32x32.png" alt="">
+                    <div>
                         {{
                             stache.stacheName }} - <span class="text-danger"> {{
         stache.distance }} miles</span>
                     </div>
+                </div>
 
-                    <div v-if="stache.distance > 40.1"
-                        class="bg-stacheName border border-2 border-black elevation-5 rounded m-2 fw-bold fs-3 text-black text-center">
+                <div v-if="stache.distance > 40.1"
+                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                    <img class="p-2" src="../assets/img/favicon-32x32.png" alt="">
+                    <div>
                         {{
                             stache.stacheName
                         }} -
                         <span class="text-danger"> {{
                             stache.distance }} miles</span>
                     </div>
-                </router-link>
-            </li>
-        </ul>
+                </div>
+            </router-link>
+        </div>
+
 
 
     </div>
@@ -75,18 +95,20 @@ import { stachesService } from '../services/StachesService.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 
+
 export default {
     data() {
         return {
-            searchQuery: '', // Store the user's search query
+            searchQuery: '',
             searchResults: [],
             stache: computed(() => AppState.staches),
+            user: computed(() => AppState.user),
             map: null,
         };
     },
     methods: {
         calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 3958.8; // Radius of the Earth in miles
+            const R = 3958.8;
             const dLat = (lat2 - lat1) * (Math.PI / 180);
             const dLon = (lon2 - lon1) * (Math.PI / 180);
             const a =
@@ -97,7 +119,7 @@ export default {
                 Math.sin(dLon / 2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             const distance = R * c;
-            return distance.toFixed(2); // Round to 2 decimal places
+            return distance.toFixed(2);
         },
 
         getUserLocationAndDisplayMap() {
@@ -105,7 +127,7 @@ export default {
                 navigator.geolocation.getCurrentPosition((position) => {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
-
+                    const user = AppState.user
 
 
                     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -116,7 +138,7 @@ export default {
                     new google.maps.Marker({
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
-                        title: 'Your Location',
+                        title: `${user.name}`,
 
                     });
 
@@ -132,7 +154,7 @@ export default {
                         new google.maps.Marker({
                             position: { lat: stache.lat, lng: stache.lng },
                             map: this.map,
-                            title: `${stache.stacheName}`,
+                            title: `Name: ${stache.stacheName},  Info: (${stache.description})`,
                         });
                     });
                 });
@@ -189,10 +211,10 @@ export default {
                 if (place && place.geometry && place.geometry.location) {
                     const location = place.geometry.location;
                     this.map.setCenter(location);
-                    this.map.setZoom(20); // Adjust the zoom level as needed
+                    this.map.setZoom(20);
                 }
             });
-            this.searchResults = []; // Clear search results after selecting a location
+            this.searchResults = []; //NOTE check if this is working Clear search results after selecting a location
         },
     },
 
@@ -204,7 +226,7 @@ export default {
 
 
         } else {
-
+            //NOTE what is going on with my callbacks??
             const script = document.createElement('script');
             //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
             script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
@@ -226,6 +248,16 @@ export default {
     border: 3px solid rgba(241, 233, 0, 0.673);
 }
 
+.glassCard2 {
+    /* From https://css.glass */
+    background: rgba(139, 141, 104, 0.857);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 4px solid rgba(47, 28, 2, 0.345);
+}
+
 .map_card {
     border: 3px solid #29412fce;
     box-shadow: 0 10px 30px #41644ace;
@@ -238,6 +270,12 @@ export default {
 
 .bg-stacheName {
     background: #ef9b0aa2;
+}
+
+.-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 </style>
   

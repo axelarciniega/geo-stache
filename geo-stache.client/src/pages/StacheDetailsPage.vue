@@ -33,7 +33,7 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample">
                             <div class="card card-body" style="width: 300px;">
 
-                                <p class="text-center">Hint: {{ stache.hint }}</p>
+                                <p class="text-center">{{ stache.hint }}</p>
                             </div>
                         </div>
                     </div>
