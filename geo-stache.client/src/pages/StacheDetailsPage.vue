@@ -134,7 +134,7 @@
                         <div class="col-12 col-md-1">
                             <img class="profile-pic" :src="comment.creator.picture" alt="">
                         </div>
-                        <div class="card elevation-5 col-12 col-md-6 my-2 body-color">
+                        <div class="card elevation-5 col-12 col-md-10 my-2 body-color">
                             <b>{{ comment.creator.name }}</b>
                             <p>{{ comment.body }}</p>
                             <div class="text-end" v-if="account.id == comment.creatorId">
@@ -547,6 +547,10 @@ export default {
 .background-color {
     background-color: var(--DrkGreen);
     backdrop-filter: blur(5px);
+}
+
+.card-body {
+    background-color: var(--LghtGreen);
 }
 
 .body-color {
