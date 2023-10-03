@@ -1,6 +1,6 @@
 <template>
     <div v-if="stache">
-        <button @click="setupMap">Test Me</button>
+        <!-- <button @click="setupMap">Test Me</button> -->
         <section class="container">
             <div class="m-1 row glassCard2 p-2 justify-content-between">
 
