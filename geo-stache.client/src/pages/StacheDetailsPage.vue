@@ -278,7 +278,7 @@ export default {
 
                         position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
                         map: this.map,
-                        title: `$(stache.stacheName)`
+                        title: `$(stache.stacheName)`,
                     })
 
                     // AppState.activeStache.find((stache) => {
@@ -360,7 +360,7 @@ export default {
 
             const script = document.createElement('script');
             //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
-            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places&callback=Function.prototype`;
             script.onload = this.getUserLocationAndDisplayMap;
             document.head.appendChild(script);
         }
