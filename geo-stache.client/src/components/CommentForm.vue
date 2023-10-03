@@ -3,7 +3,7 @@
     <div class="container">
         <section class="row">
             <div class="col-12">
-                <h3 class="text-center">Comments</h3>
+                <h1 class="text-center p-3">Comments</h1>
             </div>
             <form @submit.prevent="createComment" class="text-center">
                 <div>

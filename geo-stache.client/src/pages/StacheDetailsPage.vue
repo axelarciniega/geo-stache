@@ -54,7 +54,7 @@
                 <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex my-3">
+                <div class="justify-content-around d-flex bg-grey p-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>

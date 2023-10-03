@@ -103,14 +103,21 @@ export default {
 
 <style lang="scss" scoped>
 .geo-shadow {
-    backdrop-filter: blur(20px);
-    border-radius: 10px;
-    /* width: 100%; */
-    /* object-fit: cover;
-  object-position: center; */
-    box-shadow: 0 3px 3px -1px rgba(133, 133, 133, 0.85),
-        0 5px 6px 0 rgba(133, 133, 133, 0.79),
-        0 1px 8px 0 rgba(133, 133, 133, 0.79);
+//     backdrop-filter: blur(20px);
+//     border-radius: 10px;
+//     /* width: 100%; */
+//     /* object-fit: cover;
+//   object-position: center; */
+//     box-shadow: 0 3px 3px -1px rgba(133, 133, 133, 0.85),
+//         0 5px 6px 0 rgba(133, 133, 133, 0.79),
+//         0 1px 8px 0 rgba(133, 133, 133, 0.79);
+
+background: rgba(65, 100, 74, 0.62);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.3px);
+-webkit-backdrop-filter: blur(5.3px);
+border: 1px solid rgba(65, 100, 74, 1);
 }
 </style>
 <style></style>

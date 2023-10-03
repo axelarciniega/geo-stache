@@ -1,6 +1,6 @@
 <template>
     <section>
-        <router-link :to="{name: 'Stache Details', params: {stacheId: stache.id}}">
+        <router-link class="cardText" :to="{name: 'Stache Details', params: {stacheId: stache.id}}">
             {{ stache.stacheName }}
         </router-link>
     </section>
@@ -25,4 +25,8 @@ setup() {
 
 
 <style>
+.cardText{
+    color: #ffc900;
+
+}
 </style>
