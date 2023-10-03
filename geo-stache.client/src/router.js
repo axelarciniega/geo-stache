@@ -50,7 +50,7 @@ const routes = [
     path: '/staches/:stacheId',
     name: 'Stache Details',
     component: loadPage('StacheDetailsPage'),
-    beforeEnter: authGuard
+    // beforeEnter: authGuard
   },
   {
     path: '/mapping',
