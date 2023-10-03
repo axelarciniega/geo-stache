@@ -20,7 +20,7 @@
     <div class="modal" :id="id" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content bg-primary border border-2 border-sand">
+            <div class="modal-content bg-secondary border border-2 border-sand">
                 <div class="modal-header">
                     <slot name="header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

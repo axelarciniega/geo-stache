@@ -1,7 +1,7 @@
 <template>
     <div class="txt-DrkGreen ftn-Cabin">
         <form class="text-sand" @submit.prevent="createStache">
-            <h1 class="text-center text-sand">Stache Create Form</h1>
+            <h1 class="text-center text-black">Stache Create Form</h1>
             <!-- Stache Name Input -->
             <div class="form-group">
                 <label class="text-name" for="stacheName">Stache Name:</label>

@@ -78,7 +78,7 @@ setup() {
 }
 
 .commentText{
-    background: linear-gradient(25deg, #ebd512,#41644A );
+    background: linear-gradient(25deg, #fbcf33,#41644A );
 }
 
 .commentText::placeholder{
