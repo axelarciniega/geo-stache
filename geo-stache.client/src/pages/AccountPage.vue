@@ -14,7 +14,7 @@
         <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
 
           <div class="btn">
-            <button class="button-class">Profile</button>
+            <button class="button-class p-2">Profile</button>
           </div>
         </router-link>
       </div>
@@ -71,7 +71,7 @@
           </div>
           <!-- Save Button -->
           <div class="m-2 col-md-3 col-11 m-0 pt-5">
-            <button class="delete-button">save changes <i class="mdi mdi-check"></i></button>
+            <button class="delete-button p-2">save changes <i class="mdi mdi-check"></i></button>
           </div>
 
         </form>
