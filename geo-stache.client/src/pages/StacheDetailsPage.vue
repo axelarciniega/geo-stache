@@ -36,8 +36,9 @@
                         </div>
                     </div>
 
-                    <button v-if="!isMyAdventure" class="adventureButton" @click="addAdventure()"><i
-                            class="mdi mdi-plus"></i>Add to your
+                    <button v-if="!thisStacheAdventure" class="adventureButton" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to
+                        your
                         Adventures
                     </button>
 
@@ -139,7 +140,6 @@ export default {
             getCommentsByStache()
         })
 
-        // TODO get adventures for this stache
 
         async function getCommentsByStache() {
             try {
@@ -157,26 +157,29 @@ export default {
             }
         }
 
-        const isMyAdventure = computed(() => {
-            let isFound = true
-            for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-                for (let j = 0; j <= AppState.myAdventures.length; j++) {
-                    if (i == j) {
-                        isFound = false
-                    }
-                }
-            }
-            return isFound
-        });
+        // const isMyAdventure = computed(() => {
+        //     let isFound = true
+        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+        //             if (i == j) {
+        //                 isFound = false
+        //             }
+        //         }
+        //     }
+        //     return isFound
+        // });
 
         return {
-            isMyAdventure,
+            // isMyAdventure,
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
+            thisStacheAdventure: computed(() => {
+                return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+            }),
 
 
             async removeComment() {
@@ -209,7 +212,7 @@ export default {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
                     await adventuresService.addAdventure(adventureData)
-
+                    Pop.success('Adventure has been added to your list!')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
