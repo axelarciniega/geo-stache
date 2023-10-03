@@ -81,22 +81,22 @@
                 </div>
             </div>
         </section>
-        <section class="container">
+        <!-- <section class="container">
             <div class="row">
                 <div class="col-12">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <ToDoCard :adventure="adventure" />
                     </div>
 
-                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <BadgeCard :adventure="adventure" />
-                    </div> -->
+                    </div>
 
                 </div>
             </div>
 
 
-        </section>
+        </section> -->
     </div>
 
 
