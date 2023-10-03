@@ -6,6 +6,9 @@
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
+                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
+                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
+
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
@@ -17,11 +20,30 @@
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
+                    <div class="text-center">
+                        <p>
+                            <button class="revealButton text-light" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                aria-controls="collapseWidthExample">
+                                Reveal Hint
+                            </button>
+                        </p>
+                    </div>
+                    <div class="justify-content-center d-flex" style="min-height: 120px;">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body" style="width: 300px;">
 
-                    <button v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Addventures
+                                <p class="text-center">Hint: {{ stache.hint }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- v-if="isMyAdventure" -->
+                    <button class="adventureButton" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your
+                        Adventures
                     </button>
-
-                    <button v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
+                    <!-- v-else -->
+                    <button class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
+                            your Adventures</i>
                     </button>
 
                 </div>
@@ -49,14 +71,13 @@
         </section>
 
 
-        <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class=""> -->
-        <!-- {{ myAdventures }} -->
-        <!-- <BadgeCard :adventure="adventure" /> -->
-        <!-- </div> -->
+        <div v-if="stacheAdventures.length > 0" class="bg-danger">
+            {{ stacheAdventures }}
+        </div>
 
 
         <!-- STUB Comment section -->
-        <section class="row">
+        <section class="row container-fluid">
             <CommentForm />
 
             <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
@@ -93,30 +114,19 @@ import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
 import { adventuresService } from '../services/AdventuresService';
-import BadgeCard from '../components/BadgeCard.vue';
 
 
 export default {
-    // props: { adventure: { type: String, required: true } },
+
 
     setup() {
-
         const route = useRoute();
         const router = useRouter();
-
         onMounted(() => {
             getStacheById();
-            getCommentsByStache();
-            // getAdventuresByStache()
+            getCommentsByStache()
         })
 
-        // async function getAdventuresByStache() {
-        //     try {
-        //         await adventuresService.getAdventuresByStache(route.params.stacheId)
-        //     } catch (error) {
-        //         Pop.error(error)
-        //     }
-        // }
         // TODO get adventures for this stache
 
         async function getCommentsByStache() {
@@ -143,8 +153,6 @@ export default {
             map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
-            // activeStacheAdventures: computed(() => AppState.getAdventuresByStache),
-
             // isMyAdventure: computed(() => {
             //     let isFound = true
             //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
@@ -184,7 +192,7 @@ export default {
 
             // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
             // NOTE Do we want the user to be able to remove once the Stache is already found?
-
+            // like Mick's from PostIt, flips a bool and not what we want.
             async addAdventure() {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
@@ -195,9 +203,22 @@ export default {
                     Pop.error(error)
                 }
             },
-
+            async deleteAdventure() {
+                try {
+                    if (await Pop.confirm('Are you sure?')) {
+                        const adventureToRemove = AppState.myAdventures.find(a => a.accountId == AppState.myAdventures.accountId)
+                        const adventureId = adventureToRemove.id
+                        await adventuresService.deleteAdventure(adventureId)
+                        Pop.success('removed adventure')
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            },
 
         };
+
     },
 
     methods: {
@@ -224,11 +245,13 @@ export default {
 
 
 
+                    // eslint-disable-next-line no-undef
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
                     });
 
+                    // eslint-disable-next-line no-undef
                     new google.maps.Marker({
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
@@ -236,21 +259,29 @@ export default {
 
                     });
 
-                    AppState.staches.forEach((stache) => {
-                        const distance = this.calculateDistance(
-                            latitude,
-                            longitude,
-                            stache.lat,
-                            stache.lng
-                        );
-                        stache.distance = distance; // Store the distance in the stache object
-                        logger.log(this.map);
-                        new google.maps.Marker({
-                            position: { lat: stache.lat, lng: stache.lng },
-                            map: this.map,
-                            title: `${stache.stacheName}`,
-                        });
-                    });
+                    // eslint-disable-next-line no-undef
+                    new google.maps.Marker({
+
+                        position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
+                        map: this.map,
+                        title: `$(stache.stacheName)`
+                    })
+
+                    // AppState.activeStache.find((stache) => {
+                    //     const distance = this.calculateDistance(
+                    //         latitude,
+                    //         longitude,
+                    //         stache.lat,
+                    //         stache.lng
+                    //     );
+                    //     stache.distance = distance; // Store the distance in the stache object
+                    //     logger.log(this.map);
+                    //     new google.maps.Marker({
+                    //         position: { lat: stache.lat, lng: stache.lng },
+                    //         map: this.map,
+                    //         title: `${stache.stacheName}`,
+                    //     });
+                    // });
                 });
             } else {
                 alert('Geolocation is not available in your browser');
@@ -260,6 +291,7 @@ export default {
         searchLocation() {
             if (this.searchQuery && this.map) {
                 if (!this.searchService) {
+                    // eslint-disable-next-line no-undef
                     this.searchService = new google.maps.places.AutocompleteService();
                 }
 
@@ -271,10 +303,12 @@ export default {
                     (predictions) => {
                         if (predictions && predictions.length > 0) {
                             const place = predictions[0];
+                            // eslint-disable-next-line no-undef
                             const placeService = new google.maps.places.PlacesService(this.map);
                             placeService.getDetails(
                                 { placeId: place.place_id },
                                 (result, status) => {
+                                    // eslint-disable-next-line no-undef
                                     if (status === google.maps.places.PlacesServiceStatus.OK) {
                                         this.map.setCenter(result.geometry.location);
                                     }
@@ -290,6 +324,7 @@ export default {
 
         selectLocation(result) {
             // Center the map on the selected location
+            // eslint-disable-next-line no-undef
             const placeService = new google.maps.places.PlacesService(this.map);
             placeService.getDetails({ placeId: result.place_id }, (place) => {
                 if (place && place.geometry && place.geometry.location) {
@@ -316,7 +351,6 @@ export default {
             document.head.appendChild(script);
         }
     },
-    components: { BadgeCard }
 };
 </script>
 

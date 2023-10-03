@@ -20,6 +20,13 @@ class AdventuresService {
         AppState.activeStacheAdventures= response.data
 
     }
+    async deleteAdventure(adventureId) {
+        const response = await api.delete(`api/adventures/${adventureId}`)
+        logger.log('[DELETING ADVENTURE]', response.data)
+    AppState.myAdventures=AppState.myAdventures.filter(a=>a.id != adventureId)
+
+    }
+
 
 // completeAdventure(adventureId){
     // TODO find adventure in app state
