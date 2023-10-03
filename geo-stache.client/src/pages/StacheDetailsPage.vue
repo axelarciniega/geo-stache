@@ -2,7 +2,7 @@
     <div v-if="stache">
         <!-- <button @click="setupMap">Test Me</button> -->
         <section class="container">
-            <div class="m-1 row glassCard2 p-2 justify-content-between">
+            <div class="m-1 row glassCard2 p-2 justify-content-md-between justify-content-center">
 
                 <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
@@ -21,10 +21,10 @@
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
-                            <button class="revealButton" type="button" data-bs-toggle="collapse"
+                            <button class="revealButton collapsed col-md-3 col-5" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseWidthExample" aria-expanded="false"
                                 aria-controls="collapseWidthExample">
-                                Reveal Hint
+
                             </button>
                         </p>
                     </div>
@@ -54,19 +54,22 @@
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex bg-DrkGreen rounded p-3 ">
+                <div class="justify-content-md-around justify-content-center d-flex bg-DrkGreen rounded p-3 ">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
-                        class=" button-class border border-1 border-black col-md-2">
+                        class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
-                        class=" delete-button border border-1 border-black col-2 text-black">
+                        class=" delete-button border border-1 border-black col-md-2 col-8 my-md-0 my-1 text-black">
                         delete <i class="mdi mdi-icon"></i>
                     </button>
-                    <router-link :to="{ name: 'Map' }">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to maps
+
+                    <router-link :to="{ name: 'Map' }" class=" col-md-2 col-8 my-md-0 my-1">
+                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
+                            back to maps
                         </div>
                     </router-link>
+
                 </div>
             </div>
         </section>
@@ -499,6 +502,7 @@ export default {
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
     border-color: var(--Sand);
+    padding: 0.5em;
 
 }
 
@@ -508,6 +512,15 @@ export default {
     border-color: var(--Green);
 }
 
+.revealButton:before {
+    content: 'Hide Hint';
+    display: block;
+}
+
+.revealButton.collapsed:before {
+    content: 'Reveal Hint';
+    display: block;
+}
 
 .adventureButton {
     background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
@@ -515,7 +528,7 @@ export default {
     transition: background 0.3s, transform 0.2s;
     border-color: var(--LghtOrange);
     margin-bottom: 1em;
-
+    padding: 0.5em;
 }
 
 .adventureButton:hover {
@@ -551,7 +564,7 @@ export default {
 }
 
 .card-body {
-    background-color: var(--LghtGreen);
+    background-color: var(--Sand);
 }
 
 .body-color {
