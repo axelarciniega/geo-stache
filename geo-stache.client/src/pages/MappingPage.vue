@@ -1,92 +1,98 @@
 <template>
-    <div class="d-flex justify-content-center">
-        <div>
-            <input class="fw-bold map_card" type="text" v-model="searchQuery" placeholder="Search for a location" />
-            <button class="map_card bg-stacheGreen text-warning m-1 fw-bold" @click="searchLocation"> <span> <img
-                        src="../assets/img/favicon-32x32.png" alt=""> </span> </button>
+    <section class="container">
+
+        <div class="d-flex justify-content-center">
+            <div>
+                <input class="fw-bold map_card" type="text" v-model="searchQuery" placeholder="Search for a location" />
+                <button class="map_card bg-stacheGreen text-warning m-1 fw-bold" @click="searchLocation"> <span> <img
+                            src="../assets/img/favicon-32x32.png" alt=""> </span> </button>
+            </div>
         </div>
-    </div>
-    <div class="offset-1">
+        <div class="d-flex justify-content-center align-content-center">
 
-        <div class="map_card" id="map" style="width: 90%; height: 70vh;"></div>
-    </div>
-    <div class="glassCard  col-12 col-md-5 my-1 offset-3">
-        <div class="m-3 ">
-            <h1 class=" fw-bold text-black text-center text-decoration-underline">
-                <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
-
-            </h1>
+            <div class="map_card my-2" id="map" style="width: 100%; height: 70vh;"></div>
         </div>
+        <div class="row justify-content-center">
+            <div class="glassCard col-12 col-md-5 my-1 ">
+                <div class="m-3 ">
+                    <h1 class=" fw-bold text-black text-center text-decoration-underline">
+                        <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
-        <div v-for="(stache, index) in stache" :key="index">
-            <router-link :to="{ path: `staches/${stache.id}` }">
-                <div v-if="stache.distance <= 3 > 0.00005"
-                    class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
-                    <img src="../assets/img/favicon-32x32.png" alt="">
-                    <div>
-                        {{
-                            stache.stacheName
-                        }} - <span class="text-warning"> {{
+                    </h1>
+                </div>
+
+                <div v-for="(stache, index) in stache" :key="index">
+                    <router-link :to="{ path: `staches/${stache.id}` }">
+                        <div v-if="stache.distance <= 3 > 0.00005"
+                            class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <div class="p-1">
+                                {{
+                                    stache.stacheName
+                                }} - <span class="text-warning"> {{
     stache.distance }} miles</span>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
-                    class="glassCard2 d-flex justify-content-between m-2 fw-bold fs-3 text-black text-center">
-                    <img src="../assets/img/favicon-32x32.png" alt="">
-                    <span class="">{{ stache.difficulty }}</span>
-                    <div>
+                        <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
+                            class="glassCard2 d-flex justify-content-between m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
+                            <div class="p-1">
 
-                        {{ stache.stacheName }} -
-                        <span class="text-primary"> {{
-                            stache.distance }} miles</span>
-                    </div>
-                </div>
-                <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
-                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
-                    <img src="../assets/img/favicon-32x32.png" alt="">
-                    <div>
-                        {{
-                            stache.stacheName }} - <span class="text-info"> {{
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
+                                    stache.distance }} miles</span>
+                            </div>
+                        </div>
+                        <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
+                            class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <div class="p-1">
+                                {{
+                                    stache.stacheName }} - <span class="text-info"> {{
         stache.distance }} miles</span>
-                    </div>
-                </div>
-                <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
-                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
-                    <img src="../assets/img/favicon-32x32.png" alt="">
-                    <div>
-                        {{
-                            stache.stacheName }} - <span class="text-secondary"> {{
+                            </div>
+                        </div>
+                        <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
+                            class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <div class="p-1">
+                                {{
+                                    stache.stacheName }} - <span class="text-secondary"> {{
         stache.distance }} miles</span>
-                    </div>
-                </div>
-                <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
-                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
-                    <img src="../assets/img/favicon-32x32.png" alt="">
-                    <div>
-                        {{
-                            stache.stacheName }} - <span class="text-danger"> {{
+                            </div>
+                        </div>
+                        <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
+                            class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <div class="p-1">
+                                {{
+                                    stache.stacheName }} - <span class="text-danger"> {{
         stache.distance }} miles</span>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                <div v-if="stache.distance > 40.1"
-                    class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
-                    <img class="p-2" src="../assets/img/favicon-32x32.png" alt="">
-                    <div>
-                        {{
-                            stache.stacheName
-                        }} -
-                        <span class="text-danger"> {{
-                            stache.distance }} miles</span>
-                    </div>
+                        <div v-if="stache.distance > 40.1"
+                            class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+                            <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <div class="p-1">
+                                {{
+                                    stache.stacheName
+                                }} -
+                                <span class="text-danger"> {{
+                                    stache.distance }} miles</span>
+                            </div>
+                        </div>
+                    </router-link>
                 </div>
-            </router-link>
+            </div>
+
+
+
         </div>
 
-
-
-    </div>
+    </section>
 </template>
   
 <script>
@@ -276,6 +282,12 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.favicon {
+    padding: 5px;
+    height: 50px;
+    width: 50px;
 }
 </style>
   
