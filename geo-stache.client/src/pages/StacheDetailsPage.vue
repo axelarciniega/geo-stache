@@ -548,6 +548,10 @@ export default {
     backdrop-filter: blur(5px);
 }
 
+.card-body {
+    background-color: var(--LghtGreen);
+}
+
 .body-color {
     background: linear-gradient(25deg, var(--Green), var(--Sand));
 }
