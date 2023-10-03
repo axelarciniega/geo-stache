@@ -31,7 +31,7 @@
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
                 <h4 class="text-center mt-2 ">Profile details</h4>
                 <img :src="profile.picture" alt="">
-                {{ profile.bio }}
+                <p class="m-2">{{ profile.bio }}</p>
                 <p class="m-2">{{ profile.email }}</p>
             </div>
             <!-- STUB off canvas for Found Staches
@@ -48,15 +48,16 @@
                 aria-controls="offcanvasExample">
                 Link with href
             </a> -->
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            <div class="p-3 text-center">
+                <button class="col-4 p-3 todoButton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample">
-                To Do
-            </button>
-
+                View {{ profile.name }}'s to do list
+                </button>
+            </div>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
                 aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{profile.name}}'s stache goals</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -70,7 +71,7 @@
             </div>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
-            <div class="col-12 col-md-6 geo-shadow">
+            <div class="col-12 col-md-12 geo-shadow">
                 <h4 class="text-center mt-2">Badges</h4>
             </div>
         </section>
@@ -171,5 +172,17 @@ export default {
     .margin-class {
         margin: 30px;
     }
+}
+
+.todoButton {
+    background: linear-gradient(45deg, var(--LghtGreen), var(--Green));
+    border-radius: 20px;
+    padding: 2px;
+    transform: background 0.3s, transform 0.2s;
+}
+
+.todoButton:hover {
+    background: linear-gradient(45deg, var(--Green), var(--LghtGreen));
+    transform: scale(1.1);
 }
 </style>

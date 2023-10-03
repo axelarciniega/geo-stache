@@ -14,7 +14,7 @@
         <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
 
           <div class="btn">
-            <button class="button-class p-2">Profile</button>
+            <button class="button-class p-2">View your profile</button>
           </div>
         </router-link>
       </div>

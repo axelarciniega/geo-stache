@@ -46,7 +46,8 @@
                     <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
                             your Adventures</i>
                     </button>
-                    <button class=" delete-button border border-1 border-black col-2 text-black">
+                    <button @click="completeAdventure()"
+                        class=" delete-button border border-1 border-black col-2 text-black">
                         Found It!
                     </button>
                 </div>
@@ -157,11 +158,7 @@ export default {
             // eslint-disable-next-line no-undef
         })
 
-        // watch(stache, () => {
-        //     if (map && AppState.activeStache) {
-        //         addStacheMarker()
-        //     }
-        // })
+
 
         function setupMap() {
             if ('geolocation' in navigator) {
@@ -249,20 +246,9 @@ export default {
             }
         }
 
-        // const isMyAdventure = computed(() => {
-        //     let isFound = true
-        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
-        //             if (i == j) {
-        //                 isFound = false
-        //             }
-        //         }
-        //     }
-        //     return isFound
-        // });
 
         return {
-            // isMyAdventure,
+
             stache,
             setupMap,
             map,
@@ -323,6 +309,19 @@ export default {
                     Pop.error(error)
                 }
             },
+
+            async completeAdventure() {
+                try {
+                    const stacheId = route.params.stacheId
+                    await adventuresService.completeAdventure(stacheId)
+                    Pop.success('Completed Adventure!')
+                } catch (error) {
+                    logger.log(error)
+                    Pop.error(error)
+                }
+
+
+            }
 
         };
 
