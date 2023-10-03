@@ -37,12 +37,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- v-if="isMyAdventure" -->
-                    <button class="adventureButton" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your
+
+                    <button v-if="isMyAdventure" class="adventureButton" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to your
                         Adventures
                     </button>
-                    <!-- v-else -->
-                    <button class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
+
+                    <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
                             your Adventures</i>
                     </button>
 
@@ -69,11 +70,22 @@
                 </div>
             </div>
         </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="adventure" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="adventure" />
+                    </div>
+                </div>
 
 
-        <div v-if="stacheAdventures.length > 0" class="bg-danger">
-            {{ stacheAdventures }}
-        </div>
+            </div>
+        </section>
 
 
         <!-- STUB Comment section -->
@@ -145,25 +157,27 @@ export default {
             }
         }
 
-        return {
+        const isMyAdventure = computed(() => {
+            let isFound = true
+            for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+                for (let j = 0; j <= AppState.myAdventures.length; j++) {
+                    if (i == j) {
+                        isFound = false
+                    }
+                }
+            }
+            return isFound
+        });
 
+        return {
+            isMyAdventure,
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
-            // isMyAdventure: computed(() => {
-            //     let isFound = true
-            //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-            //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
-            //             if (i == j) {
-            //                 isFound = false
-            //             }
-            //         }
-            //     }
-            //     return isFound
-            // }),
+
 
             async removeComment() {
                 try {
