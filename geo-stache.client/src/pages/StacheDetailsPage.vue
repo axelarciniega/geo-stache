@@ -6,7 +6,7 @@
 
                 <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
-                    todo bool/ {{ stache.todo }}
+
                     <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
@@ -84,52 +84,19 @@
         <section class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <ToDoCard :adventure="adventure" />
-                    </div> -->
+                    </div>
 
-                    <!-- <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                        aria-controls="offcanvasExample">
-                        Link with href
-                    </a> -->
-                    <!-- STUB -->
-                    <button class="col-2 btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                        Button with data-bs-target
-                    </button>
 
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                        aria-labelledby="offcanvasExampleLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                        </div>
-                        <div>
-                            <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                                <ToDoCard :adventure="adventure" />
-                            </div>
-                        </div>
-                        <div class="dropdown mt-3">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                    <div class="col-6">
+                        <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                            <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
-                    </div> -->
-                </div>
 
 
+                </div>
             </div>
         </section>
 
@@ -218,7 +185,6 @@ export default {
         }
 
 
-
         function addMarker(marker) {
             markers.value.push(marker)
             // eslint-disable-next-line no-undef
@@ -286,14 +252,23 @@ export default {
             }
         }
 
-
+        // const isMyAdventure = computed(() => {
+        //     let isFound = true
+        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+        //             if (i == j) {
+        //                 isFound = false
+        //             }
+        //         }
+        //     }
+        //     return isFound
+        // });
 
         return {
             // isMyAdventure,
             stache,
             setupMap,
             map,
-
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
