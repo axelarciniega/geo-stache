@@ -5,12 +5,12 @@
                 <h1 class="text-center p-3">Comments</h1>
             </div>
             <form @submit.prevent="createComment" class="text-center">
-                <div>
+                <div class="justify-content-center d-flex">
                     <textarea maxLength="200" required v-model="comment.body" placeholder="say something" name="Comment"
                         id="comment" class="card col-12 col-md-6 commentText"></textarea>
                 </div>
-                <div class="col-12">
-                    <button class="button-class">Post</button>
+                <div class="p-3">
+                    <button class="button-class p-2">Post</button>
                 </div>
             </form>
 
@@ -71,7 +71,7 @@ export default {
 
 .button-class:hover {
     background: linear-gradient(25deg, var(--LghtGreen), var(--DrkGreen));
-    transform: translateY(-5px);
+    transform: scale(1.5);
     color: var(--UltraDrkGreen)
 }
 

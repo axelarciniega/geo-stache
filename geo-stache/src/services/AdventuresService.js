@@ -47,12 +47,15 @@ class AdventuresService {
 
     // FIXME check with Sam on this to verify it is good.
     // NOTE allows us to update from todo to found and user can complete their adventure!
-    async editAdventure(adventureId, updates) {
+    async editAdventure(adventureId, userId) {
         const originalAdventure = await dbContext.Adventures.findById(adventureId)
         if (!originalAdventure) throw new Error(`No Adventure at that Id${adventureId}`)
-
-        originalAdventure.status = updates.status || originalAdventure.status
-
+        if (originalAdventure.accountId != userId) {
+            throw new Forbidden(`You cannot remove and Adventure you didn't create.`)
+        }
+        // originalAdventure.status = updates.status || originalAdventure.status
+        originalAdventure.status = 'completed'
+        originalAdventure.foundDate = new Date()
         await originalAdventure.save()
         return originalAdventure
     }
