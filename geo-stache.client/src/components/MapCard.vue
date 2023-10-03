@@ -5,7 +5,7 @@
         <div class="txt-DrkGreen fnt-Cabin" id="map" style="width: 100%; height: 400px;"></div>
         <!-- List of added markers (optional) -->
         <div class="txt-DrkGreen fnt-Cabin">
-            <h3>Added Markers:</h3>
+            <h3 class="p-3">Added Markers:</h3>
             <ul>
                 <li v-for="(marker, index) in markers" :key="index">{{ marker.title }}</li>
             </ul>
