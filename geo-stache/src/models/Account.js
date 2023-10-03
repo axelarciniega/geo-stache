@@ -22,10 +22,10 @@ export const AccountSchema = new Schema(
 
 AccountSchema.index({ location: '2dsphere' });
 
-AccountSchema.virtual('earnedBadges', {
+AccountSchema.virtual('adventures', {
   ref: 'Adventure',
   localField: '_id',
-  foreignField: 'accountId',
+  foreignField: 'adventureId',
   justOne: false,
   match: { status: 'completed' },
 });

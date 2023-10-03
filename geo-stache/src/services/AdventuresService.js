@@ -43,11 +43,7 @@ class AdventuresService {
     // NOTE allows us to view all adventures(users) of both status(todo and found) on a Stache Details Page
     // NOTE see this logic started on the Stache's Controller
 
-    async getAdventuresByStacheId(stacheId) {
-        const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile', 'name status')
-        return adventures
 
-    }
 
     // FIXME check with Sam on this to verify it is good.
     // NOTE allows us to update from todo to found and user can complete their adventure!

@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider"
 import BaseController from "../utils/BaseController.js"
 import { adventuresService } from "../services/AdventuresService.js"
+import { stachesService } from "../services/StachesServices.js"
 
 
 export class AdventuresController extends BaseController {
@@ -8,6 +9,7 @@ export class AdventuresController extends BaseController {
         super('api/adventures')
         this.router
             .get('', this.getAdventures)
+
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createAdventure)
             .delete('/:adventureId', this.deleteAdventureById)
@@ -24,6 +26,28 @@ export class AdventuresController extends BaseController {
 
         }
     }
+    async getAdventuresByUserId(req, res, next) {
+        try {
+            const userId = req.userInfo.id
+            const adventure = await adventuresService.getAdventuresByUserId(userId)
+            res.send(adventure)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getAdventuresByStacheId(req, res, next) {
+        try {
+            const stacheId = req.parmas.stacheId
+            const adventure = await stachesService.getAdventuresByStacheId(stacheId)
+            res.send(adventure)
+        } catch (error) {
+            next(error)
+        }
+
+
+    }
+
     async editAdventure(request, response, next) {
         try {
             const updates = request.body
