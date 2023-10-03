@@ -39,10 +39,10 @@ export class AdventuresController extends BaseController {
 
     async editAdventure(request, response, next) {
         try {
-            const updates = request.body
+            const userId = request.userInfo.id
             const adventureId = request.params.adventureId
             // @ts-ignore
-            const editAdventure = await adventuresService.editAdventure(adventureId, updates)
+            const editAdventure = await adventuresService.editAdventure(adventureId, userId)
             response.send(this.editAdventure)
         } catch (error) {
             next(error)
