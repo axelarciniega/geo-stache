@@ -91,11 +91,10 @@
                         <ToDoCard :adventure="adventure" />
                     </div>
 
-
-                    <div class="col-6">
-                        div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <BadgeCard :adventure="adventure" />
-                    </div>
+                    </div> -->
+
                 </div>
             </div>
 
