@@ -70,14 +70,16 @@
                             <button class=" revealButton border border-1 border-black col-2 text-black">
                                 Found It!
                             </button>
-                            <router-link :to="{ name: 'Map' }">
-                                <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
-                                    maps
-                                </div>
-                            </router-link>
-
                         </div>
+                    </router-link>
+                    <router-link :to="{ name: 'Map' }">
+                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
+                            maps
+                        </div>
+                    </router-link>
+
                 </div>
+            </div>
         </section>
         <section class="container">
             <div class="row">
