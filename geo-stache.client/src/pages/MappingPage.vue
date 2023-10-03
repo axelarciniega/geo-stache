@@ -13,9 +13,9 @@
             <div class="map_card my-2" id="map" style="width: 100%; height: 70vh;"></div>
         </div>
         <div class="row justify-content-center">
-            <div class="glassCard col-12 col-md-5 my-1 ">
+            <div class="glassCard col-12 col-md-7 my-1 ">
                 <div class="m-3 ">
-                    <h1 class=" fw-bold text-black text-center text-decoration-underline">
+                    <h1 class=" fw-bold text-black text-center text-decoration-underline my-2">
                         <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
                     </h1>
