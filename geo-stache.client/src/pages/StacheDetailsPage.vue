@@ -93,42 +93,40 @@
 
 
                     <div class="col-6">
-                        <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                            <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+                        div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="adventure" />
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+
+
+
+    <!-- STUB Comment section -->
+    <section class="row container-fluid">
+        <CommentForm />
+
+        <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
+
+            <div class="container">
+                <section class="row">
+                    <div class="col-12 col-md-1">
+                        <img class="profile-pic" :src="comment.creator.picture" alt="">
+                    </div>
+                    <div class="card elevation-5 col-12 col-md-10 my-2 body-color">
+                        <b>{{ comment.creator.name }}</b>
+                        <p>{{ comment.body }}</p>
+                        <div class="text-end" v-if="account.id == comment.creatorId">
+                            <button class="delete-button" @click="removeComment">delete</button>
                         </div>
                     </div>
-
-
-                </div>
+                </section>
             </div>
-        </section>
-
-
-        <!-- STUB Comment section -->
-        <section class="row container-fluid">
-            <CommentForm />
-
-            <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
-
-                <div class="container">
-                    <section class="row">
-                        <div class="col-12 col-md-1">
-                            <img class="profile-pic" :src="comment.creator.picture" alt="">
-                        </div>
-                        <div class="card elevation-5 col-12 col-md-10 my-2 body-color">
-                            <b>{{ comment.creator.name }}</b>
-                            <p>{{ comment.body }}</p>
-                            <div class="text-end" v-if="account.id == comment.creatorId">
-                                <button class="delete-button" @click="removeComment">delete</button>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </section>
-
-
-    </div>
+        </div>
+    </section>
 </template>
 
 <script>
