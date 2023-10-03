@@ -7,7 +7,7 @@
             </div>
             <form @submit.prevent="createComment" class="text-center">
                 <div>
-                    <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6"></textarea>
+                    <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6 commentText text-black"></textarea>
                 </div>
                 <div class="col-12">
                     <button class="button-class">Post</button>
@@ -75,6 +75,14 @@ setup() {
 .button-class:hover{
     background: linear-gradient(25deg, #adc7b3, #41644A );
     transform: translateY(-5px);
+}
+
+.commentText{
+    background: linear-gradient(25deg, #ebd512,#41644A );
+}
+
+.commentText::placeholder{
+    color:rgb(72, 72, 72);
 }
 
 </style>

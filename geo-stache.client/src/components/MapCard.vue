@@ -29,10 +29,10 @@ export default {
                     const longitude = position.coords.longitude;
                     // FIXME Cannot have google undefined as it will cause errors.
                     // NOTE - hasn't this been working?
-                    this.map = new google.maps.Map(document.getElementById('map'), {
-                        center: { lat: latitude, lng: longitude },
-                        zoom: 15,
-                    });
+                    // this.map = new google.maps.Map(document.getElementById('map'), {
+                    //     center: { lat: latitude, lng: longitude },
+                    //     zoom: 15,
+                    // });
                     // Create a marker at the user's location
                     // FIXME Cannot have google undefined as it will cause errors.
                     const userMarker = new google.maps.Marker({
@@ -71,10 +71,10 @@ export default {
         if (typeof google !== 'undefined') {
             this.getUserLocationAndDisplayMap();
         } else {
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key= AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
-            script.onload = this.getUserLocationAndDisplayMap;
-            document.head.appendChild(script);
+            // const script = document.createElement('script');
+            // script.src = `https://maps.googleapis.com/maps/api/js?key= AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+            // script.onload = this.getUserLocationAndDisplayMap;
+            // document.head.appendChild(script);
         }
     },
 };

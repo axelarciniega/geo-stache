@@ -1,9 +1,10 @@
 <template>
     <div v-if="stache">
+        <!-- <button @click="setupMap">Test Me</button> -->
         <section class="container">
-            <div class="row border border-black border-3">
+            <div class="m-1 row glassCard2 p-2 justify-content-between">
 
-                <div class="col-12 col-md-7">
+                <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
                     <!-- FIXME  -->
@@ -50,7 +51,7 @@
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div> -->
-                <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
+                <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
                 <div class="justify-content-around d-flex bg-grey p-3">
@@ -100,7 +101,7 @@
                         <div class="col-12 col-md-1">
                             <img class="profile-pic" :src="comment.creator.picture" alt="">
                         </div>
-                        <div class="card elevation-5 col-12 col-md-6 my-2">
+                        <div class="card elevation-5 col-12 col-md-6 my-2 body-color">
                             <b>{{ comment.creator.name }}</b>
                             <p>{{ comment.body }}</p>
                             <div class="text-end" v-if="account.id == comment.creatorId">
@@ -117,7 +118,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import { stachesService } from '../services/StachesService';
 import { useRoute } from 'vue-router';
@@ -131,14 +132,96 @@ import { adventuresService } from '../services/AdventuresService';
 
 export default {
 
-
     setup() {
         const route = useRoute();
         const router = useRouter();
+        const stache = computed(() => AppState.activeStache)
+        const lat = ref(-114)
+        const lng = ref(21)
+        const markers = ref([])
+        let map = null
+        let infoWindow = null
+
         onMounted(() => {
             getStacheById();
             getCommentsByStache()
+            setupMap()
+            // eslint-disable-next-line no-undef
         })
+
+        // watch(stache, () => {
+        //     if (map && AppState.activeStache) {
+        //         addStacheMarker()
+        //     }
+        // })
+
+        function setupMap() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    lat.value = position.coords.latitude;
+                    lng.value = position.coords.longitude;
+                    // eslint-disable-next-line no-undef
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: lat.value, lng: lng.value },
+                        zoom: 15,
+                    });
+                    // eslint-disable-next-line no-undef
+                    infoWindow = new google.maps.InfoWindow()
+                    markYourLocation()
+                    addStacheMarker()
+                })
+            }
+        }
+
+
+        function addMarker(marker) {
+            markers.value.push(marker)
+            // eslint-disable-next-line no-undef
+            let markerElem = new google.maps.Marker({
+                position: { lat: marker.lat, lng: marker.lng },
+                map: map,
+                title: marker.name || marker.title,
+            });
+
+            // eslint-disable-next-line no-undef
+            google.maps.event.addListener(markerElem, 'click', () => {
+                infoWindow.setContent(marker.name || marker.title);
+                infoWindow.open(map, markerElem);
+            })
+
+            centerMap()
+        }
+
+        function centerMap() {
+            // eslint-disable-next-line no-undef
+            const bounds = new google.maps.LatLngBounds();
+            markers.value.forEach((marker) => {
+                // eslint-disable-next-line no-undef
+                bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
+            })
+            map.fitBounds(bounds)
+        }
+
+        function markYourLocation() {
+            // eslint-disable-next-line no-undef
+            addMarker({
+                lat: lat.value,
+                lng: lng.value,
+                name: 'Your Location',
+            })
+        }
+
+        function addStacheMarker() {
+            if (stache.value?.lat && map) {
+                // eslint-disable-next-line no-undef
+                addMarker({
+                    lat: stache.value.lat,
+                    lng: stache.value.lng,
+                    name: stache.value.stacheName
+                })
+            }
+        }
+
 
 
         async function getCommentsByStache() {
@@ -152,6 +235,7 @@ export default {
         async function getStacheById() {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
+                addStacheMarker()
             } catch (error) {
                 Pop.error(error)
             }
@@ -171,10 +255,11 @@ export default {
 
         return {
             // isMyAdventure,
-            stache: computed(() => AppState.activeStache),
+            stache,
+            setupMap,
+            map,
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
-            map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
             thisStacheAdventure: computed(() => {
@@ -237,140 +322,88 @@ export default {
     },
 
     methods: {
-        calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 3958.8; // Radius of the Earth in miles
-            const dLat = (lat2 - lat1) * (Math.PI / 180);
-            const dLon = (lon2 - lon1) * (Math.PI / 180);
-            const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * (Math.PI / 180)) *
-                Math.cos(lat2 * (Math.PI / 180)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            const distance = R * c;
-            return distance.toFixed(2); // Round to 2 decimal places
-        },
+        // calculateDistance(lat1, lon1, lat2, lon2) {
+        //     const R = 3958.8; // Radius of the Earth in miles
+        //     const dLat = (lat2 - lat1) * (Math.PI / 180);
+        //     const dLon = (lon2 - lon1) * (Math.PI / 180);
+        //     const a =
+        //         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        //         Math.cos(lat1 * (Math.PI / 180)) *
+        //         Math.cos(lat2 * (Math.PI / 180)) *
+        //         Math.sin(dLon / 2) *
+        //         Math.sin(dLon / 2);
+        //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        //     const distance = R * c;
+        //     return distance.toFixed(2); // Round to 2 decimal places
+        // },
 
-        getUserLocationAndDisplayMap() {
-            if ('geolocation' in navigator) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
+        // searchLocation() {
+        //     if (this.searchQuery && this.map) {
+        //         if (!this.searchService) {
+        //             // eslint-disable-next-line no-undef
+        //             this.searchService = new google.maps.places.AutocompleteService();
+        //         }
 
+        //         this.searchService.getPlacePredictions(
+        //             {
+        //                 input: this.searchQuery,
+        //                 componentRestrictions: { country: 'US' },
+        //             },
+        //             (predictions) => {
+        //                 if (predictions && predictions.length > 0) {
+        //                     const place = predictions[0];
+        //                     // eslint-disable-next-line no-undef
+        //                     const placeService = new google.maps.places.PlacesService(this.map);
+        //                     placeService.getDetails(
+        //                         { placeId: place.place_id },
+        //                         (result, status) => {
+        //                             // eslint-disable-next-line no-undef
+        //                             if (status === google.maps.places.PlacesServiceStatus.OK) {
+        //                                 this.map.setCenter(result.geometry.location);
+        //                             }
+        //                         }
+        //                     );
+        //                 }
+        //             }
+        //         );
+        //     } else {
+        //         alert('Map not initialized or search query is empty.');
+        //     }
+        // },
 
-
-                    // eslint-disable-next-line no-undef
-                    this.map = new google.maps.Map(document.getElementById('map'), {
-                        center: { lat: latitude, lng: longitude },
-                        zoom: 15,
-                    });
-
-                    // eslint-disable-next-line no-undef
-                    new google.maps.Marker({
-                        position: { lat: latitude, lng: longitude },
-                        map: this.map,
-                        title: 'Your Location',
-
-                    });
-
-                    // eslint-disable-next-line no-undef
-                    new google.maps.Marker({
-
-                        position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
-                        map: this.map,
-                        title: `$(stache.stacheName)`,
-                    })
-
-                    // AppState.activeStache.find((stache) => {
-                    //     const distance = this.calculateDistance(
-                    //         latitude,
-                    //         longitude,
-                    //         stache.lat,
-                    //         stache.lng
-                    //     );
-                    //     stache.distance = distance; // Store the distance in the stache object
-                    //     logger.log(this.map);
-                    //     new google.maps.Marker({
-                    //         position: { lat: stache.lat, lng: stache.lng },
-                    //         map: this.map,
-                    //         title: `${stache.stacheName}`,
-                    //     });
-                    // });
-                });
-            } else {
-                alert('Geolocation is not available in your browser');
-            }
-        },
-
-        searchLocation() {
-            if (this.searchQuery && this.map) {
-                if (!this.searchService) {
-                    // eslint-disable-next-line no-undef
-                    this.searchService = new google.maps.places.AutocompleteService();
-                }
-
-                this.searchService.getPlacePredictions(
-                    {
-                        input: this.searchQuery,
-                        componentRestrictions: { country: 'US' },
-                    },
-                    (predictions) => {
-                        if (predictions && predictions.length > 0) {
-                            const place = predictions[0];
-                            // eslint-disable-next-line no-undef
-                            const placeService = new google.maps.places.PlacesService(this.map);
-                            placeService.getDetails(
-                                { placeId: place.place_id },
-                                (result, status) => {
-                                    // eslint-disable-next-line no-undef
-                                    if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                        this.map.setCenter(result.geometry.location);
-                                    }
-                                }
-                            );
-                        }
-                    }
-                );
-            } else {
-                alert('Map not initialized or search query is empty.');
-            }
-        },
-
-        selectLocation(result) {
-            // Center the map on the selected location
-            // eslint-disable-next-line no-undef
-            const placeService = new google.maps.places.PlacesService(this.map);
-            placeService.getDetails({ placeId: result.place_id }, (place) => {
-                if (place && place.geometry && place.geometry.location) {
-                    const location = place.geometry.location;
-                    this.map.setCenter(location);
-                    this.map.setZoom(20); // Adjust the zoom level as needed
-                }
-            });
-            this.searchResults = []; // Clear search results after selecting a location
-        },
-    },
-
-
-    mounted() {
-        if (typeof google !== 'undefined') {
-
-            this.getUserLocationAndDisplayMap();
-        } else {
-
-            const script = document.createElement('script');
-            //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
-            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places&callback=Function.prototype`;
-            script.onload = this.getUserLocationAndDisplayMap;
-            document.head.appendChild(script);
-        }
-    },
+        // selectLocation(result) {
+        //     // Center the map on the selected location
+        //     // eslint-disable-next-line no-undef
+        //     const placeService = new google.maps.places.PlacesService(this.map);
+        //     placeService.getDetails({ placeId: result.place_id }, (place) => {
+        //         if (place && place.geometry && place.geometry.location) {
+        //             const location = place.geometry.location;
+        //             this.map.setCenter(location);
+        //             this.map.setZoom(20); // Adjust the zoom level as needed
+        //         }
+        //     });
+        //     this.searchResults = []; // Clear search results after selecting a location
+        // },
+    }
 };
 </script>
 
 
 <style scoped lang="scss">
+.map-button {
+    background: linear-gradient(45deg, #ffc900, #f4f4f4);
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 2px;
+    color: black;
+    transform: background 0.3s, transform 0.2s;
+}
+
+.map-button:hover {
+    background: linear-gradient(45deg, #f4f4f4, #ffc900);
+    transform: scale(1.1);
+}
+
 .button-class {
     background: linear-gradient(25deg, #41644A, #adc7b3);
     border-radius: 20px;
@@ -405,6 +438,22 @@ export default {
     object-position: center;
 }
 
+.map_card {
+    border: 3px solid #29412fce;
+    box-shadow: 0 10px 30px #41644ace;
+    border-radius: 25px
+}
+
+.glassCard2 {
+    /* From https://css.glass */
+    background: rgba(139, 141, 104, 0.857);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 4px solid rgba(47, 28, 2, 0.345);
+}
+
 .revealButton {
     background: linear-gradient(25deg, #0e421a, #5dde39);
     border-radius: 20px;
@@ -426,7 +475,22 @@ export default {
 
 }
 
+.glassCard {
+
+    background: #41644a9d;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid rgba(241, 233, 0, 0.673);
+}
+
 .nameLink {
     color: #E86A33;
+}
+
+.background-color {
+    background-color: #41644a71;
+    backdrop-filter: blur(5px);
 }
 </style>

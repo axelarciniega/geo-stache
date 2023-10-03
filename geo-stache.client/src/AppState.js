@@ -25,7 +25,7 @@ export const AppState = reactive({
 
   map: null,
 
-  /**@type {Stache[]} */
+  /**@type {Stache} */
   activeStache: {},
 
     /**@type {Stache[]} */

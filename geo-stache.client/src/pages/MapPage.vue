@@ -228,10 +228,10 @@ export default {
     if (typeof google !== 'undefined') {
       this.getUserLocationAndDisplayMap();
     } else {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
-      script.onload = this.getUserLocationAndDisplayMap;
-      document.head.appendChild(script);
+      // const script = document.createElement('script');
+      // script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+      // script.onload = this.getUserLocationAndDisplayMap;
+      // document.head.appendChild(script);
     }
 
     this.getStaches().then(() => {
