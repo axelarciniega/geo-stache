@@ -116,7 +116,7 @@
                         <b>{{ comment.creator.name }}</b>
                         <p>{{ comment.body }}</p>
                         <div class="text-end" v-if="account.id == comment.creatorId">
-                            <button class="delete-button" @click="removeComment">delete</button>
+                            <button class="delete-button" @click="removeComment(comment.id)">delete</button>
                         </div>
                     </div>
                 </section>
@@ -275,11 +275,11 @@ export default {
             }),
 
 
-            async removeComment() {
+            async removeComment(id) {
                 try {
                     if (await Pop.confirm()) {
-                        let comment = AppState.stacheComments.find(c => c.accountId == AppState.stacheComments.accountId)
-                        await commentsService.removeComment(comment.id)
+                        // let comment = AppState.stacheComments.find(c => c.id == id)
+                        await commentsService.removeComment(id)
                         Pop.success('removed comment')
                     }
                 } catch (error) {
