@@ -3,18 +3,26 @@
         <div v-show="adventure.status === 'todo'">
             {{ adventure.name }}
         </div>
+
     </div>
 </template>
+
+
 
 <script>
 import { Adventure } from '../models/Adventure';
 
+Adventure
 export default {
     props: {
         adventure: { type: Adventure || Object, required: true }
-    }
+    },
+    setup() {
+        return {};
+    },
 };
 </script>
+
 
 <style scoped>
 .badge {
@@ -38,3 +46,5 @@ export default {
     font-weight: bold;
 }
 </style>
+
+

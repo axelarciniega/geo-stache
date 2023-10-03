@@ -20,7 +20,7 @@
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
-                            <button class="revealButton" type="button" data-bs-toggle="collapse"
+                            <button class="revealButton text-light" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseWidthExample" aria-expanded="false"
                                 aria-controls="collapseWidthExample">
                                 Reveal Hint
@@ -53,7 +53,7 @@
                 <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex background-color p-3">
+                <div class="justify-content-around d-flex bg-grey p-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -63,7 +63,7 @@
                         delete <i class="mdi mdi-icon"></i>
                     </button>
                     <router-link :to="{ name: 'Map' }">
-                        <div class="map-button elevation-5">back to maps
+                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to maps
                         </div>
                     </router-link>
                 </div>
@@ -73,13 +73,13 @@
             <div class="row">
                 <div class="col-6">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+                        <ToDoCard :todo="adventure" />
 
                     </div>
                 </div>
                 <div class="col-6">
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+                    <div v-for="adventure in adventure" :key="adventure.id" class="col-3">
+                        <BadgeCard :badge="adventure" />
 
                     </div>
                 </div>
@@ -371,21 +371,6 @@ export default {
 
 
 <style scoped lang="scss">
-
-.map-button{
-    background: linear-gradient(45deg, #ffc900, #f4f4f4);
-    border: solid 2px black;
-    border-radius: 20px;
-    padding: 2px;
-    color: black;
-    transform: background 0.3s, transform 0.2s;
-}
-
-.map-button:hover{
-    background: linear-gradient(45deg, #f4f4f4, #ffc900);
-    transform: scale(1.1);
-}
-
 .button-class {
     background: linear-gradient(25deg, #41644A, #adc7b3);
     border-radius: 20px;
@@ -421,13 +406,13 @@ export default {
 }
 
 .revealButton {
-    background: linear-gradient(25deg, #166729, #5dde39);
+    background: linear-gradient(25deg, #0e421a, #5dde39);
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
 }
 
 .revealButton:hover {
-    background: linear-gradient(25deg, #5dde39, #0e421a);
+    background: linear-gradient(#5dde39, #0e421a);
     transform: scale(1.1);
 }
 
@@ -444,10 +429,4 @@ export default {
 .nameLink {
     color: #E86A33;
 }
-
-.background-color{
-    background-color: #41644a71;
-    backdrop-filter: blur(5px);
-}
-
 </style>

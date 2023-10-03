@@ -11,7 +11,7 @@ class AdventuresService {
         const newAdventure = new Adventure(response.data)
 
         AppState.activeStacheAdventures.push(newAdventure)
-        // AppState.myAdventures.push(newAdventure)
+        AppState.myAdventures.push(newAdventure)
     }
 
     async getAdventuresByStache(stacheId) {
