@@ -6,7 +6,7 @@
 
                 <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
-                    todo bool/ {{ stache.todo }}
+
                     <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
@@ -67,17 +67,11 @@
                     <router-link :to="{ name: 'Map' }" class=" col-md-2 col-8 my-md-0 my-1">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
-                            <button class=" revealButton border border-1 border-black col-2 text-black">
-                                Found It!
-                            </button>
-                            <router-link :to="{ name: 'Map' }">
-                                <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
-                                    maps
-                                </div>
-                            </router-link>
-
                         </div>
+                    </router-link>
+
                 </div>
+            </div>
         </section>
         <section class="container">
             <div class="row">
@@ -183,7 +177,6 @@ export default {
         }
 
 
-
         function addMarker(marker) {
             markers.value.push(marker)
             // eslint-disable-next-line no-undef
@@ -251,14 +244,23 @@ export default {
             }
         }
 
-
+        // const isMyAdventure = computed(() => {
+        //     let isFound = true
+        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+        //             if (i == j) {
+        //                 isFound = false
+        //             }
+        //         }
+        //     }
+        //     return isFound
+        // });
 
         return {
             // isMyAdventure,
             stache,
             setupMap,
             map,
-
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
