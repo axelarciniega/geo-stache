@@ -3,11 +3,11 @@
     <div class="container">
         <section class="row">
             <div class="col-12">
-                <h3>Comments</h3>
+                <h3 class="text-center">Comments</h3>
             </div>
-            <form @submit.prevent="createComment">
+            <form @submit.prevent="createComment" class="text-center">
                 <div>
-                    <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" cols="50" rows="5"></textarea>
+                    <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6"></textarea>
                 </div>
                 <div class="col-12">
                     <button class="button-class">Post</button>
