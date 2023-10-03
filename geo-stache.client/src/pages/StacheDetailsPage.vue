@@ -6,9 +6,7 @@
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
-                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
-                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
-
+                    <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
