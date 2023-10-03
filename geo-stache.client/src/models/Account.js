@@ -8,9 +8,11 @@
 
 export class Profile{
   constructor(data) {
+    this.profileId = data.profileId
     this.id = data.id
     this.name = data.name
     this.picture = data.picture
+    this.bio = data.bio
     this.badgeCount = data.badgeCount ? data.badgeCount: null
     this.todoCount = data.todoCount ? data.todoCount : null
   }
@@ -23,8 +25,8 @@ export class Account extends Profile {
     this.email = data.email
     this.location = data.location
     // NOTE keep null check. reference stache schema
-    this.lat = data.location.coordinates ? data.location.coordinates[0] : null
-    this.lng = data.location.coordinates ? data.location.coordinates[1] : null
+    // this.lat = data.location.coordinates ? data.location.coordinates[0] : null
+    // this.lng = data.location.coordinates ? data.location.coordinates[1] : null
   }
 }
 
