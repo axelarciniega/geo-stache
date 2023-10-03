@@ -69,6 +69,14 @@
                     <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
+                            <button class=" revealButton border border-1 border-black col-2 text-black">
+                                Found It!
+                            </button>
+                        </div>
+                    </router-link>
+                    <router-link :to="{ name: 'Map' }">
+                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
+                            maps
                         </div>
                     </router-link>
 
