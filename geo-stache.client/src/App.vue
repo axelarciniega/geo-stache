@@ -4,8 +4,9 @@
     <header>
       <Navbar />
     </header>
-    <main>
-      <router-view style="height: 100%; min-height: 100vh;" />
+    <main style="height: 100%; min-height: 100vh;">
+      <!--  -->
+      <router-view />
     </main>
 
     <!-- NOTE FOOTER -->
