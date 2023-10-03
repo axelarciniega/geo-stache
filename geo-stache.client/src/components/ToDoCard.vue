@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="adventure.status === 'todo'">
-            {{ adventure.name }}
+            {{ adventure.stache.stacheName }}
         </div>
     </div>
 </template>

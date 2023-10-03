@@ -73,16 +73,16 @@
             <div class="row">
                 <div class="col-6">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+                        <ToDoCard :adventure="adventure" />
 
                     </div>
                 </div>
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
 
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
@@ -371,8 +371,7 @@ export default {
 
 
 <style scoped lang="scss">
-
-.map-button{
+.map-button {
     background: linear-gradient(45deg, #ffc900, #f4f4f4);
     border: solid 2px black;
     border-radius: 20px;
@@ -381,7 +380,7 @@ export default {
     transform: background 0.3s, transform 0.2s;
 }
 
-.map-button:hover{
+.map-button:hover {
     background: linear-gradient(45deg, #f4f4f4, #ffc900);
     transform: scale(1.1);
 }
@@ -471,13 +470,12 @@ export default {
     color: #E86A33;
 }
 
-.background-color{
+.background-color {
     background-color: #41644a71;
     backdrop-filter: blur(5px);
 }
 
-.body-color{
-    background: linear-gradient(25deg, #41644A,#ebd512 );
+.body-color {
+    background: linear-gradient(25deg, #41644A, #ebd512);
 }
-
 </style>
