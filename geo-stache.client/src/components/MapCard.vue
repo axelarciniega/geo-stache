@@ -92,6 +92,9 @@ export default {
                 bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
             })
             map.fitBounds(bounds)
+            // const center = new google.maps.Marker({
+            //     position: { lat: marker.lat, lng: marker.lng }
+            // })
         }
 
         function markYourLocation() {
