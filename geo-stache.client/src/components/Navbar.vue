@@ -43,7 +43,7 @@
             <!-- ✅DONE add back in when ready -  v-if="user.isAuthenticated" -->
             <template #button>
               <i class="mdi mdi-plus-box"></i> Create Stache
-            </template>
+            </template> 
             <template #body>
               <CreateStacheForm />
             </template>
