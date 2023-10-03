@@ -1,10 +1,8 @@
 <template>
-    <div v-show="adventure.status === 'found'">
-        <div class="medal">
-            <img :title="stache.stacheName" class="badge-image" :src="adventure.stache.badgeImage" alt="Badge" />
-
+    <div>
+        <div v-show="adventure.status === 'todo'">
+            {{ adventure.name }}
         </div>
-        <div class="badge-name">{{ adventure.stache.stacheName }}</div>
     </div>
 </template>
 
@@ -13,7 +11,7 @@ import { Adventure } from '../models/Adventure';
 
 export default {
     props: {
-        adventure: { type: Adventure || Object, required: true }, myAdventures: { type: Adventure || Object, required: true }, stache: { type: Adventure || Object, required: true }
+        adventure: { type: Adventure || Object, required: true }
     }
 };
 </script>

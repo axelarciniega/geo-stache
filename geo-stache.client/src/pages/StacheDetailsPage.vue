@@ -33,15 +33,17 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample">
                             <div class="card card-body" style="width: 300px;">
 
-                                <p class="text-center">Hint: {{ stache.hint }}</p>
+                                <p class="text-center">{{ stache.hint }}</p>
                             </div>
                         </div>
                     </div>
-                    <button class="adventureButton" v-if="isMyAdventure" @click="addAdventure()"><i
-                            class="mdi mdi-plus"></i>Add to your Adventures
+
+                    <button v-if="!isMyAdventure" class="adventureButton" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to your
+                        Adventures
                     </button>
 
-                    <button class="adventureButton" v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from
+                    <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
                             your Adventures</i>
                     </button>
 
@@ -68,11 +70,24 @@
                 </div>
             </div>
         </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <ToDoCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+
+                    </div>
+                </div>
 
 
-        <div v-if="stacheAdventures.length > 0" class="bg-danger">
-            {{ stacheAdventures }}
-        </div>
+            </div>
+        </section>
 
 
         <!-- STUB Comment section -->
@@ -119,7 +134,6 @@ export default {
 
 
     setup() {
-        const isToDo = ref(false);
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
@@ -145,25 +159,27 @@ export default {
             }
         }
 
+        const isMyAdventure = computed(() => {
+            let isFound = true
+            for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+                for (let j = 0; j <= AppState.myAdventures.length; j++) {
+                    if (i == j) {
+                        isFound = false
+                    }
+                }
+            }
+            return isFound
+        });
+
         return {
-            // isToDo,
+            isMyAdventure,
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
-            isMyAdventure: computed(() => {
-                let isFound = true
-                for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-                    for (let j = 0; j <= AppState.myAdventures.length; j++) {
-                        if (i == j) {
-                            isFound = false
-                        }
-                    }
-                }
-                return isFound
-            }),
+
 
             async removeComment() {
                 try {
@@ -190,9 +206,7 @@ export default {
                 }
             },
 
-            // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
-            // NOTE Do we want the user to be able to remove once the Stache is already found?
-            // like Mick's from PostIt, flips a bool and not what we want.
+
             async addAdventure() {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
@@ -203,9 +217,22 @@ export default {
                     Pop.error(error)
                 }
             },
-
+            async deleteAdventure() {
+                try {
+                    if (await Pop.confirm('Are you sure?')) {
+                        const adventureToRemove = AppState.myAdventures.find(a => a.accountId == AppState.myAdventures.accountId)
+                        const adventureId = adventureToRemove.id
+                        await adventuresService.deleteAdventure(adventureId)
+                        Pop.success('removed adventure')
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            },
 
         };
+
     },
 
     methods: {
@@ -232,11 +259,13 @@ export default {
 
 
 
+                    // eslint-disable-next-line no-undef
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
                         zoom: 15,
                     });
 
+                    // eslint-disable-next-line no-undef
                     new google.maps.Marker({
                         position: { lat: latitude, lng: longitude },
                         map: this.map,
@@ -244,6 +273,7 @@ export default {
 
                     });
 
+                    // eslint-disable-next-line no-undef
                     new google.maps.Marker({
 
                         position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
@@ -275,6 +305,7 @@ export default {
         searchLocation() {
             if (this.searchQuery && this.map) {
                 if (!this.searchService) {
+                    // eslint-disable-next-line no-undef
                     this.searchService = new google.maps.places.AutocompleteService();
                 }
 
@@ -286,10 +317,12 @@ export default {
                     (predictions) => {
                         if (predictions && predictions.length > 0) {
                             const place = predictions[0];
+                            // eslint-disable-next-line no-undef
                             const placeService = new google.maps.places.PlacesService(this.map);
                             placeService.getDetails(
                                 { placeId: place.place_id },
                                 (result, status) => {
+                                    // eslint-disable-next-line no-undef
                                     if (status === google.maps.places.PlacesServiceStatus.OK) {
                                         this.map.setCenter(result.geometry.location);
                                     }
@@ -305,6 +338,7 @@ export default {
 
         selectLocation(result) {
             // Center the map on the selected location
+            // eslint-disable-next-line no-undef
             const placeService = new google.maps.places.PlacesService(this.map);
             placeService.getDetails({ placeId: result.place_id }, (place) => {
                 if (place && place.geometry && place.geometry.location) {
@@ -393,4 +427,5 @@ export default {
 
 .nameLink {
     color: #E86A33;
-}</style>
+}
+</style>

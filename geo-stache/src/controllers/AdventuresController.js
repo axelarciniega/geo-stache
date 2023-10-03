@@ -21,7 +21,7 @@ export class AdventuresController extends BaseController {
             const adventures = await adventuresService.getAdventures()
             return response.send(adventures)
         } catch (error) {
-
+            next(error)
         }
     }
     async editAdventure(request, response, next) {
