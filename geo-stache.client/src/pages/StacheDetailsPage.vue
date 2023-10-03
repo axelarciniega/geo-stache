@@ -206,9 +206,7 @@ export default {
                 }
             },
 
-            // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
-            // NOTE Do we want the user to be able to remove once the Stache is already found?
-            // like Mick's from PostIt, flips a bool and not what we want.
+
             async addAdventure() {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
