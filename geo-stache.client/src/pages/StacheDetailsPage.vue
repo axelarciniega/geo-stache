@@ -54,7 +54,7 @@
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex bg-grey p-3">
+                <div class="justify-content-around d-flex bg-oliveGreen p-3">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -72,17 +72,50 @@
         </section>
         <section class="container">
             <div class="row">
-                <div class="col-6">
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :todo="adventure" />
+                <div class="col-12">
+                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <ToDoCard :adventure="adventure" />
+                    </div> -->
 
+                    <!-- <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                        aria-controls="offcanvasExample">
+                        Link with href
+                    </a> -->
+                    <!-- STUB -->
+                    <button class="col-2 btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        Button with data-bs-target
+                    </button>
+
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                        aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                        </div>
+                        <div>
+                            <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                                <ToDoCard :adventure="adventure" />
+                            </div>
+                        </div>
+                        <div class="dropdown mt-3">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div v-for="adventure in adventure" :key="adventure.id" class="col-3">
-                        <BadgeCard :badge="adventure" />
-
-                    </div>
+                    <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+                    </div> -->
                 </div>
 
 
@@ -492,5 +525,9 @@ export default {
 .background-color {
     background-color: #41644a71;
     backdrop-filter: blur(5px);
+}
+
+.body-color {
+    background: linear-gradient(25deg, #5f7656, #fbcf33);
 }
 </style>

@@ -7,7 +7,7 @@
             </div>
             <form @submit.prevent="createComment" class="text-center">
                 <div>
-                    <textarea v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6 commentText text-black"></textarea>
+                    <textarea maxLength="200" required v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6 commentText text-black"></textarea>
                 </div>
                 <div class="col-12">
                     <button class="button-class">Post</button>
@@ -78,7 +78,7 @@ setup() {
 }
 
 .commentText{
-    background: linear-gradient(25deg, #ebd512,#41644A );
+    background: linear-gradient(25deg, #fbcf33,#41644A );
 }
 
 .commentText::placeholder{

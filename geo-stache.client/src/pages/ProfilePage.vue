@@ -34,14 +34,49 @@
                 {{ profile.bio }}
                 <p class="m-2">{{ profile.email }}</p>
             </div>
+            <!-- STUB off canvas for Found Staches
             <div class="col-12 col-md-3 geo-shadow order-2 my-md-4">
                 <h4 class="text-center mt-2">Found staches</h4>
-            </div>
+            </div> -->
         </section>
+        <!-- STUB Todos Off Canvas -->
         <section class="pt-5 row justify-content-around pb-5">
-            <div class="col-12 col-md-3 geo-shadow margin-class">
+            <!-- <div class="col-12 col-md-3 geo-shadow margin-class">
                 <h4 class="text-center mt-2">Todos</h4>
+            </div> -->
+            <!-- <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                aria-controls="offcanvasExample">
+                Link with href
+            </a> -->
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
+                To Do
+            </button>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <ToDoCard :adventure="adventure" />
+                    </div>
+                </div>
+                <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
             </div>
+            <!-- </div> -->
+            <!-- STUB Badges Off Canvas -->
             <div class="col-12 col-md-6 geo-shadow">
                 <h4 class="text-center mt-2">Badges</h4>
             </div>
@@ -52,15 +87,14 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, popScopeId } from 'vue'
 import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
 import { watchEffect, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { profilesService } from "../services/ProfilesService.js";
-
-
+import { adventuresService } from '../services/AdventuresService';
 
 export default {
     setup() {
@@ -71,8 +105,16 @@ export default {
             getProfileById()
             getStachesByProfileId()
             // TODO get adventures by profile id...this is already written in profile service
-        })
+        }),
 
+            async function getAdventuresByStacheId() {
+                try {
+                    await adventuresService.getAdventuresByStacheId(route.params.stacheId)
+                } catch (error) {
+                    Pop.error(error)
+                }
+
+            }
         async function getProfileById() {
             try {
                 await accountService.getProfileById(route.params.profileId)
@@ -94,7 +136,8 @@ export default {
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
             // staches: computed(() => AppState.staches),
-            activeProfileStaches: computed(() => AppState.activeProfileStaches)
+            activeProfileStaches: computed(() => AppState.activeProfileStaches),
+            myAdventures: computed(() => AppState.myAdventures),
         };
     },
 };
@@ -103,30 +146,27 @@ export default {
 
 <style lang="scss" scoped>
 .geo-shadow {
-//     backdrop-filter: blur(20px);
-//     border-radius: 10px;
-//     /* width: 100%; */
-//     /* object-fit: cover;
-//   object-position: center; */
-//     box-shadow: 0 3px 3px -1px rgba(133, 133, 133, 0.85),
-//         0 5px 6px 0 rgba(133, 133, 133, 0.79),
-//         0 1px 8px 0 rgba(133, 133, 133, 0.79);
+    //     backdrop-filter: blur(20px);
+    //     border-radius: 10px;
+    //     /* width: 100%; */
+    //     /* object-fit: cover;
+    //   object-position: center; */
+    //     box-shadow: 0 3px 3px -1px rgba(133, 133, 133, 0.85),
+    //         0 5px 6px 0 rgba(133, 133, 133, 0.79),
+    //         0 1px 8px 0 rgba(133, 133, 133, 0.79);
 
-background: #f2e3db;
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.3px);
--webkit-backdrop-filter: blur(5.3px);
-border: 1px solid rgba(65, 100, 74, 1);
+    background: #f2e3db;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.3px);
+    -webkit-backdrop-filter: blur(5.3px);
+    border: 1px solid rgba(65, 100, 74, 1);
 }
 </style>
 <style>
-
-@media(max-width: 768px){
-    .margin-class{
+@media(max-width: 768px) {
+    .margin-class {
         margin: 30px;
     }
 }
-
-
 </style>

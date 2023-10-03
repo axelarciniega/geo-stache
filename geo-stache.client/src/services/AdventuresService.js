@@ -14,7 +14,7 @@ class AdventuresService {
         AppState.myAdventures.push(newAdventure)
     }
 
-    async getAdventuresByStache(stacheId) {
+    async getAdventuresByStacheId(stacheId) {
         const response = await api(`api/staches/${stacheId}/adventures`)
         logger.log('getting those adventures by Stache', response.data)
         AppState.activeStacheAdventures = response.data
