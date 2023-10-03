@@ -453,12 +453,13 @@ export default {
     background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
-    color: var(--UltraDrkGreen)
+    border-color: var(--LghtOrange);
 }
 
 .delete-button:hover {
-    background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
+    background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
     transform: translateY(-5px);
+    border-color: var(--DrkOrange);
 }
 
 .profile-pic {
@@ -549,6 +550,6 @@ export default {
 }
 
 .body-color {
-    background: linear-gradient(25deg, var(--Green), var(--Sand));
+    background: linear-gradient(25deg, var(--LghtGreen), var(--Sand));
 }
 </style>

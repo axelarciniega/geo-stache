@@ -1,5 +1,4 @@
 <template>
-
     <div class="container">
         <section class="row">
             <div class="col-12">
@@ -7,7 +6,8 @@
             </div>
             <form @submit.prevent="createComment" class="text-center">
                 <div>
-                    <textarea maxLength="200" required v-model="comment.body" placeholder="say something" name="Comment" id="comment" class="col-12 col-md-6 commentText text-black"></textarea>
+                    <textarea maxLength="200" required v-model="comment.body" placeholder="say something" name="Comment"
+                        id="comment" class="card col-12 col-md-6 commentText"></textarea>
                 </div>
                 <div class="col-12">
                     <button class="button-class">Post</button>
@@ -21,8 +21,6 @@
 
 
     </div>
-
-
 </template>
 
 <script>
@@ -33,56 +31,55 @@ import { commentsService } from '../services/CommentsService.js';
 
 
 export default {
-    
 
 
 
-setup() {
-    const route = useRoute()
-    const comment = ref({})
-    function resetForm(){
-        comment.value = {category: ''}
-    }
 
-  return {
-    comment,
-
-    async createComment(){
-        try {
-            comment.value.stacheId = route.params.stacheId
-            await commentsService.createComment(comment.value)
-            Pop.success('Posted Comment')
-            resetForm()
-        } catch (error) {
-            Pop.error(error)
+    setup() {
+        const route = useRoute()
+        const comment = ref({})
+        function resetForm() {
+            comment.value = { category: '' }
         }
-    }
 
-  };
-},
+        return {
+            comment,
+
+            async createComment() {
+                try {
+                    comment.value.stacheId = route.params.stacheId
+                    await commentsService.createComment(comment.value)
+                    Pop.success('Posted Comment')
+                    resetForm()
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
+
+        };
+    },
 };
 </script>
 
 
 <style>
-
-.button-class{
-    background: linear-gradient(25deg, #41644A, #adc7b3);
+.button-class {
+    background: linear-gradient(25deg, var(--Green), var(--Sand));
     border-radius: 20px;
-    transition: background 0.3s, transform 0.2s
+    transition: background 0.3s, transform 0.2s;
 }
 
-.button-class:hover{
-    background: linear-gradient(25deg, #adc7b3, #41644A );
+.button-class:hover {
+    background: linear-gradient(25deg, var(--LghtGreen), var(--DrkGreen));
     transform: translateY(-5px);
+    color: var(--UltraDrkGreen)
 }
 
-.commentText{
-    background: linear-gradient(25deg, #fbcf33,#41644A );
+.commentText {
+    background: linear-gradient(25deg, var(--Sand), var(--LghtGreen));
 }
 
-.commentText::placeholder{
-    color:rgb(72, 72, 72);
+.commentText::placeholder {
+    color: var(--DrkGreen)
 }
-
 </style>
