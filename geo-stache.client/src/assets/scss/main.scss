@@ -7,10 +7,16 @@
 
 // GEO-STACH CUSTOM AND UTIL CLASSES
 :root {
-  --Sand: #F2E3DB;
-  --Green: #41644A;
+  --UltraDrkGreen: #233527ce;
   --DrkGreen: #263A29;
+  --Green: #41644A;
+  --LghtGreen: #b8c9bc;
+  --DrkOrange: #f1510d;
   --Orange: #E86A33;
+  --LghtOrange: #eca586;
+  --Yellow: #FFD700;
+  --Sand: #d6cec2;
+
 }
 
 /* Background color classes */
@@ -30,9 +36,29 @@
   background-color: var(--Orange);
 }
 
+.bg-LghtOrange {
+  background-color: var(--LghtOrange);
+}
+
+.bg-DrkGreen {
+  background-color: var(--DrkGreen);
+}
+
+.bg-LghtGreen {
+  background-color: var(--LghtGreen);
+}
+
+.bg-Yellow {
+  background-color: var(--Yellow);
+}
+
 /* Text color classes */
 .txt-Sand {
   color: var(--Sand) !important;
+}
+
+.txt-LghtGreen {
+  color: var(--LghtGreen);
 }
 
 .txt-Green {
@@ -43,8 +69,20 @@
   color: var(--DrkGreen) !important;
 }
 
+.txt-UltraDrkGreen {
+  color: var(--UltraDrkGreen) !important;
+}
+
 .txt-Orange {
   color: var(--Orange);
+}
+
+.txt-LghtOrange {
+  color: var(--LghtOrange);
+}
+
+.txt-Yellow {
+  color: var(--Yellow);
 }
 
 /* Font type classes */

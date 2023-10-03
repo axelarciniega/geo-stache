@@ -155,12 +155,12 @@ export default {
     //         0 5px 6px 0 rgba(133, 133, 133, 0.79),
     //         0 1px 8px 0 rgba(133, 133, 133, 0.79);
 
-    background: #f2e3db;
+    background: var(--Sand);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.3px);
     -webkit-backdrop-filter: blur(5.3px);
-    border: 1px solid rgba(65, 100, 74, 1);
+    border: 1px solid var(--Green);
 }
 </style>
 <style>

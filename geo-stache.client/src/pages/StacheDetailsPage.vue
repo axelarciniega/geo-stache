@@ -21,7 +21,7 @@
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
-                            <button class="revealButton text-light" type="button" data-bs-toggle="collapse"
+                            <button class="revealButton" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseWidthExample" aria-expanded="false"
                                 aria-controls="collapseWidthExample">
                                 Reveal Hint
@@ -424,38 +424,40 @@ export default {
 
 <style scoped lang="scss">
 .map-button {
-    background: linear-gradient(45deg, #ffc900, #f4f4f4);
-    border: solid 2px black;
+    background: linear-gradient(45deg, var(--Yellow), var(--Sand));
+    border: solid 2px var(--UltraDrkGreen);
     border-radius: 20px;
     padding: 2px;
-    color: black;
+    color: var(--DrkGreen);
     transform: background 0.3s, transform 0.2s;
 }
 
 .map-button:hover {
-    background: linear-gradient(45deg, #f4f4f4, #ffc900);
+    background: linear-gradient(45deg, var(--Sand), var(--Yellow));
     transform: scale(1.1);
 }
 
 .button-class {
-    background: linear-gradient(25deg, #41644A, #adc7b3);
-    border-radius: 20px;
-    transition: background 0.3s, transform 0.2s
-}
-
-.button-class:hover {
-    background: linear-gradient(25deg, #adc7b3, #41644A);
-    transform: translateY(-5px);
-}
-
-.delete-button {
-    background: linear-gradient(25deg, #E86A33, #e68b64);
+    background: linear-gradient(25deg, var(--Green), var(--Sand));
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
 }
 
+.button-class:hover {
+    background: linear-gradient(25deg, var(--LghtGreen), var(--DrkGreen));
+    transform: translateY(-5px);
+    color: var(--UltraDrkGreen)
+}
+
+.delete-button {
+    background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    color: var(--UltraDrkGreen)
+}
+
 .delete-button:hover {
-    background: linear-gradient(25deg, #e68b64, #E86A33);
+    background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
     transform: translateY(-5px);
 }
 
@@ -472,35 +474,52 @@ export default {
 }
 
 .map_card {
-    border: 3px solid #29412fce;
-    box-shadow: 0 10px 30px #41644ace;
+    border: 3px solid var(--UltraDrkGreen);
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+        0 5px 6px 0 rgba(43, 43, 43, 0.79),
+        0 1px 8px 0 rgba(43, 43, 43, 0.79);
     border-radius: 25px
 }
 
 .glassCard2 {
     /* From https://css.glass */
-    background: rgba(139, 141, 104, 0.857);
+    background: var(--LghtGreen);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+        0 5px 6px 0 rgba(43, 43, 43, 0.79),
+        0 1px 8px 0 rgba(43, 43, 43, 0.79);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 4px solid rgba(47, 28, 2, 0.345);
+    border: 4px solid #2f1c0258;
 }
 
 .revealButton {
-    background: linear-gradient(25deg, #0e421a, #5dde39);
+    background: linear-gradient(25deg, var(--Green), var(--Sand));
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
+    border-color: var(--Sand);
+
 }
 
 .revealButton:hover {
-    background: linear-gradient(#5dde39, #0e421a);
+    background: linear-gradient(var(--Sand), var(--Green));
     transform: scale(1.1);
+    border-color: var(--Green);
 }
 
+
 .adventureButton {
-    background: linear-gradient(#f6c4aa, #E86A33);
+    background: linear-gradient(25deg, var(--Orange), var(--LghtOrange));
     border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    border-color: var(--LghtOrange);
+
+}
+
+.adventureButton:hover {
+    background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
+    transform: translateY(-5px);
+    border-color: var(--DrkOrange);
 }
 
 .nameLink:hover {
@@ -510,24 +529,26 @@ export default {
 
 .glassCard {
 
-    background: #41644a9d;
+    background: var(--Sand);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+        0 5px 6px 0 rgba(43, 43, 43, 0.79),
+        0 1px 8px 0 rgba(43, 43, 43, 0.79);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 3px solid rgba(241, 233, 0, 0.673);
+    border: 3px solid var(--Yellow);
 }
 
 .nameLink {
-    color: #E86A33;
+    color: var(--Orange);
 }
 
 .background-color {
-    background-color: #41644a71;
+    background-color: var(--DrkGreen);
     backdrop-filter: blur(5px);
 }
 
 .body-color {
-    background: linear-gradient(25deg, #5f7656, #fbcf33);
+    background: linear-gradient(25deg, var(--Green), var(--Sand));
 }
 </style>
