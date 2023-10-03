@@ -11,7 +11,7 @@
     <!-- <div class="component my-2"> -->
     <div class=" position-relative">
       <table class="row">
-        <tr class=" elevation-1 justify-content-between d-flex">
+        <tr class=" elevation-1 justify-content-between d-flex text-color">
           <td class=" col-4 text-center px-1">{{ stache.stacheName }}</td>
           <td class="col-4 text-center px-1">{{ stache.creator.name }}</td>
           <td class="col-4 text-center px-1">{{ stache.difficulty }}</td>
@@ -42,4 +42,19 @@ export default {
   },
   //   components: { Login, ModalWrapper }
 }
+
+
+
 </script>
+
+<style>
+
+.text-color{
+  color: #41644A;
+}
+
+.text-color:hover{
+  color: #F3971B;
+}
+
+</style>
