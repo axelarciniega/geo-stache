@@ -10,6 +10,7 @@
   --UltraDrkGreen: #233527ce;
   --DrkGreen: #263A29;
   --Green: #41644A;
+  --MdLghtGreen: #41644a7b;
   --LghtGreen: #b8c9bc;
   --DrkOrange: #f1510d;
   --Orange: #E86A33;
@@ -42,6 +43,10 @@
 
 .bg-DrkGreen {
   background-color: var(--DrkGreen);
+}
+
+.bg-MdLghtGreen {
+  background-color: var(--MdLghtGreen);
 }
 
 .bg-LghtGreen {
