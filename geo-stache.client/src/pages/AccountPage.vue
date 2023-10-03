@@ -8,9 +8,9 @@
         <h3 class="py-1">Hello Adventurer!</h3>
         <h3 class="py-1">{{ account.name }}</h3>
         <img class="profile-pic geo-shadow" :src="account.picture" alt="" />
+        <p>{{ account.bio }}</p>
         <p class="py-3">{{ account.email }}</p>
-        <!-- FIXME router link to profile page, need a get profile gy ID -->
-        <!-- <router-link :to="{ name: 'Profile', params: { profileId: profile.id } }"> -->
+
         <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
 
           <div class="btn">
@@ -47,20 +47,20 @@
           </div>
 
           <!-- Lat -->
-          <div class="mb-2 col-6">
+          <!-- <div class="mb-2 col-6">
             <label for="lat">
               Home or Preferred default Latitude
             </label>
             <input v-model="editable.lat" class="form-control" type="text">
-          </div>
+          </div> -->
 
           <!-- Lng -->
-          <div class="mb-2 col-6">
+          <!-- <div class="mb-2 col-6">
             <label for="lng">
               Home or Preferred default Longitude
             </label>
             <input v-model="editable.lng" class="form-control" type="text">
-          </div>
+          </div> -->
 
           <!-- Lat -->
           <div class="col-11">

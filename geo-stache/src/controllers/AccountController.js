@@ -13,7 +13,7 @@ export class AccountController extends BaseController {
       .get('/adventures', this.getMyAdventures)
       .get('', this.getUserAccount)
       .get('/:accountId', this.getUserLocation)
-      .put('/:accountId', this.updateAccount)
+      .put('', this.updateAccount)
   }
   async getMyAdventures(req, res, next) {
     try {
@@ -29,8 +29,10 @@ export class AccountController extends BaseController {
   // NOTE pass entire req.userInfo here
   async updateAccount(request, response, next) {
     try {
-      const updates = request.userInfo
-      const accountId = request.params.accountId// or is it userInfo? or Id?
+      // TODO get data from request body
+      const updates = request.body
+      // FIXME pull their id from the userinfo
+      const accountId = request.userInfo// or is it userInfo? or Id?
       const updatedAccount = await accountService.updateAccount(accountId, updates)
       response.send(updatedAccount)
     } catch (error) {
