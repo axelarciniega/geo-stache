@@ -31,7 +31,7 @@
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
                 <h4 class="text-center mt-2 ">Profile details</h4>
                 <img :src="profile.picture" alt="">
-                {{ profile.bio }}
+                <p class="m-2">{{ profile.bio }}</p>
                 <p class="m-2">{{ profile.email }}</p>
             </div>
             <!-- STUB off canvas for Found Staches
