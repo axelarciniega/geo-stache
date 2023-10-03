@@ -6,9 +6,7 @@
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
-                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
-                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
-
+                    <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
@@ -278,7 +276,7 @@ export default {
 
                         position: { lat: AppState.activeStache.lat, lng: AppState.activeStache.lng },
                         map: this.map,
-                        title: `$(stache.stacheName)`
+                        title: `$(stache.stacheName)`,
                     })
 
                     // AppState.activeStache.find((stache) => {
@@ -360,7 +358,7 @@ export default {
 
             const script = document.createElement('script');
             //  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&callback=Function.prototype`
-            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places&callback=Function.prototype`;
             script.onload = this.getUserLocationAndDisplayMap;
             document.head.appendChild(script);
         }
