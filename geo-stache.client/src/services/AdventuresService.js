@@ -11,30 +11,30 @@ class AdventuresService {
         const newAdventure = new Adventure(response.data)
 
         AppState.activeStacheAdventures.push(newAdventure)
-        // AppState.myAdventures.push(newAdventure)
+        AppState.myAdventures.push(newAdventure)
     }
 
     async getAdventuresByStache(stacheId) {
         const response = await api(`api/staches/${stacheId}/adventures`)
         logger.log('getting those adventures by Stache', response.data)
-        AppState.activeStacheAdventures= response.data
+        AppState.activeStacheAdventures = response.data
 
     }
     async deleteAdventure(adventureId) {
         const response = await api.delete(`api/adventures/${adventureId}`)
         logger.log('[DELETING ADVENTURE]', response.data)
-    AppState.myAdventures=AppState.myAdventures.filter(a=>a.id != adventureId)
+        AppState.myAdventures = AppState.myAdventures.filter(a => a.id != adventureId)
 
     }
 
 
-// completeAdventure(adventureId){
+    // completeAdventure(adventureId){
     // TODO find adventure in app state
     // TODO change adventure.status = 'completed'
     // TODO change adventure.foundDate = Date.now()
     // TODO send put request ('api/adventures/adventureId, foundadventure)
     // TODO  do a splice to get reactive change to see that flip on the page
-// }
+    // }
 
 
 }
