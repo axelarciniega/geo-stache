@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <button v-if="isMyAdventure" class="adventureButton" @click="addAdventure()"><i
+                    <button v-if="!isMyAdventure" class="adventureButton" @click="addAdventure()"><i
                             class="mdi mdi-plus"></i>Add to your
                         Adventures
                     </button>
@@ -74,12 +74,14 @@
             <div class="row">
                 <div class="col-6">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="adventure" />
+                        <ToDoCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+
                     </div>
                 </div>
                 <div class="col-6">
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="adventure" />
+                        <BadgeCard :adventure="yourAdventureData" :myAdventures="yourMyAdventuresData" />
+
                     </div>
                 </div>
 
