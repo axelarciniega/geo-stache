@@ -21,25 +21,25 @@
     <!-- STUB -->
     <section class="container">
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
-        <section class="row justify-content-around">
-            <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow">
-                <h4 class="text-center mt-2">Created staches</h4>
+        <section class="row justify-content-around mt-5">
+            <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
+                <h4 class="text-center mt-2 ">Created staches</h4>
                 <div v-for="s in activeProfileStaches" :key="s.id">
                     <ActiveProfileStacheCard :stache="s" />
                 </div>
             </div>
-            <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0">
-                <h4 class="text-center mt-2">Profile details</h4>
+            <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
+                <h4 class="text-center mt-2 ">Profile details</h4>
                 <img :src="profile.picture" alt="">
                 {{ profile.bio }}
-                <p class="mb-2">{{ profile.email }}</p>
+                <p class="m-2">{{ profile.email }}</p>
             </div>
             <div class="col-12 col-md-3 geo-shadow order-2 my-md-4">
                 <h4 class="text-center mt-2">Found staches</h4>
             </div>
         </section>
         <section class="pt-5 row justify-content-around pb-5">
-            <div class="col-12 col-md-3 geo-shadow">
+            <div class="col-12 col-md-3 geo-shadow margin-class">
                 <h4 class="text-center mt-2">Todos</h4>
             </div>
             <div class="col-12 col-md-6 geo-shadow">
@@ -112,7 +112,7 @@ export default {
 //         0 5px 6px 0 rgba(133, 133, 133, 0.79),
 //         0 1px 8px 0 rgba(133, 133, 133, 0.79);
 
-background: rgba(65, 100, 74, 0.62);
+background: #f2e3db;
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5.3px);
@@ -120,4 +120,13 @@ backdrop-filter: blur(5.3px);
 border: 1px solid rgba(65, 100, 74, 1);
 }
 </style>
-<style></style>
+<style>
+
+@media(max-width: 768px){
+    .margin-class{
+        margin: 30px;
+    }
+}
+
+
+</style>
