@@ -1,13 +1,13 @@
 <template>
     <div v-if="stache">
-        <!-- <button @click="setupMap">Test Me</button> -->
+
         <section class="container">
             <div class="m-1 row glassCard2 p-2 justify-content-md-between justify-content-center">
 
                 <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
-                    <!-- FIXME  -->
+
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-center nameLink" title="Take me to profile page"> {{ stache.creator.name }} <img
@@ -46,7 +46,9 @@
                     <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
                             your Adventures</i>
                     </button>
-
+                    <button class=" delete-button border border-1 border-black col-2 text-black">
+                        Found It!
+                    </button>
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
@@ -67,16 +69,9 @@
                     <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
-                            <button class=" revealButton border border-1 border-black col-2 text-black">
-                                Found It!
-                            </button>
                         </div>
                     </router-link>
-                    <router-link :to="{ name: 'Map' }">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
-                            maps
-                        </div>
-                    </router-link>
+
 
                 </div>
             </div>
