@@ -1,83 +1,138 @@
 <template>
     <div>
-        <button class="txt-DrkGreen fnt-Cabin" @click="getUserLocationAndDisplayMap">Show Map</button>
-        <button class="txt-DrkGreen fnt-Cabin" @click="addMarker">Add Marker</button>
-        <div class="txt-DrkGreen fnt-Cabin" id="map" style="width: 100%; height: 400px;"></div>
+        <!-- <button class="txt-DrkGreen fnt-Cabin" @click="getUserLocationAndDisplayMap">Show Map</button>
+        <button class="txt-DrkGreen fnt-Cabin" @click="addMarker">Add Marker</button> -->
+        <div class="txt-DrkGreen fnt-Cabin" id="map" style="width: 100%; height: 400px; border-radius: 10px;"></div>
         <!-- List of added markers (optional) -->
         <div class="txt-DrkGreen fnt-Cabin">
-            <h3 class="p-3">Added Markers:</h3>
+            <!-- <h3 class="p-3">Added Markers:</h3>
             <ul>
                 <li v-for="(marker, index) in markers" :key="index">{{ marker.title }}</li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </template>
 <script>
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
+import Pop from '../utils/Pop';
+import { stachesService } from '../services/StachesService';
+import { useRoute } from 'vue-router';
+import { AppState } from '../AppState';
+// import { routerKey } from "vue-router";
+import { useRouter } from "vue-router";
+import { commentsService } from '../services/CommentsService';
+import { adventuresService } from '../services/AdventuresService';
 import { logger } from '../utils/Logger.js';
 export default {
-    data() {
-        return {
-            map: null,
-            markers: [], // To store markers added to the map
-        };
-    },
-    methods: {
-        getUserLocationAndDisplayMap() {
+    setup() {
+        const route = useRoute();
+        const router = useRouter();
+        const stache = computed(() => AppState.activeStache)
+        const lat = ref(-114)
+        const lng = ref(21)
+        const markers = ref([])
+        let map = null
+        let infoWindow = null
+
+        onMounted(() => {
+            // getStacheById();
+            // getCommentsByStache()
+            setupMap()
+            // eslint-disable-next-line no-undef
+        })
+
+        // watch(stache, () => {
+        //     if (map && AppState.activeStache) {
+        //         addStacheMarker()
+        //     }
+        // })
+
+        function setupMap() {
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    // FIXME Cannot have google undefined as it will cause errors.
-                    // NOTE - hasn't this been working?
-                    // this.map = new google.maps.Map(document.getElementById('map'), {
-                    //     center: { lat: latitude, lng: longitude },
-                    //     zoom: 15,
-                    // });
-                    // Create a marker at the user's location
-                    // FIXME Cannot have google undefined as it will cause errors.
-                    const userMarker = new google.maps.Marker({
-                        position: { lat: latitude, lng: longitude },
-                        map: this.map,
-                        title: 'Your Location',
+                    lat.value = position.coords.latitude;
+                    lng.value = position.coords.longitude;
+                    // eslint-disable-next-line no-undef
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: lat.value, lng: lng.value },
+                        zoom: 15,
                     });
-                    // Add the userMarker to the markers array
-                    this.markers.push(userMarker);
-                });
-            } else {
-                alert('Geolocation is not available in your browser');
+                    // eslint-disable-next-line no-undef
+                    infoWindow = new google.maps.InfoWindow()
+                    markYourLocation()
+                    // addStacheMarker()
+                })
             }
-        },
-        addMarker() {
-            if (this.map) {
-                // Get the user's location
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    // Create a new marker at the user's location
-                    const marker = new google.maps.Marker({
-                        position: { lat: latitude, lng: longitude },
-                        map: this.map,
-                        title: 'Custom Marker',
-                    });
-                    this.markers.push(marker);
-                    logger.log(marker)
-                });
-            } else {
-                alert('Map not initialized. Please click "Show Map" first.');
-            }
-        },
-    },
-    mounted() {
-        if (typeof google !== 'undefined') {
-            this.getUserLocationAndDisplayMap();
-        } else {
-            // const script = document.createElement('script');
-            // script.src = `https://maps.googleapis.com/maps/api/js?key= AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
-            // script.onload = this.getUserLocationAndDisplayMap;
-            // document.head.appendChild(script);
         }
-    },
-};
+
+
+        function addMarker(marker) {
+            markers.value.push(marker)
+            // eslint-disable-next-line no-undef
+            let markerElem = new google.maps.Marker({
+                position: { lat: marker.lat, lng: marker.lng },
+                map: map,
+                title: marker.name || marker.title,
+            });
+
+            // eslint-disable-next-line no-undef
+            google.maps.event.addListener(markerElem, 'click', () => {
+                infoWindow.setContent(marker.name || marker.title);
+                infoWindow.open(map, markerElem);
+            })
+
+
+        }
+
+        function centerMap() {
+            // eslint-disable-next-line no-undef
+            const bounds = new google.maps.LatLngBounds();
+            markers.value.forEach((marker) => {
+                // eslint-disable-next-line no-undef
+                bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
+            })
+            map.fitBounds(bounds)
+        }
+
+        function markYourLocation() {
+            // eslint-disable-next-line no-undef
+            addMarker({
+                lat: lat.value,
+                lng: lng.value,
+                name: 'Your Location',
+            })
+            centerMap()
+        }
+
+        // function addStacheMarker() {
+        //     if (stache.value?.lat && map) {
+        //         // eslint-disable-next-line no-undef
+        //         addMarker({
+        //             lat: stache.value.lat,
+        //             lng: stache.value.lng,
+        //             name: stache.value.stacheName
+        //         })
+        //     }
+        // }
+
+        return {
+            // isMyAdventure,
+            stache,
+            setupMap,
+            map,
+            account: computed(() => AppState.account),
+            stacheComments: computed(() => AppState.stacheComments),
+            stacheAdventures: computed(() => AppState.activeStacheAdventures),
+            myAdventures: computed(() => AppState.myAdventures),
+            thisStacheAdventure: computed(() => {
+                return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+            }),
+
+        };
+
+
+    }
+}
 </script>
 <style scoped lang="scss">
 /* Your scoped CSS styles here */

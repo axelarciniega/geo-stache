@@ -54,17 +54,17 @@
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-md-around justify-content-center d-flex bg-DrkGreen rounded p-3 ">
+                <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
-                        class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1">
+                        class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
-                        class=" delete-button border border-1 border-black col-md-2 col-8 my-md-0 my-1 text-black">
+                        class=" delete-button border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2 text-black">
                         delete <i class="mdi mdi-icon"></i>
                     </button>
 
-                    <router-link :to="{ name: 'Map' }" class=" col-md-2 col-8 my-md-0 my-1">
+                    <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
                             <button class=" revealButton border border-1 border-black col-2 text-black">
