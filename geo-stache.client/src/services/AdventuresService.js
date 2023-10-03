@@ -8,10 +8,17 @@ class AdventuresService {
     async addAdventure(adventureData) {
         const response = await api.post('api/adventures', adventureData)
         logger.log('new adventure!', response.data)
-const newAdventure = new Adventure(response.data)
+        const newAdventure = new Adventure(response.data)
 
-        AppState.myAdventures.push(newAdventure)
         AppState.activeStacheAdventures.push(newAdventure)
+        // AppState.myAdventures.push(newAdventure)
+    }
+
+    async getAdventuresByStache(stacheId) {
+        const response = await api(`api/staches/${stacheId}/adventures`)
+        logger.log('getting those adventures by Stache', response.data)
+        AppState.activeStacheAdventures= response.data
+
     }
 
 // completeAdventure(adventureId){

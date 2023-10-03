@@ -6,9 +6,6 @@
                 <div class="col-12 col-md-7">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
-                    <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
-                    <!-- <router-link :to="{ path: `accounts/${account.id}` }"> -->
-
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
                         <h3 class="text-end"> {{ stache.creator.name }} <img class="profile-pic"
@@ -18,14 +15,15 @@
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <p class="text-center">Hint: {{ stache.hint }}</p>
-                    <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
+
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
-                    <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
 
-                    <button v-if="isMyAdventure" @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your Addventures
+                    <!-- v-if="!isMyAdventure" -->
+                    <button @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to your
+                        Addventures
                     </button>
-
-                    <button v-else @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
+                    <!-- v-else -->
+                    <button @click="removeAdventure()"><i class="mdi mdi-minus">Remove from your Adventrues</i>
                     </button>
 
                 </div>
@@ -53,13 +51,14 @@
         </section>
 
 
-        <div v-if="stacheAdventures.length > 0" class="bg-danger">
-            {{ stacheAdventures }}
-        </div>
+        <!-- <div v-for="adventure in myAdventures" :key="adventure.id" class=""> -->
+        <!-- {{ myAdventures }} -->
+        <!-- <BadgeCard :adventure="adventure" /> -->
+        <!-- </div> -->
 
 
         <!-- STUB Comment section -->
-        <section class="row">
+        <section class=" row">
             <CommentForm />
 
             <div class="my-4" v-for="comment in stacheComments" :key="comment.id">
@@ -97,20 +96,30 @@ import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
 import { adventuresService } from '../services/AdventuresService';
+import BadgeCard from '../components/BadgeCard.vue';
 
 
 export default {
-
+    // props: { adventure: { type: String, required: true } },
 
     setup() {
-        const isToDo = ref(false);
+
         const route = useRoute();
         const router = useRouter();
+
         onMounted(() => {
             getStacheById();
-            getCommentsByStache()
+            getCommentsByStache();
+            // getAdventuresByStache()
         })
 
+        // async function getAdventuresByStache() {
+        //     try {
+        //         await adventuresService.getAdventuresByStache(route.params.stacheId)
+        //     } catch (error) {
+        //         Pop.error(error)
+        //     }
+        // }
         // TODO get adventures for this stache
 
         async function getCommentsByStache() {
@@ -130,24 +139,26 @@ export default {
         }
 
         return {
-            // isToDo,
+
             stache: computed(() => AppState.activeStache),
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             map: null,
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
-            isMyAdventure: computed(() => {
-                let isFound = true
-                for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-                    for (let j = 0; j <= AppState.myAdventures.length; j++) {
-                        if (i == j) {
-                            isFound = false
-                        }
-                    }
-                }
-                return isFound
-            }),
+            // activeStacheAdventures: computed(() => AppState.getAdventuresByStache),
+
+            // isMyAdventure: computed(() => {
+            //     let isFound = true
+            //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+            //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+            //             if (i == j) {
+            //                 isFound = false
+            //             }
+            //         }
+            //     }
+            //     return isFound
+            // }),
 
             async removeComment() {
                 try {
@@ -176,7 +187,7 @@ export default {
 
             // NOTE refer to album page createCollab. I progress means they have added to thier ToDo list, but have not yet completed or FOUND the Stache.
             // NOTE Do we want the user to be able to remove once the Stache is already found?
-            // like Mick's from PostIt, flips a bool and not what we want.
+
             async addAdventure() {
                 try {
                     let adventureData = { stacheId: route.params.stacheId }
@@ -192,107 +203,7 @@ export default {
         };
     },
 
-    methods: {
-        calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 3958.8; // Radius of the Earth in miles
-            const dLat = (lat2 - lat1) * (Math.PI / 180);
-            const dLon = (lon2 - lon1) * (Math.PI / 180);
-            const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * (Math.PI / 180)) *
-                Math.cos(lat2 * (Math.PI / 180)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            const distance = R * c;
-            return distance.toFixed(2); // Round to 2 decimal places
-        },
 
-        getUserLocationAndDisplayMap() {
-            if ('geolocation' in navigator) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-
-
-                    this.map = new google.maps.Map(document.getElementById('map'), {
-                        center: { lat: latitude, lng: longitude },
-                        zoom: 15,
-                    });
-
-                    new google.maps.Marker({
-                        position: { lat: latitude, lng: longitude },
-                        map: this.map,
-                        title: 'Your Location',
-
-                    });
-
-                    AppState.staches.forEach((stache) => {
-                        const distance = this.calculateDistance(
-                            latitude,
-                            longitude,
-                            stache.lat,
-                            stache.lng
-                        );
-                        stache.distance = distance; // Store the distance in the stache object
-                        logger.log(this.map);
-                        new google.maps.Marker({
-                            position: { lat: stache.lat, lng: stache.lng },
-                            map: this.map,
-                            title: `${stache.stacheName}`,
-                        });
-                    });
-                });
-            } else {
-                alert('Geolocation is not available in your browser');
-            }
-        },
-
-        searchLocation() {
-            if (this.searchQuery && this.map) {
-                if (!this.searchService) {
-                    this.searchService = new google.maps.places.AutocompleteService();
-                }
-
-                this.searchService.getPlacePredictions(
-                    {
-                        input: this.searchQuery,
-                        componentRestrictions: { country: 'US' },
-                    },
-                    (predictions) => {
-                        if (predictions && predictions.length > 0) {
-                            const place = predictions[0];
-                            const placeService = new google.maps.places.PlacesService(this.map);
-                            placeService.getDetails(
-                                { placeId: place.place_id },
-                                (result, status) => {
-                                    if (status === google.maps.places.PlacesServiceStatus.OK) {
-                                        this.map.setCenter(result.geometry.location);
-                                    }
-                                }
-                            );
-                        }
-                    }
-                );
-            } else {
-                alert('Map not initialized or search query is empty.');
-            }
-        },
-
-        selectLocation(result) {
-            // Center the map on the selected location
-            const placeService = new google.maps.places.PlacesService(this.map);
-            placeService.getDetails({ placeId: result.place_id }, (place) => {
-                if (place && place.geometry && place.geometry.location) {
-                    const location = place.geometry.location;
-                    this.map.setCenter(location);
-                    this.map.setZoom(20); // Adjust the zoom level as needed
-                }
-            });
-            this.searchResults = []; // Clear search results after selecting a location
-        },
-    },
 
 
     mounted() {
@@ -308,6 +219,7 @@ export default {
             document.head.appendChild(script);
         }
     },
+    components: { BadgeCard }
 };
 </script>
 
