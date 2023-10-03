@@ -66,9 +66,6 @@
                         delete <i class="mdi mdi-icon"></i>
                     </button>
 
-                    <button class=" delete-button border border-1 border-black col-2 text-black">
-                        Found It!
-                    </button>
                     <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
