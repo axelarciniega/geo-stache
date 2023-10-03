@@ -54,7 +54,7 @@
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
-                <div class="justify-content-around d-flex bg-oliveGreen p-3">
+                <div class="justify-content-around d-flex bg-DrkGreen rounded p-3 ">
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -484,7 +484,7 @@ export default {
 
 .glassCard2 {
     /* From https://css.glass */
-    background: var(--LghtGreen);
+    background: var(--MdLghtGreen);
     border-radius: 16px;
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
         0 5px 6px 0 rgba(43, 43, 43, 0.79),
@@ -531,14 +531,14 @@ export default {
 
 .glassCard {
 
-    background: var(--Sand);
+    background: var(--LghtGreen);
     border-radius: 16px;
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
         0 5px 6px 0 rgba(43, 43, 43, 0.79),
         0 1px 8px 0 rgba(43, 43, 43, 0.79);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 3px solid var(--Yellow);
+    border: 3px solid var(--DrkGreen);
 }
 
 .nameLink {
