@@ -65,11 +65,7 @@ class StachesService {
         const myStaches = await dbContext.Staches.find({ accountId: userId }).populate('creator')
         return myStaches
     }
-    async getAdventuresByStacheId(stacheId) {
-        const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile', 'name status', 'stache')
-        return adventures
 
-    }
 
 
     async logStache(stacheId) {

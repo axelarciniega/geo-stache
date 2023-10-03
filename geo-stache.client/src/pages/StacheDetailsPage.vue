@@ -1,9 +1,9 @@
 <template>
     <div v-if="stache">
         <section class="container">
-            <div class="row border border-black border-3">
+            <div class="m-1 row glassCard2 p-2 justify-content-between">
 
-                <div class="col-12 col-md-7">
+                <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
 
                     <!-- <router-link :to="{ name: 'Profile', params: { profileId: stache.creatorId } }"> -->
@@ -51,7 +51,7 @@
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div> -->
-                <div class="map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
+                <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
 
                 <div class="justify-content-around d-flex bg-grey p-3">
@@ -404,6 +404,22 @@ export default {
     object-position: center;
 }
 
+.map_card {
+    border: 3px solid #29412fce;
+    box-shadow: 0 10px 30px #41644ace;
+    border-radius: 25px
+}
+
+.glassCard2 {
+    /* From https://css.glass */
+    background: rgba(139, 141, 104, 0.857);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 4px solid rgba(47, 28, 2, 0.345);
+}
+
 .revealButton {
     background: linear-gradient(25deg, #0e421a, #5dde39);
     border-radius: 20px;
@@ -423,6 +439,16 @@ export default {
 .nameLink:hover {
     transform: scale(1.1);
 
+}
+
+.glassCard {
+
+    background: #41644a9d;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid rgba(241, 233, 0, 0.673);
 }
 
 .nameLink {

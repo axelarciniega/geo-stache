@@ -36,17 +36,6 @@ export class AdventuresController extends BaseController {
         }
     }
 
-    async getAdventuresByStacheId(req, res, next) {
-        try {
-            const stacheId = req.parmas.stacheId
-            const adventure = await stachesService.getAdventuresByStacheId(stacheId)
-            res.send(adventure)
-        } catch (error) {
-            next(error)
-        }
-
-
-    }
 
     async editAdventure(request, response, next) {
         try {
