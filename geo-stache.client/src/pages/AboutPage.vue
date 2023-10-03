@@ -5,9 +5,9 @@
       <h1 class="text-center my-3 mb-4">About the Team</h1>
     </section>
 
-    <section class="row">
+    <section class="row ">
 
-      <div class="col-12 table-card align-items-center my-2">
+      <div class="col-12 table-card align-items-center my-2 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -30,7 +30,7 @@
 
       </div>
 
-      <div class="col-12 table-card align-items-center my-2">
+      <div class="col-12 table-card align-items-center my-2 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -53,7 +53,7 @@
 
       </div>
 
-      <div class="col-12 table-card align-items-center my-2">
+      <div class="col-12 table-card align-items-center my-2 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -76,7 +76,7 @@
 
       </div>
 
-      <div class="col-12 table-card align-items-center my-2">
+      <div class="col-12 table-card align-items-center my-2 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -99,7 +99,7 @@
 
       </div>
 
-      <div class="col-12 table-card align-items-center my-2 mb-3">
+      <div class="col-12 table-card align-items-center my-2 mb-3 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -122,7 +122,7 @@
 
       </div>
 
-      <div class="col-12 table-card align-items-center my-2 mb-3">
+      <div class="col-12 table-card align-items-center my-2 mb-3 border-upgrade">
         <div class="row align-items-center">
           <div class="col-md-2 col-12 p-4">
             <img class="profile-pic"
@@ -163,6 +163,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .border-upgrade{
+    border: solid 4px #41644A;
+  }
+
+
 // .profile-pic {
 
 //   border-radius: 50%;
