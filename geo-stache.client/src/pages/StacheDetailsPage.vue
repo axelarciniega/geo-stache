@@ -6,7 +6,7 @@
 
                 <div class="glassCard  col-12 col-md-6 m-2">
                     <h1 class="text-center">{{ stache.stacheName }}</h1>
-
+                    todo bool/ {{ stache.todo }}
                     <!-- FIXME  -->
                     <router-link v-if="stache.creatorId" :to="{ name: 'Profile', params: { profileId: stache.creatorId } }">
 
@@ -62,6 +62,9 @@
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
                         class=" delete-button border border-1 border-black col-2 text-black">
                         delete <i class="mdi mdi-icon"></i>
+                    </button>
+                    <button class=" revealButton border border-1 border-black col-2 text-black">
+                        Found It!
                     </button>
                     <router-link :to="{ name: 'Map' }">
                         <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to maps
@@ -207,6 +210,7 @@ export default {
         }
 
 
+
         function addMarker(marker) {
             markers.value.push(marker)
             // eslint-disable-next-line no-undef
@@ -274,23 +278,14 @@ export default {
             }
         }
 
-        // const isMyAdventure = computed(() => {
-        //     let isFound = true
-        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
-        //             if (i == j) {
-        //                 isFound = false
-        //             }
-        //         }
-        //     }
-        //     return isFound
-        // });
+
 
         return {
             // isMyAdventure,
             stache,
             setupMap,
             map,
+
             account: computed(() => AppState.account),
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),

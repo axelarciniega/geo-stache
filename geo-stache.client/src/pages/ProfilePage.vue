@@ -60,20 +60,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
+                    <h2 class=" text-black fw-bold text-center text-decoration-underline ">
+                        TODO</h2>
                     <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
                         <ToDoCard :adventure="adventure" />
                     </div>
                 </div>
-                <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
+
             </div>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
@@ -161,6 +154,16 @@ export default {
     backdrop-filter: blur(5.3px);
     -webkit-backdrop-filter: blur(5.3px);
     border: 1px solid var(--Green);
+}
+
+.glassCard2 {
+    /* From https://css.glass */
+    background: rgba(139, 141, 104, 0.857);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 4px solid rgba(47, 28, 2, 0.345);
 }
 </style>
 <style>
