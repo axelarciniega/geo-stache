@@ -514,6 +514,7 @@ export default {
     border-radius: 20px;
     transition: background 0.3s, transform 0.2s;
     border-color: var(--LghtOrange);
+    margin-bottom: 1em;
 
 }
 
