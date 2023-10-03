@@ -564,7 +564,7 @@ export default {
 }
 
 .card-body {
-    background-color: var(--LghtGreen);
+    background-color: var(--Sand);
 }
 
 .body-color {
