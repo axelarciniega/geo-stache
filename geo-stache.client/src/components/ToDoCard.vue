@@ -1,68 +1,56 @@
 <template>
-    <div>
-
-        <router-link :to="{ name: 'Stache Details', params: { stacheId: adventure.stacheId } }">
-            <div class="glassCard m-1 text-dark fw-bold" v-show="adventure.status === 'todo'">
-                <div class="text-center font-monospace"> {{ adventure.stache.stacheName }} </div>
-
-            </div>
-
-        </router-link>
+    <div class="adventure-card bgToDo2 elevation-5">
+        <div class="adventure-content d-flex justify-content-between" v-show="adventure.status === 'todo'">
+            <div class="adventure-title text-black fw-bold">{{ adventure.stache.stacheName }}</div>
+            <router-link :to="{ name: 'Stache Details', params: { stacheId: adventure.stacheId } }">
+                <div class="btn btn-secondary btn-sm fw-bold text-black rounded-pill elevation-5">➕</div>
+            </router-link>
+        </div>
     </div>
 </template>
-
-
-
+  
 <script>
-import { computed } from 'vue';
-import { AppState } from '../AppState.js';
 import { Adventure } from '../models/Adventure';
 
-Adventure
 export default {
     props: {
-        adventure: { type: Adventure || Object, required: true }
-    },
-    setup() {
-        return {
-
-        };
+        adventure: { type: Adventure || Object, required: true },
     },
 };
 </script>
-
-
+  
 <style scoped>
-.badge {
+.adventure-card {
+    border: 1px solid #171f15;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(95, 104, 66, 0.396);
+}
+
+.bgToDo2 {
+    background: linear-gradient(45deg, var(--LghtGreen), var(--Green));
+}
+
+.adventure-content {
+    padding: 10px;
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 10px;
+    background-color: #b4c2b7;
 }
 
-.medal {
-    display: inline-block;
-    position: relative;
+.bgOrange {
+    background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
 }
 
-.badge-image {
-    width: 100px;
-    border-radius: 50%;
-    border: 3px solid #ffd700;
-    padding: 5px;
-}
-
-.glassCard {
-
-    background: #41644a6f;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 3px solid rgba(127, 124, 24, 0.673);
-}
-
-.badge-name {
-    margin-top: 5px;
+.adventure-title {
+    font-size: 1.2rem;
     font-weight: bold;
+    color: #333;
+    margin-top: 10px;
 }
+
+/* Add more styles as needed */
 </style>
-
-
+  

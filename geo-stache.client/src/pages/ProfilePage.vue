@@ -49,26 +49,33 @@
                 Link with href
             </a> -->
             <div class="p-3 text-center">
-                <button class="col-4 p-3 todoButton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                aria-controls="offcanvasExample">
-                View {{ profile.name }}'s to do list
+                <button class="col-4 p-2 todoButton" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    View {{ profile.name }}'s to do list<span class="badge text-danger  fw-bold fs-4">{{
+                        myAdventures.length
+                    }}</span>
                 </button>
             </div>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{profile.name}}'s stache goals</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <h2 class=" text-black fw-bold text-center text-decoration-underline ">
-                        TODO</h2>
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="adventure" />
-                    </div>
-                </div>
 
-            </div>
+            <section>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header bg-secondary">
+                        <h5 class="offcanvas-title text-black fw-bold fs-3 offset-1 " id="offcanvasExampleLabel">{{
+                            profile.name }}'s
+                            stache
+                            goals</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-primary">
+
+                        <div v-for="adventure in myAdventures" :key="adventure.id" class="">
+                            <ToDoCard :adventure="adventure" />
+                        </div>
+                    </div>
+
+                </div>
+            </section>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
             <div class="col-12 col-md-12 geo-shadow">
@@ -166,6 +173,10 @@ export default {
     -webkit-backdrop-filter: blur(5px);
     border: 4px solid rgba(47, 28, 2, 0.345);
 }
+
+
+
+.bgToDo {}
 </style>
 <style>
 @media(max-width: 768px) {
@@ -173,6 +184,7 @@ export default {
         margin: 30px;
     }
 }
+
 
 .todoButton {
     background: linear-gradient(45deg, var(--LghtGreen), var(--Green));
