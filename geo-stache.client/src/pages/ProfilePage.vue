@@ -51,9 +51,7 @@
             <div class="p-3 text-center">
                 <button class="col-4 p-2 todoButton" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    View {{ profile.name }}'s to do list<span class="badge text-danger  fw-bold fs-4">{{
-                        myAdventures.length
-                    }}</span>
+                    View {{ profile.name }}'s to do list
                 </button>
             </div>
 
@@ -78,8 +76,14 @@
             </section>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
-            <div class="col-12 col-md-12 geo-shadow">
-                <h4 class="text-center mt-2">Badges</h4>
+            <h4 class="text-center mt-2">Badges</h4>
+            <div class="col-12 col-md-8 geo-shadow d-flex">
+                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
+                    <div class="">
+
+                        <img class="badge-pic2" :src="adventure.stache.badgeImage" alt="">
+                    </div>
+                </div>
             </div>
         </section>
         <!-- {{ profile.badgeCount }} -->
@@ -164,6 +168,12 @@ export default {
     border: 1px solid var(--Green);
 }
 
+.badge-pic2 {
+    width: 82px;
+    height: 82px;
+    border-radius: 60%;
+}
+
 .glassCard2 {
     /* From https://css.glass */
     background: rgba(139, 141, 104, 0.857);
@@ -174,9 +184,13 @@ export default {
     border: 4px solid rgba(47, 28, 2, 0.345);
 }
 
-
-
-.bgToDo {}
+.adventure-card {
+    border: 1px solid #171f15;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(95, 104, 66, 0.396);
+}
 </style>
 <style>
 @media(max-width: 768px) {
@@ -185,6 +199,13 @@ export default {
     }
 }
 
+.adventure-content {
+    padding: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 10px;
+    background-color: #b4c2b7;
+}
 
 .todoButton {
     background: linear-gradient(45deg, var(--LghtGreen), var(--Green));

@@ -45,8 +45,7 @@
                                 Adventures
                             </button>
 
-                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"
-                                :class="{ 'd-none': thisStacheAdventure && thisStacheAdventure.status == 'completed' }"><i
+                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"><i
                                     class="mdi mdi-minus">Remove
                                     from
                                     your Adventures</i>
@@ -67,9 +66,9 @@
                 </div> -->
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
-<!-- //ANCHOR - Edit button-->
+                <!-- //ANCHOR - Edit button-->
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
-                    
+
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -308,10 +307,10 @@ export default {
                     Pop.error(error)
                 }
             },
-//ANCHOR - Edit stache
-            async editStache(){
+            //ANCHOR - Edit stache
+            async editStache() {
                 try {
-                    logger.log('editing stache',editStaches.value)
+                    logger.log('editing stache', editStaches.value)
                     // await stachesService.editStache(editStaches.value)
                     Modal.getOrCreateInstance('#id').open
                     Pop.success('success')
@@ -336,8 +335,8 @@ export default {
 
             async addAdventure() {
                 try {
-                    let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
-                    await adventuresService.addAdventure(adventureData)
+                    // let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+                    await adventuresService.addAdventure(route.params.stacheId)
                     Pop.success('Adventure has been added to your list!')
                 } catch (error) {
                     logger.error(error)
@@ -521,6 +520,7 @@ export default {
     -webkit-backdrop-filter: blur(5px);
     border: 3px solid var(--DrkGreen);
 }
+
 .glassCard2 {
     /* From https://css.glass */
     background: var(--MdLghtGreen);
