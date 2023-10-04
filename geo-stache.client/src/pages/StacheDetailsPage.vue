@@ -63,8 +63,9 @@
                 </div> -->
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
-
+<!-- //ANCHOR - Edit button-->
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
+                    
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -144,6 +145,7 @@ import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
 import { adventuresService } from '../services/AdventuresService';
+import { Modal } from "bootstrap";
 
 
 export default {
@@ -157,6 +159,7 @@ export default {
         const markers = ref([])
         let map = null
         let infoWindow = null
+        const editStaches = ref({})
 
         onMounted(() => {
             getStacheById();
@@ -272,6 +275,7 @@ export default {
         return {
             // isMyAdventure,
             stache,
+            editStaches,
             setupMap,
             map,
             account: computed(() => AppState.account),
@@ -290,6 +294,17 @@ export default {
                         await commentsService.removeComment(id)
                         Pop.success('removed comment')
                     }
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
+//ANCHOR - Edit stache
+            async editStache(){
+                try {
+                    logger.log('editing stache',editStaches.value)
+                    // await stachesService.editStache(editStaches.value)
+                    Modal.getOrCreateInstance('#id').open
+                    Pop.success('success')
                 } catch (error) {
                     Pop.error(error)
                 }
