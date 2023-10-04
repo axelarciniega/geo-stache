@@ -1,9 +1,9 @@
 <template>
     <section class="container">
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center my-2">
             <div>
-                <input class="fw-bold map_card" type="text" v-model="searchQuery" placeholder="Search for a location" />
+                <input class="fw-bold map_card p-1" type="text" v-model="searchQuery" placeholder="Search for a location" />
                 <button class="map_card bg-stacheGreen text-warning m-1 fw-bold" @click="searchLocation"> <span> <img
                             src="../assets/img/favicon-32x32.png" alt=""> </span> </button>
             </div>
@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
             <div class="glassCard col-12 col-md-7 my-1 ">
                 <div class="m-3 ">
-                    <h1 class=" fw-bold text-black text-center text-decoration-underline my-2">
+                    <h1 class=" fw-bold text-black text-center text-decoration-underline">
                         <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
                     </h1>
