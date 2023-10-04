@@ -140,7 +140,9 @@ export default {
             async createStache() {
                 try {
                     let newStache = await stachesService.createStache(stacheData.value);
-                    Pop.toast('Stache Created', 'success');
+                    if(AppState.activeStacheToEdit == null){
+                        Pop.success('Created Stache')
+                    }else{Pop.success('Edited Stache')}
                     resetForm();
                     Modal.getOrCreateInstance('#id').hide();
                     router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
