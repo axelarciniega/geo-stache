@@ -156,8 +156,8 @@ export default {
         const route = useRoute();
         const router = useRouter();
         const stache = computed(() => AppState.activeStache)
-        const lat = ref(-114)
-        const lng = ref(21)
+        const lat = ref(-116.286672)
+        const lng = ref(43.606798)
         const markers = ref([])
         let map = null
         let infoWindow = null
