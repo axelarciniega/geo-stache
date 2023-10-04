@@ -56,7 +56,7 @@ export const AppState = reactive({
   /**type @type {Comment[]} */
   stacheComments: [],
 
-
+  activeStacheToEdit: null
 
 
 })

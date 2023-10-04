@@ -63,18 +63,21 @@
                     class="form-control bg-sand"></textarea>
             </div>
 
-            <button class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Submit</button>
+            <button v-if="activeStacheToEdit == null" class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Submit</button>
+            <button v-else class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Save Changes</button>
+
         </form>
     </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect, computed } from 'vue';
 import Pop from '../utils/Pop.js';
 import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger';
+import { AppState } from "../AppState.js";
 
 
 
@@ -121,12 +124,25 @@ export default {
             await getCoordinatesFromGeolocation();
         });
 
+        watchEffect(()=> {
+            if(AppState.activeStacheToEdit){
+                stacheData.value = {...AppState.activeStacheToEdit}
+            }
+            else{
+                resetForm()
+                getCoordinatesFromGeolocation()
+            }
+        })
+
         return {
             stacheData,
+            activeStacheToEdit: computed(() => AppState.activeStacheToEdit),
             async createStache() {
                 try {
                     let newStache = await stachesService.createStache(stacheData.value);
-                    Pop.toast('Stache Created', 'success');
+                    if(AppState.activeStacheToEdit == null){
+                        Pop.success('Created Stache')
+                    }else{Pop.success('Edited Stache')}
                     resetForm();
                     Modal.getOrCreateInstance('#id').hide();
                     router.push({ name: 'Stache Details', params: { stacheId: newStache.id } })
