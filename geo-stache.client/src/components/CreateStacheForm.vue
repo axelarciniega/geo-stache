@@ -63,13 +63,15 @@
                     class="form-control bg-sand"></textarea>
             </div>
 
-            <button class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Submit</button>
+            <button v-if="activeStacheToEdit == null" class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Submit</button>
+            <button v-else class="btn bg-orange mt-3 sub-btn SubmitStacheButton">Save Changes</button>
+
         </form>
     </div>
 </template>
 
 <script>
-import { ref, onMounted, watchEffect } from 'vue';
+import { ref, onMounted, watchEffect, computed } from 'vue';
 import Pop from '../utils/Pop.js';
 import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
@@ -134,6 +136,7 @@ export default {
 
         return {
             stacheData,
+            activeStacheToEdit: computed(() => AppState.activeStacheToEdit),
             async createStache() {
                 try {
                     let newStache = await stachesService.createStache(stacheData.value);
