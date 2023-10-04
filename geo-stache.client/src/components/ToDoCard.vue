@@ -2,9 +2,13 @@
     <div class="adventure-card bgToDo2 elevation-5">
         <div class="adventure-content d-flex justify-content-between" v-show="adventure.status === 'todo'">
             <div class="adventure-title text-black fw-bold">{{ adventure.stache.stacheName }}</div>
+            <img class="badge-pic" :src="adventure.stache.badgeImage" alt="">
+
             <router-link :to="{ name: 'Stache Details', params: { stacheId: adventure.stacheId } }">
                 <div class="btn btn-secondary btn-sm fw-bold text-black rounded-pill elevation-5">➕</div>
             </router-link>
+
+            {{ adventure.status }}
         </div>
     </div>
 </template>
@@ -49,6 +53,18 @@ export default {
     font-weight: bold;
     color: #333;
     margin-top: 10px;
+}
+
+.badge-pic {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.badge-pic2 {
+    width: 82px;
+    height: 82px;
+    border-radius: 60%;
 }
 
 /* Add more styles as needed */

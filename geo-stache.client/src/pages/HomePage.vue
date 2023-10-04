@@ -34,7 +34,7 @@
     <section class="row justify-content-between my-3">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
-          src="https://images.unsplash.com/photo-1536607961765-592e80bcc19e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
           alt="">
       </div>
 

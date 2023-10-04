@@ -5,12 +5,13 @@ import { api } from "./AxiosService.js"
 
 class AdventuresService {
 
-    async addAdventure(adventureData) {
+    async addAdventure(adventureId) {
+        const adventureData = { stacheId: adventureId }
         const response = await api.post('api/adventures', adventureData)
         logger.log('new adventure!', response.data)
         const newAdventure = new Adventure(response.data)
 
-        AppState.activeStacheAdventures.push(newAdventure)
+        AppState.activeStacheAdventures = newAdventure
         AppState.myAdventures.push(newAdventure)
     }
 
@@ -25,7 +26,7 @@ class AdventuresService {
         const response = await api.delete(`api/adventures/${adventureId.id}`)
         logger.log('[DELETING ADVENTURE]', response.data)
         AppState.myAdventures = AppState.myAdventures.filter(a => a.id != adventureId)
-
+        logger.log('this is the appstate after deleting', AppState.myAdventures)
     }
 
 
