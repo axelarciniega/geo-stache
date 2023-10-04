@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider"
 import BaseController from "../utils/BaseController.js"
 import { adventuresService } from "../services/AdventuresService.js"
 import { stachesService } from "../services/StachesServices.js"
+import { Logger } from "../utils/Logger.js"
 
 
 export class AdventuresController extends BaseController {
@@ -42,8 +43,9 @@ export class AdventuresController extends BaseController {
             const userId = request.userInfo.id
             const adventureId = request.params.adventureId
             // @ts-ignore
-            const editAdventure = await adventuresService.editAdventure(adventureId, userId)
-            response.send(this.editAdventure)
+            const editedAdventure = await adventuresService.editAdventure(adventureId, userId)
+            console.log('edited adventure', editedAdventure)
+            response.send(editedAdventure)
         } catch (error) {
             next(error)
         }

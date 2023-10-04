@@ -29,13 +29,18 @@ class AdventuresService {
     }
 
 
-    // async completeAdventure(stacheId) {
-    //     let completedAdventure = AppState.adventures.find(a => a.id == stacheId)
+    async completeAdventure(adventureId) {
+        const response = await api.put(`api/adventures/${adventureId}`)
+        logger.log('Complete Adventure PUT request', response.data)
 
-    //     const response = await api.put(`api/adventures/${adventureId}`)
-    //     logger.log(response.data)
+        let indexToAdd = AppState.myAdventures.findIndex(a => a.id == adventureId)
+        logger.log('index to add', indexToAdd)
+        let newAdventureData;
 
-    // }
+        AppState.myAdventures.splice(indexToAdd, 0, newAdventureData)
+        logger.log('Completed Adventure Added', AppState.myAdventures)
+
+    }
 
 
     // TODO find adventure in app state

@@ -46,6 +46,7 @@
                     <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
                             your Adventures</i>
                     </button>
+                    <!-- v-show="thisStacheAdventure.status == todo && !thisStacheAdventure.foundDate" -->
                     <button @click="completeAdventure()"
                         class=" delete-button border border-1 border-black col-2 text-black">
                         Found It!
@@ -72,32 +73,12 @@
                             back to maps
                         </div>
                     </router-link>
-                    <!-- <router-link :to="{ name: 'Map' }">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
-                            maps
-                        </div>
-                    </router-link> -->
 
 
                 </div>
             </div>
         </section>
-        <!-- <section class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="adventure" />
-                    </div>
 
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="adventure" />
-                    </div>
-
-                </div>
-            </div>
-
-
-        </section> -->
     </div>
 
 
@@ -142,6 +123,7 @@ import { adventuresService } from '../services/AdventuresService';
 export default {
 
     setup() {
+        const myAdventures = ref([]);
         const route = useRoute();
         const router = useRouter();
         const stache = computed(() => AppState.activeStache)
@@ -157,6 +139,21 @@ export default {
             setupMap()
             // eslint-disable-next-line no-undef
         })
+
+        // const completeAdventure = computed(() => async () => {
+        //     const stacheId = route.params.stacheId;
+        //     const adventureToComplete = AppState.myAdventures.find(
+        //         (a) => a.stacheId == stacheId
+        //     );
+
+        //     if (adventureToComplete) {
+        //         await adventuresService.completeAdventure(adventureToComplete.id);
+        //         Pop.success("Completed Adventure!");
+        //     } else {
+
+        //         logger.log("Adventure not found");
+        //     }
+        // });
 
 
 
@@ -248,7 +245,7 @@ export default {
 
 
         return {
-
+            // completeAdventure,
             stache,
             setupMap,
             map,
@@ -312,15 +309,20 @@ export default {
 
             async completeAdventure() {
                 try {
+                    logger.log('route.params:', route.params);
+                    logger.log('route.params.stacheId:', route.params.stacheId);
+
                     const stacheId = route.params.stacheId
-                    await adventuresService.completeAdventure(stacheId)
+                    let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
+                    await adventuresService.completeAdventure(advToComplete.id)
+
+                    advToComplete.foundDate = new Date();
+
                     Pop.success('Completed Adventure!')
                 } catch (error) {
                     logger.log(error)
                     Pop.error(error)
                 }
-
-
             }
 
         };

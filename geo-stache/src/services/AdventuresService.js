@@ -5,7 +5,7 @@ import { stachesService } from "./StachesServices.js"
 
 class AdventuresService {
 
-    // NOTE Add Stache to our To Do List!
+    // NOTE Create Adventure
     async createAdventure(adventureData) {
         const stache = await stachesService.getStacheById(adventureData.stacheId)
         // FIXME add in logic for archived/deleted if we set that on the stache schema
@@ -40,12 +40,7 @@ class AdventuresService {
 
     }
 
-    // NOTE allows us to view all adventures(users) of both status(todo and found) on a Stache Details Page
-    // NOTE see this logic started on the Stache's Controller
 
-
-
-    // FIXME check with Sam on this to verify it is good.
     // NOTE allows us to update from todo to found and user can complete their adventure!
     async editAdventure(adventureId, userId) {
         const originalAdventure = await dbContext.Adventures.findById(adventureId)
