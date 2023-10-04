@@ -18,6 +18,8 @@
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
+                    <p>this is a dummy location, we need to make the destination call off of the set lat lng </p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=37.7749,-122.4194">Open in Google Maps</a>
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
