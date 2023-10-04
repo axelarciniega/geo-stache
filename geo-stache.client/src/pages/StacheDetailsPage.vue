@@ -1,7 +1,7 @@
 <template>
     <div v-if="stache">
 
-        <section class="container">
+        <section class="container pt-4">
             <div class="m-1 row glassCard2 p-2 justify-content-md-between justify-content-center">
 
                 <div class="glassCard  col-12 col-md-6 m-2">
@@ -69,7 +69,8 @@
                 <!-- //ANCHOR - Edit button-->
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
 
-                    <button v-show="account.id == stache.creatorId" @click="editStache"
+                    <button v-show="account.id == stache.creatorId" data-bs-toggle="modal" data-bs-target="#id"
+                        @click="makeStacheEditable"
                         class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
@@ -308,15 +309,8 @@ export default {
                 }
             },
             //ANCHOR - Edit stache
-            async editStache() {
-                try {
-                    logger.log('editing stache', editStaches.value)
-                    // await stachesService.editStache(editStaches.value)
-                    Modal.getOrCreateInstance('#id').open
-                    Pop.success('success')
-                } catch (error) {
-                    Pop.error(error)
-                }
+            makeStacheEditable() {
+                stachesService.makeStacheEditable()
             },
 
             async deleteStache() {
