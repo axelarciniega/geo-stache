@@ -37,28 +37,18 @@
                         </div>
                     </div>
 
-                    <section class="container">
-                        <div class="row">
-                            <button v-if="!thisStacheAdventure" class=" col-6 adventureButton" @click="addAdventure()"><i
-                                    class="mdi mdi-plus"></i>Add to
-                                your
-                                Adventures
-                            </button>
-                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"><i
-                                    class="mdi mdi-minus">Remove
-                                    from
-                                    your Adventures</i>
-                            </button>
+                    <button v-if="!thisStacheAdventure" class="adventureButton" @click="addAdventure()"><i
+                            class="mdi mdi-plus"></i>Add to
+                        your
+                        Adventures
+                    </button>
 
-                            <!-- v-show="thisStacheAdventure.status == todo && !thisStacheAdventure.foundDate" -->
-                            <button @click="completeAdventure()" class="col-6 foundButton col-3">
-                                Found It!
-                            </button>
-                        </div>
-
-                    </section>
-
-
+                    <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
+                            your Adventures</i>
+                    </button>
+                    <button class=" delete-button border border-1 border-black col-2 text-black">
+                        Found It!
+                    </button>
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
@@ -81,12 +71,32 @@
                             back to maps
                         </div>
                     </router-link>
+                    <!-- <router-link :to="{ name: 'Map' }">
+                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
+                            maps
+                        </div>
+                    </router-link> -->
 
 
                 </div>
             </div>
         </section>
+        <!-- <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <ToDoCard :adventure="adventure" />
+                    </div>
 
+                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
+                        <BadgeCard :adventure="adventure" />
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section> -->
     </div>
 
 
@@ -131,7 +141,6 @@ import { adventuresService } from '../services/AdventuresService';
 export default {
 
     setup() {
-        const myAdventures = ref([]);
         const route = useRoute();
         const router = useRouter();
         const stache = computed(() => AppState.activeStache)
@@ -148,22 +157,11 @@ export default {
             // eslint-disable-next-line no-undef
         })
 
-        // const completeAdventure = computed(() => async () => {
-        //     const stacheId = route.params.stacheId;
-        //     const adventureToComplete = AppState.myAdventures.find(
-        //         (a) => a.stacheId == stacheId
-        //     );
-
-        //     if (adventureToComplete) {
-        //         await adventuresService.completeAdventure(adventureToComplete.id);
-        //         Pop.success("Completed Adventure!");
-        //     } else {
-
-        //         logger.log("Adventure not found");
+        // watch(stache, () => {
+        //     if (map && AppState.activeStache) {
+        //         addStacheMarker()
         //     }
-        // });
-
-
+        // })
 
         function setupMap() {
             if ('geolocation' in navigator) {
@@ -251,9 +249,20 @@ export default {
             }
         }
 
+        // const isMyAdventure = computed(() => {
+        //     let isFound = true
+        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
+        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
+        //             if (i == j) {
+        //                 isFound = false
+        //             }
+        //         }
+        //     }
+        //     return isFound
+        // });
 
         return {
-            // completeAdventure,
+            // isMyAdventure,
             stache,
             setupMap,
             map,
@@ -314,24 +323,6 @@ export default {
                     Pop.error(error)
                 }
             },
-
-            async completeAdventure() {
-                try {
-                    logger.log('route.params:', route.params);
-                    logger.log('route.params.stacheId:', route.params.stacheId);
-
-                    const stacheId = route.params.stacheId
-                    let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
-                    await adventuresService.completeAdventure(advToComplete.id)
-
-                    advToComplete.foundDate = new Date();
-
-                    Pop.success('Completed Adventure!')
-                } catch (error) {
-                    logger.log(error)
-                    Pop.error(error)
-                }
-            }
 
         };
 
@@ -515,21 +506,6 @@ export default {
     background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
     transform: translateY(-5px);
     border-color: var(--DrkOrange);
-}
-
-.foundButton {
-    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
-    border-radius: 20px;
-    transition: background 0.3s, transform 0.2s;
-    border-color: var(--Yellow);
-    margin-bottom: 1em;
-    padding: 0.5em;
-}
-
-.foundButton:hover {
-    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
-    transform: translateY(-5px);
-    border-color: var(--DrkYellow);
 }
 
 .nameLink:hover {
