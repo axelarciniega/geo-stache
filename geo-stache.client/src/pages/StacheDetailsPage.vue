@@ -36,27 +36,40 @@
                             </div>
                         </div>
                     </div>
+                    <section class="container">
+                        <div class="row">
 
-                    <button v-if="!thisStacheAdventure" class="adventureButton" @click="addAdventure()"><i
-                            class="mdi mdi-plus"></i>Add to
-                        your
-                        Adventures
-                    </button>
+                            <button class="col-6 adventureButton" v-if="!thisStacheAdventure" @click="addAdventure()"><i
+                                    class="mdi mdi-plus"></i>Add to
+                                your
+                                Adventures
+                            </button>
 
-                    <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
-                            your Adventures</i>
-                    </button>
-                    <button class=" delete-button border border-1 border-black col-2 text-black">
-                        Found It!
-                    </button>
+                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"
+                                :class="{ 'd-none': thisStacheAdventure && thisStacheAdventure.status == 'completed' }"><i
+                                    class="mdi mdi-minus">Remove
+                                    from
+                                    your Adventures</i>
+                            </button>
+                            <button @click="completeAdventure()"
+                                v-if="thisStacheAdventure && thisStacheAdventure.status == 'todo'"
+                                class="col-6 foundButton">
+                                Found It!
+                            </button>
+                        </div>
+                    </section>
+
+
+
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
                 </div> -->
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
-
+<!-- //ANCHOR - Edit button-->
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
+                    
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -67,7 +80,7 @@
                     </button>
 
                     <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
+                        <div class="btn mapButton btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
                         </div>
                     </router-link>
@@ -136,6 +149,7 @@ import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
 import { adventuresService } from '../services/AdventuresService';
+import { Modal } from "bootstrap";
 
 
 export default {
@@ -149,6 +163,7 @@ export default {
         const markers = ref([])
         let map = null
         let infoWindow = null
+        const editStaches = ref({})
 
         onMounted(() => {
             getStacheById();
@@ -156,12 +171,6 @@ export default {
             setupMap()
             // eslint-disable-next-line no-undef
         })
-
-        // watch(stache, () => {
-        //     if (map && AppState.activeStache) {
-        //         addStacheMarker()
-        //     }
-        // })
 
         function setupMap() {
             if ('geolocation' in navigator) {
@@ -249,21 +258,34 @@ export default {
             }
         }
 
-        // const isMyAdventure = computed(() => {
-        //     let isFound = true
-        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
-        //             if (i == j) {
-        //                 isFound = false
-        //             }
-        //         }
+        // async function completeAdventure() {
+        //     try {
+        //         logger.log('route.params:', route.params);
+        //         logger.log('route.params.stacheId:', route.params.stacheId);
+
+        //         const stacheId = route.params.stacheId
+        //         let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
+        //         // debugger
+        //         await adventuresService.completeAdventure(advToComplete.id)
+
+        //         advToComplete.foundDate = new Date();
+
+        //         Pop.success('Completed Adventure!')
+        //     } catch (error) {
+        //         logger.log(error)
+        //         Pop.error(error)
         //     }
-        //     return isFound
+        // }
+
+        // watchEffect(() => {
+        //     completeAdventure()
         // });
 
+
         return {
-            // isMyAdventure,
+
             stache,
+            editStaches,
             setupMap,
             map,
             account: computed(() => AppState.account),
@@ -282,6 +304,17 @@ export default {
                         await commentsService.removeComment(id)
                         Pop.success('removed comment')
                     }
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
+//ANCHOR - Edit stache
+            async editStache(){
+                try {
+                    logger.log('editing stache',editStaches.value)
+                    // await stachesService.editStache(editStaches.value)
+                    Modal.getOrCreateInstance('#id').open
+                    Pop.success('success')
                 } catch (error) {
                     Pop.error(error)
                 }
@@ -324,6 +357,27 @@ export default {
                     Pop.error(error)
                 }
             },
+
+            async completeAdventure() {
+                try {
+                    // debugger
+                    logger.log('route.params:', route.params);
+                    logger.log('route.params.stacheId:', route.params.stacheId);
+
+                    const stacheId = route.params.stacheId
+                    let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
+                    await adventuresService.completeAdventure(advToComplete.id)
+
+                    advToComplete.foundDate = new Date();
+
+                    Pop.success('Completed Adventure!')
+                } catch (error) {
+                    logger.log(error)
+                    Pop.error(error)
+                }
+            }
+
+
 
         };
 
@@ -507,6 +561,36 @@ export default {
     background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
     transform: translateY(-5px);
     border-color: var(--DrkOrange);
+}
+
+.foundButton {
+    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    border-color: var(--Yellow);
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.foundButton:hover {
+    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
+    transform: translateY(-5px);
+    border-color: var(--DrkYellow);
+}
+
+.mapButton {
+    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    border-color: var(--Yellow);
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.mapButton:hover {
+    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
+    transform: translateY(-5px);
+    border-color: var(--DrkYellow);
 }
 
 .nameLink:hover {
