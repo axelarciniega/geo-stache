@@ -60,7 +60,6 @@ export default {
                     // eslint-disable-next-line no-undef
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
-                    // addStacheMarker()
                 })
             }
         }
@@ -81,21 +80,17 @@ export default {
                 infoWindow.open(map, markerElem);
             })
 
-
         }
 
-        function centerMap() {
-            // eslint-disable-next-line no-undef
-            const bounds = new google.maps.LatLngBounds();
-            markers.value.forEach((marker) => {
-                // eslint-disable-next-line no-undef
-                bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
-            })
-            map.fitBounds(bounds)
-            // const center = new google.maps.Marker({
-            //     position: { lat: marker.lat, lng: marker.lng }
-            // })
-        }
+        // function centerMap() {
+        //     // eslint-disable-next-line no-undef
+        //     const bounds = new google.maps.LatLngBounds();
+        //     markers.value.forEach((marker) => {
+        //         // eslint-disable-next-line no-undef
+        //         bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
+        //     })
+        //     map.fitBounds(bounds)
+        // }
 
         function markYourLocation() {
             // eslint-disable-next-line no-undef
@@ -104,7 +99,7 @@ export default {
                 lng: lng.value,
                 name: 'Your Location',
             })
-            centerMap()
+            // centerMap()
         }
 
         // function addStacheMarker() {
@@ -132,7 +127,6 @@ export default {
             }),
 
         };
-
 
     }
 }
