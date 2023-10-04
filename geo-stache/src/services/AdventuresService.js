@@ -43,7 +43,7 @@ class AdventuresService {
 
     // NOTE allows us to update from todo to found and user can complete their adventure!
     async editAdventure(adventureId, userId) {
-        const originalAdventure = await dbContext.Adventures.findById(adventureId)
+        const originalAdventure = await dbContext.Adventures.findById(adventureId).populate('profile stache')
         if (!originalAdventure) throw new Error(`No Adventure at that Id${adventureId}`)
         if (originalAdventure.accountId != userId) {
             throw new Forbidden(`You cannot remove and Adventure you didn't create.`)

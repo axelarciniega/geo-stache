@@ -15,8 +15,8 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   profile: {},
 
-  /**@type {Profile[]} */
-  activeProfile: [],
+  /**@type {Profile} */
+  activeProfile: {},
 
 
   // STACHES
@@ -38,14 +38,14 @@ export const AppState = reactive({
   /**@type {Adventure[]} */
   myAdventures: [],
 
-  /**@type {Adventure[]} */
-  activeStacheAdventures: [],
+  /**@type {Adventure} */
+  activeStacheAdventures: {},
 
     /**@type {Stache[]} */
   activeProfileStaches: [],
 
-  /**@type {Adventure[]} */
-  activeProfileAdventures: [],
+  /**@type {Adventure} */
+  activeProfileAdventures: {},
 
 
   // COMMENTS
