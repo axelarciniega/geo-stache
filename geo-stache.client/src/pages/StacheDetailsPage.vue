@@ -67,8 +67,9 @@
                 </div> -->
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
-
+<!-- //ANCHOR - Edit button-->
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
+                    
                     <button v-show="account.id == stache.creatorId" @click="editStache"
                         class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
@@ -148,6 +149,7 @@ import { useRouter } from "vue-router";
 import { commentsService } from '../services/CommentsService';
 import { logger } from '../utils/Logger';
 import { adventuresService } from '../services/AdventuresService';
+import { Modal } from "bootstrap";
 
 
 export default {
@@ -161,6 +163,7 @@ export default {
         const markers = ref([])
         let map = null
         let infoWindow = null
+        const editStaches = ref({})
 
         onMounted(() => {
             getStacheById();
@@ -282,6 +285,7 @@ export default {
         return {
 
             stache,
+            editStaches,
             setupMap,
             map,
             account: computed(() => AppState.account),
@@ -304,6 +308,17 @@ export default {
                     Pop.error(error)
                 }
             },
+//ANCHOR - Edit stache
+            async editStache(){
+                try {
+                    logger.log('editing stache',editStaches.value)
+                    // await stachesService.editStache(editStaches.value)
+                    Modal.getOrCreateInstance('#id').open
+                    Pop.success('success')
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
 
             async deleteStache() {
                 try {
@@ -321,7 +336,7 @@ export default {
 
             async addAdventure() {
                 try {
-                    let adventureData = { stacheId: route.params.stacheId }
+                    let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
                     await adventuresService.addAdventure(adventureData)
                     Pop.success('Adventure has been added to your list!')
                 } catch (error) {
@@ -333,8 +348,9 @@ export default {
                 try {
                     if (await Pop.confirm('Are you sure?')) {
 
-                        let adventureData = route.params.stacheId
-                        await adventuresService.deleteAdventure(adventureData.id)
+                        let adventureId = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+                        await adventuresService.deleteAdventure(adventureId)
+
                     }
                 } catch (error) {
                     logger.error(error)
@@ -492,9 +508,19 @@ export default {
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
         0 5px 6px 0 rgba(43, 43, 43, 0.79),
         0 1px 8px 0 rgba(43, 43, 43, 0.79);
-    border-radius: 25px
+    border-radius: 16px
 }
 
+.glassCard {
+    background: var(--LghtGreen);
+    border-radius: 16px;
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+        0 5px 6px 0 rgba(43, 43, 43, 0.79),
+        0 1px 8px 0 rgba(43, 43, 43, 0.79);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid var(--DrkGreen);
+}
 .glassCard2 {
     /* From https://css.glass */
     background: var(--MdLghtGreen);
@@ -580,18 +606,6 @@ export default {
 .nameLink:hover {
     transform: scale(1.1);
 
-}
-
-.glassCard {
-
-    background: var(--LghtGreen);
-    border-radius: 16px;
-    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
-        0 5px 6px 0 rgba(43, 43, 43, 0.79),
-        0 1px 8px 0 rgba(43, 43, 43, 0.79);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 3px solid var(--DrkGreen);
 }
 
 .nameLink {

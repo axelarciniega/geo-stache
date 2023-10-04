@@ -42,6 +42,12 @@ class StachesService {
         }
     }
 
+
+async editStache(updateData){
+    const res = await api.put('/staches',updateData)
+    logger.log('edited data', res.data)
+}
+
 async deleteStache(stacheId){
     // logger.log('deleting')
 const res = await api.delete(`api/staches/${stacheId}`)

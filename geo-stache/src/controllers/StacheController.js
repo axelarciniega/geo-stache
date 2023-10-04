@@ -46,6 +46,7 @@ export class StacheController extends BaseController {
         }
     }
 
+
     async editStache(req, res, next) {
         try {
             const updates = req.body
