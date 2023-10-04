@@ -49,7 +49,7 @@
                                     class="mdi mdi-minus">Remove from
                                     your Adventures</i>
                             </button>
-                            <button class="col-6 foundButton">
+                            <button @click="completeAdventure()" class="col-6 foundButton">
                                 Found It!
                             </button>
                         </div>
