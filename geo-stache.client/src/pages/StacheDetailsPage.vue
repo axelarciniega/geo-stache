@@ -303,7 +303,7 @@ export default {
 
             async addAdventure() {
                 try {
-                    let adventureData = { stacheId: route.params.stacheId }
+                    let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
                     await adventuresService.addAdventure(adventureData)
                     Pop.success('Adventure has been added to your list!')
                 } catch (error) {
@@ -315,8 +315,9 @@ export default {
                 try {
                     if (await Pop.confirm('Are you sure?')) {
 
-                        let adventureData = route.params.stacheId
-                        await adventuresService.deleteAdventure(adventureData.id)
+                        let adventureId = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+                        await adventuresService.deleteAdventure(adventureId)
+
                     }
                 } catch (error) {
                     logger.error(error)

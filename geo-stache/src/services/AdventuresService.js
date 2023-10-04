@@ -26,15 +26,14 @@ class AdventuresService {
 
 
     // NOTE Allows us to remove an adventure, this is on the User's Profile page, or maybe even the Stache Details Page. They must be the creator of the Adventure.
-    async deleteAdventureById(adventureId, userId) {
+    async deleteAdventureById(adventureId) {
         const adventureToBeRemoved = await dbContext.Adventures.findById(adventureId)
 
         if (!adventureToBeRemoved) {
             throw new BadRequest(`The Adventure with id ${adventureId} does not exist.`)
         }
-        if (adventureToBeRemoved.accountId != userId) {
-            throw new Forbidden(`You cannot remove and Adventure you didn't create.`)
-        }
+
+
         await adventureToBeRemoved.remove()
         return adventureToBeRemoved
 
@@ -57,9 +56,18 @@ class AdventuresService {
 
     async getAdventures() {
         const adventures = await dbContext.Adventures.find()
-            .populate('creator', 'stache')
+            .populate('profile', 'stache')
         return adventures
     }
+
+
+
+    async getAdventureById(adventureId) {
+        const adventure = await dbContext.Adventures.findById(adventureId)
+        await adventure.populate('profile', 'stache')
+        return adventure
+    }
+
 
     async getAdventuresByStacheId(stacheId) {
         const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile', 'name status', 'stache')
