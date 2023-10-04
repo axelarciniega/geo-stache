@@ -1,5 +1,5 @@
 <template>
-    <div v-if="adventure.status == 'todo'" class="adventure-card bgToDo2 elevation-5">
+    <div class="adventure-card bgToDo2 elevation-5">
         <div class="adventure-content d-flex justify-content-between" v-show="adventure.status === 'todo'">
             <div class="adventure-title text-black fw-bold">{{ adventure.stache.stacheName }}</div>
             <img class="badge-pic" :src="adventure.stache.badgeImage" alt="">

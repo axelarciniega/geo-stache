@@ -77,14 +77,14 @@
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
             <h4 class="text-center mt-2">Badges</h4>
-            <div class="col-12 col-md-8 geo-shadow d-flex">
+            <!-- <div class="col-12 col-md-8 geo-shadow d-flex">
                 <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
-                    <div class="">
+                    <div v-if="adventure.stache.status == 'completed'" class="">
 
                         <img class="badge-pic2" :src="adventure.stache.badgeImage" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
         <!-- {{ profile.badgeCount }} -->
         <!-- {{ profile.todoCount }} -->
