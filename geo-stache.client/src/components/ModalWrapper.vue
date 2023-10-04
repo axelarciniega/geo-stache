@@ -7,7 +7,7 @@
     </transition>
     <!-- Modal trigger button -->
     <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card" data-bs-toggle="modal"
-        :data-bs-target="`#${id}`">
+        :data-bs-target="`#${id}`" @click="setEditStacheToNull">
         <slot name="button">
             open {{ id }} modal
         </slot>
@@ -37,11 +37,17 @@
 </template>
 
 <script>
+import { stachesService } from "../services/StachesService.js";
+
 
 export default {
     props: { id: { type: String, required: true }, showButton: { type: Boolean, default: true }, btnColor: { type: String, default: 'primary' } },
     setup() {
-        return {}
+        return {
+            setEditStacheToNull(){
+                stachesService.setEditStacheToNull()
+            }
+        }
     }
 }
 

@@ -69,12 +69,13 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 import Pop from '../utils/Pop.js';
 import { stachesService } from '../services/StachesService.js';
 import { Modal } from 'bootstrap';
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger';
+import { AppState } from "../AppState.js";
 
 
 
@@ -120,6 +121,16 @@ export default {
             resetForm();
             await getCoordinatesFromGeolocation();
         });
+
+        watchEffect(()=> {
+            if(AppState.activeStacheToEdit){
+                stacheData.value = {...AppState.activeStacheToEdit}
+            }
+            else{
+                resetForm()
+                getCoordinatesFromGeolocation()
+            }
+        })
 
         return {
             stacheData,

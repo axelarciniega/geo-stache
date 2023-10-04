@@ -54,6 +54,12 @@ const res = await api.delete(`api/staches/${stacheId}`)
 logger.log('deleting', res.data)
 }
 
+makeStacheEditable(){
+    AppState.activeStacheToEdit = AppState.activeStache
+}
+setEditStacheToNull(){
+    AppState.activeStacheToEdit = null
+}
 }
 
 export const stachesService = new StachesService();
