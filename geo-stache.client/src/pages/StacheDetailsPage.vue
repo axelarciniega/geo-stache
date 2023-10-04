@@ -158,8 +158,8 @@ export default {
         const route = useRoute();
         const router = useRouter();
         const stache = computed(() => AppState.activeStache)
-        const lat = ref(-114)
-        const lng = ref(21)
+        const lat = ref(-116.286672)
+        const lng = ref(43.606798)
         const markers = ref([])
         let map = null
         let infoWindow = null
@@ -336,7 +336,7 @@ export default {
 
             async addAdventure() {
                 try {
-                    let adventureData = { stacheId: route.params.stacheId }
+                    let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
                     await adventuresService.addAdventure(adventureData)
                     Pop.success('Adventure has been added to your list!')
                 } catch (error) {
@@ -348,8 +348,9 @@ export default {
                 try {
                     if (await Pop.confirm('Are you sure?')) {
 
-                        let adventureData = route.params.stacheId
-                        await adventuresService.deleteAdventure(adventureData.id)
+                        let adventureId = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+                        await adventuresService.deleteAdventure(adventureId)
+
                     }
                 } catch (error) {
                     logger.error(error)
@@ -507,9 +508,19 @@ export default {
     box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
         0 5px 6px 0 rgba(43, 43, 43, 0.79),
         0 1px 8px 0 rgba(43, 43, 43, 0.79);
-    border-radius: 25px
+    border-radius: 16px
 }
 
+.glassCard {
+    background: var(--LghtGreen);
+    border-radius: 16px;
+    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+        0 5px 6px 0 rgba(43, 43, 43, 0.79),
+        0 1px 8px 0 rgba(43, 43, 43, 0.79);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid var(--DrkGreen);
+}
 .glassCard2 {
     /* From https://css.glass */
     background: var(--MdLghtGreen);
@@ -595,18 +606,6 @@ export default {
 .nameLink:hover {
     transform: scale(1.1);
 
-}
-
-.glassCard {
-
-    background: var(--LghtGreen);
-    border-radius: 16px;
-    box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
-        0 5px 6px 0 rgba(43, 43, 43, 0.79),
-        0 1px 8px 0 rgba(43, 43, 43, 0.79);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 3px solid var(--DrkGreen);
 }
 
 .nameLink {

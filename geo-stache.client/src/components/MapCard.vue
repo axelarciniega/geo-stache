@@ -15,14 +15,11 @@
 <script>
 import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
-import { stachesService } from '../services/StachesService';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 // import { routerKey } from "vue-router";
 import { useRouter } from "vue-router";
-import { commentsService } from '../services/CommentsService';
-import { adventuresService } from '../services/AdventuresService';
-import { logger } from '../utils/Logger.js';
+
 export default {
     setup() {
         const route = useRoute();
@@ -82,15 +79,15 @@ export default {
 
         }
 
-        // function centerMap() {
-        //     // eslint-disable-next-line no-undef
-        //     const bounds = new google.maps.LatLngBounds();
-        //     markers.value.forEach((marker) => {
-        //         // eslint-disable-next-line no-undef
-        //         bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
-        //     })
-        //     map.fitBounds(bounds)
-        // }
+        function centerMap() {
+            // eslint-disable-next-line no-undef
+            const bounds = new google.maps.LatLngBounds();
+            markers.value.forEach((marker) => {
+                // eslint-disable-next-line no-undef
+                bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
+            })
+            map.fitBounds(bounds)
+        }
 
         function markYourLocation() {
             // eslint-disable-next-line no-undef
@@ -99,7 +96,7 @@ export default {
                 lng: lng.value,
                 name: 'Your Location',
             })
-            // centerMap()
+            centerMap()
         }
 
         // function addStacheMarker() {

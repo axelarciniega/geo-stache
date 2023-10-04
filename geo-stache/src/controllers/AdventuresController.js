@@ -10,10 +10,10 @@ export class AdventuresController extends BaseController {
         super('api/adventures')
         this.router
             .get('', this.getAdventures)
-
+            .get('/:adventureId', this.getAdventureById)
+            .delete('/:adventureId', this.deleteAdventureById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createAdventure)
-            .delete('/:adventureId', this.deleteAdventureById)
             .put('/:adventureId', this.editAdventure)
 
 
@@ -53,6 +53,15 @@ export class AdventuresController extends BaseController {
 
     }
 
+    async getAdventureById(req, res, next) {
+        try {
+            const adventureId = await adventuresService.getAdventureById(req.params.adventureId)
+            res.send(adventureId)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     // modeled off the PostIt Collaborator createCollab summer 23
     async createAdventure(request, response, next) {
         try {
@@ -68,9 +77,8 @@ export class AdventuresController extends BaseController {
 
     async deleteAdventureById(request, response, next) {
         try {
-            const adventureId = request.params.adventureId
-            const userId = request.userInfo.id
-            const adventure = await adventuresService.deleteAdventureById(adventureId, userId)
+
+            const adventure = await adventuresService.deleteAdventureById(request.params.adventureId)
             return response.send(adventure)
         } catch (error) {
             next(error)
