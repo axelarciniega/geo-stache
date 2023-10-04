@@ -332,6 +332,26 @@ export default {
                 }
             },
 
+            async completeAdventure() {
+                try {
+                    logger.log('route.params:', route.params);
+                    logger.log('route.params.stacheId:', route.params.stacheId);
+
+                    const stacheId = route.params.stacheId
+                    let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
+                    await adventuresService.completeAdventure(advToComplete.id)
+
+                    advToComplete.foundDate = new Date();
+
+                    Pop.success('Completed Adventure!')
+                } catch (error) {
+                    logger.log(error)
+                    Pop.error(error)
+                }
+            }
+
+
+
         };
 
     },
