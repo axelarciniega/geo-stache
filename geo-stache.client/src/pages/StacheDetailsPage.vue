@@ -36,19 +36,27 @@
                             </div>
                         </div>
                     </div>
+                    <section class="container">
+                        <div class="row">
 
-                    <button v-if="!thisStacheAdventure" class="adventureButton" @click="addAdventure()"><i
-                            class="mdi mdi-plus"></i>Add to
-                        your
-                        Adventures
-                    </button>
+                            <button v-if="!thisStacheAdventure" class="col-6 adventureButton" @click="addAdventure()"><i
+                                    class="mdi mdi-plus"></i>Add to
+                                your
+                                Adventures
+                            </button>
 
-                    <button v-else class="adventureButton" @click="deleteAdventure()"><i class="mdi mdi-minus">Remove from
-                            your Adventures</i>
-                    </button>
-                    <button class=" delete-button border border-1 border-black col-2 text-black">
-                        Found It!
-                    </button>
+                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"><i
+                                    class="mdi mdi-minus">Remove from
+                                    your Adventures</i>
+                            </button>
+                            <button class="col-6 foundButton">
+                                Found It!
+                            </button>
+                        </div>
+                    </section>
+
+
+
                 </div>
                 <!-- Camille testing things here -->
                 <!-- <div class="col-12 col-md-5 p-0 m-0"><img class="stacheImage" :src="stache.coverImage" alt="">
@@ -67,7 +75,7 @@
                     </button>
 
                     <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">
+                        <div class="btn mapButton btn-warning border border-1 border-black rounded-pill elevation-5">
                             back to maps
                         </div>
                     </router-link>
@@ -506,6 +514,36 @@ export default {
     background: linear-gradient(25deg, var(--LghtOrange), var(--Orange));
     transform: translateY(-5px);
     border-color: var(--DrkOrange);
+}
+
+.foundButton {
+    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    border-color: var(--Yellow);
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.foundButton:hover {
+    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
+    transform: translateY(-5px);
+    border-color: var(--DrkYellow);
+}
+
+.mapButton {
+    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
+    border-radius: 20px;
+    transition: background 0.3s, transform 0.2s;
+    border-color: var(--Yellow);
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.mapButton:hover {
+    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
+    transform: translateY(-5px);
+    border-color: var(--DrkYellow);
 }
 
 .nameLink:hover {
