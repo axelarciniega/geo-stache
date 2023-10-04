@@ -14,7 +14,7 @@ class AdventuresService {
         // }
 
         const newAdventure = await dbContext.Adventures.create(adventureData)
-        await newAdventure.populate('profile', 'name status')
+        await newAdventure.populate('profile name status stache')
         return newAdventure
     }
 

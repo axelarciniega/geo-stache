@@ -45,8 +45,7 @@
                                 Adventures
                             </button>
 
-                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"
-                                :class="{ 'd-none': thisStacheAdventure && thisStacheAdventure.status == 'completed' }"><i
+                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"><i
                                     class="mdi mdi-minus">Remove
                                     from
                                     your Adventures</i>
@@ -330,8 +329,8 @@ export default {
 
             async addAdventure() {
                 try {
-                    let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
-                    await adventuresService.addAdventure(adventureData)
+                    // let adventureData = AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+                    await adventuresService.addAdventure(route.params.stacheId)
                     Pop.success('Adventure has been added to your list!')
                 } catch (error) {
                     logger.error(error)
