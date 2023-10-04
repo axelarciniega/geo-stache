@@ -39,17 +39,21 @@
                     <section class="container">
                         <div class="row">
 
-                            <button v-if="!thisStacheAdventure" class="col-6 adventureButton" @click="addAdventure()"><i
+                            <button class="col-6 adventureButton" v-if="!thisStacheAdventure" @click="addAdventure()"><i
                                     class="mdi mdi-plus"></i>Add to
                                 your
                                 Adventures
                             </button>
 
-                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"><i
-                                    class="mdi mdi-minus">Remove from
+                            <button v-else class="col-6 adventureButton" @click="deleteAdventure()"
+                                :class="{ 'd-none': thisStacheAdventure && thisStacheAdventure.status == 'completed' }"><i
+                                    class="mdi mdi-minus">Remove
+                                    from
                                     your Adventures</i>
                             </button>
-                            <button @click="completeAdventure()" class="col-6 foundButton">
+                            <button @click="completeAdventure()"
+                                v-if="thisStacheAdventure && thisStacheAdventure.status == 'todo'"
+                                class="col-6 foundButton">
                                 Found It!
                             </button>
                         </div>
@@ -165,12 +169,6 @@ export default {
             // eslint-disable-next-line no-undef
         })
 
-        // watch(stache, () => {
-        //     if (map && AppState.activeStache) {
-        //         addStacheMarker()
-        //     }
-        // })
-
         function setupMap() {
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition((position) => {
@@ -257,20 +255,32 @@ export default {
             }
         }
 
-        // const isMyAdventure = computed(() => {
-        //     let isFound = true
-        //     for (let i = 0; i <= AppState.activeStacheAdventures.length; i++) {
-        //         for (let j = 0; j <= AppState.myAdventures.length; j++) {
-        //             if (i == j) {
-        //                 isFound = false
-        //             }
-        //         }
+        // async function completeAdventure() {
+        //     try {
+        //         logger.log('route.params:', route.params);
+        //         logger.log('route.params.stacheId:', route.params.stacheId);
+
+        //         const stacheId = route.params.stacheId
+        //         let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
+        //         // debugger
+        //         await adventuresService.completeAdventure(advToComplete.id)
+
+        //         advToComplete.foundDate = new Date();
+
+        //         Pop.success('Completed Adventure!')
+        //     } catch (error) {
+        //         logger.log(error)
+        //         Pop.error(error)
         //     }
-        //     return isFound
+        // }
+
+        // watchEffect(() => {
+        //     completeAdventure()
         // });
 
+
         return {
-            // isMyAdventure,
+
             stache,
             setupMap,
             map,
@@ -334,6 +344,7 @@ export default {
 
             async completeAdventure() {
                 try {
+                    // debugger
                     logger.log('route.params:', route.params);
                     logger.log('route.params.stacheId:', route.params.stacheId);
 
