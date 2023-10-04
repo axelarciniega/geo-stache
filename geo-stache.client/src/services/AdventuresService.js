@@ -22,7 +22,7 @@ class AdventuresService {
     }
     async deleteAdventure(adventureId) {
         logger.log("this is the adventure data", adventureId)
-        const response = await api.delete('api/adventures/${adventureId}')
+        const response = await api.delete(`api/adventures/${adventureId.id}`)
         logger.log('[DELETING ADVENTURE]', response.data)
         AppState.myAdventures = AppState.myAdventures.filter(a => a.id != adventureId)
 
