@@ -18,6 +18,7 @@
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
+
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p>this is a dummy location, we need to make the destination call off of the set lat lng</p> -->
@@ -41,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                    <img class="stacheImage pb-3" :src="stache.coverImage" alt="">
                     <section class="container">
                         <div class="row">
 

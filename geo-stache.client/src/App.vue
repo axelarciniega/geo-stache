@@ -78,7 +78,7 @@ export default {
 footer {
   display: grid;
   place-content: center;
-  height: 32px;
+  height: 50px;
   background-color: #41644A;
 }
 

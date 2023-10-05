@@ -139,7 +139,7 @@ export default {
             activeStacheToEdit: computed(() => AppState.activeStacheToEdit),
             async handleSubmit() {
                 try {
-                    let newStache
+                    let newStache = stacheData.value
                     if (stacheData.value.id){
                     await stachesService.makeStacheEditable(stacheData.value, stacheData.value.id)
                     }else{
