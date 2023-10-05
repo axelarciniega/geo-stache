@@ -18,8 +18,9 @@
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
-                    <p>this is a dummy location, we need to make the destination call off of the set lat lng </p>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=37.7749,-122.4194">Open in Google Maps</a>
+                    <p>this is a dummy location, we need to make the destination call off of the set lat lng</p>
+                    <a id="googleMapsLink" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
                         <p>
@@ -188,6 +189,7 @@ export default {
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
                     addStacheMarker()
+                    setGoogleMapsLink();
                 })
             }
         }
@@ -232,14 +234,38 @@ export default {
 
         function addStacheMarker() {
             if (stache.value?.lat && map) {
-                // eslint-disable-next-line no-undef
-                addMarker({
-                    lat: stache.value.lat,
-                    lng: stache.value.lng,
-                    name: stache.value.stacheName
-                })
+                // Create a LatLng object for the stache location
+                const stacheLocation = new google.maps.LatLng(stache.value.lat, stache.value.lng);
+
+                // Create a marker for the stache location
+                const stacheMarker = new google.maps.Marker({
+                    position: stacheLocation,
+                    map: map,
+                    title: stache.value.stacheName,
+                });
+
+                // Create an info window for the stache location
+                const stacheInfoWindow = new google.maps.InfoWindow({
+                    content: stache.value.stacheName,
+                });
+
+                // Add a click event listener to open the info window when the marker is clicked
+                stacheMarker.addListener('click', () => {
+                    stacheInfoWindow.open(map, stacheMarker);
+                });
+
+                // Set the href attribute of the Google Maps link
+                const googleMapsLink = document.getElementById('googleMapsLink');
+                if (googleMapsLink) {
+                    googleMapsLink.href = `https://www.google.com/maps/dir/?api=1&destination=${stache.value.lat},${stache.value.lng}`;
+                }
+
+                // Center the map on the stache location
+                map.setCenter(stacheLocation);
+                map.setZoom(15); // Adjust the zoom level as needed
             }
         }
+
 
 
 

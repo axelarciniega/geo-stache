@@ -53,6 +53,7 @@
       "titleBar.inactiveBackground": "#41644a99",
       "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "41644A"
+    "peacock.color": "41644A",
+    "liveServer.settings.multiRootWorkspaceName": "client"
   }
 }
