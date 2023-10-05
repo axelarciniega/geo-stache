@@ -18,7 +18,7 @@ export class DbConnection {
         return logger.warn('Db not available, no CONNECTION_STRING')
       }
       const status = await mongoose.connect(connectionstring)
-      logger.log('[CONNECTION TO DB SUCCESSFUL]')
+      // logger.log('[CONNECTION TO DB SUCCESSFUL]')
       return status
     } catch (e) {
       logger.error(

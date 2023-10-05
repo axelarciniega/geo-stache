@@ -18,19 +18,19 @@ class AccountService {
   async editAccount(updateData) {
     // logger.log('Is this on?')
     const response = await api.put('/account', updateData)
-    logger.log('editing account', response.data)
+    // logger.log('editing account', response.data)
   }
 
 
   async getMyAdventures() {
     const res = await api.get('account/adventures')
-    logger.log(res.data, '[GET MY ADVENTURES]')
+    // logger.log(res.data, '[GET MY ADVENTURES]')
     AppState.myAdventures = res.data.map(d => new Adventure(d))
   }
   async getProfileById(profileId) {
     try {
       const res = await api.get(`api/profiles/${profileId}`)
-      logger.log(res.data)
+      // logger.log(res.data)
       AppState.profile = res.data
     } catch (error) {
       Pop.error(error)

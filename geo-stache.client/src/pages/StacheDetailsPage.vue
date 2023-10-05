@@ -22,7 +22,8 @@
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p>this is a dummy location, we need to make the destination call off of the set lat lng</p> -->
-                    <a class="justify-content-center d-flex pb-3 text-orange googleLink" id="googleMapsLink" target="_blank" rel="noopener noreferrer">Open destination in Google Maps</a>
+                    <a class="justify-content-center d-flex pb-3 text-orange googleLink" id="googleMapsLink" target="_blank"
+                        rel="noopener noreferrer">Open destination in Google Maps</a>
 
                     <!-- <p class="text-center">Creator: {{ stache.creator.name}}</p> -->
                     <div class="text-center">
@@ -400,8 +401,8 @@ export default {
             async completeAdventure() {
                 try {
                     // debugger
-                    logger.log('route.params:', route.params);
-                    logger.log('route.params.stacheId:', route.params.stacheId);
+                    // logger.log('route.params:', route.params);
+                    // logger.log('route.params.stacheId:', route.params.stacheId);
 
                     const stacheId = route.params.stacheId
                     let advToComplete = AppState.myAdventures.find(a => a.stacheId == stacheId)
@@ -664,7 +665,7 @@ export default {
     background: linear-gradient(25deg, var(--LghtGreen), var(--Sand));
 }
 
-.googleLink:hover{
-    transform:scale(1.1)
+.googleLink:hover {
+    transform: scale(1.1)
 }
 </style>

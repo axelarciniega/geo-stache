@@ -26,5 +26,5 @@ DbConnection.connect()
 
 // Start Server
 httpServer.listen(port, () => {
-  logger.log(`[SERVING ON PORT: ${port}]`)
+  // logger.log(`[SERVING ON PORT: ${port}]`)
 })
