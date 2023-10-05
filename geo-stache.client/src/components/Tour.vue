@@ -1,5 +1,5 @@
 <template>
-    <v-tour name="geoTour" :steps="steps" :callbacks="geoTourCallbacks"></v-tour>
+    <v-tour name="geoTour" :steps="steps" :callbacks="myCallbacks"></v-tour>
 </template>
 
 
@@ -8,7 +8,7 @@
 export default {
     props: {
         steps: { type: Array, required: true },
-        callbacks: { type: Object }
+        myCallbacks: { type: Object }
     },
     setup() {
         return {}
