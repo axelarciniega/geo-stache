@@ -76,15 +76,13 @@
             </section>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
-            <h4 class="text-center mt-2">Badges</h4>
-            <!-- <div class="col-12 col-md-8 geo-shadow d-flex">
-                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
-                    <div v-if="adventure.stache.status == 'completed'" class="">
+            <div class="adventure-card">
+                <h4 class="text-center bg-warning fw-bold border border-dark border-3 rounded mt-2">Badges</h4>
 
-                        <img class="badge-pic2" :src="adventure.stache.badgeImage" alt="">
-                    </div>
+                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
+                    <BadgeTemplate :adventure="adventure" />
                 </div>
-            </div> -->
+            </div>
         </section>
         <!-- {{ profile.badgeCount }} -->
         <!-- {{ profile.todoCount }} -->
@@ -185,6 +183,7 @@ export default {
 }
 
 .adventure-card {
+    background: rgba(139, 141, 104, 0.857);
     border: 1px solid #171f15;
     border-radius: 15px;
     padding: 10px;

@@ -10,7 +10,7 @@ class AdventuresService {
         const response = await api.post('api/adventures', adventureData)
         logger.log('new adventure!', response.data)
         const newAdventure = new Adventure(response.data)
-        logger.log('newAdventure')
+        logger.log(newAdventure)
         AppState.activeStacheAdventures = newAdventure
         AppState.myAdventures.push(newAdventure)
     }
