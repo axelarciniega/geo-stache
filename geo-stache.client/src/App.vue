@@ -20,6 +20,7 @@
         <!-- <img class="footer-bg" src="./assets/img/TheStache.png" alt=""> -->
 
         <img :src="DrkGreenStacheImage" alt="Geo-Stache Logo" class="stache text-center">
+        <!-- <img :src="greenStacheFive" alt="Geo-Stache Logo" class="stache text-center"> -->
 
       </span>
       <!-- >>>>>>> 025bd5e36a7da95156e582bff058305b343cee8b -->
@@ -29,7 +30,8 @@
 </template>
 
 <script>
-import DrkGreenStacheImage from './assets/img/STACHE-DrkGreen.png'
+import DrkGreenStacheImage from './assets/img/FiveOfFiveStach.png'
+// import DrkGreenStacheImage from './assets/img/STACHE-DrkGreen.png'
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
@@ -48,7 +50,7 @@ export default {
 @import "./assets/scss/main.scss";
 
 .bg-img {
-  // ✅DONE: Uncomment after change text color
+
   // background-image: url(https://images.unsplash.com/photo-1554755229-ca4470e07232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80);
   // background-image: url("https://images.unsplash.com/photo-1520299607509-dcd935f9a839?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80");
   // background-image: url("./assets/img/bg-map-75.png");

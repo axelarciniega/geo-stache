@@ -73,27 +73,19 @@
                 <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
 
                     <button v-show="account.id == stache.creatorId" data-bs-toggle="modal" data-bs-target="#id"
-                        @click="makeStacheEditable"
-                        class=" button-class border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
+                        @click="makeStacheEditable" class=" button-class col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         edit <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
-                        class=" delete-button border border-1 border-black col-md-2 col-8 my-md-0 my-1 py-md-0 py-2 text-black">
+                        class=" delete-button col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                         delete <i class="mdi mdi-icon"></i>
                     </button>
 
-                    <router-link :to="{ name: 'Map' }" class="col-md-2 col-6 my-md-0 my-1">
-                        <div class="btn mapButton btn-warning border border-1 border-black rounded-pill elevation-5">
+                    <router-link :to="{ name: 'Map' }">
+                        <button class="mapButton col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
                             back to maps
-                        </div>
+                        </button>
                     </router-link>
-                    <!-- <router-link :to="{ name: 'Map' }">
-                        <div class="btn btn-warning border border-1 border-black rounded-pill elevation-5">back to
-                            maps
-                        </div>
-                    </router-link> -->
-
-
                 </div>
             </div>
         </section>
@@ -473,17 +465,16 @@ export default {
 
 
 <style scoped lang="scss">
-.map-button {
-    background: linear-gradient(45deg, var(--Yellow), var(--Sand));
+.greenButton .orangeButton .YellowButton .map-button {
+    background: linear-gradient(25deg, var(--Yellow), var(--Sand));
     border: solid 2px var(--UltraDrkGreen);
     border-radius: 20px;
     padding: 2px;
-    color: var(--DrkGreen);
     transform: background 0.3s, transform 0.2s;
 }
 
 .map-button:hover {
-    background: linear-gradient(45deg, var(--Sand), var(--Yellow));
+    background: linear-gradient(25deg, var(--Sand), var(--Yellow));
     transform: scale(1.1);
 }
 
