@@ -7,14 +7,14 @@ class StachesService {
     // NOTE ⬇️this is the Active Stache renderd on the StacheDetailsPage
     async getStacheById(stacheId) {
         const res = await api.get(`api/staches/${stacheId}`);
-        logger.log(res.data);
+        // logger.log(res.data);
         AppState.activeStache = new Stache(res.data);
     }
 
     async getStaches() {
         try {
             const res = await api.get('api/staches');
-            logger.log(res.data);
+            // logger.log(res.data);
             AppState.staches = res.data.map(s => new Stache(s));
         } catch (error) {
             logger.error(error);
@@ -33,7 +33,7 @@ class StachesService {
 
         try {
             const res = await api.post('api/staches', stacheData);
-            logger.log(res.data);
+            // logger.log(res.data);
             const newStache = new Stache(res.data);
             AppState.staches.unshift(newStache);
             return newStache
@@ -43,33 +43,33 @@ class StachesService {
     }
 
 
-async editStache(updateData, stacheId){
-    const res = await api.put('/staches',updateData)
-    logger.log('edited data', res.data)
-    const updatedStache = new Stache(res.data)
-    let originalStacheIndex = AppState.staches.findIndex(stache => stache.id == stacheId)
-    AppState.staches.splice(originalStacheIndex, 1, updatedStache)
+    async editStache(updateData, stacheId) {
+        const res = await api.put('/staches', updateData)
+        // logger.log('edited data', res.data)
+        const updatedStache = new Stache(res.data)
+        let originalStacheIndex = AppState.staches.findIndex(stache => stache.id == stacheId)
+        AppState.staches.splice(originalStacheIndex, 1, updatedStache)
 
-}
+    }
 
-async deleteStache(stacheId){
-    // logger.log('deleting')
-const res = await api.delete(`api/staches/${stacheId}`)
-logger.log('deleting', res.data)
-}
+    async deleteStache(stacheId) {
+        // logger.log('deleting')
+        const res = await api.delete(`api/staches/${stacheId}`)
+        // logger.log('deleting', res.data)
+    }
 
-async makeStacheEditable(updateData, stacheId){
-    const res = await api.put(`api/staches/${stacheId}`, updateData)
-    logger.log('edited data', res.data)
-    const updatedStache = new Stache(res.data)
-    let originalStacheIndex = AppState.staches.findIndex(stache => stache.id == stacheId)
-    AppState.staches.splice(originalStacheIndex, 1, updatedStache)
-    AppState.activeStacheToEdit = AppState.activeStache
-    AppState.activeStache = updatedStache
-}
-setEditStacheToNull(){
-    AppState.activeStacheToEdit = null
-}
+    async makeStacheEditable(updateData, stacheId) {
+        const res = await api.put(`api/staches/${stacheId}`, updateData)
+        // logger.log('edited data', res.data)
+        const updatedStache = new Stache(res.data)
+        let originalStacheIndex = AppState.staches.findIndex(stache => stache.id == stacheId)
+        AppState.staches.splice(originalStacheIndex, 1, updatedStache)
+        AppState.activeStacheToEdit = AppState.activeStache
+        AppState.activeStache = updatedStache
+    }
+    setEditStacheToNull() {
+        AppState.activeStacheToEdit = null
+    }
 }
 
 export const stachesService = new StachesService();

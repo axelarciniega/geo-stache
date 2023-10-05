@@ -49,7 +49,7 @@ export class SocketHandler {
 
   on(event, fn) {
     const ctx = this
-    this.socket?.on(event, function() {
+    this.socket?.on(event, function () {
       try {
         fn.call(ctx, ...arguments)
       } catch (error) {
@@ -67,7 +67,7 @@ export class SocketHandler {
 
   onAuthenticated(auth) {
     console.groupCollapsed('⚡[SOCKET_AUTHENTICATED]', this.constructor.name)
-    logger.log(auth)
+    // logger.log(auth)
     this.authenticated = true
     this.playback()
     console.groupEnd()
@@ -78,13 +78,13 @@ export class SocketHandler {
   }
 
   enqueue(action, payload) {
-    logger.log('📼[ENQUEING_ACTION]', { action, payload })
+    // logger.log('📼[ENQUEING_ACTION]', { action, payload })
     this.queue.push({ action, payload })
   }
 
   playback() {
     if (!this.queue.length) { return }
-    logger.log(`📽️[${this.constructor.name}]`,)
+    // logger.log(`📽️[${this.constructor.name}]`,)
     const playback = [...this.queue]
     this.queue = []
     playback.forEach(e => {
@@ -99,7 +99,7 @@ export class SocketHandler {
     if (!this.connected) {
       return this.enqueue(action, payload)
     }
-    logger.log('📡', action, payload)
+    // logger.log('📡', action, payload)
     this.socket.emit(action, payload)
   }
 }

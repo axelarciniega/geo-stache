@@ -8,7 +8,7 @@ class AdventuresService {
 
     // NOTE Create Adventure
     async createAdventure(adventureData) {
-        logger.log(adventureData)
+        // logger.log(adventureData)
         // const stache = await stachesService.getStacheById(adventureData.stacheId)
         // FIXME add in logic for archived/deleted if we set that on the stache schema
         // if (!stacheId == stache.id) {
