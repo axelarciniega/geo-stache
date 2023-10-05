@@ -22,7 +22,7 @@
 
       <!-- STUB KEEP CAROUSEL -->
       <section class="row justify-content-between my-3">
-        <div id="geo-carousel" class="carousel slide col-6 rounded" data-ride="carousel">
+        <div id="geo-carousel" class="carousel slide col-md-6 col-12 rounded" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
