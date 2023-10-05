@@ -27,6 +27,8 @@ export class Account extends Profile {
     // NOTE keep null check. reference stache schema
     // this.lat = data.location.coordinates ? data.location.coordinates[0] : null
     // this.lng = data.location.coordinates ? data.location.coordinates[1] : null
+
+    this.needsTour = data.needsTour
   }
 }
 
