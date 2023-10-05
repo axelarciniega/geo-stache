@@ -1,3 +1,5 @@
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-undef -->
 <template>
     <div v-if="stache">
 
@@ -199,6 +201,9 @@ export default {
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
                     addStacheMarker()
+
+
+                    // eslint-disable-next-line no-undef
                     setGoogleMapsLink();
                 })
             }
@@ -244,10 +249,12 @@ export default {
 
         function addStacheMarker() {
             if (stache.value?.lat && map) {
-                // Create a LatLng object for the stache location
+
+                // eslint-disable-next-line no-undef
                 const stacheLocation = new google.maps.LatLng(stache.value.lat, stache.value.lng);
 
                 // Create a marker for the stache location
+                // eslint-disable-next-line no-undef
                 const stacheMarker = new google.maps.Marker({
                     position: stacheLocation,
                     map: map,
@@ -255,6 +262,7 @@ export default {
                 });
 
                 // Create an info window for the stache location
+                // eslint-disable-next-line no-undef
                 const stacheInfoWindow = new google.maps.InfoWindow({
                     content: stache.value.stacheName,
                 });
