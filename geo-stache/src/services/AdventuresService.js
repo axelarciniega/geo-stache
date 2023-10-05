@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { logger } from "../utils/Logger.js"
 import { stachesService } from "./StachesServices.js"
 
 
@@ -7,20 +8,21 @@ class AdventuresService {
 
     // NOTE Create Adventure
     async createAdventure(adventureData) {
-        const stache = await stachesService.getStacheById(adventureData.stacheId)
+        logger.log(adventureData)
+        // const stache = await stachesService.getStacheById(adventureData.stacheId)
         // FIXME add in logic for archived/deleted if we set that on the stache schema
         // if (!stacheId == stache.id) {
         //     throw new Forbidden(`${stache.stacheName} has been deleted by its creator`)
         // }
 
         const newAdventure = await dbContext.Adventures.create(adventureData)
-        await newAdventure.populate('profile  stache')
+        await newAdventure.populate('profile stache')
         return newAdventure
     }
 
     // NOTE This gets all the Staches that the current profile has marked as either ToDo or Found.
     async getAdventuresByUserId(userId) {
-        const stacheAdventures = await dbContext.Adventures.find({ accountId: userId }).populate('stache, profile')
+        const stacheAdventures = await dbContext.Adventures.find({ accountId: userId }).populate('stache profile')
         return stacheAdventures
     }
 
