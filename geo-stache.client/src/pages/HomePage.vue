@@ -31,57 +31,87 @@
     </div> -->
 
 
-    <!-- STUB CAROUSEL -->
-    <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block homepage-pic px-0"
-            src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
-            alt="First slide">
+    <div class="container">
+
+      <!-- STUB CAROUSEL -->
+      <section class="row justify-content-between my-3">
+        <div id="geo-carousel" class="carousel slide col-6 rounded" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100"
+                src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
+                alt="First slide">
+              <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>...</h5>
+                <p>...</p>
+              </div> -->
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="..." alt="Second slide">
+              <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>...</h5>
+                <p>...</p>
+              </div> -->
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="..." alt="Third slide">
+              <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>...</h5>
+                <p>...</p>
+              </div> -->
+            </div>
+          </div>
+          <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a> -->
         </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="..." alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="..." alt="Third slide">
-        </div>
-      </div>
-    </div> -->
-    <!-- STUB ORIGINAL HOMEPAGE PIC -->
-    <section class="row justify-content-between my-3">
+        <!-- STUB ORIGINAL HOMEPAGE PIC -->
+        <!-- <section class="row justify-content-between my-3">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
           src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
           alt="">
-      </div>
+      </div> -->
 
 
-      <!-- STUB Stache Template -->
-      <div id="v-step-2" class="col-md-5 col-12 glass-card my-md-0 my-2">
-        <table class="row">
-          <tr class="col-12 justify-content-between d-flex">
-            <th class="col-4 text-center px-1">Stache Name</th>
-            <th class="col-4 text-center px-1">Creator Name</th>
-            <th class="col-4 text-center px-1">difficulty</th>
-          </tr>
+        <!-- STUB Stache Template -->
+        <div id="v-step-2" class="col-md-5 col-12 glass-card my-md-0 my-2">
+          <table class="row">
+            <tr class="col-12 justify-content-between d-flex">
+              <th class="col-4 text-center px-1">Stache Name</th>
+              <th class="col-4 text-center px-1">Creator Name</th>
+              <th class="col-4 text-center px-1">difficulty</th>
+            </tr>
 
-          <div v-for="s in staches" :key="s.id">
-            <StacheCard :stache="s" />
-          </div>
-        </table>
-      </div>
-    </section>
+            <div v-for="s in staches" :key="s.id">
+              <StacheCard :stache="s" />
+            </div>
+          </table>
+        </div>
+      </section>
+    </div>
+
   </section>
-  <Tour v-if="account.needsTour" :steps="steps" :callbacks="geoTourCallbacks" />
+  <Tour v-if="account.needsTour" :steps="steps" :myCallbacks="geoTourCallbacks" />
 </template>
 <script>
 import { computed, onMounted } from 'vue'
 import Pop from '../utils/Pop'
 import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
-import { router } from '../router.js'
 import { accountService } from '../services/AccountService.js';
-
+import { useRouter } from 'vue-router';
+import { logger } from '../utils/Logger.js';
 
 
 export default {
@@ -89,7 +119,7 @@ export default {
     onMounted(() => {
       getStaches()
     })
-
+    const router = useRouter()
     async function getStaches() {
       try {
         await stachesService.getStaches()
