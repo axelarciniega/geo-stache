@@ -65,7 +65,7 @@ async makeStacheEditable(updateData, stacheId){
     let originalStacheIndex = AppState.staches.findIndex(stache => stache.id == stacheId)
     AppState.staches.splice(originalStacheIndex, 1, updatedStache)
     AppState.activeStacheToEdit = AppState.activeStache
-    
+    AppState.activeStache = updatedStache
 }
 setEditStacheToNull(){
     AppState.activeStacheToEdit = null
