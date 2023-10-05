@@ -1,3 +1,5 @@
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-undef -->
 <template>
     <div v-if="stache">
 
@@ -197,6 +199,9 @@ export default {
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
                     addStacheMarker()
+
+
+                    // eslint-disable-next-line no-undef
                     setGoogleMapsLink();
                 })
             }
