@@ -38,13 +38,13 @@
                     class="form-control bg-sand" />
             </div>
             <!-- Local Area Select -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="locationTag">Local Area:</label>
                 <select id="locationTag" v-model="stacheData.locationTag" required class="form-control bg-sand">
                     <option value="Boise">Boise</option>
-                    <!-- Add more cities within a 50-mile radius of Boise, Idaho -->
+                    Add more cities within a 50-mile radius of Boise, Idaho
                 </select>
-            </div>
+            </div> -->
             <!-- Difficulty Select -->
             <div class="form-group">
                 <label for="difficulty">Difficulty:</label>
