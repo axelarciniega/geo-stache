@@ -31,6 +31,23 @@
     </div> -->
 
 
+    <!-- STUB CAROUSEL -->
+    <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block homepage-pic px-0"
+            src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
+            alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="..." alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="..." alt="Third slide">
+        </div>
+      </div>
+    </div> -->
+    <!-- STUB ORIGINAL HOMEPAGE PIC -->
     <section class="row justify-content-between my-3">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
@@ -88,6 +105,14 @@ export default {
 
 
 <style scoped lang="scss">
+.stacheList {
+  border: 3px solid var(--UltraDrkGreen);
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
+  border-radius: 16px
+}
+
 .home {
   display: grid;
   height: 80vh;
@@ -182,6 +207,9 @@ div.map-link {
   top: 0;
   position: absolute;
   width: 100%;
+  box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
+    0 5px 6px 0 rgba(43, 43, 43, 0.79),
+    0 1px 8px 0 rgba(43, 43, 43, 0.79);
 }
 
 // .frosted-card:hover{
