@@ -7,7 +7,7 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String },
-    // do NOT make required
+
     bio: { type: String },
     badgeCount: { type: Number, default: 0 },
     // do NOT make required

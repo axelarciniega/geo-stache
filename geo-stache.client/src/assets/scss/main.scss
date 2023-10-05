@@ -19,44 +19,45 @@
   --DrkYellow: #c59b00;
   ;
   --Sand: #d6cec2;
+  --LghtSand: #f7eee2;
 
 }
 
 /* Background color classes */
 .bg-Sand {
-  background-color: var(--Sand);
+  background-color: var(--Sand) !important;
 }
 
 .bg-Green {
-  background-color: var(--Green);
+  background-color: var(--Green) !important;
 }
 
 .bg-DrkGreen {
-  background-color: var(--DrkGreen);
+  background-color: var(--DrkGreen) !important;
 }
 
 .bg-Orange {
-  background-color: var(--Orange);
+  background-color: var(--Orange) !important;
 }
 
 .bg-LghtOrange {
-  background-color: var(--LghtOrange);
+  background-color: var(--LghtOrange) !important;
 }
 
 .bg-DrkGreen {
-  background-color: var(--DrkGreen);
+  background-color: var(--DrkGreen) !important;
 }
 
 .bg-MdLghtGreen {
-  background-color: var(--MdLghtGreen);
+  background-color: var(--MdLghtGreen) !important;
 }
 
 .bg-LghtGreen {
-  background-color: var(--LghtGreen);
+  background-color: var(--LghtGreen) !important;
 }
 
 .bg-Yellow {
-  background-color: var(--Yellow);
+  background-color: var(--Yellow) !important;
 }
 
 /* Text color classes */
@@ -64,12 +65,16 @@
   color: var(--Sand) !important;
 }
 
+.txt-LghtSand {
+  color: var(--LghtSand) !important;
+}
+
 .txt-LghtGreen {
-  color: var(--LghtGreen);
+  color: var(--LghtGreen) !important;
 }
 
 .txt-Green {
-  color: var(--Green);
+  color: var(--Green) !important;
 }
 
 .txt-DrkGreen {
@@ -81,15 +86,15 @@
 }
 
 .txt-Orange {
-  color: var(--Orange);
+  color: var(--Orange) !important;
 }
 
 .txt-LghtOrange {
-  color: var(--LghtOrange);
+  color: var(--LghtOrange) !important;
 }
 
 .txt-Yellow {
-  color: var(--Yellow);
+  color: var(--Yellow) !important;
 }
 
 /* Font type classes */

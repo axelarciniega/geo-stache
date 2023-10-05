@@ -6,7 +6,8 @@
     </button>
     <div v-else>
       <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="no-Pointer border-0 fnt-Cabin txt-Sand" data-bs-toggle="dropdown" aria-expanded="false">
+        <div type="button" class="no-Pointer border-0 fnt-Cabin txt-LghtSand" data-bs-toggle="dropdown"
+          aria-expanded="false">
           <div v-if="account.picture || user.picture">
             <img :src="account.picture || user.picture" alt="account photo" height="40"
               class="rounded selectable m-1 txt-Sand ftn-Cabin" />
@@ -17,13 +18,16 @@
           aria-labelledby="authDropdown">
           <div class="list-group ftn-Cabin txt-Sand">
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action bg-Sand fnt-Cabin txt-DrkGreen">
+              <div
+                class="list-group-item dropdown-item list-group-item-action bg-Sand fnt-Cabin txt-DrkGreen selectable fs-semibold">
                 Manage Account
               </div>
             </router-link>
-            <!-- <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
-              <div class="list-group-item dropdown-item list-group-item-action bg-Sand fnt-Cabin txt-DrkGreen">View Profile</div>
-            </router-link> -->
+            <router-link v-if="account.id" :to="{ name: 'Profile', params: { profileId: account.id } }">
+              <div class="list-group-item dropdown-item list-group-item-action bg-Sand fnt-Cabin txt-DrkGreen selectable">
+                View
+                Profile</div>
+            </router-link>
             <div class="list-group-item dropdown-item list-group-item-action bg-Sand ftn-Cabin txt-DrkGreen selectable"
               @click="logout">
               <i class="mdi mdi-logout"></i>

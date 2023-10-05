@@ -24,9 +24,9 @@
         <section class="row justify-content-around mt-5">
             <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
                 <h4 class="text-center mt-2 ">Created staches</h4>
-                <div v-for="s in activeProfileStaches" :key="s.id">
+                <!-- <div v-for="s in activeProfileStaches" :key="s.id">
                     <ActiveProfileStacheCard :stache="s" />
-                </div>
+                </div> -->
             </div>
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
                 <h4 class="text-center mt-2 ">Profile details</h4>
@@ -76,15 +76,13 @@
             </section>
             <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
-            <h4 class="text-center mt-2">Badges</h4>
-            <!-- <div class="col-12 col-md-8 geo-shadow d-flex">
-                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
-                    <div v-if="adventure.stache.status == 'completed'" class="">
+            <div class="adventure-card">
+                <h4 class="text-center bg-warning fw-bold border border-dark border-3 rounded mt-2">Badges</h4>
 
-                        <img class="badge-pic2" :src="adventure.stache.badgeImage" alt="">
-                    </div>
+                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
+                    <BadgeTemplate :adventure="adventure" />
                 </div>
-            </div> -->
+            </div>
         </section>
         <!-- {{ profile.badgeCount }} -->
         <!-- {{ profile.todoCount }} -->
@@ -141,7 +139,7 @@ export default {
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
             // staches: computed(() => AppState.staches),
-            activeProfileStaches: computed(() => AppState.activeProfileStaches),
+            // activeProfileStaches: computed(() => AppState.activeProfileStaches),
             myAdventures: computed(() => AppState.myAdventures),
         };
     },
@@ -185,6 +183,7 @@ export default {
 }
 
 .adventure-card {
+    background: rgba(139, 141, 104, 0.857);
     border: 1px solid #171f15;
     border-radius: 15px;
     padding: 10px;

@@ -1,6 +1,6 @@
 <template>
     <div class="txt-DrkGreen ftn-Cabin">
-        <form class="text-sand" @submit.prevent="createStache">
+        <form class="text-sand" @submit.prevent="handleSubmit">
             <h1 class="text-center text-black">Stache Create Form</h1>
             <!-- Stache Name Input -->
             <div class="form-group">
@@ -137,9 +137,14 @@ export default {
         return {
             stacheData,
             activeStacheToEdit: computed(() => AppState.activeStacheToEdit),
-            async createStache() {
+            async handleSubmit() {
                 try {
-                    let newStache = await stachesService.createStache(stacheData.value);
+                    let newStache = stacheData.value
+                    if (stacheData.value.id){
+                    await stachesService.makeStacheEditable(stacheData.value, stacheData.value.id)
+                    }else{
+                        newStache = await stachesService.createStache(stacheData.value);
+                    }
                     if(AppState.activeStacheToEdit == null){
                         Pop.success('Created Stache')
                     }else{Pop.success('Edited Stache')}
