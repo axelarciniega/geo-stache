@@ -70,23 +70,39 @@
                 <div class="m-2 map_card col-12 col-md-5 p-0 m-0" id="map" style="height: 50vh;"></div>
 
                 <!-- //ANCHOR - Edit button-->
-                <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
+                <!-- <div class="justify-content-md-around justify-content-center row bg-DrkGreen rounded p-3 ">
 
                     <button v-show="account.id == stache.creatorId" data-bs-toggle="modal" data-bs-target="#id"
                         @click="makeStacheEditable" class=" button-class col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
-                        edit <i class="mdi mdi-icon"></i>
+                        Edit Stache <i class="mdi mdi-icon"></i>
                     </button>
                     <button v-show="account.id == stache.creatorId" @click="deleteStache"
                         class=" delete-button col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
-                        delete <i class="mdi mdi-icon"></i>
+                        Delete Stache <i class="mdi mdi-icon"></i>
                     </button>
 
                     <router-link :to="{ name: 'Map' }">
                         <button class="mapButton col-md-2 col-8 my-md-0 my-1 py-md-0 py-2">
-                            back to maps
+                            Back to Maps </button>
+                    </router-link>
+                </div> -->
+
+                <div class="d-flex justify-content-around bg-DrkGreen rounded p-3">
+                    <button v-show="account.id == stache.creatorId" data-bs-toggle="modal" data-bs-target="#id"
+                        @click="makeStacheEditable" class="button-class my-md-0 my-1 py-md-0 py-2">
+                        Edit Stache <i class="mdi mdi-icon"></i>
+                    </button>
+                    <button v-show="account.id == stache.creatorId" @click="deleteStache"
+                        class="delete-button my-md-0 my-1 py-md-0 py-2">
+                        Delete Stache <i class="mdi mdi-icon"></i>
+                    </button>
+                    <router-link :to="{ name: 'Map' }">
+                        <button class="mapButton my-md-0 my-1 py-md-0 py-2">
+                            Back to Maps
                         </button>
                     </router-link>
                 </div>
+
             </div>
         </section>
         <!-- <section class="container">
