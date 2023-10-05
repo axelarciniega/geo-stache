@@ -65,7 +65,7 @@
                             goals</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body bg-primary">
+                    <div class="offcanvas-body bg-primary txt-DrkGreen">
 
                         <div v-for="adventure in myAdventures" :key="adventure.id" class="">
                             <ToDoCard :adventure="adventure" />
