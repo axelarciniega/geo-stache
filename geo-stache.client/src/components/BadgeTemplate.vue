@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-if="adventure.status == 'completed'" class=" ">
-
-            <img class="border border-5 border-warning badge-pic2" :src="adventure.stache.badgeImage" alt="">
-
+            <div class="d-flex">
+                <img class="border border-5 border-warning badge-pic2" :src="adventure.stache.badgeImage" alt="">
+            </div>
         </div>
 
     </div>
