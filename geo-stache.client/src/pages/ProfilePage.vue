@@ -193,7 +193,7 @@ export default {
 }
 
 .adventure-card {
-    background: #41644ad3;
+    background: #41644ab2;
     border: 3px solid #171f15;
     border-radius: 15px;
     padding: 10px;
