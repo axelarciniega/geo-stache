@@ -8,12 +8,8 @@
       <!-- {{ staches }} -->
       <!-- STUB Map Card -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
-        <!-- FIXME ADD frosted-card to div class above and put the h1 Open map direclty below. -->
-        <!-- Map/link to map page -->
         <router-link :to="{ name: 'Map' }">
-          <!-- <img class="map-pic"
-            src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt=""> -->
+
           <MapCard id="v-step-3" />
           <div class="frosted-card">
             <h1 class="ps-2 position-relative txt-DrkGreen text-center">Open Map</h1>
@@ -21,19 +17,10 @@
         </router-link>
       </div>
     </section>
-    <!-- <div class="divider"></div> -->
-
-    <!-- photo and stache chart with links to popular staches -->
-    <!-- <div class="row justify-content-center">
-      <button class="btn create my-3 col-8 col-md-4 fs-3">
-        Post a Stache
-      </button>
-    </div> -->
-
 
     <div class="container">
 
-      <!-- STUB CAROUSEL -->
+      <!-- STUB KEEP CAROUSEL -->
       <section class="row justify-content-between my-3">
         <div id="geo-carousel" class="carousel slide col-6 rounded" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -75,7 +62,7 @@
             <span class="sr-only">Next</span>
           </a> -->
         </div>
-        <!-- STUB ORIGINAL HOMEPAGE PIC -->
+        <!-- STUB KEEP ORIGINAL HOMEPAGE PIC -->
         <!-- <section class="row justify-content-between my-3">
       <div class="col-md-6 col-12 p-0">
         <img class="homepage-pic px-0"
