@@ -12,27 +12,30 @@
 
             <div class="map_card my-2" id="map" style="width: 100%; height: 70vh;"></div>
         </div>
-        <div class="my-3">
-            <label for="distance-select">Sort by Distance:</label>
-            <select id="distance-select" v-model="selectedDistance">
-                <option value="all">All</option>
-                <!--NOTE  let's be sure to adjust the distance logic in the v-ifs below -->
-                <option value="5">Within 5 miles</option>
-                <option value="10">Within 10 miles</option>
-                <option value="20">Within 20 miles</option>
-                <option value="50">Within 50 miles</option>
-            </select>
-        </div>
+
         <!-- Not working, no logic written...also not ideal look for mobile -->
 
 
         <div class="row justify-content-center">
             <div class="glassCard col-12 col-md-7 my-1 ">
                 <div class="m-3 ">
+
                     <h1 class=" fw-bold text-black text-center text-decoration-underline">
                         <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
 
                     </h1>
+                    <div class="my-3 offset-2">
+                        <label for="distance-select">Sort by Distance:</label>
+                        <select id="distance-select" v-model="selectedDistance">
+                            <option value="all">All</option>
+                            <!--NOTE  let's be sure to adjust the distance logic in the v-ifs below -->
+                            <option value="5">Within 5 miles</option>
+                            <option value="10">Within 10 miles</option>
+                            <option value="20">Within 20 miles</option>
+                            <option value="50">Within 50 miles</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div v-for="(stache, index) in sortedStaches" :key="index">

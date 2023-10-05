@@ -22,17 +22,17 @@
     <section class="container">
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around mt-5">
-            <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
-                <h4 class="text-center mt-2 ">Created staches</h4>
+            <div class="borderChange col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
+                <h4 class="text-center mt-2">Created staches</h4>
                 <!-- <div v-for="s in activeProfileStaches" :key="s.id">
                     <ActiveProfileStacheCard :stache="s" />
                 </div> -->
             </div>
-            <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
-                <h4 class="text-center mt-2 ">Profile details</h4>
-                <img :src="profile.picture" alt="">
+            <div class="col-12 borderChange col-md-3 card geo-shadow order-md-1 order-0 ">
+                <h4 class="text-center mt-2 bgNew rounded">Profile details</h4>
+                <img class="elevation-5 rounded" :src="profile.picture" alt="">
                 <p class="m-2">{{ profile.bio }}</p>
-                <p class="m-2">{{ profile.email }}</p>
+                <p class=" bgNew rounded text-center">{{ profile.email }}</p>
             </div>
             <!-- STUB off canvas for Found Staches
             <div class="col-12 col-md-3 geo-shadow order-2 my-md-4">
@@ -182,13 +182,23 @@ export default {
     border: 4px solid rgba(47, 28, 2, 0.345);
 }
 
+.bgNew {
+    background: #41644ab0;
+}
+
+.borderChange {
+    border: 2px solid #171f15;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(76, 101, 77, 0.792);
+}
+
 .adventure-card {
-    background: #41644a;
-    border: 1px solid #171f15;
+    background: #41644ab2;
+    border: 3px solid #171f15;
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
-    box-shadow: 0 2px 4px rgba(95, 104, 66, 0.396);
+    box-shadow: 0 2px 4px rgba(53, 102, 55, 0.792);
 }
 </style>
 <style>
