@@ -62,18 +62,27 @@ export class AdventuresController extends BaseController {
         }
     }
 
-    // modeled off the PostIt Collaborator createCollab summer 23
+    // referenced the PostIt Collaborator createCollab summer 23
     async createAdventure(request, response, next) {
         try {
-            const adventureData = request.body
-            adventureData.accountId = request.userInfo.id
-            const adventure = await adventuresService.createAdventure(adventureData)
-            return response.send(adventure)
-        } catch (error) {
-            next(error)
-        }
+            const adventureData = request.body;
+            console.log('did we get the adventure data', adventureData);
 
+            // Check if request.userInfo is valid
+            if (!request.userInfo || !request.userInfo.id) {
+                throw new Error('Invalid user information.');
+            }
+
+            adventureData.accountId = request.userInfo.id;
+            const adventure = await adventuresService.createAdventure(adventureData);
+
+            console.log('Created adventure?', adventure);
+            return response.send(adventure);
+        } catch (error) {
+            next(error);
+        }
     }
+
 
     async deleteAdventureById(request, response, next) {
         try {

@@ -24,9 +24,9 @@
         <section class="row justify-content-around mt-5">
             <div class="col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
                 <h4 class="text-center mt-2 ">Created staches</h4>
-                <div v-for="s in activeProfileStaches" :key="s.id">
+                <!-- <div v-for="s in activeProfileStaches" :key="s.id">
                     <ActiveProfileStacheCard :stache="s" />
-                </div>
+                </div> -->
             </div>
             <div class="col-12 col-md-3 card geo-shadow order-md-1 order-0 ">
                 <h4 class="text-center mt-2 ">Profile details</h4>
@@ -141,7 +141,7 @@ export default {
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
             // staches: computed(() => AppState.staches),
-            activeProfileStaches: computed(() => AppState.activeProfileStaches),
+            // activeProfileStaches: computed(() => AppState.activeProfileStaches),
             myAdventures: computed(() => AppState.myAdventures),
         };
     },

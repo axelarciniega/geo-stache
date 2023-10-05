@@ -1,3 +1,5 @@
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable no-undef -->
 <template>
     <div v-if="stache">
 
@@ -16,6 +18,7 @@
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
+
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p>this is a dummy location, we need to make the destination call off of the set lat lng</p> -->
@@ -39,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                    <img class="stacheImage pb-3" :src="stache.coverImage" alt="">
                     <section class="container">
                         <div class="row">
 
@@ -197,6 +201,9 @@ export default {
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
                     addStacheMarker()
+
+
+                    // eslint-disable-next-line no-undef
                     setGoogleMapsLink();
                 })
             }
@@ -242,10 +249,12 @@ export default {
 
         function addStacheMarker() {
             if (stache.value?.lat && map) {
-                // Create a LatLng object for the stache location
+
+                // eslint-disable-next-line no-undef
                 const stacheLocation = new google.maps.LatLng(stache.value.lat, stache.value.lng);
 
                 // Create a marker for the stache location
+                // eslint-disable-next-line no-undef
                 const stacheMarker = new google.maps.Marker({
                     position: stacheLocation,
                     map: map,
@@ -253,6 +262,7 @@ export default {
                 });
 
                 // Create an info window for the stache location
+                // eslint-disable-next-line no-undef
                 const stacheInfoWindow = new google.maps.InfoWindow({
                     content: stache.value.stacheName,
                 });
