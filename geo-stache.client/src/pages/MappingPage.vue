@@ -134,7 +134,7 @@ export default {
     },
     computed: {
         sortedStaches() {
-            // Sort the staches array by distance in ascending order
+
             return this.stache.slice().sort((a, b) => a.distance - b.distance);
         },
         stache() {
