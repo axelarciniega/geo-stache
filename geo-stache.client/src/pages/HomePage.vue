@@ -14,7 +14,7 @@
           <!-- <img class="map-pic"
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt=""> -->
-          <MapCard id="v-step-2" />
+          <MapCard id="v-step-3" />
           <div class="frosted-card">
             <h1 class="ps-2 position-relative txt-DrkGreen text-center">Open Map</h1>
           </div>
@@ -57,7 +57,7 @@
 
 
       <!-- STUB Stache Template -->
-      <div id="v-step-3" class="col-md-5 col-12 glass-card my-md-0 my-2">
+      <div id="v-step-2" class="col-md-5 col-12 glass-card my-md-0 my-2">
         <table class="row">
           <tr class="col-12 justify-content-between d-flex">
             <th class="col-4 text-center px-1">Stache Name</th>
@@ -116,21 +116,21 @@ export default {
       },
       {
         target: '#v-step-2',
-        header: { title: `The Map` },
-        content: `Look at all the Staches by location`,
+        header: { title: `Recent Staches` },
+        content: `Go directly to a recently placed Stache, or...`,
       },
       {
         target: '#v-step-3',
-        header: { title: `Recent Staches` },
-        content: `Go directly to a recently placed Stache`,
+        header: { title: `The Map` },
+        content: `Look at all the Staches by location. Have a look at nearby Staches!`,
       },
       ],
 
       geoTourCallbacks: {
-        onNextStep: (() => {
+        onFinish: (() => {
           router.push({ name: 'Map' })
         }),
-        onNextStep: this.callbackToStache,
+        // onNextStep: this.callbackToStache,
       }
     }
   }
