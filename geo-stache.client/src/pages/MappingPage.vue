@@ -42,9 +42,9 @@
                     </h1>
                 </div>
 
-                <div v-for="(stache, index) in stache" :key="index">
+                <div v-for="(stache, index) in sortedStaches" :key="index">
                     <router-link :to="{ path: `staches/${stache.id}` }">
-                        <div v-if="stache.distance <= 3 > 0.00005"
+                        <div v-if="stache.distance <= 3 && stache.distance > 0.00005"
                             class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
                             <div class="p-1">
@@ -128,10 +128,18 @@ export default {
         return {
             searchQuery: '',
             searchResults: [],
-            stache: computed(() => AppState.staches),
             user: computed(() => AppState.user),
             map: null,
         };
+    },
+    computed: {
+        sortedStaches() {
+            // Sort the staches array by distance in ascending order
+            return this.stache.slice().sort((a, b) => a.distance - b.distance);
+        },
+        stache() {
+            return AppState.staches;
+        },
     },
     methods: {
         calculateDistance(lat1, lon1, lat2, lon2) {
