@@ -1,6 +1,6 @@
 <template>
     <div class="txt-DrkGreen ftn-Cabin">
-        <form class="text-sand" @submit.prevent="createStache">
+        <form class="text-sand" @submit.prevent="handleSubmit">
             <h1 class="text-center text-black">Stache Create Form</h1>
             <!-- Stache Name Input -->
             <div class="form-group">
@@ -38,13 +38,13 @@
                     class="form-control bg-sand" />
             </div>
             <!-- Local Area Select -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="locationTag">Local Area:</label>
                 <select id="locationTag" v-model="stacheData.locationTag" required class="form-control bg-sand">
                     <option value="Boise">Boise</option>
-                    <!-- Add more cities within a 50-mile radius of Boise, Idaho -->
+                    Add more cities within a 50-mile radius of Boise, Idaho
                 </select>
-            </div>
+            </div> -->
             <!-- Difficulty Select -->
             <div class="form-group">
                 <label for="difficulty">Difficulty:</label>
@@ -137,9 +137,14 @@ export default {
         return {
             stacheData,
             activeStacheToEdit: computed(() => AppState.activeStacheToEdit),
-            async createStache() {
+            async handleSubmit() {
                 try {
-                    let newStache = await stachesService.createStache(stacheData.value);
+                    let newStache
+                    if (stacheData.value.id){
+                    await stachesService.makeStacheEditable(stacheData.value, stacheData.value.id)
+                    }else{
+                        newStache = await stachesService.createStache(stacheData.value);
+                    }
                     if(AppState.activeStacheToEdit == null){
                         Pop.success('Created Stache')
                     }else{Pop.success('Edited Stache')}
