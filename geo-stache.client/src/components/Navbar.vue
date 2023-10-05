@@ -47,6 +47,8 @@
         </ul>
 
       </div>
+
+
       <div class="collapse navbar-collapse p-2 rounded txt-Sand text-end" id="navbarText" v-else>
 
 
