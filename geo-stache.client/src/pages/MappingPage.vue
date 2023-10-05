@@ -12,7 +12,16 @@
 
             <div class="map_card my-2" id="map" style="width: 100%; height: 70vh;"></div>
         </div>
-
+        <div class="my-3">
+            <label for="distance-select">Sort by Distance:</label>
+            <select id="distance-select" v-model="selectedDistance">
+                <option value="all">All</option>
+                <option value="5">Within 5 miles</option>
+                <option value="10">Within 10 miles</option>
+                <option value="20">Within 20 miles</option>
+                <option value="50">Within 50 miles</option>
+            </select>
+        </div>
         <!-- Not working -->
         <!-- <label for="pet-select">Select Distance:</label>
 
@@ -130,12 +139,22 @@ export default {
             searchResults: [],
             user: computed(() => AppState.user),
             map: null,
+            selectedDistance: 'all',
         };
     },
     computed: {
         sortedStaches() {
-
-            return this.stache.slice().sort((a, b) => a.distance - b.distance);
+            if (this.selectedDistance === 'all') {
+                // Return all staches if 'All' is selected
+                return this.stache.slice().sort((a, b) => a.distance - b.distance);
+            } else {
+                // Filter staches by distance within the selected range
+                const selectedDistance = parseFloat(this.selectedDistance);
+                return this.stache
+                    .filter((stache) => stache.distance <= selectedDistance)
+                    .slice()
+                    .sort((a, b) => a.distance - b.distance);
+            }
         },
         stache() {
             return AppState.staches;
