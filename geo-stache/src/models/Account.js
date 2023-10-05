@@ -15,7 +15,7 @@ export const AccountSchema = new Schema(
       type: { type: String, enum: ['Point'], default: "Point" },
       coordinates: { type: [Number] }
     },
-
+    needsTour: { type: Boolean, default: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

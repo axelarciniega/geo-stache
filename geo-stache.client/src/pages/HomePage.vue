@@ -3,7 +3,7 @@
 
     <section class="txt-DrkGreen row justify-md-content-around justify-content-center my-3">
       <div class="col-md-5 col-4 order-md-0 order-1">
-        <img class="logo" src="../assets/img/Geo-Stache-logo.png" alt="">
+        <img id="v-step-0" class="logo v-step-1" src="../assets/img/Geo-Stache-logo.png" alt="">
       </div>
       <!-- {{ staches }} -->
       <!-- STUB Map Card -->
@@ -14,7 +14,7 @@
           <!-- <img class="map-pic"
             src="https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt=""> -->
-          <MapCard />
+          <MapCard id="v-step-2" />
           <div class="frosted-card">
             <h1 class="ps-2 position-relative txt-DrkGreen text-center">Open Map</h1>
           </div>
@@ -57,7 +57,7 @@
 
 
       <!-- STUB Stache Template -->
-      <div class="col-md-5 col-12 glass-card my-md-0 my-2">
+      <div id="v-step-3" class="col-md-5 col-12 glass-card my-md-0 my-2">
         <table class="row">
           <tr class="col-12 justify-content-between d-flex">
             <th class="col-4 text-center px-1">Stache Name</th>
@@ -72,12 +72,14 @@
       </div>
     </section>
   </section>
+  <Tour v-if="account.needsTour" :steps="steps" :callbacks="geoTourCallbacks" />
 </template>
 <script>
 import { computed, onMounted } from 'vue'
 import Pop from '../utils/Pop'
 import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
+import { router } from '../router.js'
 
 
 
@@ -97,9 +99,42 @@ export default {
     }
 
     return {
-      staches: computed(() => AppState.staches)
+      account: computed(() => AppState.account),
+      staches: computed(() => AppState.staches),
+
+      steps: [{
+        target: '#v-step-0',
+        header: { title: `Welcome to GeoStache!` },
+        content: `We are so glad to have you here! Let's start with a tour...`,
+        params: { placement: 'bottom' }
+      },
+      {
+        target: '.v-step-1',
+        // header: { title: `Is location enabled on your device?` },
+        content: `There are a couple options for where to begin.`,
+        params: { placement: 'bottom' }
+      },
+      {
+        target: '#v-step-2',
+        header: { title: `The Map` },
+        content: `Look at all the Staches by location`,
+      },
+      {
+        target: '#v-step-3',
+        header: { title: `Recent Staches` },
+        content: `Go directly to a recently placed Stache`,
+      },
+      ],
+
+      geoTourCallbacks: {
+        onNextStep: (() => {
+          router.push({ name: 'Map' })
+        }),
+        onNextStep: this.callbackToStache,
+      }
     }
   }
+
 }
 </script>
 

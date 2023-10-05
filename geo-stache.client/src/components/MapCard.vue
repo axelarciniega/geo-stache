@@ -96,7 +96,8 @@ export default {
                 lng: lng.value,
                 name: 'Your Location',
             })
-            centerMap()
+            // zooms in too far, either fix or leave commented out
+            // centerMap()
         }
 
         // function addStacheMarker() {
