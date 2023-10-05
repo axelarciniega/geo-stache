@@ -12,6 +12,27 @@
 
             <div class="map_card my-2" id="map" style="width: 100%; height: 70vh;"></div>
         </div>
+
+        <!-- Not working -->
+        <!-- <label for="pet-select">Select Distance:</label>
+
+        <nav class="row justify-content-around my-3">
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = ''">All</button>
+            <span style="display: inline-block; width:0px; height:100%; background:rgb(205, 205, 205); margin:0 2px"></span>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 3 > 0.00005">3
+                miles</button>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 6">6 miles</button>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 10">10
+                miles</button>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 20">20
+                miles</button>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 40">40
+                miles</button>
+            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance > 40.1">+ 40
+                miles</button>
+
+        </nav> -->
+
         <div class="row justify-content-center">
             <div class="glassCard col-12 col-md-7 my-1 ">
                 <div class="m-3 ">

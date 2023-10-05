@@ -12,252 +12,217 @@
     </div>
 
     <!-- List of added staches (markers) with clickable links and distance -->
-    <div class="col-8 border border-3 border-black bg-light fw-bold text-dark">
-      <h3>Added Staches:</h3>
-      <ul>
-        <li v-for="(stache, index) in sortedStaches" :key="index">
-          <a href="#" @click="centerMapOnStache(stache)">
-            {{ stache.lat }} {{ stache.lng }}
-          </a>
-          <span v-if="userLocationMarker">
-            Distance: {{ calculateDistance(userLocationMarker, stache).toFixed(2) }} miles
-          </span>
-        </li>
-      </ul>
+
+    <label for="pet-select">Select Distance:</label>
+
+    <nav class="row justify-content-around my-3">
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = ''">All</button>
+      <span style="display: inline-block; width:0px; height:100%; background:rgb(205, 205, 205); margin:0 2px"></span>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 3 > 0.00005">3
+        miles</button>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 6">6 miles</button>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 10">10 miles</button>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 20">20 miles</button>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 40">40 miles</button>
+      <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance > 40.1">+ 40
+        miles</button>
+      <!-- <button class="btn col-2 btn-outline-light" @click="filterBy = 'misc'">Misc</button> -->
+    </nav>
+
+    <div class="m-3 ">
+      <h1 class=" fw-bold text-black text-center text-decoration-underline">
+        <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
+
+      </h1>
+    </div>
+
+    <div v-for="(stache, index) in stache" :key="index">
+      <router-link :to="{ path: `staches/${stache.id}` }">
+        <div v-if="stache.distance <= 3 > 0.00005"
+          class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <div class="p-1">
+            {{
+              stache.stacheName
+            }} - <span class="text-warning"> {{
+  stache.distance }} miles</span>
+          </div>
+        </div>
+
+        <div v-if="stache.distance >= 3.1 && stache.distance <= 6"
+          class="glassCard2 d-flex justify-content-between m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <span class="">{{ stache.difficulty }}</span>
+          <div class="p-1">
+
+            {{ stache.stacheName }} -
+            <span class="text-primary"> {{
+              stache.distance }} miles</span>
+          </div>
+        </div>
+        <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
+          class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <div class="p-1">
+            {{
+              stache.stacheName }} - <span class="text-info"> {{
+    stache.distance }} miles</span>
+          </div>
+        </div>
+        <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
+          class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <div class="p-1">
+            {{
+              stache.stacheName }} - <span class="text-secondary"> {{
+    stache.distance }} miles</span>
+          </div>
+        </div>
+        <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
+          class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <div class="p-1">
+            {{
+              stache.stacheName }} - <span class="text-danger"> {{
+    stache.distance }} miles</span>
+          </div>
+        </div>
+
+        <div v-if="stache.distance > 40.1"
+          class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
+          <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+          <div class="p-1">
+            {{
+              stache.stacheName
+            }} -
+            <span class="text-danger"> {{
+              stache.distance }} miles</span>
+          </div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { logger } from '../utils/Logger.js';
-import { AppState } from '../AppState.js';
-import { stachesService } from '../services/StachesService.js';
-import Pop from '../utils/Pop.js';
-Pop
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
+import Pop from '../utils/Pop';
+import { useRoute } from 'vue-router';
+import { AppState } from '../AppState';
+// import { routerKey } from "vue-router";
+import { useRouter } from "vue-router";
+
 export default {
-  data() {
-    return {
-      stache: computed(() => AppState.staches),
-      map: null,
-      searchQuery: '', // User's search query
-      searchService: null, // Google Places Autocomplete service
-      isSettingStache: false, // Flag to indicate if setting a stache (marker) is active
-      userLocationMarker: null, // Marker for the user's location
-      infoWindows: [], // Store InfoWindow instances
-    };
-  },
-  computed: {
-    sortedStaches() {
-      if (this.userLocationMarker) {
-        // Sort staches (markers) by distance from user
-        return [...AppState.staches].sort((a, b) => {
-          const distanceA = this.calculateDistance(this.userLocationMarker, a);
-          const distanceB = this.calculateDistance(this.userLocationMarker, b);
-          return distanceA - distanceB;
-        });
-      } else {
-        // If user location is not available, return staches (markers) as is
-        return AppState.staches;
-      }
-    },
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const stache = computed(() => AppState.activeStache)
+    const lat = ref(-114)
+    const lng = ref(21)
+    const markers = ref([])
+    let map = null
+    let infoWindow = null
 
-    userLocationInfo() {
-      if (this.userLocationMarker) {
-        return {
-          lat: this.userLocationMarker.getPosition().lat(),
-          lng: this.userLocationMarker.getPosition().lng(),
-        };
-      }
-      return { lat: 0, lng: 0 }; // Default values if user location marker is not available.
-    },
-  },
+    onMounted(() => {
+      // getStacheById();
+      // getCommentsByStache()
+      setupMap()
+      // eslint-disable-next-line no-undef
+    })
 
+    // watch(stache, () => {
+    //     if (map && AppState.activeStache) {
+    //         addStacheMarker()
+    //     }
+    // })
 
-
-  methods: {
-    calculateDistance(stache1, stache2) {
-      const lat1 = stache1.getPosition().lat();
-      const lng1 = stache1.getPosition().lng();
-      const lat2 = stache2.getPosition().lat();
-      const lng2 = stache2.getPosition().lng();
-
-      const radlat1 = (Math.PI * lat1) / 180;
-      const radlat2 = (Math.PI * lat2) / 180;
-      const radlon1 = (Math.PI * lng1) / 180;
-      const radlon2 = (Math.PI * lng2) / 180;
-      const theta = lng1 - lng2;
-      const radtheta = (Math.PI * theta) / 180;
-      let dist =
-        Math.sin(radlat1) * Math.sin(radlat2) +
-        Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      dist = Math.acos(dist);
-      dist = (dist * 180) / Math.PI;
-      dist = dist * 60 * 1.1515;
-      return dist;
-    },
-    async getStaches() {
-      try {
-        await stachesService.getStaches()
-      } catch (error) {
-        Pop.error(error)
-      }
-
-    },
-
-    getUserLocationAndDisplayMap() {
+    function setupMap() {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-
-          this.map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: latitude, lng: longitude },
-            zoom: 12,
+          lat.value = position.coords.latitude;
+          lng.value = position.coords.longitude;
+          // eslint-disable-next-line no-undef
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: lat.value, lng: lng.value },
+            zoom: 15,
           });
-
-          this.userLocationMarker = new google.maps.Marker({
-            position: { lat: latitude, lng: longitude },
-            map: this.map,
-            title: 'User',
-          });
-
-          AppState.staches.forEach(stache => {
-            logger.log(this.map)
-            new google.maps.Marker({
-              position: { lat: stache.lat, lng: stache.lng },
-              map: this.map,
-              title: `${stache.stacheName}`,
-
-            })
-
-          });
-
-        });
-      } else {
-        alert('Geolocation is not available in your browser');
+          // eslint-disable-next-line no-undef
+          infoWindow = new google.maps.InfoWindow()
+          addStacheMarker()
+          markYourLocation()
+        })
       }
-    },
-
-    searchLocation() {
-      if (this.searchQuery && this.map) {
-        if (!this.searchService) {
-          this.searchService = new google.maps.places.AutocompleteService();
-        }
-
-        this.searchService.getPlacePredictions(
-          {
-            input: this.searchQuery,
-            componentRestrictions: { country: 'US' },
-          },
-          (predictions) => {
-            if (predictions && predictions.length > 0) {
-              const place = predictions[0];
-              const placeService = new google.maps.places.PlacesService(this.map);
-              placeService.getDetails(
-                { placeId: place.place_id },
-                (result, status) => {
-                  if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    this.map.setCenter(result.geometry.location);
-                  }
-                }
-              );
-            }
-          }
-        );
-      } else {
-        alert('Map not initialized or search query is empty.');
-      }
-    },
-
-
-    centerMapOnStache(stache) {
-      this.map.setCenter(stache.getPosition());
-    },
-
-    createInfoWindow(stache) {
-      const marker = new google.maps.Marker({
-        position: stache.getPosition(), // Use the stache's position
-        map: this.map,
-        title: stache.title,
-      })
-
-      const infowindow = new google.maps.InfoWindow({
-        content: stache.title,
-      })
-
-      this.infoWindows.push(infowindow);
-
-      google.maps.event.addListener(marker, 'click', () => {
-        this.openInfoWindow(marker, infowindow);
-      })
-
-      return { marker, infowindow };
-    },
-
-
-    openInfoWindow(stache, infowindow) {
-      this.infoWindows.forEach((iw) => iw.close());
-      infowindow.open(this.map, stache);
-    },
-  },
-
-
-  watch: {
-    map(newValue) {
-      if (newValue) {
-        google.maps.event.addListener(newValue, 'click', (event) => {
-          if (!this.isSettingStache) {
-            if (confirm('Do you want to set a new stache (marker)?')) {
-              const stache = new google.maps.Marker({
-                position: event.latLng,
-                map: this.map,
-                title: 'New Stache',
-              });
-
-              this.createInfoWindow(stache);
-              AppState.staches.push(stache);
-              this.isSettingStache = false;
-            }
-          }
-        });
-      }
-    },
-  },
-  mounted() {
-    if (typeof google !== 'undefined') {
-      this.getUserLocationAndDisplayMap();
-    } else {
-      // const script = document.createElement('script');
-      // script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBifxFAXD3ecZoO52GpjV-STjO1LB1NnRg&libraries=places`;
-      // script.onload = this.getUserLocationAndDisplayMap;
-      // document.head.appendChild(script);
     }
 
-    this.getStaches().then(() => {
-      // Iterate through the staches and create markers for each
-      AppState.staches.forEach((stache) => {
-        const marker = new google.maps.Marker({
-          position: {
-            lat: stache.lng, // Use lat property from stacheLocation
-            lng: stache.lat, // Use lng property from stacheLocation
-          },
-          map: this.map,
-          title: stache.stacheName, // Use stacheName property as the marker's title
-        });
-        return marker
 
-        // You can add more customization or event listeners to the marker if needed
+    function addMarker(marker) {
+      markers.value.push(marker)
+      // eslint-disable-next-line no-undef
+      let markerElem = new google.maps.Marker({
+        position: { lat: marker.lat, lng: marker.lng },
+        map: map,
+        title: marker.name || marker.title,
+      });
 
-        // Store the marker reference if you want to access it later
-        // For example, you can push them into an array.
-        // this.markers.push(marker);
+      // eslint-disable-next-line no-undef
+      google.maps.event.addListener(markerElem, 'click', () => {
+        infoWindow.setContent(marker.name || marker.title);
+        infoWindow.open(map, markerElem);
       })
-    })
-  },
 
+    }
 
-};
+    function centerMap() {
+      // eslint-disable-next-line no-undef
+      const bounds = new google.maps.LatLngBounds();
+      markers.value.forEach((marker) => {
+        // eslint-disable-next-line no-undef
+        bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
+      })
+      map.fitBounds(bounds)
+    }
+
+    function markYourLocation() {
+      // eslint-disable-next-line no-undef
+      addMarker({
+        lat: lat.value,
+        lng: lng.value,
+        name: 'Your Location',
+      })
+      centerMap()
+    }
+
+    function addStacheMarker() {
+      AppState.staches.forEach((stache) => {
+        if (stache.value?.lat && map) {
+          // eslint-disable-next-line no-undef
+          addMarker({
+            lat: stache.value.lat,
+            lng: stache.value.lng,
+            name: stache.value.stacheName
+          })
+        }
+      })
+    }
+
+    return {
+      // isMyAdventure,
+      stache,
+      setupMap,
+      map,
+      account: computed(() => AppState.account),
+      stacheComments: computed(() => AppState.stacheComments),
+      stacheAdventures: computed(() => AppState.activeStacheAdventures),
+      myAdventures: computed(() => AppState.myAdventures),
+      thisStacheAdventure: computed(() => {
+        return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
+      }),
+
+    };
+
+  }
+}
 </script>
-
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+/* Your scoped CSS styles here */
+</style>
