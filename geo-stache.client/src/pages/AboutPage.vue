@@ -121,6 +121,7 @@
         </div>
 
       </div>
+      <h2 class="text-center">Honorable mention</h2>
 
       <div class="col-12 table-card align-items-center my-2 mb-3 border-upgrade">
         <div class="row align-items-center">
@@ -128,7 +129,6 @@
             <img class="profile-pic"
               src="https://images.unsplash.com/photo-1585805869042-61bf949f7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1913&q=80"
               alt="">
-
           </div>
           <div class="col-md-9 col-12 px-1 txt-DrkGreen fnt-Cabin">
             <p class="text-md-start text-center fw-bold m-md-0">Sam</p>
