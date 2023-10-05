@@ -1,12 +1,12 @@
 <template>
-  <nav class="txt-Sand navbar navbar-expand-lg bg-Green px-3">
-    <router-link class="navbar-brand d-flex txt-Sand" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center txt-Sand">
+  <nav class="txt-LghtSand fw-semibold fs-5 navbar navbar-expand-lg bg-Green px-3">
+    <router-link class="navbar-brand d-flex txt-LghtSand" :to="{ name: 'Home' }">
+      <div class="d-flex flex-column align-items-center txt-LghtSand">
         <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="55" />
 
       </div>
     </router-link>
-    <button class="navbar-toggler txt-Sand" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <button class="navbar-toggler txt-LghtSand" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon txt-Sand"></span>
     </button>
@@ -14,19 +14,19 @@
     " id="navbarText">
       <ul class="navbar-nav me-auto txt-Sand">
         <li title="Click here to search for Staches on the Map">
-          <router-link :to="{ name: 'Map' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Map' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             Map
           </router-link>
         </li>
 
         <li>
-          <router-link :to="{ name: 'FAQ' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'FAQ' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             FAQ
           </router-link>
         </li>
 
         <li>
-          <router-link :to="{ name: 'About' }" class="btn txt-Sand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             About Us
           </router-link>
         </li>
