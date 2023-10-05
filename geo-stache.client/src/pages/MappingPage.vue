@@ -16,31 +16,15 @@
             <label for="distance-select">Sort by Distance:</label>
             <select id="distance-select" v-model="selectedDistance">
                 <option value="all">All</option>
+                <!--NOTE  let's be sure to adjust the distance logic in the v-ifs below -->
                 <option value="5">Within 5 miles</option>
                 <option value="10">Within 10 miles</option>
                 <option value="20">Within 20 miles</option>
                 <option value="50">Within 50 miles</option>
             </select>
         </div>
-        <!-- Not working -->
-        <!-- <label for="pet-select">Select Distance:</label>
+        <!-- Not working, no logic written...also not ideal look for mobile -->
 
-        <nav class="row justify-content-around my-3">
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = ''">All</button>
-            <span style="display: inline-block; width:0px; height:100%; background:rgb(205, 205, 205); margin:0 2px"></span>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 3 > 0.00005">3
-                miles</button>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 6">6 miles</button>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 10">10
-                miles</button>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 20">20
-                miles</button>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance <= 40">40
-                miles</button>
-            <button class="glassCard2 btn col-2 btn-outline-light" @click="filterBy = stache.distance > 40.1">+ 40
-                miles</button>
-
-        </nav> -->
 
         <div class="row justify-content-center">
             <div class="glassCard col-12 col-md-7 my-1 ">
