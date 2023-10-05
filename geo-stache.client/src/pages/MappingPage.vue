@@ -173,7 +173,7 @@ export default {
 
                     this.map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: latitude, lng: longitude },
-                        zoom: 15,
+                        zoom: 12,
                     });
 
                     new google.maps.Marker({
