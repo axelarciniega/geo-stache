@@ -72,16 +72,16 @@
       </div>
     </section>
   </section>
-  <Tour v-if="account.needsTour" :steps="steps" :callbacks="geoTourCallbacks" />
+  <Tour v-if="account.needsTour" :steps="steps" :myCallbacks="geoTourCallbacks" />
 </template>
 <script>
 import { computed, onMounted } from 'vue'
 import Pop from '../utils/Pop'
 import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
-import { router } from '../router.js'
 import { accountService } from '../services/AccountService.js';
-
+import { useRouter } from 'vue-router';
+import { logger } from '../utils/Logger.js';
 
 
 export default {
@@ -89,7 +89,7 @@ export default {
     onMounted(() => {
       getStaches()
     })
-
+    const router = useRouter()
     async function getStaches() {
       try {
         await stachesService.getStaches()
