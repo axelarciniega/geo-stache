@@ -80,7 +80,7 @@ import Pop from '../utils/Pop'
 import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
 import { router } from '../router.js'
-
+import { accountService } from '../services/AccountService.js';
 
 
 
@@ -130,7 +130,9 @@ export default {
         onFinish: (() => {
           router.push({ name: 'Map' })
         }),
-        // onNextStep: this.callbackToStache,
+        onSkip: (async () => {
+          await accountService.editAccount({ needsTour: false })
+        })
       }
     }
   }
