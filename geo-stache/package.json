@@ -19,7 +19,8 @@
     "express": "4.18.2",
     "helmet": "6.0.1",
     "mongoose": "6.9.1",
-    "socket.io": "4.6.1"
+    "socket.io": "4.6.1",
+    "vue3-tour": "^0.3.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.21.8",
