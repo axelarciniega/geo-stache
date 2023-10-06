@@ -8,7 +8,7 @@
       <div class="dropdown my-2 my-lg-0">
         <div type="button" class="no-Pointer border-0 fnt-Cabin txt-LghtSand" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <div v-if="account.picture || user.picture">
+          <div v-if="account.picture || user.picture" class="readability">
             <img :src="account.picture || user.picture" alt="account photo" height="40"
               class="rounded selectable m-1 txt-Sand ftn-Cabin" />
             {{ account.name }}

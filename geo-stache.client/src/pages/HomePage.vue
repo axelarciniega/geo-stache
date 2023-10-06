@@ -5,7 +5,6 @@
       <div class="col-md-5 col-4 order-md-0 order-1">
         <img id="v-step-0" class="logo v-step-1" src="../assets/img/Geo-Stache-logo.png" alt="">
       </div>
-      <!-- {{ staches }} -->
       <!-- STUB Map Card -->
       <div class="col-md-7 col-12 position-relative p-0 my-md-0 my-2 map-link order-md-1 order-0">
         <router-link :to="{ name: 'Map' }">
@@ -18,57 +17,68 @@
       </div>
     </section>
 
+
     <div class="container">
 
-      <!-- STUB KEEP CAROUSEL -->
       <section class="row justify-content-between my-3">
-        <div id="geo-carousel" class="carousel slide col-md-6 col-12 rounded" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
+
+
+        <!-- Other slide captions
+
+  "Explore the Unknown"
+  "Embark on a Journey of Discovery"
+  "Connect with Nature"
+  "Discover Serenity in the Great Outdoors"
+  "Adventure Awaits You"
+  Call to Action: "Start Your Adventure"
+  Call to Action: "Join the Wilderness"
+  Call to Action: "Begin Your Quest" -->
+
+        <!-- STUB KEEP CAROUSEL -->
+        <div id="geo-carousel" class="carousel slide col-md-6 col-12 rounded-carousel" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#geo-carousel" data-bs-slide-to="0" class="active" aria-current="true"
+              aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#geo-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#geo-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100"
+              <img class="d-block w-100 rounded-carousel"
                 src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
                 alt="First slide">
-              <!-- <div class="carousel-caption d-none d-md-block">
-                <h5>...</h5>
-                <p>...</p>
-              </div> -->
+              <div class="carousel-caption d-none d-md-block fw-bold readability">
+                <h5>Discover,<br>Your Endless Adventures Awaits!</h5>
+                <p>Start Exploring Now</p>
+              </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Second slide">
-              <!-- <div class="carousel-caption d-none d-md-block">
-                <h5>...</h5>
-                <p>...</p>
-              </div> -->
+              <img class="d-block w-100 rounded-carousel" src="https://media.giphy.com/media/dAROL6nqJMaiX4QS0c/giphy.gif"
+                alt="Second slide">
+              <div class="carousel-caption d-none d-md-block fw-bold readability">
+                <h5>Join Our Community Today!</h5>
+                <p>Sign Up and Dive In</p>
+              </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Third slide">
-              <!-- <div class="carousel-caption d-none d-md-block">
-                <h5>...</h5>
-                <p>...</p>
-              </div> -->
+              <img class="d-block w-100 rounded-carousel"
+                src="https://bloximages.chicago2.vip.townnews.com/idahopress.com/content/tncms/assets/v3/editorial/0/11/01111a62-557d-11ed-a72d-63ea1477b2c2/6359b3b187ec9.image.jpg?resize=742%2C500"
+                alt="Third slide">
+              <div class="carousel-caption d-none d-md-block fw-bold readability">
+                <h5>Uncover Hidden Gems Around You!</h5>
+                <p>Get Started - It's Free!</p>
+              </div>
             </div>
           </div>
-          <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#geo-carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#geo-carousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a> -->
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <!-- STUB KEEP ORIGINAL HOMEPAGE PIC -->
-        <!-- <section class="row justify-content-between my-3">
-      <div class="col-md-6 col-12 p-0">
-        <img class="homepage-pic px-0"
-          src="https://www.bing.com/th/id/OGC.b8b48ca78b046c2ef8d86e4331484cd9?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f175784%2fscreenshots%2f1558322%2fcompass-motion.gif&ehk=OHxQSiXHBGTXWCS6jvuFfidTkpfs1EqIz7uflZlQF%2bw%3d"
-          alt="">
-      </div> -->
 
 
         <!-- STUB Stache Template -->
@@ -98,7 +108,7 @@ import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService.js';
 import { useRouter } from 'vue-router';
-import { logger } from '../utils/Logger.js';
+// import { logger } from '../utils/Logger.js';
 
 
 export default {
@@ -159,6 +169,18 @@ export default {
 
 
 <style scoped lang="scss">
+.rounded-carousel {
+  -moz-border-radius: 10px;
+  /* FF1+ */
+  -webkit-border-radius: 10px;
+  /* Saf3-4, iOS 1+, Android 1.5+ */
+  border-radius: 10px;
+  /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
+  overflow: hidden;
+  z-index: 1000;
+}
+
+
 .stacheList {
   border: 3px solid var(--UltraDrkGreen);
   box-shadow: 0 3px 3px -1px rgba(43, 43, 43, 0.85),
@@ -167,25 +189,10 @@ export default {
   border-radius: 16px
 }
 
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.readability {
+  text-shadow: 1px 1px 2px black;
 }
+
 
 // show up on this size and smaller
 @media screen and (max-width: 768px) {
@@ -289,7 +296,7 @@ div.map-link {
 
 .glass-card {
   border-radius: 10px;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   background-color: rgba(245, 245, 245, 0.432);
 }
 

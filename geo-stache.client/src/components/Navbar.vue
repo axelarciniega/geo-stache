@@ -14,25 +14,28 @@
     " id="navbarText">
       <ul class="navbar-nav me-auto txt-Sand">
         <li title="Click here to search for Staches on the Map">
-          <router-link :to="{ name: 'Map' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Map' }"
+            class="readability btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             Map
           </router-link>
         </li>
 
         <li>
-          <router-link :to="{ name: 'FAQ' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'FAQ' }"
+            class="readability btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             FAQ
           </router-link>
         </li>
 
         <li>
-          <router-link :to="{ name: 'About' }" class="btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }"
+            class="readability btn fw-bold txt-LghtSand lighten-30 selectable text-uppercase">
             About Us
           </router-link>
         </li>
 
       </ul>
-      <!-- MODAL WRAPPER -->
+      <!-- STUB MODAL WRAPPER -->
       <div v-if="user.isAuthenticated" class=" p-2 rounded txt-Sand" id="navbarText">
         <ul class="navbar-nav me-auto txt-Sand">
           <ModalWrapper id="id">
@@ -54,7 +57,7 @@
 
         <button disabled class="btn txt-Sand text-end">login to create stache</button>
       </div>
-      <!-- LOGIN COMPONENT HERE -->
+      <!-- STUB LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
