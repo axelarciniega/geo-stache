@@ -134,7 +134,9 @@
             <div class="container">
                 <section class="row">
                     <div class="col-12 col-md-1">
-                        <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                            <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        </router-link>
                     </div>
                     <div class="card elevation-5 col-12 col-md-10 m-2 pt-2 body-color">
                     <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
