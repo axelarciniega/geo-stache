@@ -117,7 +117,6 @@ import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService.js';
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
-// import { logger } from '../utils/Logger.js';
 
 
 export default {
@@ -173,7 +172,7 @@ export default {
             return AppState.account.needsTour = false
           }
         }),
-        onSkip: (async  () => {
+        onSkip: (async () => {
           await accountService.editAccount({ needsTour: false })
         })
       },

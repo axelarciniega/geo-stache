@@ -96,6 +96,9 @@ import { watchEffect, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { profilesService } from "../services/ProfilesService.js";
 import { adventuresService } from '../services/AdventuresService';
+import { stachesService } from '../services/StachesService'
+import { logger } from '../utils/Logger.js';
+
 
 export default {
     setup() {
@@ -143,6 +146,17 @@ export default {
             // currentPage: 1,
             pageNumber: computed(() => AppState.pPageNumber),
             totalPages: computed(() => AppState.pTotalPages),
+            nextUrl: computed(() => AppState.nextUrl),
+            previousUrl: computed(() => AppState.previousUrl),
+
+            async ChangePage(url) {
+                try {
+                    logger.log('changing page', url)
+                    await stachesService.ChangePage(url)
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
         };
     },
 };
