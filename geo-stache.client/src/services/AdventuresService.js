@@ -19,7 +19,8 @@ class AdventuresService {
     async getAdventuresByStacheId(stacheId) {
         const response = await api(`api/staches/${stacheId}/adventures`)
         // logger.log('getting those adventures by Stache', response.data)
-        AppState.activeStacheAdventures = response.data
+        const adventures = response.data.map(a => new Adventure(a))
+        AppState.activeStacheAdventures = adventures
 
     }
     async deleteAdventure(adventureId) {

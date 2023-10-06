@@ -109,15 +109,18 @@
                 </div>
 
             </div>
+            <!-- {{ stacheAdventures }} -->
 
-            <!-- <div>
+            <div>
                 <h2>List of Adventurers:</h2>
                 <ul>
                     <li v-for="adventure in stacheAdventures" :key="adventure.id">
-                        <img :src="adventure.profileImg" alt="">
+                        <!-- <img :src="adventure.profileImg" alt=""> -->
+                        <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span>
+                        </div>
                     </li>
                 </ul>
-            </div> -->
+            </div>
 
         </section>
 
@@ -137,9 +140,10 @@
                         <img class="profile-pic" :src="comment.creator.picture" alt="">
                     </div>
                     <div class="card elevation-5 col-12 col-md-10 m-2 pt-2 body-color">
-                    <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
-                        <b class="p-1 text-DarkOrange">{{ comment.creator.name }}</b>
-                    </router-link>
+                        <router-link v-if="comment.creatorId"
+                            :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                            <b class="p-1 text-DarkOrange">{{ comment.creator.name }}</b>
+                        </router-link>
                         <p class="p-2">{{ comment.body }}</p>
                         <div class="text-end pb-2" v-if="account.id == comment.creatorId">
                             <button class="delete-button" @click="removeComment(comment.id)">delete</button>
@@ -179,9 +183,11 @@ export default {
         const editStaches = ref({})
 
         onMounted(() => {
+            getAdventuresByStacheId();
             getStacheById();
             getCommentsByStache()
             setupMap()
+            // getAdventuresForActiveStache()
             // eslint-disable-next-line no-undef
         })
 
@@ -281,8 +287,13 @@ export default {
                 map.setZoom(15); // Adjust the zoom level as needed
             }
         }
-
-
+        // async function getAdventuresForActiveStache() {
+        //     try {
+        //         await adventuresService.getAdventuresByStacheId(route)
+        //     } catch (error) {
+        //         Pop.error(error, '[ActiveEvenPage: getTicketsForActiveEvent()]')
+        //     }
+        // }
 
 
         async function getCommentsByStache() {
@@ -297,6 +308,13 @@ export default {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
                 addStacheMarker()
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+        async function getAdventuresByStacheId() {
+            try {
+                await adventuresService.getAdventuresByStacheId(route.params.stacheId)
             } catch (error) {
                 Pop.error(error)
             }
@@ -333,6 +351,7 @@ export default {
             setupMap,
             map,
             account: computed(() => AppState.account),
+            activeAdventures: computed(() => AppState.activeAdventures),
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
@@ -340,12 +359,7 @@ export default {
             thisStacheAdventure: computed(() => {
                 return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
             }),
-            // computed: {
-            //     stacheAdventures() {
-            //         // Filter adventures based on the current stache's ID
-            //         return this.adventures.filter(adventure => adventure.stacheId === this.stache.id);
-            //     },
-            // },
+
 
 
 

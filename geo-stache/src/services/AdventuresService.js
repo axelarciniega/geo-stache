@@ -72,7 +72,7 @@ class AdventuresService {
 
 
     async getAdventuresByStacheId(stacheId) {
-        const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile', 'name status', 'stache')
+        const adventures = await dbContext.Adventures.find({ stacheId }).populate('profile stache')
         return adventures
 
     }
