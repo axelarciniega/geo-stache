@@ -15,7 +15,9 @@ class StachesService {
         try {
             const res = await api.get('api/staches');
             // logger.log(res.data);
-            AppState.staches = res.data.map(s => new Stache(s));
+            AppState.staches = res.data.staches.map(s => new Stache(s));
+            AppState.nextUrl = res.data.next
+            AppState.previousUrl = res.data.previous
         } catch (error) {
             logger.error(error);
         }
@@ -69,6 +71,14 @@ class StachesService {
     }
     setEditStacheToNull() {
         AppState.activeStacheToEdit = null
+    }
+
+    async ChangePage(url){
+        const res = await api.get(url)
+        AppState.staches = res.data.staches.map(stache => new Stache(stache))
+        AppState.nextUrl = res.data.next
+        AppState.previousUrl = res.data.previous
+
     }
 }
 

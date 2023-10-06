@@ -93,6 +93,14 @@
             <div v-for="s in staches" :key="s.id">
               <StacheCard :stache="s" />
             </div>
+            <section class="row justify-content-around my-2">
+              <button @click="ChangePage(previousUrl)" :disabled="!previousUrl" class="col-5 bgNew rounded search">
+                <i class="mdi mdi-arrow-left"></i> Recent
+              </button>
+              <button @click="ChangePage(nextUrl)" :disabled="!nextUrl" class="col-5 bgNew rounded search">
+                Vintage <i class="mdi mdi-arrow-right"></i>
+              </button>
+            </section>
           </table>
         </div>
       </section>
@@ -108,6 +116,7 @@ import { stachesService } from '../services/StachesService'
 import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService.js';
 import { useRouter } from 'vue-router';
+import { logger } from '../utils/Logger.js';
 // import { logger } from '../utils/Logger.js';
 
 
@@ -128,6 +137,10 @@ export default {
     return {
       account: computed(() => AppState.account),
       staches: computed(() => AppState.staches),
+      pageNumber: computed(() => AppState.PageNumber),
+      totalPages: computed(() => AppState.TotalPages),
+      nextUrl: computed(() => AppState.nextUrl),
+      previousUrl: computed(() => AppState.previousUrl),
 
       steps: [{
         target: '#v-step-0',
@@ -160,9 +173,18 @@ export default {
             return AppState.account.needsTour = false
           }
         }),
-        onSkip: (async () => {
+        onSkip: (async  () => {
           await accountService.editAccount({ needsTour: false })
         })
+      },
+
+      async ChangePage(url) {
+        try {
+          logger.log('changing page', url)
+          await stachesService.ChangePage(url)
+        } catch (error) {
+          Pop.error(error)
+        }
       }
     }
   }
