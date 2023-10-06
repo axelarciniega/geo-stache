@@ -111,23 +111,30 @@
             </div>
             <!-- {{ stacheAdventures }} -->
         </section>
-        <section class=" d-flex justify-content-evenly">
-            <div class="section-User elevation-5 rounded">
-                <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
-                <div>
-                    <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
-                        <div v-if="adventure.status == 'todo'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span></div>
+        <section class=" d-flex flex-sm-row flex-lg-column  justify-content-evenly">
+            <div>
+                <div class="section-User elevation-5 rounded">
+                    <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
+                    <div>
+                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                            <div v-if="adventure.status == 'todo'">
+                                <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="section-User elevation-5 rounded">
-                <h2 class="h2-User bg-DrkGreen rounded text-light elevation-5 p-2">have found:</h2>
-                <div>
-                    <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
-                        <div v-if="adventure.status == 'completed'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span></div>
+            <div>
+                <div class="section-User elevation-5 rounded">
+                    <h2 class="h2-User bg-DrkGreen rounded text-light elevation-5 p-2">have found:</h2>
+                    <div>
+                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                            <div v-if="adventure.status == 'completed'">
+                                <div> <span> <img alt="logo" src="../assets/img/STACHE-Green.png" height="15"
+                                            width="35" /></span> {{ adventure.profile.name }} <span>{{ adventure.foundDate
+                                            }}</span></div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
