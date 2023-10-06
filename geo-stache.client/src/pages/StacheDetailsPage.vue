@@ -141,9 +141,11 @@
                     <div class="col-12 col-md-1">
                         <img class="profile-pic" :src="comment.creator.picture" alt="">
                     </div>
-                    <div class="card elevation-5 col-12 col-md-10 my-2 body-color">
-                        <b>{{ comment.creator.name }}</b>
-                        <p>{{ comment.body }}</p>
+                    <div class="card elevation-5 col-12 col-md-10 m-2 body-color">
+                    <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                        <b class="p-1 text-DarkOrange">{{ comment.creator.name }}</b>
+                    </router-link>
+                        <p class="p-1 m-1">{{ comment.body }}</p>
                         <div class="text-end" v-if="account.id == comment.creatorId">
                             <button class="delete-button" @click="removeComment(comment.id)">delete</button>
                         </div>
