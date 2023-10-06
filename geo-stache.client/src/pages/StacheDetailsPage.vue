@@ -45,7 +45,7 @@
                     </div>
                     <img class="stacheImage pb-3" :src="stache.coverImage" alt="">
                     <section class="container">
-                        <div class="row">
+                        <div v-show="!(account.id == stache.creatorId)" class="row">
 
                             <button class="col-6 adventureButton" v-if="!thisStacheAdventure" @click="addAdventure()"><i
                                     class="mdi mdi-plus"></i>Add to
