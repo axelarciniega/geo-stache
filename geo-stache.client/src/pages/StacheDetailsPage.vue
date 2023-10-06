@@ -545,6 +545,8 @@ export default {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    max-height: 40vh;
+    min-height: 30vh;
 }
 
 .map_card {
