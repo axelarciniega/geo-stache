@@ -4,9 +4,9 @@
         <section class="row justify-content-around mt-5">
             <div class="borderChange col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
                 <h4 class="text-center mt-2">Created staches</h4>
-                <!-- <div v-for="s in activeProfileStaches" :key="s.id">
+                <div v-for="s in activeProfileStaches" :key="s.id">
                     <ActiveProfileStacheCard :stache="s" />
-                </div> -->
+                </div>
             </div>
             <div class="col-12 borderChange col-md-3 card geo-shadow order-md-1 order-0 ">
                 <h4 class="text-center mt-2 bgNew rounded">Profile details</h4>
