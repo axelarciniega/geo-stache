@@ -156,6 +156,9 @@ export default {
       geoTourCallbacks: {
         onFinish: (() => {
           router.push({ name: 'Map' })
+          if (AppState.account.needsTour == true) {
+            return AppState.account.needsTour = false
+          }
         }),
         onSkip: (async () => {
           await accountService.editAccount({ needsTour: false })
