@@ -113,13 +113,29 @@
 
             <div>
                 <h2>List of Adventurers:</h2>
-                <ul>
-                    <li v-for="adventure in stacheAdventures" :key="adventure.id">
+                <div>
+                    <div v-for="adventure in stacheAdventures" :key="adventure.id">
                         <!-- <img :src="adventure.profileImg" alt=""> -->
-                        <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span>
+                        <div v-if="adventure.status == 'todo'">
+                            <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>have found:</h2>
+                <div>
+                    <div v-for="adventure in stacheAdventures" :key="adventure.id">
+                        <!-- <img :src="adventure.profileImg" alt=""> -->
+                        <div v-if="adventure.status == 'completed'">
+                            <div>{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </section>
@@ -137,7 +153,8 @@
             <div class="container">
                 <section class="row">
                     <div class="col-12 col-md-1">
-                        <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                        <router-link v-if="comment.creatorId"
+                            :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
                             <img class="profile-pic" :src="comment.creator.picture" alt="">
                         </router-link>
                     </div>
