@@ -109,23 +109,18 @@
                 </div>
 
             </div>
+
+            <!-- <div>
+                <h2>List of Adventurers:</h2>
+                <ul>
+                    <li v-for="adventure in stacheAdventures" :key="adventure.id">
+                        <img :src="adventure.profileImg" alt="">
+                    </li>
+                </ul>
+            </div> -->
+
         </section>
-        <!-- <section class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="adventure" />
-                    </div>
 
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="adventure" />
-                    </div>
-
-                </div>
-            </div>
-
-
-        </section> -->
     </div>
 
 
@@ -339,9 +334,17 @@ export default {
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
+            adventures: computed(() => AppState.adventures),
             thisStacheAdventure: computed(() => {
                 return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
             }),
+            // computed: {
+            //     stacheAdventures() {
+            //         // Filter adventures based on the current stache's ID
+            //         return this.adventures.filter(adventure => adventure.stacheId === this.stache.id);
+            //     },
+            // },
+
 
 
             async removeComment(id) {

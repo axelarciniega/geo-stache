@@ -12,6 +12,7 @@ class AdventuresService {
         const newAdventure = new Adventure(response.data)
         // logger.log(newAdventure)
         AppState.activeStacheAdventures = newAdventure
+        AppState.adventures.push(newAdventure)
         AppState.myAdventures.push(newAdventure)
     }
 
