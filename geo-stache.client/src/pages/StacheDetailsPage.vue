@@ -110,36 +110,30 @@
 
             </div>
             <!-- {{ stacheAdventures }} -->
-
-            <div>
-                <h2>List of Adventurers:</h2>
-                <div>
-                    <div v-for="adventure in stacheAdventures" :key="adventure.id">
-
-                        <!-- <img :src="adventure.profileImg" alt=""> -->
-                        <div v-if="adventure.status == 'todo'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h2>have found:</h2>
-                <div>
-                    <div v-for="adventure in stacheAdventures" :key="adventure.id">
-                        <!-- <img :src="adventure.profileImg" alt=""> -->
-                        <div v-if="adventure.status == 'completed'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
         </section>
+        <section class=" d-flex justify-content-evenly">
+            <div class="section-User elevation-5 rounded">
+                <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
+                <div>
+                    <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                        <div v-if="adventure.status == 'todo'">
+                            <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-User elevation-5 rounded">
+                <h2 class="h2-User bg-DrkGreen rounded text-light elevation-5 p-2">have found:</h2>
+                <div>
+                    <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                        <div v-if="adventure.status == 'completed'">
+                            <div>{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
     </div>
 
@@ -708,5 +702,29 @@ export default {
 
 .googleLink:hover {
     transform: scale(1.1)
+}
+
+.section-User {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Style the list headers */
+.h2-user {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style individual adventure items */
+.adventure-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+/* Style the names and dates */
+.adventure-item div {
+    margin: 5px 0;
 }
 </style>
