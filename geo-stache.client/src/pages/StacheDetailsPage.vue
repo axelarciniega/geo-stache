@@ -142,8 +142,8 @@
     }}</span></div>
 
                                 </div>
+                            </router-link>
                         </div>
-                        </router-link>
                     </div>
                 </div>
             </div>
