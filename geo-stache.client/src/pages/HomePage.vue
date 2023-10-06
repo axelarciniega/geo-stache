@@ -99,6 +99,7 @@ import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService.js';
 import { useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
+import { Account } from '../models/Account.js';
 
 
 export default {
@@ -146,6 +147,9 @@ export default {
       geoTourCallbacks: {
         onFinish: (() => {
           router.push({ name: 'Map' })
+          if (AppState.account.needsTour == true) {
+            return AppState.account.needsTour = false
+          }
         }),
         onSkip: (async () => {
           await accountService.editAccount({ needsTour: false })
