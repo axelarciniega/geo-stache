@@ -117,7 +117,10 @@
                 <div>
                     <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
                         <div v-if="adventure.status == 'todo'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span></div>
+                            <router-link v-if="adventure.accountId"
+                            :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
+                            <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span></div>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -126,9 +129,12 @@
                 <h2 class="h2-User bg-DrkGreen rounded text-light elevation-5 p-2">have found:</h2>
                 <div>
                     <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
-                        <div v-if="adventure.status == 'completed'">
-                            <div>{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span></div>
-                        </div>
+                        <router-link v-if="adventure.accountId"
+                            :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
+                            <div v-if="adventure.status == 'completed'">
+                                <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span></div>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
