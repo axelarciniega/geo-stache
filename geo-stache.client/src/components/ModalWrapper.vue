@@ -6,8 +6,8 @@
         </div>
     </transition>
     <!-- Modal trigger button -->
-    <button v-if="showButton" type="button" class="btn btn-outline-light frosted-card" data-bs-toggle="modal"
-        :data-bs-target="`#${id}`" @click="setEditStacheToNull">
+    <button v-if="showButton" type="button" class="btn create-btn" data-bs-toggle="modal" :data-bs-target="`#${id}`"
+        @click="setEditStacheToNull">
         <slot name="button">
             open {{ id }} modal
         </slot>
@@ -44,7 +44,7 @@ export default {
     props: { id: { type: String, required: true }, showButton: { type: Boolean, default: true }, btnColor: { type: String, default: 'primary' } },
     setup() {
         return {
-            setEditStacheToNull(){
+            setEditStacheToNull() {
                 stachesService.setEditStacheToNull()
             }
         }
@@ -58,6 +58,19 @@ export default {
     height: 20px;
     width: 20px;
     display: block;
+}
+
+.create-btn {
+    border: 3px solid #e16a34 !important;
+    color: #e16a34 !important;
+
+}
+
+.create-btn:hover {
+    background-color: #e16a34 !important;
+    color: var(--LghtSand) !important;
+    border: 3px solid var(--Green) !important;
+    transition: .35s;
 }
 
 .sub-btn {
