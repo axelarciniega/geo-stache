@@ -45,7 +45,7 @@
                     </div>
                     <img class="stacheImage pb-3" :src="stache.coverImage" alt="">
                     <section class="container">
-                        <div class="row">
+                        <div v-show="!(account.id == stache.creatorId)" class="row">
 
                             <button class="col-6 adventureButton" v-if="!thisStacheAdventure" @click="addAdventure()"><i
                                     class="mdi mdi-plus"></i>Add to
@@ -136,10 +136,12 @@
                     <div class="col-12 col-md-1">
                         <img class="profile-pic" :src="comment.creator.picture" alt="">
                     </div>
-                    <div class="card elevation-5 col-12 col-md-10 my-2 body-color">
-                        <b>{{ comment.creator.name }}</b>
-                        <p>{{ comment.body }}</p>
-                        <div class="text-end" v-if="account.id == comment.creatorId">
+                    <div class="card elevation-5 col-12 col-md-10 m-2 pt-2 body-color">
+                    <router-link v-if="comment.creatorId" :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                        <b class="p-1 text-DarkOrange">{{ comment.creator.name }}</b>
+                    </router-link>
+                        <p class="p-2">{{ comment.body }}</p>
+                        <div class="text-end pb-2" v-if="account.id == comment.creatorId">
                             <button class="delete-button" @click="removeComment(comment.id)">delete</button>
                         </div>
                     </div>

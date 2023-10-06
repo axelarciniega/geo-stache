@@ -7,7 +7,7 @@
             <form @submit.prevent="createComment" class="text-center">
                 <div class="justify-content-center d-flex">
                     <textarea maxLength="200" required v-model="comment.body" placeholder="say something" name="Comment"
-                        id="comment" class="card col-12 col-md-6 commentText"></textarea>
+                        id="comment" class="ps-2 card col-12 col-md-6 commentText"></textarea>
                 </div>
                 <div class="p-3">
                     <button class="button-class p-2">Post</button>

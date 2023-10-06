@@ -41,7 +41,8 @@
           <ModalWrapper id="id">
 
             <template #button>
-              <i class="mdi mdi-plus-box"></i> Create Stache
+              <i class="mdi mdi-plus-box readability pe-1"></i>
+              <p style="display:inline" class="readability">Create Stache</p>
             </template>
             <template #body>
               <CreateStacheForm />
