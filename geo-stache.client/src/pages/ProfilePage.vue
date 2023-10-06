@@ -1,24 +1,4 @@
-<!-- FIXME Put button on Account Page to Link to Profile page. -->
 <template>
-    <!-- <div class="container p-2 g-4 my-3">
-        v-if="user.isAuthenticated"
-        <section class="row mt-2 justify-content-around">
-            <div class="col-3 rounded elevation-1 p-2 geo-shadow">
-                <h3 class="">Hello Adventurer!</h3>
-                <h3 class="">{{ profile.name }}</h3>
-                <img class="profile-pic geo-shadow" :src="profile.picture" alt="" />
-                <p>{{ profile.email }}</p>
-            </div>
-            <div class="col-7 rounded elevation-1 p-2 geo-shadow">
-                <MapCard />
-            </div>
-            <div class="divider"></div>
-            Bottom Section Edit Account
-            <div class="elevation-1 rounded p-2 geo-shadow">
-            </div>
-        </section>
-    </div> -->
-    <!-- STUB -->
     <section class="container">
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around mt-5">
@@ -74,7 +54,6 @@
 
                 </div>
             </section>
-            <!-- </div> -->
             <!-- STUB Badges Off Canvas -->
             <div class="adventure-card">
                 <h4 class="text-center bg-warning fw-bold border border-dark border-3 rounded mt-2">Badges</h4>
@@ -84,8 +63,6 @@
                 </div>
             </div>
         </section>
-        <!-- {{ profile.badgeCount }} -->
-        <!-- {{ profile.todoCount }} -->
     </section>
 </template>
 
@@ -139,7 +116,7 @@ export default {
             // ANCHOR DO NOT USE THE WORD ACCOUNT ON THIS PAGE UNLESS YOU ARE USING THE PERSON LOGGED IN
             // account: computed(() => AppState.account),
             // staches: computed(() => AppState.staches),
-            // activeProfileStaches: computed(() => AppState.activeProfileStaches),
+            activeProfileStaches: computed(() => AppState.activeProfileStaches),
             myAdventures: computed(() => AppState.myAdventures),
         };
     },
