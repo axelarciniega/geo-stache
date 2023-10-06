@@ -61,13 +61,14 @@ export default {
 }
 
 .create-btn {
-    border: 3px solid #e16a34 !important;
-    color: #e16a34 !important;
+    /* border: 3px solid #e16a34 !important; */
+    border: 3px solid var(--Orange) !important;
+    color: var(--Orange) !important;
 
 }
 
 .create-btn:hover {
-    background-color: #e16a34 !important;
+    background-color: var(--Orange) !important;
     color: var(--LghtSand) !important;
     border: 3px solid var(--Green) !important;
     transition: .35s;
