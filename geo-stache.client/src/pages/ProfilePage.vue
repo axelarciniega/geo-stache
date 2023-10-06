@@ -3,13 +3,31 @@
         <h1 class="text-center">{{ profile.name }}'s profile page</h1>
         <section class="row justify-content-around mt-5">
             <div class="borderChange col-12 col-md-3 my-md-4 order-md-0 order-1 geo-shadow margin-class">
-                <h4 class="text-center mt-2">Created staches</h4>
-                <div v-for="s in activeProfileStaches" :key="s.id">
-                    <ActiveProfileStacheCard :stache="s" />
+                <div>
+                    <h4 class="text-center text-black mt-2">Created staches</h4>
+                </div>
+                <section class="row justify-content-around my-2">
+                    <button @click="pChangePage(pageNumber - 1)" :disabled="pageNumber <= 1"
+                        class="col-5 bgNew rounded search">
+                        <i class="mdi mdi-arrow-left"></i> Recent
+                    </button>
+                    <button @click="pChangePage(pageNumber + 1)" :disabled="pageNumber >= totalPages"
+                        class="col-5 bgNew rounded search">
+                        Vintage <i class="mdi mdi-arrow-right"></i>
+                    </button>
+                </section>
+                <div v-for="s in activeProfileStaches" :key="s.id" class="fs-4">
+
+                    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage"
+                        aria-controls="myCreated"></b-pagination>
+                    <b-table id="myCreated" :per-page="perPage" :current-page="currentPage">
+                        <ActiveProfileStacheCard :stache="s" />
+
+                    </b-table>
                 </div>
             </div>
             <div class="col-12 borderChange col-md-3 card geo-shadow order-md-1 order-0 ">
-                <h4 class="text-center mt-2 bgNew rounded">Profile details</h4>
+                <h4 class="text-center mt-2 bgNew rounded">{{ profile.name }}</h4>
                 <img class="elevation-5 rounded" :src="profile.picture" alt="">
                 <p class="m-2">{{ profile.bio }}</p>
                 <p class=" bgNew rounded text-center">{{ profile.email }}</p>
@@ -118,6 +136,10 @@ export default {
             // staches: computed(() => AppState.staches),
             activeProfileStaches: computed(() => AppState.activeProfileStaches),
             myAdventures: computed(() => AppState.myAdventures),
+            // perPage: 7,
+            // currentPage: 1,
+            pageNumber: computed(() => AppState.pPageNumber),
+            totalPages: computed(() => AppState.pTotalPages),
         };
     },
 };
@@ -160,7 +182,8 @@ export default {
 }
 
 .bgNew {
-    background: #41644ab0;
+    padding: 3px;
+    background: #527a5cb0;
 }
 
 .borderChange {
@@ -203,5 +226,9 @@ export default {
 .todoButton:hover {
     background: linear-gradient(45deg, var(--Green), var(--LghtGreen));
     transform: scale(1.1);
+}
+
+.leftStache {
+    object-fit: contain;
 }
 </style>

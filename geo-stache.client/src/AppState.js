@@ -47,6 +47,19 @@ export const AppState = reactive({
   /**@type {Adventure} */
   activeProfileAdventures: {},
 
+  /** @type {Number} */
+  pageNumber: 1,
+  /** @type{Number} */
+  totalPages: 1,
+  /** @type {Number} */
+  pPageNumber: 1,
+  /** @type{Number} */
+  pTotalPages: 1,
+
+  /**@type {String|null} */
+nextUrl: null,
+  /**@type {String|null} */
+previousUrl: null,  
 
   // COMMENTS
   // NOTE uncomment if needed

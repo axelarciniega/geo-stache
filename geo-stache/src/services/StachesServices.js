@@ -4,9 +4,25 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class StachesService {
 
-    async getStaches(query) {
-        const staches = await dbContext.Staches.find(query).sort('-createdAt').populate('creator').populate('todoCount foundCount')
-        return staches
+    async getStaches(query, pageNumber = 1) {
+        const limit = 10
+        const skip = ((pageNumber - 1) * limit)
+        const staches = await dbContext.Staches.find(query)
+            .sort('-createdAt')
+            .populate('creator')
+            .populate('todoCount foundCount')
+            .skip(skip)
+            .limit(limit)
+        let count = await dbContext.Staches.countDocuments(query)
+        let totalPages = Math.ceil(count / limit)
+
+        return {
+            staches,
+            pageNumber: Number(pageNumber),
+            totalPages,
+            next: Number(pageNumber) == totalPages ? null : `http://localhost:3000/api/staches?pageNumber=${Number(pageNumber) + 1}`,
+            previous: Number(pageNumber) == 1 ? null : `http://localhost:3000/api/staches?pageNumber=${Number(pageNumber) - 1}`
+        }
     }
     async getStacheById(stacheId) {
         const stache = await dbContext.Staches.findById(stacheId)
@@ -14,9 +30,23 @@ class StachesService {
         return stache
     }
 
-    async getStachesByProfileId(profileId) {
+    async getStachesByProfileId(profileId, pageNumber = 1) {
+        // TODO add limit and skip BEFORE find
+        const limit = 10
+        const skip = ((pageNumber - 1) * limit)
         const staches = await dbContext.Staches.find({ creatorId: profileId })
-        return staches
+            // TODO after find add lines 14-25
+            .skip(skip)
+            .limit(limit)
+        let count = await dbContext.Staches.countDocuments(profileId)
+        let totalPages = Math.ceil(count / limit)
+        return {
+            staches,
+            pageNumber: Number(pageNumber),
+            totalPages,
+            next: Number(pageNumber) == totalPages ? null : `http://localhost:3000/api/profiles/${profileId}/staches?pageNumber=${Number(pageNumber) + 1}`,
+            previous: Number(pageNumber) == 1 ? null : `http://localhost:3000/api/profiles/${profileId}/staches?pageNumber=${Number(pageNumber) - 1}`
+        }
     }
     async createStache(stacheBody) {
         const stache = await dbContext.Staches.create(stacheBody)

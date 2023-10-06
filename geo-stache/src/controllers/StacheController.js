@@ -39,7 +39,9 @@ export class StacheController extends BaseController {
 
     async getStaches(req, res, next) {
         try {
-            const staches = await stachesService.getStaches(req.query)
+            const pageNumber = req.query.pageNumber
+            delete req.query.pageNumber
+            const staches = await stachesService.getStaches(req.query, pageNumber)
             res.send(staches)
         } catch (error) {
             next(error)

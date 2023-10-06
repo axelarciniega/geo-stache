@@ -19,7 +19,10 @@ class ProfilesService {
     try {
       const res = await api.get(`api/profiles/${profileId}/staches`)
       // logger.log(res.data, 'trying to get staches by id')
-      AppState.activeProfileStaches = res.data
+      // AppState.activeProfileStaches = res.data
+      // TODO after adding pagination to server ⬇️
+      AppState.activeProfileStaches = res.data.staches.map(d=>new Stache(d))
+
     } catch (error) {
       Pop.error(error)
     }
