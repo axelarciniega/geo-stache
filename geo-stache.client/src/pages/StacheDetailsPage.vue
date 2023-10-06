@@ -132,7 +132,7 @@
                         <router-link v-if="adventure.accountId"
                             :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
                             <div v-if="adventure.status == 'completed'">
-                                <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.foundDate }}</span></div>
+                                <div class="text-DarkOrange">{{ adventure.profile.name }} <span class="text-darkGreen">{{ adventure.foundDate }}</span></div>
                             </div>
                         </router-link>
                     </div>
