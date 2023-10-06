@@ -111,7 +111,7 @@
             </div>
             <!-- {{ stacheAdventures }} -->
         </section>
-        <section class=" d-flex justify-content-evenly">
+        <section class=" d-flex justify-content-evenly pt-3">
             <div class="section-User elevation-5 rounded">
                 <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
                 <div>
