@@ -115,6 +115,7 @@
                 <h2>List of Adventurers:</h2>
                 <div>
                     <div v-for="adventure in stacheAdventures" :key="adventure.id">
+
                         <!-- <img :src="adventure.profileImg" alt=""> -->
                         <div v-if="adventure.status == 'todo'">
                             <div>{{ adventure.profile.name }} <span>{{ adventure.toDoDate }}</span>
