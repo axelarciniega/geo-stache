@@ -6,7 +6,7 @@
 
       </div>
     </router-link>
-    <img alt="logo" src="../assets/img/GeoText2.png" height="50" width="200" />
+    <img alt="logo" src="../assets/img/NewGeoLogo.png" height="50" width="200" />
     <button class="navbar-toggler txt-LghtSand" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon txt-Sand"></span>
