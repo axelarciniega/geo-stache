@@ -73,14 +73,17 @@
                 </div>
             </section>
             <!-- STUB Badges Off Canvas -->
-            <div class="adventure-card">
-                <h4 class="text-center bg-warning fw-bold border border-dark border-3 rounded mt-2">Badges</h4>
 
-                <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
-                    <BadgeTemplate :adventure="adventure" />
-                </div>
-            </div>
         </section>
+    </section>
+    <section class=" adventure-card">
+        <h4 class="text-center bg-warning fw-bold border border-dark border-3 rounded mt-2">Badges</h4>
+        <div class=" d-flex">
+
+            <div v-for="adventure in myAdventures" :key="adventure.id" class=" bgToDo2">
+                <BadgeTemplate :adventure="adventure" />
+            </div>
+        </div>
     </section>
 </template>
 
@@ -168,7 +171,7 @@ export default {
 .badge-pic2 {
     width: 82px;
     height: 82px;
-    border-radius: 60%;
+
 }
 
 .glassCard2 {

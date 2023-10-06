@@ -109,23 +109,47 @@
                 </div>
 
             </div>
+            <!-- {{ stacheAdventures }} -->
         </section>
-        <!-- <section class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <ToDoCard :adventure="adventure" />
+        <section class=" d-flex flex-sm-row flex-lg-column  justify-content-evenly pt-3">
+            <div>
+                <div class="section-User elevation-5 rounded">
+                    <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
+                    <div>
+                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                            <div v-if="adventure.status == 'todo'">
+                                <router-link v-if="adventure.accountId"
+                                    :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
+                                    <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.toDoDate
+                                    }}</span></div>
+                                </router-link>
+                            </div>
+                        </div>
                     </div>
-
-                    <div v-for="adventure in myAdventures" :key="adventure.id" class="col-3">
-                        <BadgeCard :adventure="adventure" />
-                    </div>
-
                 </div>
             </div>
+            <div>
+                <div class="section-User elevation-5 rounded">
+                    <h2 class="h2-User bg-DrkGreen rounded text-light elevation-5 p-2">have found:</h2>
+                    <div>
+                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
+                            <router-link v-if="adventure.accountId"
+                                :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
+                                <div v-if="adventure.status == 'completed'">
+                                    <div class="text-DarkOrange"> <span> <img alt="logo"
+                                                src="../assets/img/STACHE-Green.png" height="15" width="35" /></span> {{
+                                                    adventure.profile.name }} <span class="text-darkGreen">{{ adventure.foundDate
+    }}</span></div>
+
+                                </div>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-        </section> -->
     </div>
 
 
@@ -139,7 +163,10 @@
             <div class="container">
                 <section class="row">
                     <div class="col-12 col-md-1">
-                        <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        <router-link v-if="comment.creatorId"
+                            :to="{ name: 'Profile', params: { profileId: comment.creatorId } }">
+                            <img class="profile-pic" :src="comment.creator.picture" alt="">
+                        </router-link>
                     </div>
                     <div class="card elevation-5 col-12 col-md-10 m-2 pt-2 body-color">
                         <router-link v-if="comment.creatorId"
@@ -185,9 +212,11 @@ export default {
         const editStaches = ref({})
 
         onMounted(() => {
+            getAdventuresByStacheId();
             getStacheById();
             getCommentsByStache()
             setupMap()
+            // getAdventuresForActiveStache()
             // eslint-disable-next-line no-undef
         })
 
@@ -287,8 +316,13 @@ export default {
                 map.setZoom(15); // Adjust the zoom level as needed
             }
         }
-
-
+        // async function getAdventuresForActiveStache() {
+        //     try {
+        //         await adventuresService.getAdventuresByStacheId(route)
+        //     } catch (error) {
+        //         Pop.error(error, '[ActiveEvenPage: getTicketsForActiveEvent()]')
+        //     }
+        // }
 
 
         async function getCommentsByStache() {
@@ -303,6 +337,13 @@ export default {
             try {
                 await stachesService.getStacheById(route.params.stacheId)
                 addStacheMarker()
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
+        async function getAdventuresByStacheId() {
+            try {
+                await adventuresService.getAdventuresByStacheId(route.params.stacheId)
             } catch (error) {
                 Pop.error(error)
             }
@@ -339,12 +380,16 @@ export default {
             setupMap,
             map,
             account: computed(() => AppState.account),
+            activeAdventures: computed(() => AppState.activeAdventures),
             stacheComments: computed(() => AppState.stacheComments),
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
+            adventures: computed(() => AppState.adventures),
             thisStacheAdventure: computed(() => {
                 return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
             }),
+
+
 
 
             async removeComment(id) {
@@ -543,6 +588,8 @@ export default {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    max-height: 40vh;
+    min-height: 30vh;
 }
 
 .map_card {
@@ -670,5 +717,29 @@ export default {
 
 .googleLink:hover {
     transform: scale(1.1)
+}
+
+.section-User {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Style the list headers */
+.h2-user {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style individual adventure items */
+.adventure-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+/* Style the names and dates */
+.adventure-item div {
+    margin: 5px 0;
 }
 </style>
