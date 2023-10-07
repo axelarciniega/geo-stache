@@ -222,6 +222,7 @@ export default {
         })
 
         function setupMap() {
+            // debugger
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition((position) => {
                     lat.value = position.coords.latitude;
@@ -231,15 +232,18 @@ export default {
                         center: { lat: lat.value, lng: lng.value },
                         zoom: 15,
                     });
+
                     // eslint-disable-next-line no-undef
                     infoWindow = new google.maps.InfoWindow()
                     markYourLocation()
                     addStacheMarker()
 
                     // eslint-disable-next-line no-undef
-                    setGoogleMapsLink();
+                    // setGoogleMapsLink();
+
+
+                    centerMap(map)
                 })
-                centerMap()
             }
         }
 
@@ -262,13 +266,14 @@ export default {
             // centerMap()
         }
 
-        function centerMap() {
+        function centerMap(map) {
             // eslint-disable-next-line no-undef
             const bounds = new google.maps.LatLngBounds();
             markers.value.forEach((marker) => {
                 // eslint-disable-next-line no-undef
                 bounds.extend(new google.maps.LatLng(marker.lat, marker.lng))
             })
+
             map.fitBounds(bounds)
         }
 
