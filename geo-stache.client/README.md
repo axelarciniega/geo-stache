@@ -1,13 +1,12 @@
 # Geo-Stache
 
-Geo-Stache, the new open-source geocaching companion.
+Geco-Stache is designed to be a open-source, user-oriented geocaching companion. Utilizing mobile-first design, we created Geo-Stache to improve the accessibility to and participation in this fun, outoodrs activity!
 
-We created Geo-Stache to improve accessibility and increase participation in geocaching, an activity we all enjoy.
 
 Our Goals:
--Establish the geocaching activity to be accessible to everyone, regardless of their financial situation or experience level.
--Open Source: Geo-Stache is open source, which means it is community-driven.
--Gamified and Communal: We've gamified the geocaching experience, making it more fun and social. Connect with fellow cachers, share your adventures, and discover new places.
+- Improve accessibility compared to other geocaching resources by excluding pay-to-play elements
+- Set a relaxed, engaging tone that welcomes novice players alongside their more seasoned counterparts
+- Utilize open-source engagement to maintain a community-oriented and community-driven focus
 
 
 
