@@ -36,9 +36,19 @@
                         </select>
                     </div>
 
+                    <section class="row justify-content-around my-2">
+                        <button @click="ChangePage(previousUrl)" :disabled="!previousUrl"
+                            class="col-5 bg-warning rounded search border border-1 border-dark">
+                            <i class="mdi mdi-arrow-left"></i> Recent
+                        </button>
+                        <button @click="ChangePage(nextUrl)" :disabled="!nextUrl"
+                            class="col-5 bg-warning rounded search border border-1 border-dark">
+                            Vintage <i class="mdi mdi-arrow-right"></i>
+                        </button>
+                    </section>
                 </div>
 
-                <div v-for="(stache, index) in sortedStaches" :key="index">
+                <div v-for="(stache, index) in sortedStaches" :key="index" show-pagination="false">
                     <router-link :to="{ path: `staches/${stache.id}` }">
                         <div v-if="stache.distance <= 3 && stache.distance > 0.00005"
                             class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
@@ -117,6 +127,7 @@ import { computed } from 'vue';
 import { stachesService } from '../services/StachesService.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop'
 
 
 export default {
@@ -127,8 +138,24 @@ export default {
             user: computed(() => AppState.user),
             map: null,
             selectedDistance: 'all',
+            pageNumber: computed(() => AppState.PageNumber),
+            totalPages: computed(() => AppState.TotalPages),
+            nextUrl: computed(() => AppState.nextUrl),
+            previousUrl: computed(() => AppState.previousUrl),
+
+
+            async ChangePage(url) {
+                try {
+                    logger.log('changing page', url)
+                    await stachesService.ChangePage(url)
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
         };
     },
+
+
     computed: {
         sortedStaches() {
             if (this.selectedDistance === 'all') {
