@@ -20,9 +20,8 @@
             <div class="glassCard col-12 col-md-7 my-1 ">
                 <div class="m-3 ">
 
-                    <h1 class=" fw-bold text-black text-center text-decoration-underline">
-                        <span class="border border-3 border-dark rounded bg-warning p-2"> STACHES </span>
-
+                    <h1 class="fw-bold text-black text-center">
+                        <span class="border border-3 border-dark rounded bg-warning p-2 title">STACHES</span>
                     </h1>
                     <div class="my-3 offset-2">
                         <label for="distance-select">Sort by Distance:</label>
@@ -353,6 +352,22 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.title {
+    font-size: 36px;
+    /* Adjust the font size */
+    padding: 10px 20px;
+    margin-top: 20px;
+    /* Add some space between the title and the content */
+    display: inline-block;
+    /* Make the title an inline block */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    /* Apply a subtle shadow */
+    background-color: #ffcc00;
+    /* Background color */
+    color: #333;
+    /* Text color */
 }
 
 .favicon {
