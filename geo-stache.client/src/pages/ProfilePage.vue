@@ -7,10 +7,10 @@
                     <h4 class="text-center text-black mt-2">Created staches</h4>
                 </div>
                 <section class="row justify-content-around my-2">
-                    <button @click="ChangePage(url)" :disabled="!previousUrl" class="col-5 bgNew rounded search">
+                    <button @click="ChangePage(previousUrl)" :disabled="!previousUrl" class="col-5 bgNew rounded search">
                         <i class="mdi mdi-arrow-left"></i> Recent
                     </button>
-                    <button @click="ChangePage(url)" :disabled="!nextUrl" class="col-5 bgNew rounded search">
+                    <button @click="ChangePage(nextUrl)" :disabled="!nextUrl" class="col-5 bgNew rounded search">
                         Vintage <i class="mdi mdi-arrow-right"></i>
                     </button>
                 </section>
