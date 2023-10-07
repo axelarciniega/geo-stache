@@ -236,10 +236,10 @@ export default {
                     markYourLocation()
                     addStacheMarker()
 
-
                     // eslint-disable-next-line no-undef
                     setGoogleMapsLink();
                 })
+                centerMap()
             }
         }
 
@@ -259,7 +259,7 @@ export default {
                 infoWindow.open(map, markerElem);
             })
 
-            centerMap()
+            // centerMap()
         }
 
         function centerMap() {
