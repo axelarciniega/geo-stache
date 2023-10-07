@@ -18,7 +18,7 @@
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
-
+                    <p class="text-center">Distance: {{ stache.distance }} miles</p>
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p>this is a dummy location, we need to make the destination call off of the set lat lng</p> -->
@@ -116,14 +116,16 @@
                 <div class="section-User elevation-5 rounded">
                     <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
                     <div>
-                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
-                            <div v-if="adventure.status == 'todo'">
-                                <router-link v-if="adventure.accountId"
-                                    :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
-                                    <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.toDoDate
+                        <div v-for="stacheAdventures in stacheAdventures" :key="stacheAdventures.id"
+                            class="h2-User fw-bold fs-3">
+                            <div v-if="stacheAdventures.status == 'todo'">
+                                <router-link v-if="stacheAdventures.accountId"
+                                    :to="{ name: 'Profile', params: { profileId: stacheAdventures.accountId } }">
+                                    <div class="text-DarkOrange">{{ stacheAdventures.profile.name }} <span>{{
+                                        stacheAdventures.toDoDate
                                     }}</span></div>
                                 </router-link>
-                                <p class="text-center">Distance: {{ distance }} miles</p>
+
 
                             </div>
                         </div>
@@ -415,16 +417,21 @@ export default {
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
             adventures: computed(() => AppState.adventures),
+
             computed: {
                 distance() {
                     if (this.lat && this.lng && this.stache && this.stache.lat && this.stache.lng) {
                         const R = 3958.8; // Radius of the Earth in miles
-                        const dLat = (this.stache.lat - this.lat) * (Math.PI / 180);
-                        const dLon = (this.stache.lng - this.lng) * (Math.PI / 180);
+                        const lat1 = this.lat;
+                        const lon1 = this.lng;
+                        const lat2 = this.stache.lat;
+                        const lon2 = this.stache.lng;
+                        const dLat = (lat2 - lat1) * (Math.PI / 180);
+                        const dLon = (lon2 - lon1) * (Math.PI / 180);
                         const a =
                             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                            Math.cos(this.lat * (Math.PI / 180)) *
-                            Math.cos(this.stache.lat * (Math.PI / 180)) *
+                            Math.cos(lat1 * (Math.PI / 180)) *
+                            Math.cos(lat2 * (Math.PI / 180)) *
                             Math.sin(dLon / 2) *
                             Math.sin(dLon / 2);
                         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));

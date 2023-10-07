@@ -297,6 +297,15 @@ export default {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 4px solid rgba(47, 28, 2, 0.345);
+    transition: transform 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.glassCard2:hover {
+    /* Add hover effect for stache cards */
+    transform: scale(1.18);
+    backdrop-filter: blur(8px);
+    border: 2px solid #ffcc00;
 }
 
 .map_card {
