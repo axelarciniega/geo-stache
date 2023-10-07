@@ -23,6 +23,8 @@ class AdventuresService {
     // NOTE This gets all the Staches that the current profile has marked as either ToDo or Found.
     async getAdventuresByUserId(userId) {
         const stacheAdventures = await dbContext.Adventures.find({ accountId: userId }).populate('stache profile')
+        // What I tried....⬇️
+        // const stacheAdventures = await dbContext.Adventures.find({ accountId: userId }).populate({ path: 'stache', populate: { path: 'creator badgeCount' } })
         return stacheAdventures
     }
 

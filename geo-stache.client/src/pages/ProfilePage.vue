@@ -7,23 +7,20 @@
                     <h4 class="text-center text-black mt-2">Created staches</h4>
                 </div>
                 <section class="row justify-content-around my-2">
-                    <button @click="pChangePage(pageNumber - 1)" :disabled="pageNumber <= 1"
-                        class="col-5 bgNew rounded search">
+                    <button @click="ChangePage(previousUrl)" :disabled="!previousUrl" class="col-5 bgNew rounded search">
                         <i class="mdi mdi-arrow-left"></i> Recent
                     </button>
-                    <button @click="pChangePage(pageNumber + 1)" :disabled="pageNumber >= totalPages"
-                        class="col-5 bgNew rounded search">
+                    <button @click="ChangePage(nextUrl)" :disabled="!nextUrl" class="col-5 bgNew rounded search">
                         Vintage <i class="mdi mdi-arrow-right"></i>
                     </button>
                 </section>
                 <div v-for="s in activeProfileStaches" :key="s.id" class="fs-4">
 
-                    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage"
-                        aria-controls="myCreated"></b-pagination>
-                    <b-table id="myCreated" :per-page="perPage" :current-page="currentPage">
-                        <ActiveProfileStacheCard :stache="s" />
 
-                    </b-table>
+
+                    <ActiveProfileStacheCard :stache="s" />
+
+
                 </div>
             </div>
             <div class="col-12 borderChange col-md-3 card geo-shadow order-md-1 order-0 ">
@@ -142,8 +139,7 @@ export default {
             // staches: computed(() => AppState.staches),
             activeProfileStaches: computed(() => AppState.activeProfileStaches),
             myAdventures: computed(() => AppState.myAdventures),
-            // perPage: 7,
-            // currentPage: 1,
+
             pageNumber: computed(() => AppState.pPageNumber),
             totalPages: computed(() => AppState.pTotalPages),
             nextUrl: computed(() => AppState.nextUrl),
@@ -152,7 +148,7 @@ export default {
             async ChangePage(url) {
                 try {
                     logger.log('changing page', url)
-                    await stachesService.ChangePage(url)
+                    await profilesService.ChangePage(url)
                 } catch (error) {
                     Pop.error(error)
                 }

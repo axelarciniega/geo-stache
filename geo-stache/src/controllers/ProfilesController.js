@@ -35,7 +35,7 @@ export class ProfilesController extends BaseController {
 
   async getStachesByProfileId(req, res, next) {
     try {
-      const staches = await stachesService.getStachesByProfileId(req.params.profileId)
+      const staches = await stachesService.getStachesByProfileId(req.params.profileId, req.query.pageNumber)
       res.send(staches)
     } catch (error) {
       next(error)
