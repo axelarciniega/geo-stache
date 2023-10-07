@@ -216,6 +216,7 @@ export default {
             getStacheById();
             getCommentsByStache()
             setupMap()
+            addPolyline();
             // getAdventuresForActiveStache()
             // eslint-disable-next-line no-undef
         })
@@ -313,7 +314,8 @@ export default {
 
                 // Center the map on the stache location
                 map.setCenter(stacheLocation);
-                map.setZoom(15); // Adjust the zoom level as needed
+                map.setZoom(11);
+                addPolyline() // Adjust the zoom level as needed
             }
         }
         // async function getAdventuresForActiveStache() {
@@ -323,6 +325,33 @@ export default {
         //         Pop.error(error, '[ActiveEvenPage: getTicketsForActiveEvent()]')
         //     }
         // }
+
+
+        function addPolyline() {
+            if (map) {
+                // Create an array of LatLng objects representing the line's path
+                const polylineCoordinates = [
+                    { lat: lat.value, lng: lng.value }, // User location
+                    { lat: stache.value.lat, lng: stache.value.lng }, // ActiveStache location
+                ];
+
+                // Create a Polyline object
+                // eslint-disable-next-line no-undef
+                const polyline = new google.maps.Polyline({
+                    path: polylineCoordinates,
+                    geodesic: true,
+                    strokeColor: '#FF0000', // Line color (you can change this)
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2, // Line thickness
+                });
+
+                // Set the Polyline on the map
+                polyline.setMap(map);
+            }
+        }
+
+        // Call the function to add the polyline
+        addPolyline();
 
 
         async function getCommentsByStache() {
