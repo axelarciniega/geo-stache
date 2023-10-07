@@ -38,7 +38,8 @@ class ProfilesService {
 
   async ChangePage(url){
     const res = await api.get(url)
-    AppState.staches = res.data.staches.map(stache => new Stache(stache))
+    AppState.activeProfileStaches = res.data.staches.map(stache => new Stache(stache))
+    logger.log("profile change page",url)
     AppState.nextUrl = res.data.next
     AppState.previousUrl = res.data.previous
 
