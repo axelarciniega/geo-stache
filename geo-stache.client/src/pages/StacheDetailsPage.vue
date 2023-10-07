@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <img class="stacheImage pb-3" :src="stache.coverImage" alt="">
+                    <img class="stacheImage map_card m-2 " :src="stache.coverImage" alt="">
                     <section class="container">
                         <div v-show="!(account.id == stache.creatorId)" class="row">
 
@@ -588,8 +588,11 @@ export default {
     width: 100%;
     object-fit: cover;
     object-position: center;
-    max-height: 40vh;
-    min-height: 30vh;
+    max-height: 30vh;
+    min-height: 20vh;
+    max-width: 55vh;
+    min-width: 20vh;
+
 }
 
 .map_card {
