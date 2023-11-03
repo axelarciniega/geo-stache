@@ -140,8 +140,8 @@
 
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
-            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/CamilleIvins"></a>
-            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
+            <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/SamanthaDison"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/samanthadison/"></a>
           </div>
         </div>
 
@@ -163,10 +163,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  .border-upgrade{
-    border: solid 4px #41644A;
-  }
+.border-upgrade {
+  border: solid 4px #41644A;
+}
 
 
 // .profile-pic {
