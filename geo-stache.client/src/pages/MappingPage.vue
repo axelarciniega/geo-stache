@@ -47,16 +47,17 @@
                     </section>
                 </div>
 
-                <div v-for="(stache, index) in sortedStaches" :key="index" show-pagination="false">
+                <div v-for="(stache, index) in sortedStaches" :key="index" show-pagination="true">
                     <router-link :to="{ path: `staches/${stache.id}` }">
                         <div v-if="stache.distance <= 3 && stache.distance > 0.00005"
                             class="d-flex justify-content-between glassCard2  m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
                             <div class="p-1">
-                                {{
-                                    stache.stacheName
-                                }} - <span class="text-warning"> {{
-    stache.distance }} miles</span>
+
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
+                                    stache.distance }} miles</span>
                             </div>
                         </div>
 
@@ -74,39 +75,45 @@
                         <div v-if="stache.distance >= 6.1 && stache.distance <= 10"
                             class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
                             <div class="p-1">
-                                {{
-                                    stache.stacheName }} - <span class="text-info"> {{
-        stache.distance }} miles</span>
+
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
+                                    stache.distance }} miles</span>
                             </div>
                         </div>
                         <div v-if="stache.distance >= 10.1 && stache.distance <= 20"
                             class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
                             <div class="p-1">
-                                {{
-                                    stache.stacheName }} - <span class="text-secondary"> {{
-        stache.distance }} miles</span>
+
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
+                                    stache.distance }} miles</span>
                             </div>
                         </div>
                         <div v-if="stache.distance >= 20.1 && stache.distance <= 40"
                             class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
                             <div class="p-1">
-                                {{
-                                    stache.stacheName }} - <span class="text-danger"> {{
-        stache.distance }} miles</span>
+
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
+                                    stache.distance }} miles</span>
                             </div>
                         </div>
 
                         <div v-if="stache.distance > 40.1"
                             class="d-flex justify-content-between glassCard2 m-2 fw-bold fs-3 text-black text-center">
                             <img class="favicon" src="../assets/img/favicon-32x32.png" alt="">
+                            <span class="">{{ stache.difficulty }}</span>
                             <div class="p-1">
-                                {{
-                                    stache.stacheName
-                                }} -
-                                <span class="text-danger"> {{
+
+                                {{ stache.stacheName }} -
+                                <span class="text-primary"> {{
                                     stache.distance }} miles</span>
                             </div>
                         </div>

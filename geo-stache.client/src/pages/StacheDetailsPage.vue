@@ -47,8 +47,8 @@
                     <section class="container">
                         <div v-show="!(account.id == stache.creatorId)" class="row">
 
-                            <button class="col-6 adventureButton" v-if="!thisStacheAdventure" @click="addAdventure()"><i
-                                    class="mdi mdi-plus"></i>Add to
+                            <button class="col-6 adventureButton" v-if="!thisStacheAdventure && account.id"
+                                @click="addAdventure()"><i class="mdi mdi-plus"></i>Add to
                                 your
                                 Adventures
                             </button>
