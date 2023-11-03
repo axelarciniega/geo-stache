@@ -70,7 +70,7 @@
           </div>
           <div class="col-md-1 col-12 text-md-center text-end">
             <a class="mdi mdi-github fs-1 txt-DrkGreen" href="https://github.com/bluebear2015"></a>
-            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/camille-ivins-1a7969113"></a>
+            <a class="mdi mdi-linkedin fs-1 txt-DrkGreen" href="https://www.linkedin.com/in/sam-luna-a55741295/"></a>
           </div>
         </div>
 
