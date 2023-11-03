@@ -18,7 +18,7 @@
                     </router-link>
                     <p class="text-center">Description: {{ stache.description }}</p>
                     <p class="text-center">Difficulty: {{ stache.difficulty }}</p>
-
+                    <p class="text-center">Distance: {{ stache.distance }} miles</p>
                     <!-- <p class="text-center">Badge Image: <img :src="stache.badgeImage" alt=""></p> -->
                     <p class="text-center">lat: {{ stache.lat }} || long: {{ stache.lng }}</p>
                     <!-- <p>this is a dummy location, we need to make the destination call off of the set lat lng</p> -->
@@ -116,13 +116,17 @@
                 <div class="section-User elevation-5 rounded">
                     <h2 class="h2-User bg-DrkGreen rounded text-light p-2 elevation-5">List of Adventurers:</h2>
                     <div>
-                        <div v-for="adventure in stacheAdventures" :key="adventure.id" class="h2-User fw-bold fs-3">
-                            <div v-if="adventure.status == 'todo'">
-                                <router-link v-if="adventure.accountId"
-                                    :to="{ name: 'Profile', params: { profileId: adventure.accountId } }">
-                                    <div class="text-DarkOrange">{{ adventure.profile.name }} <span>{{ adventure.toDoDate
+                        <div v-for="stacheAdventures in stacheAdventures" :key="stacheAdventures.id"
+                            class="h2-User fw-bold fs-3">
+                            <div v-if="stacheAdventures.status == 'todo'">
+                                <router-link v-if="stacheAdventures.accountId"
+                                    :to="{ name: 'Profile', params: { profileId: stacheAdventures.accountId } }">
+                                    <div class="text-DarkOrange">{{ stacheAdventures.profile.name }} <span>{{
+                                        stacheAdventures.toDoDate
                                     }}</span></div>
                                 </router-link>
+
+
                             </div>
                         </div>
                     </div>
@@ -217,9 +221,11 @@ export default {
             getCommentsByStache()
             setupMap()
             addPolyline();
+
             // getAdventuresForActiveStache()
             // eslint-disable-next-line no-undef
         })
+
 
         function setupMap() {
             // debugger
@@ -230,7 +236,7 @@ export default {
                     // eslint-disable-next-line no-undef
                     map = new google.maps.Map(document.getElementById('map'), {
                         center: { lat: lat.value, lng: lng.value },
-                        zoom: 15,
+                        zoom: 11,
                     });
 
                     // eslint-disable-next-line no-undef
@@ -292,21 +298,18 @@ export default {
                 // eslint-disable-next-line no-undef
                 const stacheLocation = new google.maps.LatLng(stache.value.lat, stache.value.lng);
 
-                // Create a marker for the stache location
-                // eslint-disable-next-line no-undef
+
                 const stacheMarker = new google.maps.Marker({
                     position: stacheLocation,
                     map: map,
                     title: stache.value.stacheName,
                 });
 
-                // Create an info window for the stache location
-                // eslint-disable-next-line no-undef
+
                 const stacheInfoWindow = new google.maps.InfoWindow({
                     content: stache.value.stacheName,
                 });
 
-                // Add a click event listener to open the info window when the marker is clicked
                 stacheMarker.addListener('click', () => {
                     stacheInfoWindow.open(map, stacheMarker);
                 });
@@ -320,7 +323,7 @@ export default {
                 // Center the map on the stache location
                 map.setCenter(stacheLocation);
                 map.setZoom(11);
-                addPolyline() // Adjust the zoom level as needed
+                addPolyline()
             }
         }
         // async function getAdventuresForActiveStache() {
@@ -334,28 +337,27 @@ export default {
 
         function addPolyline() {
             if (map) {
-                // Create an array of LatLng objects representing the line's path
+
                 const polylineCoordinates = [
-                    { lat: lat.value, lng: lng.value }, // User location
-                    { lat: stache.value.lat, lng: stache.value.lng }, // ActiveStache location
+                    { lat: lat.value, lng: lng.value },
+                    { lat: stache.value.lat, lng: stache.value.lng },
                 ];
 
-                // Create a Polyline object
+
                 // eslint-disable-next-line no-undef
                 const polyline = new google.maps.Polyline({
                     path: polylineCoordinates,
                     geodesic: true,
-                    strokeColor: '#FF0000', // Line color (you can change this)
+                    strokeColor: 'green',
                     strokeOpacity: 1.0,
-                    strokeWeight: 2, // Line thickness
+                    strokeWeight: 3,
                 });
 
-                // Set the Polyline on the map
+
                 polyline.setMap(map);
             }
         }
 
-        // Call the function to add the polyline
         addPolyline();
 
 
@@ -419,12 +421,50 @@ export default {
             stacheAdventures: computed(() => AppState.activeStacheAdventures),
             myAdventures: computed(() => AppState.myAdventures),
             adventures: computed(() => AppState.adventures),
+
+            computed: {
+                distance() {
+                    if (this.lat && this.lng && this.stache && this.stache.lat && this.stache.lng) {
+                        const R = 3958.8; // Radius of the Earth in miles
+                        const lat1 = this.lat;
+                        const lon1 = this.lng;
+                        const lat2 = this.stache.lat;
+                        const lon2 = this.stache.lng;
+                        const dLat = (lat2 - lat1) * (Math.PI / 180);
+                        const dLon = (lon2 - lon1) * (Math.PI / 180);
+                        const a =
+                            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                            Math.cos(lat1 * (Math.PI / 180)) *
+                            Math.cos(lat2 * (Math.PI / 180)) *
+                            Math.sin(dLon / 2) *
+                            Math.sin(dLon / 2);
+                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                        return (R * c).toFixed(2); // Round to 2 decimal places
+                    }
+                    return null;
+                },
+            },
             thisStacheAdventure: computed(() => {
                 return AppState.myAdventures.find(a => a.stacheId == route.params.stacheId)
             }),
 
 
 
+            calculateDistance(lat1, lon1, lat2, lon2) {
+                const R = 3958.8;
+                const dLat = (lat2 - lat1) * (Math.PI / 180);
+                const dLon = (lon2 - lon1) * (Math.PI / 180);
+                const a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * (Math.PI / 180)) *
+                    Math.cos(lat2 * (Math.PI / 180)) *
+                    Math.sin(dLon / 2) *
+                    Math.sin(dLon / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                const distance = R * c;
+                return distance.toFixed(2);
+
+            },
 
             async removeComment(id) {
                 try {
