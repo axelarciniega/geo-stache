@@ -1,12 +1,16 @@
 {
   "folders": [
     {
-      "path": "geo-stache.client",
+      "path": "client",
       "name": "client"
     },
     {
-      "path": "geo-stache",
+      "path": "server",
       "name": "server"
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
     }
   ],
   "settings": {
@@ -32,7 +36,7 @@
     "eslint.lintTask.enable": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": "explicit"
     },
     "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#558361",
