@@ -2,7 +2,7 @@
   <nav class="txt-LghtSand fw-semibold fs-5 navbar navbar-expand-lg bg-Green px-3">
     <router-link class="navbar-brand d-flex txt-LghtSand" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center txt-LghtSand">
-        <img alt="logo" src="../assets/img/Geo-Stache-Logo.png" height="55" />
+        <img alt="logo" src="../assets/img/Geo-Stache-logo.png" height="55" />
 
       </div>
     </router-link>
